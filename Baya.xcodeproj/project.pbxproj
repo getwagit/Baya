@@ -7,8 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4E86C0B12C2C0728B4444E6E /* LayoutOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CAF10A17D54A2CB06C66 /* LayoutOptions.swift */; };
+		4E86C0D6DE662AF18D05D88F /* LayoutIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C87A0F0043ECC9AB418E /* LayoutIterator.swift */; };
+		4E86C0E21222A8788C8B727E /* SquareLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C18895444B6803C578C5 /* SquareLayout.swift */; };
+		4E86C10ECD44E4DE81E33FC9 /* PercentalSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CB71CC99DE3410384B55 /* PercentalSizeLayout.swift */; };
+		4E86C49124F4B799DF519942 /* MatchParentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CB950D7FF663D8DA0DCB /* MatchParentLayout.swift */; };
+		4E86C4D0629E5C596A28C936 /* GravityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CC84BCA8D6B2C401464C /* GravityLayout.swift */; };
+		4E86C6D1BEA500AD0FE45F9E /* PagedScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C4FC8B4D1C1BB46DA0B4 /* PagedScrollLayout.swift */; };
+		4E86C82780CB639262105F56 /* ScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CD7F3049D8B89DAB41B9 /* ScrollLayout.swift */; };
+		4E86C8674E68828366FB2DB0 /* FlexibleContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C3B5CF82721FC4F557F7 /* FlexibleContentLayout.swift */; };
+		4E86C900D8261A6E53934BFD /* LinearLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C61DEFB8BA5C3D11E57C /* LinearLayout.swift */; };
+		4E86CA3759E0DBE323B2E863 /* OriginResetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CCE4E3EB680AD93EC1BE /* OriginResetLayout.swift */; };
+		4E86CADB17E5D66BFF6C965D /* EqualSegmentsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CF98C101DBFA6C140282 /* EqualSegmentsLayout.swift */; };
+		4E86CADED68A17C1CC169387 /* FixedSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C0F5DB6FD92FA508A8B1 /* FixedSizeLayout.swift */; };
 		4E86CB361F5E6E65FDB86896 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C3E2DB5FAC3864DD33CF /* Layout.swift */; };
 		4E86CCE5B9C77DD900DA4795 /* Layoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C68CB4AB7C9B6DE6FD5A /* Layoutable.swift */; };
+		4E86CDF2A816C471A15ADC84 /* FrameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C0066D1E530CE065005E /* FrameLayout.swift */; };
 		A6A7CB921E7D6CCA00885293 /* Baya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A7CB881E7D6CCA00885293 /* Baya.framework */; };
 		A6A7CB971E7D6CCA00885293 /* BayaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A7CB961E7D6CCA00885293 /* BayaTests.swift */; };
 		A6A7CB991E7D6CCA00885293 /* Baya.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A7CB8B1E7D6CCA00885293 /* Baya.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,8 +39,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4E86C0066D1E530CE065005E /* FrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FrameLayout.swift; sourceTree = "<group>"; };
+		4E86C0F5DB6FD92FA508A8B1 /* FixedSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedSizeLayout.swift; sourceTree = "<group>"; };
+		4E86C18895444B6803C578C5 /* SquareLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SquareLayout.swift; sourceTree = "<group>"; };
+		4E86C3B5CF82721FC4F557F7 /* FlexibleContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlexibleContentLayout.swift; sourceTree = "<group>"; };
 		4E86C3E2DB5FAC3864DD33CF /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		4E86C4FC8B4D1C1BB46DA0B4 /* PagedScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagedScrollLayout.swift; sourceTree = "<group>"; };
+		4E86C61DEFB8BA5C3D11E57C /* LinearLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearLayout.swift; sourceTree = "<group>"; };
 		4E86C68CB4AB7C9B6DE6FD5A /* Layoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layoutable.swift; sourceTree = "<group>"; };
+		4E86C87A0F0043ECC9AB418E /* LayoutIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutIterator.swift; sourceTree = "<group>"; };
+		4E86CAF10A17D54A2CB06C66 /* LayoutOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutOptions.swift; sourceTree = "<group>"; };
+		4E86CB71CC99DE3410384B55 /* PercentalSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentalSizeLayout.swift; sourceTree = "<group>"; };
+		4E86CB950D7FF663D8DA0DCB /* MatchParentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchParentLayout.swift; sourceTree = "<group>"; };
+		4E86CC84BCA8D6B2C401464C /* GravityLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GravityLayout.swift; sourceTree = "<group>"; };
+		4E86CCE4E3EB680AD93EC1BE /* OriginResetLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OriginResetLayout.swift; sourceTree = "<group>"; };
+		4E86CD7F3049D8B89DAB41B9 /* ScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollLayout.swift; sourceTree = "<group>"; };
+		4E86CF98C101DBFA6C140282 /* EqualSegmentsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualSegmentsLayout.swift; sourceTree = "<group>"; };
 		A6A7CB881E7D6CCA00885293 /* Baya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Baya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6A7CB8B1E7D6CCA00885293 /* Baya.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Baya.h; sourceTree = "<group>"; };
 		A6A7CB8C1E7D6CCA00885293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -57,6 +85,18 @@
 		4E86C81F8F1AD7953FDDD1F0 /* layouts */ = {
 			isa = PBXGroup;
 			children = (
+				4E86C0066D1E530CE065005E /* FrameLayout.swift */,
+				4E86CC84BCA8D6B2C401464C /* GravityLayout.swift */,
+				4E86C4FC8B4D1C1BB46DA0B4 /* PagedScrollLayout.swift */,
+				4E86CCE4E3EB680AD93EC1BE /* OriginResetLayout.swift */,
+				4E86C0F5DB6FD92FA508A8B1 /* FixedSizeLayout.swift */,
+				4E86CD7F3049D8B89DAB41B9 /* ScrollLayout.swift */,
+				4E86C18895444B6803C578C5 /* SquareLayout.swift */,
+				4E86CF98C101DBFA6C140282 /* EqualSegmentsLayout.swift */,
+				4E86C61DEFB8BA5C3D11E57C /* LinearLayout.swift */,
+				4E86CB71CC99DE3410384B55 /* PercentalSizeLayout.swift */,
+				4E86C3B5CF82721FC4F557F7 /* FlexibleContentLayout.swift */,
+				4E86CB950D7FF663D8DA0DCB /* MatchParentLayout.swift */,
 			);
 			path = layouts;
 			sourceTree = "<group>";
@@ -87,6 +127,8 @@
 				4E86C81F8F1AD7953FDDD1F0 /* layouts */,
 				4E86C68CB4AB7C9B6DE6FD5A /* Layoutable.swift */,
 				4E86C3E2DB5FAC3864DD33CF /* Layout.swift */,
+				4E86C87A0F0043ECC9AB418E /* LayoutIterator.swift */,
+				4E86CAF10A17D54A2CB06C66 /* LayoutOptions.swift */,
 			);
 			path = Baya;
 			sourceTree = "<group>";
@@ -212,6 +254,20 @@
 			files = (
 				4E86CCE5B9C77DD900DA4795 /* Layoutable.swift in Sources */,
 				4E86CB361F5E6E65FDB86896 /* Layout.swift in Sources */,
+				4E86C0D6DE662AF18D05D88F /* LayoutIterator.swift in Sources */,
+				4E86C0B12C2C0728B4444E6E /* LayoutOptions.swift in Sources */,
+				4E86CDF2A816C471A15ADC84 /* FrameLayout.swift in Sources */,
+				4E86C4D0629E5C596A28C936 /* GravityLayout.swift in Sources */,
+				4E86C6D1BEA500AD0FE45F9E /* PagedScrollLayout.swift in Sources */,
+				4E86CA3759E0DBE323B2E863 /* OriginResetLayout.swift in Sources */,
+				4E86CADED68A17C1CC169387 /* FixedSizeLayout.swift in Sources */,
+				4E86C82780CB639262105F56 /* ScrollLayout.swift in Sources */,
+				4E86C0E21222A8788C8B727E /* SquareLayout.swift in Sources */,
+				4E86CADB17E5D66BFF6C965D /* EqualSegmentsLayout.swift in Sources */,
+				4E86C900D8261A6E53934BFD /* LinearLayout.swift in Sources */,
+				4E86C10ECD44E4DE81E33FC9 /* PercentalSizeLayout.swift in Sources */,
+				4E86C8674E68828366FB2DB0 /* FlexibleContentLayout.swift in Sources */,
+				4E86C49124F4B799DF519942 /* MatchParentLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
