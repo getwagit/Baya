@@ -10,13 +10,13 @@ import Oak
 /**
     Protocol for any layout.
 */
-protocol Layout: Layoutable {}
+public protocol BayaLayout: BayaLayoutable {}
 
 /**
     Extension for working with margins.
     Keep margin related logic away from the Layoutable!
 */
-extension Layout {
+internal extension BayaLayout {
     /**
         Run sizeThatFits but subtract the elements margins first.
 

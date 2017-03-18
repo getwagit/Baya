@@ -11,20 +11,28 @@ import Oak
     Something that you can layout.
     Can be a UIView or another Layout.
 */
-protocol Layoutable {
+public protocol BayaLayoutable {
     var layoutMargins: UIEdgeInsets {get}
     var frame: CGRect {get}
     func sizeThatFits(_ size: CGSize) -> CGSize
     mutating func layoutWith(frame: CGRect)
 }
 
-
 // MARK: UIKit specific extensions
+
+/**
+    Apply LayoutTarget to UIView.
+*/
+public extension UIView: BayaLayoutable {
+    func layoutWith(frame: CGRect) {
+        setFrameSafely(frame)
+    }
+}
 
 /**
     Helper for safely setting the frame on LayoutTargets.
 */
-extension UIView {
+internal extension UIView {
     /**
         Use this method to set a frame safely if other transformations might have been applied.
         See https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIView_Class/#//apple_ref/occ/instp/UIView/frame
@@ -42,11 +50,4 @@ extension UIView {
     }
 }
 
-/**
-    Apply LayoutTarget to UIView.
-*/
-extension UIView: Layoutable {
-    func layoutWith(frame: CGRect) {
-        setFrameSafely(frame)
-    }
-}
+

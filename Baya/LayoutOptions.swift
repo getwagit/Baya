@@ -8,8 +8,7 @@ import Foundation
 /**
     Collection of layout specific options.
 */
-struct LayoutOptions {
-
+public struct BayaLayoutOptions {
     enum Orientation {
         case horizontal
         case vertical
@@ -32,5 +31,4 @@ struct LayoutOptions {
             case bottom
         }
     }
-
 }

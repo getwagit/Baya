@@ -10,12 +10,12 @@ import Oak
 /**
     This iterator provides simple iterating loops which can be used to layout children.
 */
-protocol LayoutIterator {}
+internal protocol BayaLayoutIterator {}
 
 /**
     Default LayoutIterator implementation.
 */
-extension LayoutIterator {
+internal extension BayaLayoutIterator {
     
     /**
         Basic iterator method that provides the previous and the current child to a closure.
