@@ -1,7 +1,6 @@
 //
-//  Created by Joachim Fröstl on 25.11.16.
-//  Fixed Layout bug by Markus Riegel on 18.01.2017
-//  Copyright © 2016-2017 wag it GmbH. All rights reserved.
+// Copyright (c) 2016-2017 wag it GmbH.
+// License: MIT
 //
 
 import Foundation

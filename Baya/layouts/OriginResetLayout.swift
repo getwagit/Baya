@@ -1,6 +1,6 @@
 //
-// Created by Joachim Fröstl on 06.03.17.
-// Copyright (c) 2017 wag it GmbH. All rights reserved.
+// Copyright (c) 2016-2017 wag it GmbH.
+// License: MIT
 //
 
 import Foundation

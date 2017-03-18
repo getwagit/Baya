@@ -1,7 +1,6 @@
 //
-// Created by Markus Riegel on 02.09.16.
-// Modified by Joachim Fröstl on 21.10.16. (Added gravity shortcuts in an extension to layoutable.)
-// Copyright (c) 2016 wag it GmbH. All rights reserved.
+// Copyright (c) 2016-2017 wag it GmbH.
+// License: MIT
 //
 
 import Foundation

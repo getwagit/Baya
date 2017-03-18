@@ -1,8 +1,6 @@
 //
-// Created by Markus Riegel on 29.08.16.
-// Added gutter by Joachim Fröstl on 24.11.16.
-// Changed from PageLayout to EqualSegmentsLayout by Joachim Fröstl on 25.11.16.
-// Copyright (c) 2016 wag it GmbH. All rights reserved.
+// Copyright (c) 2016-2017 wag it GmbH.
+// License: MIT
 //
 
 import Foundation

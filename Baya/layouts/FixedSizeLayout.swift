@@ -1,7 +1,6 @@
 //
-//  Created by Joachim Fröstl on 11.11.16.
-//  Added extension by Markus Riegel on 12.07.2017.
-//  Copyright © 2016-2017 wag it GmbH. All rights reserved.
+// Copyright (c) 2016-2017 wag it GmbH.
+// License: MIT
 //
 
 import Foundation
