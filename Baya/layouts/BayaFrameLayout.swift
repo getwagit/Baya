@@ -9,7 +9,7 @@ import UIKit
 /**
     Simple layout that stacks Layoutables.
 */
-public struct FrameLayout: BayaLayout, BayaLayoutIterator {
+public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
