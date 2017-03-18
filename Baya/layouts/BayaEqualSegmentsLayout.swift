@@ -31,37 +31,44 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
+        guard elements.count > 0 else {
+            return
+        }
         switch orientation {
         case .horizontal:
             var elementSize = frame.size
             elementSize.width = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             iterate(&elements) {
                 e1, e2 in
+                let newFrame: CGRect
                 if let e1 = e1 {
-                    let prevFrame = e1.frame
-                    return CGRect(
-                        origin: CGPoint(
-                            x: prevFrame.maxX + gutter,
-                            y: frame.minY),
-                        size: elementSize)
+                    newFrame = CGRect(
+                            origin: CGPoint(
+                                x: e1.frame.maxX +
+                                    horizontalMargins(of: e1) +
+                                    gutter,
+                                y: frame.minY),
+                            size: elementSize)
                 } else {
-                    return CGRect(origin: frame.origin, size: elementSize)
+                    newFrame = CGRect(origin: frame.origin, size: elementSize)
                 }
+                return subtractMargins(frame: newFrame, element: e2)
             }
         case .vertical:
             var elementSize = frame.size
             elementSize.height = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             iterate(&elements) {
                 e1, e2 in
+                let newFrame: CGRect
                 if let e1 = e1 {
-                    let prevFrame = e1.frame
-                    return CGRect(origin: CGPoint(
+                    newFrame = CGRect(origin: CGPoint(
                         x: frame.minX,
-                        y: prevFrame.maxY + gutter),
+                        y: e1.frame.maxY + gutter),
                         size: elementSize)
                 } else {
-                    return CGRect(origin: frame.origin, size: elementSize)
+                    newFrame = CGRect(origin: frame.origin, size: elementSize)
                 }
+                return subtractMargins(frame: newFrame, element: e2)
             }
         }
     }
