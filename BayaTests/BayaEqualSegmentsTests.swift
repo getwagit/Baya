@@ -25,14 +25,14 @@ class BayaEqualSegmentsTests: XCTestCase {
         l3 = nil
     }
 
-    func testEqualSegmentsWithEmptyArray() {
+    func testEmptyArray() {
         var layout = [TestLayoutable]()
             .equalSegments(orientation: .horizontal)
         layout.layoutWith(frame: CGRect())
         XCTAssert(true)
     }
 
-    func testEqualSegmentsHorizontal() {
+    func testHorizontal() {
         var layout = [l1, l2, l3]
             .equalSegments(orientation: .horizontal)
 
@@ -49,7 +49,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssert(l1.frame.size.height == 100)
     }
 
-    func testEqualSegmentsVertical() {
+    func testVertical() {
         var layout = [l1, l2, l3]
             .equalSegments(orientation: .vertical)
 
@@ -66,7 +66,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssert(l1.frame.size.width == 100)
     }
 
-    func testEqualSegmentsWithGutterHorizontal() {
+    func testGutterMarginsHorizontal() {
         l1.layoutMargins = UIEdgeInsets(
             top: 8,
             left: 7,
