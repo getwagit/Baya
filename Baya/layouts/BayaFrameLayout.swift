@@ -42,3 +42,12 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
         return CGSize(width: maxWidth, height: maxHeight)
     }
 }
+
+public extension Array where Element: BayaLayoutable {
+    /**
+        Groups the layoutables together.
+    */
+    func layoutFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
+        return BayaFrameLayout(elements: self, layoutMargins: layoutMargins)
+    }
+}

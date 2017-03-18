@@ -139,3 +139,22 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         return resultSize
     }
 }
+
+public extension Array where Element: BayaLayoutable {
+    /**
+        Creates a linear layout.
+    */
+    func layoutLinear(
+        orientation: BayaLayoutOptions.Orientation,
+        direction: BayaLayoutOptions.Direction = .normal,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
+        spacing: Int = 0)
+            -> BayaLinearLayout {
+        return BayaLinearLayout(
+            elements: self,
+            orientation: orientation,
+            direction: direction,
+            layoutMargins: layoutMargins,
+            spacing: spacing)
+    }
+}

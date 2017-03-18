@@ -83,3 +83,20 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         return size
     }
 }
+
+public extension Array where Element: BayaLayoutable {
+    /**
+        Distributes the available size evenly.
+    */
+    func layoutEqualSegments(
+        orientation: BayaLayoutOptions.Orientation,
+        gutter: CGFloat = 0,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaEqualSegmentsLayout {
+        return BayaEqualSegmentsLayout(
+            elements: self,
+            orientation: orientation,
+            gutter: gutter,
+            layoutMargins: layoutMargins)
+    }
+}
