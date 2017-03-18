@@ -40,77 +40,69 @@ public struct LinearLayout: BayaLayout, BayaLayoutIterator {
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                    width: self.sizeThatFitsWithMargins(of: e2, size: frame.size).width,
-                    height: frame.height - e2.layoutMargins.top - e2.layoutMargins.bottom)
+                    width: e2.sizeThatFits(frame.size).width,
+                    height: frame.height)
+                let origin: CGPoint
                 if let e1 = e1 {
-                    let prevFrame = e1.frame
-                    return CGRect(origin: CGPoint(
-                        x: prevFrame.maxX + e1.layoutMargins.right + self.spacing + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top),
-                        size: size)
+                    origin = CGPoint(
+                        x: e1.frame.maxX + e1.layoutMargins.right + spacing,
+                        y: frame.minY)
                 } else {
-                    return CGRect(origin: CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top),
-                        size: size)
+                    origin = frame.origin
                 }
+                return CGRect(origin: origin, size: size)
             }
         case (.horizontal, .reversed):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                    width: self.sizeThatFitsWithMargins(of: e2, size: frame.size).width,
-                    height: frame.height - e2.layoutMargins.top - e2.layoutMargins.bottom)
+                    width: e2.sizeThatFits(frame.size).width,
+                    height: frame.height)
+                let origin: CGPoint
                 if let e1 = e1 {
-                    let prevFrame = e1.frame
-                    return CGRect(origin: CGPoint(
-                        x: prevFrame.minX - e1.layoutMargins.left - self.spacing - e2.layoutMargins.right - size.width,
-                        y: frame.minY + e2.layoutMargins.top),
-                        size: size)
+                    origin = CGPoint(
+                        x: e1.frame.minX - e1.layoutMargins.left - spacing - size.width,
+                        y: frame.minY)
                 } else {
-                    return CGRect(origin: CGPoint(
-                        x: frame.maxX - e2.layoutMargins.right - size.width,
-                        y: frame.minY + e2.layoutMargins.top),
-                        size: size)
+                    origin = CGPoint(
+                        x: frame.maxX - size.width,
+                        y: frame.minY)
                 }
+                return CGRect(origin: origin, size: size)
             }
         case (.vertical, .normal):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                    width: frame.width - e2.layoutMargins.left - e2.layoutMargins.right,
-                    height: self.sizeThatFitsWithMargins(of: e2, size: frame.size).height)
+                    width: frame.width,
+                    height: e2.sizeThatFits(frame.size).height)
+                let origin: CGPoint
                 if let e1 = e1 {
-                    let prevFrame = e1.frame
-                    return CGRect(origin: CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: prevFrame.maxY + e1.layoutMargins.bottom + self.spacing + e2.layoutMargins.top),
-                        size: size)
+                    origin = CGPoint(
+                        x: frame.minX,
+                        y: e1.frame.maxY + e1.layoutMargins.bottom + spacing)
                 } else {
-                    return CGRect(origin: CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top),
-                        size: size)
+                    origin = frame.origin
                 }
+                return CGRect(origin: origin, size: size)
             }
         case (.vertical, .reversed):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                    width: frame.width - e2.layoutMargins.left - e2.layoutMargins.right,
-                    height: self.sizeThatFitsWithMargins(of: e2, size: frame.size).height)
+                    width: frame.width,
+                    height: e2.sizeThatFits(frame.size).height)
+                let origin: CGPoint
                 if let e1 = e1 {
-                    let prevFrame = e1.frame
-                    return CGRect(origin: CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: prevFrame.minY - e1.layoutMargins.top - self.spacing - e2.layoutMargins.bottom - size.height),
-                        size: size)
+                    origin = CGPoint(
+                        x: frame.minX,
+                        y: e1.frame.minY - e1.layoutMargins.top - spacing - size.height)
                 } else {
-                    return CGRect(origin: CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.maxY - e2.layoutMargins.bottom - size.height),
-                        size: size)
+                    origin = CGPoint(
+                        x: frame.minX,
+                        y: frame.maxY - size.height)
                 }
+                return CGRect(origin: origin, size: size)
             }
         }
     }
@@ -123,7 +115,7 @@ public struct LinearLayout: BayaLayout, BayaLayoutIterator {
             let elementCount = elements.count
             resultSize.width = elementCount > 1 ? (CGFloat(elementCount - 1) * spacing) : 0
             for element in elements {
-                let fit = sizeThatFitsWithMargins(of: element, size: size)
+                let fit = element.sizeThatFitsWithMargins(size)
                 resultSize.width += fit.width + element.layoutMargins.left + element.layoutMargins.right
                 resultSize.height = max(
                     resultSize.height,
@@ -134,7 +126,7 @@ public struct LinearLayout: BayaLayout, BayaLayoutIterator {
             let elementCount = elements.count
             resultSize.height = elementCount > 1 ? (CGFloat(elementCount - 1) * spacing) : 0
             for element in elements {
-                let fit = sizeThatFitsWithMargins(of: element, size: size)
+                let fit = element.sizeThatFitsWithMargins(size)
                 resultSize.width = max(
                     resultSize.width,
                     fit.width + element.layoutMargins.left + element.layoutMargins.right)

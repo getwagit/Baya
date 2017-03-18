@@ -37,8 +37,12 @@ internal extension BayaLayoutable {
         return frame.width + horizontalMargins
     }
 
-    func sizeThatFitsWithMargins(size: CGSize) -> CGSize {
+    func sizeThatFitsWithMargins(_ size: CGSize) -> CGSize {
         return sizeThatFits(size.subtractMargins(ofElement: self))
+    }
+
+    mutating func subtractMarginsAndLayoutWith(frame: CGRect) {
+        layoutWith(frame: frame.subtractMargins(ofElement: self))
     }
 }
 

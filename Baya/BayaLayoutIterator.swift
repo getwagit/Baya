@@ -15,7 +15,6 @@ internal protocol BayaLayoutIterator {}
     Default LayoutIterator implementation.
 */
 internal extension BayaLayoutIterator {
-    
     /**
         Basic iterator method that provides the previous and the current child to a closure.
      
@@ -27,7 +26,7 @@ internal extension BayaLayoutIterator {
             return
         }
         for i in 0..<elements.count { // Has to loop with i because of struct copies.
-            elements[i].layoutWith(frame: l(i == 0 ? nil : elements[i - 1], elements[i]))
+            elements[i].subtractMarginsAndLayoutWith(frame: l(i == 0 ? nil : elements[i - 1], elements[i]))
         }
     }
 }

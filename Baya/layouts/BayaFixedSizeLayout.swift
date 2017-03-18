@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
     A layout that uses a fixed size to layout its element.
@@ -30,14 +31,14 @@ public struct FixedSizeLayout: BayaLayout {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
-        element.layoutWith(frame: frame)
+        element.subtractMarginsAndLayoutWith(frame: frame)
     }
 
     public func sizeThatFits(_ size: CGSize) -> CGSize {
-        let fit = self.sizeThatFitsWithMargins(of: element, size: size)
+        let fit = element.sizeThatFitsWithMargins(size)
         return CGSize(
-            width: fixedWidth ?? (fit.width + horizontalMargins(of: element)),
-            height: fixedHeight ?? (fit.height + verticalMargins(of: element)))
+            width: fixedWidth ?? (fit.width + element.horizontalMargins),
+            height: fixedHeight ?? (fit.height + element.verticalMargins))
     }
 }
 

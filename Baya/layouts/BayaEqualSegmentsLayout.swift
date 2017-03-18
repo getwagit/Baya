@@ -48,7 +48,6 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                     origin = frame.origin
                 }
                 return CGRect(origin: origin, size: elementSize)
-                    .subtractMargins(ofElement: e2)
             }
         case .vertical:
             var elementSize = frame.size
@@ -64,7 +63,6 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                     origin = frame.origin
                 }
                 return CGRect(origin: origin, size: elementSize)
-                    .subtractMargins(ofElement: e2)
             }
         }
     }
@@ -72,7 +70,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     public func sizeThatFits(_ size: CGSize) -> CGSize {
         var size = CGSize()
         for element in elements {
-            let fit = element.sizeThatFitsWithMargins(size: size)
+            let fit = element.sizeThatFitsWithMargins(size)
             size.width = max(fit.width + element.horizontalMargins, size.width)
             size.height = max(fit.height + element.verticalMargins, size.height)
         }

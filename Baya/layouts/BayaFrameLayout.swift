@@ -10,7 +10,6 @@ import UIKit
     Simple layout that stacks Layoutables.
 */
 public struct FrameLayout: BayaLayout, BayaLayoutIterator {
-
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
@@ -28,7 +27,6 @@ public struct FrameLayout: BayaLayout, BayaLayoutIterator {
         self.frame = frame
         iterate(&elements) {
             e1, e2 in
-            let frame = self.subtractMargins(frame: frame, element: e2)
             return frame
         }
     }
@@ -37,9 +35,9 @@ public struct FrameLayout: BayaLayout, BayaLayoutIterator {
         var maxWidth: CGFloat = 0
         var maxHeight: CGFloat = 0
         for element in elements {
-            let elementSize = self.sizeThatFitsWithMargins(of: element, size: size)
-            maxWidth = max(maxWidth, elementSize.width + horizontalMargins(of: element))
-            maxHeight = max(maxHeight, elementSize.height + verticalMargins(of: element))
+            let elementSize = element.sizeThatFitsWithMargins(size)
+            maxWidth = max(maxWidth, elementSize.width + element.horizontalMargins)
+            maxHeight = max(maxHeight, elementSize.height + element.verticalMargins)
         }
         return CGSize(width: maxWidth, height: maxHeight)
     }
