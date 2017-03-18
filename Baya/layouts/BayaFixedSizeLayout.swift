@@ -9,7 +9,7 @@ import UIKit
 /**
     A layout that uses a fixed size to layout its element.
 */
-public struct FixedSizeLayout: BayaLayout {
+public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
@@ -42,11 +42,11 @@ public struct FixedSizeLayout: BayaLayout {
     }
 }
 
-// MARK: Fixed size shortcut
-
 public extension BayaLayoutable {
-    func fixedSize(width: CGFloat?, height: CGFloat?) ->
-        BayaLayoutable {
-        return FixedSizeLayout(element: self, width: width, height: height)
+    /**
+        Gives this element a fixed sized container.
+    */
+    func layoutFixedSize(width: CGFloat?, height: CGFloat?) -> BayaFixedSizeLayout {
+        return BayaFixedSizeLayout(element: self, width: width, height: height)
     }
 }
