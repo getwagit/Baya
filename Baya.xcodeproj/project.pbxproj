@@ -16,8 +16,9 @@
 		3287A13522FEBB3DE157BFAAC959A003 /* BayaFixedSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371FCE8E095D6D8DCB94FFF7E7F18BD7 /* BayaFixedSizeLayout.swift */; };
 		3CB2D65E569E003976E7FCBC2A5308FE /* BayaLinearLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA2896654D28CABD15D4FB18BE3257 /* BayaLinearLayout.swift */; };
 		54471EE876C4D0A85C07780C38A45B3D /* BayaOriginResetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BCCB876A2BF35B546DBBBD34CC7EB /* BayaOriginResetLayout.swift */; };
-		56356A3E9F3E22B9D2A7720C5F398232 /* BayaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9E140DD1234A61DE04238F8384ECD /* BayaTests.swift */; };
+		5B9DC9B16B45EADBEF7BC43BF831752A /* BayaEqualSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F4070A0548912A6605154490D31E8 /* BayaEqualSegmentsTests.swift */; };
 		655C565B4BE20431EF57D98E5DA70CF2 /* Baya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D938B3D3FBD6CB8D96ADFA06E48345 /* Baya.swift */; };
+		6EFCFCF5B8663617DC4D0D031608FEC4 /* TestLayoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AB25E157C90AF7CDC36FAC00EC5191 /* TestLayoutable.swift */; };
 		963CF5D2C24FE6CB3A98E1EB6E44BCE7 /* BayaLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */; };
 		A84CD432AA1C02F7DC2CE6DA701BD4F8 /* BayaGravityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBC55E061AC05FD0A52BA54CF379F7 /* BayaGravityLayout.swift */; };
 		A967692EDD83636DBBDEF9C763389390 /* BayaMatchParentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6337C103C86EFDFCD1D9DFC8EE1D99B /* BayaMatchParentLayout.swift */; };
@@ -50,10 +51,11 @@
 		371FCE8E095D6D8DCB94FFF7E7F18BD7 /* BayaFixedSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFixedSizeLayout.swift; sourceTree = "<group>"; };
 		3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Baya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4057CB0A97B9D4CF21CB311EBC19E6 /* BayaPercentalSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaPercentalSizeLayout.swift; sourceTree = "<group>"; };
+		42AB25E157C90AF7CDC36FAC00EC5191 /* TestLayoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestLayoutable.swift; sourceTree = "<group>"; };
 		474B16E506C4899E87E404FB66A54B79 /* Baya.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Baya.h; sourceTree = "<group>"; };
 		4BCBC55E061AC05FD0A52BA54CF379F7 /* BayaGravityLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaGravityLayout.swift; sourceTree = "<group>"; };
+		567F4070A0548912A6605154490D31E8 /* BayaEqualSegmentsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BayaEqualSegmentsTests.swift; sourceTree = "<group>"; };
 		5D8AD67133785034D9108D0B74D6B0B4 /* BayaEqualSegmentsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaEqualSegmentsLayout.swift; sourceTree = "<group>"; };
-		86C9E140DD1234A61DE04238F8384ECD /* BayaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BayaTests.swift; sourceTree = "<group>"; };
 		8A2C5EFD699BE0D21A195BB1913A9443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BC9B3AF9D8626752F9B1C3BA5213E0C /* BayaScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaScrollLayout.swift; sourceTree = "<group>"; };
 		8C4E7D84317FDC04993475BF374FEDF1 /* BayaLayoutIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutIterator.swift; sourceTree = "<group>"; };
@@ -66,13 +68,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		706A6736FE15BB7DFD8CE95FA5653405 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4277EFF983EF9FC3B0BD39147A1BCC69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -81,9 +76,50 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		706A6736FE15BB7DFD8CE95FA5653405 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050138DAEBF112DDA11D57DE648B5ABD /* Baya */ = {
+			isa = PBXGroup;
+			children = (
+				9DA9C9C94B776FAC586E35EFB3179878 /* layouts */,
+				474B16E506C4899E87E404FB66A54B79 /* Baya.h */,
+				33D938B3D3FBD6CB8D96ADFA06E48345 /* Baya.swift */,
+				A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */,
+				8C4E7D84317FDC04993475BF374FEDF1 /* BayaLayoutIterator.swift */,
+				03EF5DA0EA0BD30BF54EB7C5AE0FE7B5 /* BayaLayoutOptions.swift */,
+				924F17006DF96B052748099236E108F7 /* BayaLayoutable.swift */,
+				8A2C5EFD699BE0D21A195BB1913A9443 /* Info.plist */,
+			);
+			path = Baya;
+			sourceTree = "<group>";
+		};
+		12A68E0D4A9294A382D3311095A67B42 /* BayaTests */ = {
+			isa = PBXGroup;
+			children = (
+				567F4070A0548912A6605154490D31E8 /* BayaEqualSegmentsTests.swift */,
+				0079ECC8B8D989E5F5466D5CB936A9EA /* Info.plist */,
+				42AB25E157C90AF7CDC36FAC00EC5191 /* TestLayoutable.swift */,
+			);
+			path = BayaTests;
+			sourceTree = "<group>";
+		};
+		884DB30C05CC29CA14F485B708833F53 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */,
+				02B54D90E7314AA21C229310F0A19D15 /* BayaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9DA9C9C94B776FAC586E35EFB3179878 /* layouts */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,39 +146,6 @@
 				12A68E0D4A9294A382D3311095A67B42 /* BayaTests */,
 				884DB30C05CC29CA14F485B708833F53 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		884DB30C05CC29CA14F485B708833F53 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */,
-				02B54D90E7314AA21C229310F0A19D15 /* BayaTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		050138DAEBF112DDA11D57DE648B5ABD /* Baya */ = {
-			isa = PBXGroup;
-			children = (
-				9DA9C9C94B776FAC586E35EFB3179878 /* layouts */,
-				474B16E506C4899E87E404FB66A54B79 /* Baya.h */,
-				33D938B3D3FBD6CB8D96ADFA06E48345 /* Baya.swift */,
-				A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */,
-				8C4E7D84317FDC04993475BF374FEDF1 /* BayaLayoutIterator.swift */,
-				03EF5DA0EA0BD30BF54EB7C5AE0FE7B5 /* BayaLayoutOptions.swift */,
-				924F17006DF96B052748099236E108F7 /* BayaLayoutable.swift */,
-				8A2C5EFD699BE0D21A195BB1913A9443 /* Info.plist */,
-			);
-			path = Baya;
-			sourceTree = "<group>";
-		};
-		12A68E0D4A9294A382D3311095A67B42 /* BayaTests */ = {
-			isa = PBXGroup;
-			children = (
-				86C9E140DD1234A61DE04238F8384ECD /* BayaTests.swift */,
-				0079ECC8B8D989E5F5466D5CB936A9EA /* Info.plist */,
-			);
-			path = BayaTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,14 +237,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		7F06F315BCDB874991B373146A3D2F1B /* Resources */ = {
+		7EC56B9A3C35C3ED7699E1EC2A022BC3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7EC56B9A3C35C3ED7699E1EC2A022BC3 /* Resources */ = {
+		7F06F315BCDB874991B373146A3D2F1B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,6 +254,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		790510874CDDFCD4EABE51AA3CBA4B55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5B9DC9B16B45EADBEF7BC43BF831752A /* BayaEqualSegmentsTests.swift in Sources */,
+				6EFCFCF5B8663617DC4D0D031608FEC4 /* TestLayoutable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DBC0403FAC1BA33CAEA2E59624CDD574 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,14 +287,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		790510874CDDFCD4EABE51AA3CBA4B55 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				56356A3E9F3E22B9D2A7720C5F398232 /* BayaTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -294,6 +298,81 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		073CFCCAD81465581F03C134C73A00BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BayaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wagit.BayaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		162FEB2CC3CDFB496EB4E2154A951EBD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Baya/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wagit.Baya;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		2FACFB670C209E8F5BB384D245A6546D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		5EAB38464F535C28401102010027F30A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -347,51 +426,16 @@
 			};
 			name = Debug;
 		};
-		2FACFB670C209E8F5BB384D245A6546D /* Release */ = {
+		BE1E1B879E214CDCD9AEA5F01590B0F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
+				INFOPLIST_FILE = BayaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.wagit.BayaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
-			name = Release;
+			name = Debug;
 		};
 		C096074817C79D438845CBBE4EED562C /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -410,46 +454,6 @@
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
-		};
-		162FEB2CC3CDFB496EB4E2154A951EBD /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = Baya/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.wagit.Baya;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
-		BE1E1B879E214CDCD9AEA5F01590B0F5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BayaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.wagit.BayaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		073CFCCAD81465581F03C134C73A00BA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = BayaTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.wagit.BayaTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
