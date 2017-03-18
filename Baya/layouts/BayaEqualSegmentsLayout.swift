@@ -38,37 +38,33 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         case .horizontal:
             var elementSize = frame.size
             elementSize.width = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
-            iterate(&elements) {
-                e1, e2 in
-                let newFrame: CGRect
+            iterate(&elements) { e1, e2 in
+                let origin: CGPoint
                 if let e1 = e1 {
-                    newFrame = CGRect(
-                            origin: CGPoint(
-                                x: e1.frame.maxX +
-                                    horizontalMargins(of: e1) +
-                                    gutter,
-                                y: frame.minY),
-                            size: elementSize)
+                    origin = CGPoint(
+                        x: e1.frame.maxX + e1.layoutMargins.right + gutter,
+                        y: frame.minY)
                 } else {
-                    newFrame = CGRect(origin: frame.origin, size: elementSize)
+                    origin = frame.origin
                 }
-                return subtractMargins(frame: newFrame, element: e2)
+                return CGRect(origin: origin, size: elementSize)
+                    .subtractMargins(ofElement: e2)
             }
         case .vertical:
             var elementSize = frame.size
             elementSize.height = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             iterate(&elements) {
                 e1, e2 in
-                let newFrame: CGRect
+                let origin: CGPoint
                 if let e1 = e1 {
-                    newFrame = CGRect(origin: CGPoint(
+                    origin = CGPoint(
                         x: frame.minX,
-                        y: e1.frame.maxY + gutter),
-                        size: elementSize)
+                        y: e1.frame.maxY + e1.layoutMargins.bottom + gutter)
                 } else {
-                    newFrame = CGRect(origin: frame.origin, size: elementSize)
+                    origin = frame.origin
                 }
-                return subtractMargins(frame: newFrame, element: e2)
+                return CGRect(origin: origin, size: elementSize)
+                    .subtractMargins(ofElement: e2)
             }
         }
     }
@@ -76,9 +72,9 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     public func sizeThatFits(_ size: CGSize) -> CGSize {
         var size = CGSize()
         for element in elements {
-            let fit = sizeThatFitsWithMargins(of: element, size: size)
-            size.width = max(fit.width + horizontalMargins(of: element), size.width)
-            size.height = max(fit.height + verticalMargins(of: element), size.height)
+            let fit = element.sizeThatFitsWithMargins(size: size)
+            size.width = max(fit.width + element.horizontalMargins, size.width)
+            size.height = max(fit.height + element.verticalMargins, size.height)
         }
         switch orientation {
         case .horizontal:
