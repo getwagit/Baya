@@ -17,4 +17,12 @@ class TestLayoutable: BayaLayoutable {
     func layoutWith(frame: CGRect) {
         self.frame = frame
     }
+
+    func m(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
+        layoutMargins = UIEdgeInsets(
+            top: top,
+            left: left,
+            bottom: bottom,
+            right: right)
+    }
 }
