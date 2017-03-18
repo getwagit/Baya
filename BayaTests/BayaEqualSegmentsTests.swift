@@ -29,7 +29,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [TestLayoutable]()
             .equalSegments(orientation: .horizontal)
         layout.layoutWith(frame: CGRect())
-        XCTAssert(true)
+        XCTAssert(true) // Does not crash.
     }
 
     func testHorizontal() {
@@ -43,10 +43,10 @@ class BayaEqualSegmentsTests: XCTestCase {
                 width: 300,
                 height: 100))
 
-        XCTAssert(l1.frame.size.width == 100)
-        XCTAssert(l2.frame.size.width == 100)
-        XCTAssert(l3.frame.size.width == 100)
-        XCTAssert(l1.frame.size.height == 100)
+        XCTAssertEqual(l1.frame.size.width, 100)
+        XCTAssertEqual(l2.frame.size.width, 100)
+        XCTAssertEqual(l3.frame.size.width,100)
+        XCTAssertEqual(l1.frame.size.height, 100)
     }
 
     func testVertical() {
@@ -60,10 +60,10 @@ class BayaEqualSegmentsTests: XCTestCase {
                 width: 100,
                 height: 300))
 
-        XCTAssert(l1.frame.size.height == 100)
-        XCTAssert(l2.frame.size.height == 100)
-        XCTAssert(l3.frame.size.height == 100)
-        XCTAssert(l1.frame.size.width == 100)
+        XCTAssertEqual(l1.frame.size.height, 100)
+        XCTAssertEqual(l2.frame.size.height, 100)
+        XCTAssertEqual(l3.frame.size.height, 100)
+        XCTAssertEqual(l1.frame.size.width, 100)
     }
 
     func testGutterMarginsHorizontal() {
@@ -84,10 +84,11 @@ class BayaEqualSegmentsTests: XCTestCase {
                 width: 100 * 3 + 10 * 2,
                 height: 100))
 
-        XCTAssert(l1.frame.width == 100 - 7 - 3, "unexpected width: \(l1.frame.width)")
-        XCTAssert(l1.frame.height == 100 - 8 - 4, "unexpected height")
-        XCTAssert(l1.frame.origin.x == 6 + 7, "unexpected x")
-        XCTAssert(l1.frame.origin.y == 6 + 8, "unexpected y")
+        XCTAssertEqual(l1.frame.width, 100 - 7 - 3, "unexpected width")
+        XCTAssertEqual(l1.frame.height, 100 - 8 - 4, "unexpected height")
+        XCTAssertEqual(l1.frame.origin.x, 6 + 7, "unexpected x")
+        XCTAssertEqual(l1.frame.origin.y, 6 + 8, "unexpected y")
+        XCTAssertEqual(l2.frame.origin.x, 6 + 100 + 10, "unexpected l2 position")
     }
 
     func testGutterMarginsVertical() {
@@ -108,9 +109,10 @@ class BayaEqualSegmentsTests: XCTestCase {
                 width: 100,
                 height: 100 * 3 + 10 * 2))
 
-        XCTAssert(l1.frame.width == 100 - 7 - 3, "unexpected width: \(l1.frame.width)")
-        XCTAssert(l1.frame.height == 100 - 8 - 4, "unexpected height")
-        XCTAssert(l1.frame.origin.x == 6 + 7, "unexpected x")
-        XCTAssert(l1.frame.origin.y == 6 + 8, "unexpected y")
+        XCTAssertEqual(l1.frame.width, 100 - 7 - 3, "unexpected width")
+        XCTAssertEqual(l1.frame.height, 100 - 8 - 4, "unexpected height")
+        XCTAssertEqual(l1.frame.origin.x, 6 + 7, "unexpected x")
+        XCTAssertEqual(l1.frame.origin.y, 6 + 8, "unexpected y")
+        XCTAssertEqual(l2.frame.origin.y, 6 + 100 + 10, "unexpected l2 position")
     }
 }
