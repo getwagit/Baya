@@ -7,140 +7,140 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4E86C0B12C2C0728B4444E6E /* BayaLayoutOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CAF10A17D54A2CB06C66 /* BayaLayoutOptions.swift */; };
-		4E86C0D6DE662AF18D05D88F /* BayaLayoutIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C87A0F0043ECC9AB418E /* BayaLayoutIterator.swift */; };
-		4E86C0E21222A8788C8B727E /* BayaSquareLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C18895444B6803C578C5 /* BayaSquareLayout.swift */; };
-		4E86C10ECD44E4DE81E33FC9 /* BayaPercentalSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CB71CC99DE3410384B55 /* BayaPercentalSizeLayout.swift */; };
-		4E86C49124F4B799DF519942 /* BayaMatchParentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CB950D7FF663D8DA0DCB /* BayaMatchParentLayout.swift */; };
-		4E86C4D0629E5C596A28C936 /* BayaGravityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CC84BCA8D6B2C401464C /* BayaGravityLayout.swift */; };
-		4E86C6D1BEA500AD0FE45F9E /* BayaPagedScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C4FC8B4D1C1BB46DA0B4 /* BayaPagedScrollLayout.swift */; };
-		4E86C82780CB639262105F56 /* BayaScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CD7F3049D8B89DAB41B9 /* BayaScrollLayout.swift */; };
-		4E86C8674E68828366FB2DB0 /* BayaFlexibleContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C3B5CF82721FC4F557F7 /* BayaFlexibleContentLayout.swift */; };
-		4E86C900D8261A6E53934BFD /* BayaLinearLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C61DEFB8BA5C3D11E57C /* BayaLinearLayout.swift */; };
-		4E86CA3759E0DBE323B2E863 /* BayaOriginResetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CCE4E3EB680AD93EC1BE /* BayaOriginResetLayout.swift */; };
-		4E86CADB17E5D66BFF6C965D /* BayaEqualSegmentsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CF98C101DBFA6C140282 /* BayaEqualSegmentsLayout.swift */; };
-		4E86CADED68A17C1CC169387 /* BayaFixedSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C0F5DB6FD92FA508A8B1 /* BayaFixedSizeLayout.swift */; };
-		4E86CB361F5E6E65FDB86896 /* BayaLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C3E2DB5FAC3864DD33CF /* BayaLayout.swift */; };
-		4E86CCE5B9C77DD900DA4795 /* BayaLayoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C68CB4AB7C9B6DE6FD5A /* BayaLayoutable.swift */; };
-		4E86CDF2A816C471A15ADC84 /* BayaFrameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86C0066D1E530CE065005E /* BayaFrameLayout.swift */; };
-		4E86CFB6CFE2CB1F638AE3AE /* Baya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E86CB951BDFA527FA410457 /* Baya.swift */; };
-		A6A7CB921E7D6CCA00885293 /* Baya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A7CB881E7D6CCA00885293 /* Baya.framework */; };
-		A6A7CB971E7D6CCA00885293 /* BayaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A7CB961E7D6CCA00885293 /* BayaTests.swift */; };
-		A6A7CB991E7D6CCA00885293 /* Baya.h in Headers */ = {isa = PBXBuildFile; fileRef = A6A7CB8B1E7D6CCA00885293 /* Baya.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0243600AC596D12EA9DEA8600E383C3A /* BayaScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC9B3AF9D8626752F9B1C3BA5213E0C /* BayaScrollLayout.swift */; };
+		0F8D77F19781CEE7FF2E200164FCB5C8 /* BayaLayoutIterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4E7D84317FDC04993475BF374FEDF1 /* BayaLayoutIterator.swift */; };
+		166282AEFE359E02497A6BC6D6FBF4CD /* BayaEqualSegmentsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8AD67133785034D9108D0B74D6B0B4 /* BayaEqualSegmentsLayout.swift */; };
+		18372E663DD7AFD15112EE61C0FB4684 /* BayaFlexibleContentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4F8F4BCC964D7343AAACBD60D370E8 /* BayaFlexibleContentLayout.swift */; };
+		27F1EB8141D14DFB6BB2B8E7C5F50D5B /* Baya.h in Headers */ = {isa = PBXBuildFile; fileRef = 474B16E506C4899E87E404FB66A54B79 /* Baya.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		31E18B2D5F805AF0D7F9783AE373751A /* BayaPercentalSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4057CB0A97B9D4CF21CB311EBC19E6 /* BayaPercentalSizeLayout.swift */; };
+		3287A13522FEBB3DE157BFAAC959A003 /* BayaFixedSizeLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371FCE8E095D6D8DCB94FFF7E7F18BD7 /* BayaFixedSizeLayout.swift */; };
+		3CB2D65E569E003976E7FCBC2A5308FE /* BayaLinearLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDA2896654D28CABD15D4FB18BE3257 /* BayaLinearLayout.swift */; };
+		54471EE876C4D0A85C07780C38A45B3D /* BayaOriginResetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BCCB876A2BF35B546DBBBD34CC7EB /* BayaOriginResetLayout.swift */; };
+		56356A3E9F3E22B9D2A7720C5F398232 /* BayaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C9E140DD1234A61DE04238F8384ECD /* BayaTests.swift */; };
+		655C565B4BE20431EF57D98E5DA70CF2 /* Baya.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33D938B3D3FBD6CB8D96ADFA06E48345 /* Baya.swift */; };
+		963CF5D2C24FE6CB3A98E1EB6E44BCE7 /* BayaLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */; };
+		A84CD432AA1C02F7DC2CE6DA701BD4F8 /* BayaGravityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBC55E061AC05FD0A52BA54CF379F7 /* BayaGravityLayout.swift */; };
+		A967692EDD83636DBBDEF9C763389390 /* BayaMatchParentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6337C103C86EFDFCD1D9DFC8EE1D99B /* BayaMatchParentLayout.swift */; };
+		B10E998DA3217C503123282EB55893F2 /* Baya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */; };
+		B4D39FCBBB80BF0D269EC9CBDF65C94D /* BayaLayoutOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03EF5DA0EA0BD30BF54EB7C5AE0FE7B5 /* BayaLayoutOptions.swift */; };
+		BC627431C4F148663EA3EA5F762EC319 /* BayaPagedScrollLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0345DDDEFF4861E695CC75BF46DE6BB7 /* BayaPagedScrollLayout.swift */; };
+		D31CFC47481F2E5A99A43D5550347D68 /* BayaFrameLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C172F694DAF80EA172DE619B8170D5 /* BayaFrameLayout.swift */; };
+		F82110C8762A8A6BBE717B90D79C5EAD /* BayaLayoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924F17006DF96B052748099236E108F7 /* BayaLayoutable.swift */; };
+		FE3CD9AD1B326BBFAC2F7CD74DAA6470 /* BayaSquareLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CF5B4758F933B73D155E1DB65323A3 /* BayaSquareLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A6A7CB931E7D6CCA00885293 /* PBXContainerItemProxy */ = {
+		6D11D46A8C07B187513DC2D8ADE47DE0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A6A7CB7F1E7D6CC900885293 /* Project object */;
+			containerPortal = B40722EEF2F261335BF3ACBB7697AC4E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = A6A7CB871E7D6CC900885293;
+			remoteGlobalIDString = 62F0E6C68DBA0BB806E5858792B3CAE4;
 			remoteInfo = Baya;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4E86C0066D1E530CE065005E /* BayaFrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFrameLayout.swift; sourceTree = "<group>"; };
-		4E86C0F5DB6FD92FA508A8B1 /* BayaFixedSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFixedSizeLayout.swift; sourceTree = "<group>"; };
-		4E86C18895444B6803C578C5 /* BayaSquareLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaSquareLayout.swift; sourceTree = "<group>"; };
-		4E86C3B5CF82721FC4F557F7 /* BayaFlexibleContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFlexibleContentLayout.swift; sourceTree = "<group>"; };
-		4E86C3E2DB5FAC3864DD33CF /* BayaLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayout.swift; sourceTree = "<group>"; };
-		4E86C4FC8B4D1C1BB46DA0B4 /* BayaPagedScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaPagedScrollLayout.swift; sourceTree = "<group>"; };
-		4E86C61DEFB8BA5C3D11E57C /* BayaLinearLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLinearLayout.swift; sourceTree = "<group>"; };
-		4E86C68CB4AB7C9B6DE6FD5A /* BayaLayoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutable.swift; sourceTree = "<group>"; };
-		4E86C87A0F0043ECC9AB418E /* BayaLayoutIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutIterator.swift; sourceTree = "<group>"; };
-		4E86CAF10A17D54A2CB06C66 /* BayaLayoutOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutOptions.swift; sourceTree = "<group>"; };
-		4E86CB71CC99DE3410384B55 /* BayaPercentalSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaPercentalSizeLayout.swift; sourceTree = "<group>"; };
-		4E86CB950D7FF663D8DA0DCB /* BayaMatchParentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaMatchParentLayout.swift; sourceTree = "<group>"; };
-		4E86CB951BDFA527FA410457 /* Baya.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baya.swift; sourceTree = "<group>"; };
-		4E86CC84BCA8D6B2C401464C /* BayaGravityLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaGravityLayout.swift; sourceTree = "<group>"; };
-		4E86CCE4E3EB680AD93EC1BE /* BayaOriginResetLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaOriginResetLayout.swift; sourceTree = "<group>"; };
-		4E86CD7F3049D8B89DAB41B9 /* BayaScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaScrollLayout.swift; sourceTree = "<group>"; };
-		4E86CF98C101DBFA6C140282 /* BayaEqualSegmentsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaEqualSegmentsLayout.swift; sourceTree = "<group>"; };
-		A6A7CB881E7D6CCA00885293 /* Baya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Baya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6A7CB8B1E7D6CCA00885293 /* Baya.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Baya.h; sourceTree = "<group>"; };
-		A6A7CB8C1E7D6CCA00885293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A6A7CB911E7D6CCA00885293 /* BayaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BayaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6A7CB961E7D6CCA00885293 /* BayaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BayaTests.swift; sourceTree = "<group>"; };
-		A6A7CB981E7D6CCA00885293 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0079ECC8B8D989E5F5466D5CB936A9EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02B54D90E7314AA21C229310F0A19D15 /* BayaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BayaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0345DDDEFF4861E695CC75BF46DE6BB7 /* BayaPagedScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaPagedScrollLayout.swift; sourceTree = "<group>"; };
+		03EF5DA0EA0BD30BF54EB7C5AE0FE7B5 /* BayaLayoutOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutOptions.swift; sourceTree = "<group>"; };
+		20CF5B4758F933B73D155E1DB65323A3 /* BayaSquareLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaSquareLayout.swift; sourceTree = "<group>"; };
+		304BCCB876A2BF35B546DBBBD34CC7EB /* BayaOriginResetLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaOriginResetLayout.swift; sourceTree = "<group>"; };
+		33D938B3D3FBD6CB8D96ADFA06E48345 /* Baya.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Baya.swift; sourceTree = "<group>"; };
+		371FCE8E095D6D8DCB94FFF7E7F18BD7 /* BayaFixedSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFixedSizeLayout.swift; sourceTree = "<group>"; };
+		3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Baya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C4057CB0A97B9D4CF21CB311EBC19E6 /* BayaPercentalSizeLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaPercentalSizeLayout.swift; sourceTree = "<group>"; };
+		474B16E506C4899E87E404FB66A54B79 /* Baya.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Baya.h; sourceTree = "<group>"; };
+		4BCBC55E061AC05FD0A52BA54CF379F7 /* BayaGravityLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaGravityLayout.swift; sourceTree = "<group>"; };
+		5D8AD67133785034D9108D0B74D6B0B4 /* BayaEqualSegmentsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaEqualSegmentsLayout.swift; sourceTree = "<group>"; };
+		86C9E140DD1234A61DE04238F8384ECD /* BayaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BayaTests.swift; sourceTree = "<group>"; };
+		8A2C5EFD699BE0D21A195BB1913A9443 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BC9B3AF9D8626752F9B1C3BA5213E0C /* BayaScrollLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaScrollLayout.swift; sourceTree = "<group>"; };
+		8C4E7D84317FDC04993475BF374FEDF1 /* BayaLayoutIterator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutIterator.swift; sourceTree = "<group>"; };
+		924F17006DF96B052748099236E108F7 /* BayaLayoutable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayoutable.swift; sourceTree = "<group>"; };
+		A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLayout.swift; sourceTree = "<group>"; };
+		AF4F8F4BCC964D7343AAACBD60D370E8 /* BayaFlexibleContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFlexibleContentLayout.swift; sourceTree = "<group>"; };
+		BFDA2896654D28CABD15D4FB18BE3257 /* BayaLinearLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLinearLayout.swift; sourceTree = "<group>"; };
+		C6337C103C86EFDFCD1D9DFC8EE1D99B /* BayaMatchParentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaMatchParentLayout.swift; sourceTree = "<group>"; };
+		E7C172F694DAF80EA172DE619B8170D5 /* BayaFrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFrameLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A6A7CB841E7D6CC900885293 /* Frameworks */ = {
+		706A6736FE15BB7DFD8CE95FA5653405 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6A7CB8E1E7D6CCA00885293 /* Frameworks */ = {
+		4277EFF983EF9FC3B0BD39147A1BCC69 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A7CB921E7D6CCA00885293 /* Baya.framework in Frameworks */,
+				B10E998DA3217C503123282EB55893F2 /* Baya.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4E86C81F8F1AD7953FDDD1F0 /* layouts */ = {
+		9DA9C9C94B776FAC586E35EFB3179878 /* layouts */ = {
 			isa = PBXGroup;
 			children = (
-				4E86C0066D1E530CE065005E /* BayaFrameLayout.swift */,
-				4E86CC84BCA8D6B2C401464C /* BayaGravityLayout.swift */,
-				4E86C4FC8B4D1C1BB46DA0B4 /* BayaPagedScrollLayout.swift */,
-				4E86CCE4E3EB680AD93EC1BE /* BayaOriginResetLayout.swift */,
-				4E86C0F5DB6FD92FA508A8B1 /* BayaFixedSizeLayout.swift */,
-				4E86CD7F3049D8B89DAB41B9 /* BayaScrollLayout.swift */,
-				4E86C18895444B6803C578C5 /* BayaSquareLayout.swift */,
-				4E86CF98C101DBFA6C140282 /* BayaEqualSegmentsLayout.swift */,
-				4E86C61DEFB8BA5C3D11E57C /* BayaLinearLayout.swift */,
-				4E86CB71CC99DE3410384B55 /* BayaPercentalSizeLayout.swift */,
-				4E86C3B5CF82721FC4F557F7 /* BayaFlexibleContentLayout.swift */,
-				4E86CB950D7FF663D8DA0DCB /* BayaMatchParentLayout.swift */,
+				5D8AD67133785034D9108D0B74D6B0B4 /* BayaEqualSegmentsLayout.swift */,
+				371FCE8E095D6D8DCB94FFF7E7F18BD7 /* BayaFixedSizeLayout.swift */,
+				AF4F8F4BCC964D7343AAACBD60D370E8 /* BayaFlexibleContentLayout.swift */,
+				E7C172F694DAF80EA172DE619B8170D5 /* BayaFrameLayout.swift */,
+				4BCBC55E061AC05FD0A52BA54CF379F7 /* BayaGravityLayout.swift */,
+				BFDA2896654D28CABD15D4FB18BE3257 /* BayaLinearLayout.swift */,
+				C6337C103C86EFDFCD1D9DFC8EE1D99B /* BayaMatchParentLayout.swift */,
+				304BCCB876A2BF35B546DBBBD34CC7EB /* BayaOriginResetLayout.swift */,
+				0345DDDEFF4861E695CC75BF46DE6BB7 /* BayaPagedScrollLayout.swift */,
+				3C4057CB0A97B9D4CF21CB311EBC19E6 /* BayaPercentalSizeLayout.swift */,
+				8BC9B3AF9D8626752F9B1C3BA5213E0C /* BayaScrollLayout.swift */,
+				20CF5B4758F933B73D155E1DB65323A3 /* BayaSquareLayout.swift */,
 			);
 			path = layouts;
 			sourceTree = "<group>";
 		};
-		A6A7CB7E1E7D6CC900885293 = {
+		DD5EE3A4F96E650B8B23401B1B3E7801 = {
 			isa = PBXGroup;
 			children = (
-				A6A7CB8A1E7D6CCA00885293 /* Baya */,
-				A6A7CB951E7D6CCA00885293 /* BayaTests */,
-				A6A7CB891E7D6CCA00885293 /* Products */,
+				050138DAEBF112DDA11D57DE648B5ABD /* Baya */,
+				12A68E0D4A9294A382D3311095A67B42 /* BayaTests */,
+				884DB30C05CC29CA14F485B708833F53 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A6A7CB891E7D6CCA00885293 /* Products */ = {
+		884DB30C05CC29CA14F485B708833F53 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A6A7CB881E7D6CCA00885293 /* Baya.framework */,
-				A6A7CB911E7D6CCA00885293 /* BayaTests.xctest */,
+				3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */,
+				02B54D90E7314AA21C229310F0A19D15 /* BayaTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A6A7CB8A1E7D6CCA00885293 /* Baya */ = {
+		050138DAEBF112DDA11D57DE648B5ABD /* Baya */ = {
 			isa = PBXGroup;
 			children = (
-				A6A7CB8B1E7D6CCA00885293 /* Baya.h */,
-				A6A7CB8C1E7D6CCA00885293 /* Info.plist */,
-				4E86C81F8F1AD7953FDDD1F0 /* layouts */,
-				4E86C68CB4AB7C9B6DE6FD5A /* BayaLayoutable.swift */,
-				4E86C3E2DB5FAC3864DD33CF /* BayaLayout.swift */,
-				4E86C87A0F0043ECC9AB418E /* BayaLayoutIterator.swift */,
-				4E86CAF10A17D54A2CB06C66 /* BayaLayoutOptions.swift */,
-				4E86CB951BDFA527FA410457 /* Baya.swift */,
+				9DA9C9C94B776FAC586E35EFB3179878 /* layouts */,
+				474B16E506C4899E87E404FB66A54B79 /* Baya.h */,
+				33D938B3D3FBD6CB8D96ADFA06E48345 /* Baya.swift */,
+				A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */,
+				8C4E7D84317FDC04993475BF374FEDF1 /* BayaLayoutIterator.swift */,
+				03EF5DA0EA0BD30BF54EB7C5AE0FE7B5 /* BayaLayoutOptions.swift */,
+				924F17006DF96B052748099236E108F7 /* BayaLayoutable.swift */,
+				8A2C5EFD699BE0D21A195BB1913A9443 /* Info.plist */,
 			);
 			path = Baya;
 			sourceTree = "<group>";
 		};
-		A6A7CB951E7D6CCA00885293 /* BayaTests */ = {
+		12A68E0D4A9294A382D3311095A67B42 /* BayaTests */ = {
 			isa = PBXGroup;
 			children = (
-				A6A7CB961E7D6CCA00885293 /* BayaTests.swift */,
-				A6A7CB981E7D6CCA00885293 /* Info.plist */,
+				86C9E140DD1234A61DE04238F8384ECD /* BayaTests.swift */,
+				0079ECC8B8D989E5F5466D5CB936A9EA /* Info.plist */,
 			);
 			path = BayaTests;
 			sourceTree = "<group>";
@@ -148,25 +148,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		A6A7CB851E7D6CC900885293 /* Headers */ = {
+		9A13D3561891C4498C321D1BEAB98B01 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A7CB991E7D6CCA00885293 /* Baya.h in Headers */,
+				27F1EB8141D14DFB6BB2B8E7C5F50D5B /* Baya.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		A6A7CB871E7D6CC900885293 /* Baya */ = {
+		62F0E6C68DBA0BB806E5858792B3CAE4 /* Baya */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6A7CB9C1E7D6CCA00885293 /* Build configuration list for PBXNativeTarget "Baya" */;
+			buildConfigurationList = A770C9AC98798C7310A2343139F962B0 /* Build configuration list for PBXNativeTarget "Baya" */;
 			buildPhases = (
-				A6A7CB831E7D6CC900885293 /* Sources */,
-				A6A7CB841E7D6CC900885293 /* Frameworks */,
-				A6A7CB851E7D6CC900885293 /* Headers */,
-				A6A7CB861E7D6CC900885293 /* Resources */,
+				DBC0403FAC1BA33CAEA2E59624CDD574 /* Sources */,
+				706A6736FE15BB7DFD8CE95FA5653405 /* Frameworks */,
+				9A13D3561891C4498C321D1BEAB98B01 /* Headers */,
+				7F06F315BCDB874991B373146A3D2F1B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -174,74 +174,74 @@
 			);
 			name = Baya;
 			productName = Baya;
-			productReference = A6A7CB881E7D6CCA00885293 /* Baya.framework */;
+			productReference = 3769C9AFF9254132BA9F14C5F8ABCEFE /* Baya.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A6A7CB901E7D6CCA00885293 /* BayaTests */ = {
+		D0359E5A84FB8EA523D558CF07EA1A71 /* BayaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A6A7CB9F1E7D6CCA00885293 /* Build configuration list for PBXNativeTarget "BayaTests" */;
+			buildConfigurationList = CB8FF5C8E891521EDEE6DE2E2F91223C /* Build configuration list for PBXNativeTarget "BayaTests" */;
 			buildPhases = (
-				A6A7CB8D1E7D6CCA00885293 /* Sources */,
-				A6A7CB8E1E7D6CCA00885293 /* Frameworks */,
-				A6A7CB8F1E7D6CCA00885293 /* Resources */,
+				790510874CDDFCD4EABE51AA3CBA4B55 /* Sources */,
+				4277EFF983EF9FC3B0BD39147A1BCC69 /* Frameworks */,
+				7EC56B9A3C35C3ED7699E1EC2A022BC3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A6A7CB941E7D6CCA00885293 /* PBXTargetDependency */,
+				490704F196545969C05B3746921B5B8E /* PBXTargetDependency */,
 			);
 			name = BayaTests;
 			productName = BayaTests;
-			productReference = A6A7CB911E7D6CCA00885293 /* BayaTests.xctest */;
+			productReference = 02B54D90E7314AA21C229310F0A19D15 /* BayaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A6A7CB7F1E7D6CC900885293 /* Project object */ = {
+		B40722EEF2F261335BF3ACBB7697AC4E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "wag it GmbH";
 				TargetAttributes = {
-					A6A7CB871E7D6CC900885293 = {
+					62F0E6C68DBA0BB806E5858792B3CAE4 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
-					A6A7CB901E7D6CCA00885293 = {
+					D0359E5A84FB8EA523D558CF07EA1A71 = {
 						CreatedOnToolsVersion = 8.2.1;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = A6A7CB821E7D6CC900885293 /* Build configuration list for PBXProject "Baya" */;
+			buildConfigurationList = 28340828EBE1A48E3E4B773FC6EA779F /* Build configuration list for PBXProject "Baya" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = A6A7CB7E1E7D6CC900885293;
-			productRefGroup = A6A7CB891E7D6CCA00885293 /* Products */;
+			mainGroup = DD5EE3A4F96E650B8B23401B1B3E7801;
+			productRefGroup = 884DB30C05CC29CA14F485B708833F53 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A6A7CB871E7D6CC900885293 /* Baya */,
-				A6A7CB901E7D6CCA00885293 /* BayaTests */,
+				62F0E6C68DBA0BB806E5858792B3CAE4 /* Baya */,
+				D0359E5A84FB8EA523D558CF07EA1A71 /* BayaTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A6A7CB861E7D6CC900885293 /* Resources */ = {
+		7F06F315BCDB874991B373146A3D2F1B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6A7CB8F1E7D6CCA00885293 /* Resources */ = {
+		7EC56B9A3C35C3ED7699E1EC2A022BC3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -251,50 +251,50 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A6A7CB831E7D6CC900885293 /* Sources */ = {
+		DBC0403FAC1BA33CAEA2E59624CDD574 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E86CCE5B9C77DD900DA4795 /* BayaLayoutable.swift in Sources */,
-				4E86CB361F5E6E65FDB86896 /* BayaLayout.swift in Sources */,
-				4E86C0D6DE662AF18D05D88F /* BayaLayoutIterator.swift in Sources */,
-				4E86C0B12C2C0728B4444E6E /* BayaLayoutOptions.swift in Sources */,
-				4E86CDF2A816C471A15ADC84 /* BayaFrameLayout.swift in Sources */,
-				4E86C4D0629E5C596A28C936 /* BayaGravityLayout.swift in Sources */,
-				4E86C6D1BEA500AD0FE45F9E /* BayaPagedScrollLayout.swift in Sources */,
-				4E86CA3759E0DBE323B2E863 /* BayaOriginResetLayout.swift in Sources */,
-				4E86CADED68A17C1CC169387 /* BayaFixedSizeLayout.swift in Sources */,
-				4E86C82780CB639262105F56 /* BayaScrollLayout.swift in Sources */,
-				4E86C0E21222A8788C8B727E /* BayaSquareLayout.swift in Sources */,
-				4E86CADB17E5D66BFF6C965D /* BayaEqualSegmentsLayout.swift in Sources */,
-				4E86C900D8261A6E53934BFD /* BayaLinearLayout.swift in Sources */,
-				4E86C10ECD44E4DE81E33FC9 /* BayaPercentalSizeLayout.swift in Sources */,
-				4E86C8674E68828366FB2DB0 /* BayaFlexibleContentLayout.swift in Sources */,
-				4E86C49124F4B799DF519942 /* BayaMatchParentLayout.swift in Sources */,
-				4E86CFB6CFE2CB1F638AE3AE /* Baya.swift in Sources */,
+				655C565B4BE20431EF57D98E5DA70CF2 /* Baya.swift in Sources */,
+				166282AEFE359E02497A6BC6D6FBF4CD /* BayaEqualSegmentsLayout.swift in Sources */,
+				3287A13522FEBB3DE157BFAAC959A003 /* BayaFixedSizeLayout.swift in Sources */,
+				18372E663DD7AFD15112EE61C0FB4684 /* BayaFlexibleContentLayout.swift in Sources */,
+				D31CFC47481F2E5A99A43D5550347D68 /* BayaFrameLayout.swift in Sources */,
+				A84CD432AA1C02F7DC2CE6DA701BD4F8 /* BayaGravityLayout.swift in Sources */,
+				963CF5D2C24FE6CB3A98E1EB6E44BCE7 /* BayaLayout.swift in Sources */,
+				0F8D77F19781CEE7FF2E200164FCB5C8 /* BayaLayoutIterator.swift in Sources */,
+				B4D39FCBBB80BF0D269EC9CBDF65C94D /* BayaLayoutOptions.swift in Sources */,
+				F82110C8762A8A6BBE717B90D79C5EAD /* BayaLayoutable.swift in Sources */,
+				3CB2D65E569E003976E7FCBC2A5308FE /* BayaLinearLayout.swift in Sources */,
+				A967692EDD83636DBBDEF9C763389390 /* BayaMatchParentLayout.swift in Sources */,
+				54471EE876C4D0A85C07780C38A45B3D /* BayaOriginResetLayout.swift in Sources */,
+				BC627431C4F148663EA3EA5F762EC319 /* BayaPagedScrollLayout.swift in Sources */,
+				31E18B2D5F805AF0D7F9783AE373751A /* BayaPercentalSizeLayout.swift in Sources */,
+				0243600AC596D12EA9DEA8600E383C3A /* BayaScrollLayout.swift in Sources */,
+				FE3CD9AD1B326BBFAC2F7CD74DAA6470 /* BayaSquareLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A6A7CB8D1E7D6CCA00885293 /* Sources */ = {
+		790510874CDDFCD4EABE51AA3CBA4B55 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6A7CB971E7D6CCA00885293 /* BayaTests.swift in Sources */,
+				56356A3E9F3E22B9D2A7720C5F398232 /* BayaTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A6A7CB941E7D6CCA00885293 /* PBXTargetDependency */ = {
+		490704F196545969C05B3746921B5B8E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A6A7CB871E7D6CC900885293 /* Baya */;
-			targetProxy = A6A7CB931E7D6CCA00885293 /* PBXContainerItemProxy */;
+			target = 62F0E6C68DBA0BB806E5858792B3CAE4 /* Baya */;
+			targetProxy = 6D11D46A8C07B187513DC2D8ADE47DE0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		A6A7CB9A1E7D6CCA00885293 /* Debug */ = {
+		5EAB38464F535C28401102010027F30A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -347,7 +347,7 @@
 			};
 			name = Debug;
 		};
-		A6A7CB9B1E7D6CCA00885293 /* Release */ = {
+		2FACFB670C209E8F5BB384D245A6546D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -393,7 +393,7 @@
 			};
 			name = Release;
 		};
-		A6A7CB9D1E7D6CCA00885293 /* Debug */ = {
+		C096074817C79D438845CBBE4EED562C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -411,7 +411,7 @@
 			};
 			name = Debug;
 		};
-		A6A7CB9E1E7D6CCA00885293 /* Release */ = {
+		162FEB2CC3CDFB496EB4E2154A951EBD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -429,7 +429,7 @@
 			};
 			name = Release;
 		};
-		A6A7CBA01E7D6CCA00885293 /* Debug */ = {
+		BE1E1B879E214CDCD9AEA5F01590B0F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BayaTests/Info.plist;
@@ -440,7 +440,7 @@
 			};
 			name = Debug;
 		};
-		A6A7CBA11E7D6CCA00885293 /* Release */ = {
+		073CFCCAD81465581F03C134C73A00BA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BayaTests/Info.plist;
@@ -454,32 +454,32 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A6A7CB821E7D6CC900885293 /* Build configuration list for PBXProject "Baya" */ = {
+		28340828EBE1A48E3E4B773FC6EA779F /* Build configuration list for PBXProject "Baya" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A6A7CB9A1E7D6CCA00885293 /* Debug */,
-				A6A7CB9B1E7D6CCA00885293 /* Release */,
+				5EAB38464F535C28401102010027F30A /* Debug */,
+				2FACFB670C209E8F5BB384D245A6546D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A6A7CB9C1E7D6CCA00885293 /* Build configuration list for PBXNativeTarget "Baya" */ = {
+		A770C9AC98798C7310A2343139F962B0 /* Build configuration list for PBXNativeTarget "Baya" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A6A7CB9D1E7D6CCA00885293 /* Debug */,
-				A6A7CB9E1E7D6CCA00885293 /* Release */,
+				C096074817C79D438845CBBE4EED562C /* Debug */,
+				162FEB2CC3CDFB496EB4E2154A951EBD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
-		A6A7CB9F1E7D6CCA00885293 /* Build configuration list for PBXNativeTarget "BayaTests" */ = {
+		CB8FF5C8E891521EDEE6DE2E2F91223C /* Build configuration list for PBXNativeTarget "BayaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A6A7CBA01E7D6CCA00885293 /* Debug */,
-				A6A7CBA11E7D6CCA00885293 /* Release */,
+				BE1E1B879E214CDCD9AEA5F01590B0F5 /* Debug */,
+				073CFCCAD81465581F03C134C73A00BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A6A7CB7F1E7D6CC900885293 /* Project object */;
+	rootObject = B40722EEF2F261335BF3ACBB7697AC4E /* Project object */;
 }
