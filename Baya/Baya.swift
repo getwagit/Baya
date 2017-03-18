@@ -4,30 +4,13 @@
 //
 
 import Foundation
-
-public struct Baya {
-    /**
-        Distributes the available size evenly.
-    */
-    func equalSegments(
-        elements: [BayaLayoutable],
-        orientation: BayaLayoutOptions.Orientation,
-        gutter: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
-            -> BayaEqualSegmentsLayout {
-        return BayaEqualSegmentsLayout(
-            elements: elements,
-            orientation: orientation,
-            gutter: gutter,
-            layoutMargins: layoutMargins)
-    }
-}
+import UIKit
 
 public extension Array where Element: BayaLayoutable {
     /**
         Distributes the available size evenly.
     */
-    func equalSegments(
+    func layoutEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         gutter: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
@@ -37,5 +20,12 @@ public extension Array where Element: BayaLayoutable {
             orientation: orientation,
             gutter: gutter,
             layoutMargins: layoutMargins)
+    }
+
+    /**
+        Groups the layoutables together.
+    */
+    func layoutFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
+        return BayaFrameLayout(elements: self, layoutMargins: layoutMargins)
     }
 }
