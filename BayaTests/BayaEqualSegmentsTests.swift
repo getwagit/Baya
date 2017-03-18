@@ -89,4 +89,28 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssert(l1.frame.origin.x == 6 + 7, "unexpected x")
         XCTAssert(l1.frame.origin.y == 6 + 8, "unexpected y")
     }
+
+    func testGutterMarginsVertical() {
+        l1.layoutMargins = UIEdgeInsets(
+            top: 8,
+            left: 7,
+            bottom: 4,
+            right: 3)
+        var layout1 = [l1, l2, l3]
+            .equalSegments(
+            orientation: .vertical,
+            gutter: 10)
+
+        layout1.layoutWith(
+            frame: CGRect(
+                x: 6,
+                y: 6,
+                width: 100,
+                height: 100 * 3 + 10 * 2))
+
+        XCTAssert(l1.frame.width == 100 - 7 - 3, "unexpected width: \(l1.frame.width)")
+        XCTAssert(l1.frame.height == 100 - 8 - 4, "unexpected height")
+        XCTAssert(l1.frame.origin.x == 6 + 7, "unexpected x")
+        XCTAssert(l1.frame.origin.y == 6 + 8, "unexpected y")
+    }
 }
