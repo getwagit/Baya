@@ -10,7 +10,7 @@ import UIKit
     A simple layout that places children in a linear order.
     This Layout respects the margins of its children.
 */
-public struct LinearLayout: BayaLayout, BayaLayoutIterator {
+public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
