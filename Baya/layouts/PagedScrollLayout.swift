@@ -9,8 +9,7 @@ import Foundation
     A layout that calculates the size of its content layoutable depending on the given frame,
     the number of pages, and an optional gutter. The container will be laid out according to the frame.
  */
-struct PagedScrollLayout: Layout {
-
+public struct PagedScrollLayout: Layout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
     var orientation: LayoutOptions.Orientation
@@ -71,7 +70,7 @@ struct PagedScrollLayout: Layout {
 /**
     Implement this protocol for the paged scroll layout container
  */
-protocol PagedScrollLayoutContainer {
+public protocol PagedScrollLayoutContainer {
     var contentSize: CGSize {get set}
     var bounds: CGRect {get}
     func layoutWith(frame: CGRect) -> Void
@@ -79,4 +78,4 @@ protocol PagedScrollLayoutContainer {
 
 // MARK: UIKit specific extensions
 
-extension UIScrollView: PagedScrollLayoutContainer {}
+public extension UIScrollView: PagedScrollLayoutContainer {}

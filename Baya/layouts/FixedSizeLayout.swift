@@ -6,19 +6,22 @@
 import Foundation
 import Oak
 
-struct FixedSizeLayout: Layout {
+/**
+    A layout that uses a fixed size to layout its element.
+*/
+public struct FixedSizeLayout: BayaLayout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
 
-    private var element: Layoutable
+    private var element: BayaLayoutable
     private var fixedWidth: CGFloat?
     private var fixedHeight: CGFloat?
 
     init(
-            element: Layoutable,
-            width: CGFloat?,
-            height: CGFloat?,
-            layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        element: BayaLayoutable,
+        width: CGFloat?,
+        height: CGFloat?,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.fixedWidth = width
         self.fixedHeight = height
         self.element = element
@@ -41,7 +44,7 @@ struct FixedSizeLayout: Layout {
 
 // MARK: Fixed size shortcut
 
-extension Layoutable {
+public extension BayaLayoutable {
     func fixedSize(width: CGFloat?, height: CGFloat?) -> Layoutable {
         return FixedSizeLayout(element: self, width: width, height: height)
     }

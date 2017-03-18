@@ -9,14 +9,14 @@ import Oak
 /**
     Sets the origin of a given element to x: 0, y: 0. Handy when laying out views in deeper view hierarchies.
 */
-struct OriginResetLayout: Layout {
+public struct OriginResetLayout: BayaLayout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
 
-    private var element: Layoutable
+    private var element: BayaLayoutable
 
     init(
-        element: Layoutable,
+        element: BayaLayoutable,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.element = element
         self.layoutMargins = layoutMargins
@@ -37,7 +37,7 @@ struct OriginResetLayout: Layout {
 /**
     Reset origin shortcut
 */
-extension Layoutable {
+public extension Layoutable {
     func resetOrigin() -> Layout {
         return OriginResetLayout(element: self)
     }

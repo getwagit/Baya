@@ -10,17 +10,17 @@ import Oak
 /**
     A Layout that stretches a Layoutable to fill the available space.
  */
-struct FlexibleContentLayout: Layout {
+public struct FlexibleContentLayout: BayaLayout {
 
     var layoutMargins: UIEdgeInsets
     var orientation: LayoutOptions.Orientation
     var frame: CGRect
     var spacing: CGFloat
 
-    private var elements: (before: Layoutable?, content: Layoutable, after: Layoutable?)
+    private var elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?)
 
     init(
-        elements: (before: Layoutable?, content: Layoutable, after: Layoutable?),
+        elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?),
         orientation: LayoutOptions.Orientation,
         spacing: Int = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
@@ -55,11 +55,11 @@ struct FlexibleContentLayout: Layout {
 
             elements.content.layoutWith(frame: CGRect(
                 x: elements.before != nil ?
-                    elements.before!.frame.maxX +
-                        elements.before!.layoutMargins.right +
-                        spacing +
-                        elements.content.layoutMargins.left :
-                    frame.minX + elements.content.layoutMargins.left,
+                elements.before!.frame.maxX +
+                    elements.before!.layoutMargins.right +
+                    spacing +
+                    elements.content.layoutMargins.left :
+                frame.minX + elements.content.layoutMargins.left,
                 y: frame.minY + elements.content.layoutMargins.top,
                 width: frame.width - horizontalMargins(of: elements.content) -
                     (elements.before != nil ? self.widthWithMargins(of: elements.before!) + spacing : 0) -
@@ -88,11 +88,11 @@ struct FlexibleContentLayout: Layout {
             elements.content.layoutWith(frame: CGRect(
                 x: frame.minX + elements.content.layoutMargins.left,
                 y: elements.before != nil ?
-                    elements.before!.frame.maxY +
-                        elements.before!.layoutMargins.bottom +
-                        spacing +
-                        elements.content.layoutMargins.top :
-                    frame.minY + elements.content.layoutMargins.top,
+                elements.before!.frame.maxY +
+                    elements.before!.layoutMargins.bottom +
+                    spacing +
+                    elements.content.layoutMargins.top :
+                frame.minY + elements.content.layoutMargins.top,
                 width: frame.width - horizontalMargins(of: elements.content),
                 height: frame.height - verticalMargins(of: elements.content) -
                     (elements.before != nil ? self.heightWithMargins(of: elements.before!) + spacing : 0) -

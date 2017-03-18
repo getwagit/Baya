@@ -10,20 +10,19 @@ import Oak
 /**
     A layout that distributes the available size evenly among the given elements.
 */
-struct EqualSegmentsLayout: Layout, LayoutIterator {
-
+public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
     var orientation: LayoutOptions.Orientation
     var gutter: CGFloat
 
-    private var elements: [Layoutable]
+    private var elements: [BayaLayoutable]
 
     init(
-            elements: [Layoutable],
-            orientation: LayoutOptions.Orientation,
-            gutter: CGFloat = 0,
-            layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        elements: [BayaLayoutable],
+        orientation: BayaLayoutOptions.Orientation,
+        gutter: CGFloat = 0,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.orientation = orientation
         self.gutter = gutter
@@ -58,9 +57,9 @@ struct EqualSegmentsLayout: Layout, LayoutIterator {
                 if let e1 = e1 {
                     let prevFrame = e1.frame
                     return CGRect(origin: CGPoint(
-                            x: frame.minX,
-                            y: prevFrame.maxY + gutter),
-                            size: elementSize)
+                        x: frame.minX,
+                        y: prevFrame.maxY + gutter),
+                        size: elementSize)
                 } else {
                     return CGRect(origin: frame.origin, size: elementSize)
                 }

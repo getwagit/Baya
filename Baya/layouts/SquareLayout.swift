@@ -11,16 +11,16 @@ import Oak
     Layout that uses only the reference side for measurement, or the smaller side if not specified.
     When setting the frame of its element, it uses the smaller side to ensure the square fits in the available space.
 */
-struct SquareLayout: Layout {
+public struct SquareLayout: BayaLayout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
 
-    private var element: Layoutable
-    private let referenceSide: LayoutOptions.Orientation?
+    private var element: BayaLayoutable
+    private let referenceSide: BayaLayoutOptions.Orientation?
 
     init(
-        element: Layoutable,
-        referenceSide: LayoutOptions.Orientation?,
+        element: BayaLayoutable,
+        referenceSide: BayaLayoutOptions.Orientation?,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.element = element
         self.layoutMargins = layoutMargins
@@ -41,7 +41,7 @@ struct SquareLayout: Layout {
         switch referenceSide {
         case .some(.horizontal):
             let zeSize = margins(element.sizeThatFits(adjustedSize.toSquareFromWidth()))
-        return zeSize
+            return zeSize
         case .some(.vertical):
             return margins(element.sizeThatFits(adjustedSize.toSquareFromHeight()))
         case .none:
@@ -73,7 +73,7 @@ private extension CGSize {
 
 // MARK: Square shortcuts.
 
-extension Layoutable {
+public extension BayaLayoutable {
     func square(basedOn referenceSide: LayoutOptions.Orientation) -> Layoutable {
         return SquareLayout(
             element: self,

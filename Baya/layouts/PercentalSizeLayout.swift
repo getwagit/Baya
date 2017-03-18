@@ -7,26 +7,23 @@ import Foundation
 import Oak
 
 /**
-    A Layout that uses a percental protion of the given size for measurement.
+    A Layout that uses a percental portion of the given size for measurement.
  */
-struct PercentalSizeLayout: Layout {
+struct PercentalSizeLayout: BayaLayout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
 
-    private var element: Layoutable
+    private var element: BayaLayoutable
     private var percentalWidth: CGFloat?
     private var percentalHeight: CGFloat?
 
     /**
-        Initializes a PercentalSizeLayout
-     
-        - Parameters: 
-            - element: The element to be laid out
-            - width: The portion of the width that should be available for the element.
+        - Parameter element: The element to be laid out
+        - Parameter width: The portion of the width that should be available for the element.
               A value of 0 equals 0%, a value of 1 equals 100%.
-            - height: The portion of the height that should be available for the element.
+        - Parameter height: The portion of the height that should be available for the element.
               A value of 0 equals 0%, a value of 1 equals 100%.
-            - layoutMargins: UIEdgeInsets defining the margins
+        - Parameter layoutMargins: UIEdgeInsets defining the margins
      */
     init(
         element: Layoutable,

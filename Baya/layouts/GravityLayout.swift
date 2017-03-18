@@ -10,16 +10,16 @@ import Oak
 /**
     Simple layout that positions one child according to its gravity.
 */
-struct GravityLayout: Layout {
+struct GravityLayout: BayaLayout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
 
-    private var element: Layoutable
-    private let gravity: (LayoutOptions.Gravity.Horizontal, LayoutOptions.Gravity.Vertical)
+    private var element: BayaLayoutable
+    private let gravity: (BayaLayoutOptions.Gravity.Horizontal, BayaLayoutOptions.Gravity.Vertical)
 
     init(
-        element: Layoutable,
-        gravity: (LayoutOptions.Gravity.Horizontal, LayoutOptions.Gravity.Vertical),
+        element: BayaLayoutable,
+        gravity: (BayaLayoutOptions.Gravity.Horizontal, BayaLayoutOptions.Gravity.Vertical),
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.element = element
         self.layoutMargins = layoutMargins
@@ -45,8 +45,8 @@ struct GravityLayout: Layout {
         }
 
         element.layoutWith(frame: CGRect(
-                origin: point,
-                size: size))
+            origin: point,
+            size: size))
     }
 
     func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -55,22 +55,21 @@ struct GravityLayout: Layout {
     }
 }
 
-
 // MARK: Gravity shortcuts
 
-extension Layoutable {
+public extension BayaLayoutable {
     func gravitate(to horizontalGravity: LayoutOptions.Gravity.Horizontal) -> Layoutable {
         return GravityLayout(
             element: self,
             gravity: (horizontalGravity, .top))
     }
-    
+
     func gravitate(to verticalGravity: LayoutOptions.Gravity.Vertical) -> Layoutable {
         return GravityLayout(
             element: self,
             gravity: (.left, verticalGravity))
     }
-    
+
     func gravitate(
         horizontally horizontalGravity: LayoutOptions.Gravity.Horizontal,
         vertically verticalGravity: LayoutOptions.Gravity.Vertical) -> Layoutable {

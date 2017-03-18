@@ -10,16 +10,16 @@ import Oak
 /**
     Simple layout that stacks Layoutables.
 */
-struct FrameLayout: Layout, LayoutIterator {
+public struct FrameLayout: BayaLayout, BayaLayoutIterator {
 
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
 
-    private var elements: [Layoutable]
+    private var elements: [BayaLayoutable]
 
     init(
-            elements: [Layoutable],
-            layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        elements: [BayaLayoutable],
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.layoutMargins = layoutMargins
         self.frame = CGRect()

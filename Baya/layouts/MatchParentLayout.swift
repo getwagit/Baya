@@ -9,35 +9,34 @@ import UIKit
 /**
     Lays the wrapped element out so it matches its parent's size.
  */
-struct MatchParentLayout: Layout {
-    
+public struct MatchParentLayout: BayaLayout {
     var layoutMargins: UIEdgeInsets
     var frame: CGRect
-    
-    private var element: Layoutable
+
+    private var element: BayaLayoutable
     private let matchParent: (width: Bool, height: Bool)
-    
+
     init(
-            element: Layoutable,
-            matchParent: (width: Bool, height: Bool),
-            layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        element: BayaLayoutable,
+        matchParent: (width: Bool, height: Bool),
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.element = element
         self.matchParent = matchParent
         self.layoutMargins = layoutMargins
         self.frame = CGRect()
     }
-    
+
     mutating func layoutWith(frame: CGRect) {
         self.frame = frame
         let size = sizeThatFitsWithMargins(of: element, size: frame.size)
-        
+
         element.layoutWith(frame: CGRect(
             x: frame.minX + element.layoutMargins.left,
             y: frame.minY + element.layoutMargins.top,
             width: matchParent.width ? frame.width - self.horizontalMargins(of: element) : size.width,
             height: matchParent.height ? frame.height - self.verticalMargins(of: element) : size.height))
     }
-    
+
     func sizeThatFits(_ size: CGSize) -> CGSize {
         if matchParent.width && matchParent.height {
             return size
@@ -45,16 +44,16 @@ struct MatchParentLayout: Layout {
         let fit = sizeThatFitsWithMargins(of: element, size: size)
         return CGSize(
             width: matchParent.width ? size.width :
-                fit.width + element.layoutMargins.left + element.layoutMargins.right,
+            fit.width + element.layoutMargins.left + element.layoutMargins.right,
             height: matchParent.height ? size.height :
-                fit.height + element.layoutMargins.top + element.layoutMargins.bottom)
+            fit.height + element.layoutMargins.top + element.layoutMargins.bottom)
     }
 }
 
 
 // MARK: Match Parent Shortcuts
 
-extension Layoutable {
+public extension BayaLayoutable {
     func matchParentWidth() -> Layoutable {
         return matchParent(width: true, height: false)
     }

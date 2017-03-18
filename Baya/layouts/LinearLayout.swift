@@ -11,7 +11,7 @@ import Oak
     A simple layout that places children in a linear order.
     This Layout respects the margins of its children.
 */
-struct LinearLayout: Layout, LayoutIterator {
+public struct LinearLayout: BayaLayout, BayaLayoutIterator {
 
     var layoutMargins: UIEdgeInsets
     var orientation: LayoutOptions.Orientation
@@ -19,14 +19,14 @@ struct LinearLayout: Layout, LayoutIterator {
     var frame: CGRect
     var spacing: CGFloat
 
-    private var elements: [Layoutable]
+    private var elements: [BayaLayoutable]
 
     init(
-            elements: [Layoutable],
-            orientation: LayoutOptions.Orientation,
-            direction: LayoutOptions.Direction = .normal,
-            layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
-            spacing: Int = 0) {
+        elements: [BayaLayoutable],
+        orientation: BayaLayoutOptions.Orientation,
+        direction: BayaLayoutOptions.Direction = .normal,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
+        spacing: Int = 0) {
         self.elements = elements
         self.orientation = orientation
         self.direction = direction
@@ -42,76 +42,76 @@ struct LinearLayout: Layout, LayoutIterator {
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                        width: self.sizeThatFitsWithMargins(of: e2, size: frame.size).width,
-                        height: frame.height - e2.layoutMargins.top - e2.layoutMargins.bottom)
+                    width: self.sizeThatFitsWithMargins(of: e2, size: frame.size).width,
+                    height: frame.height - e2.layoutMargins.top - e2.layoutMargins.bottom)
                 if let e1 = e1 {
                     let prevFrame = e1.frame
                     return CGRect(origin: CGPoint(
-                            x: prevFrame.maxX + e1.layoutMargins.right + self.spacing + e2.layoutMargins.left,
-                            y: frame.minY + e2.layoutMargins.top),
-                            size: size)
+                        x: prevFrame.maxX + e1.layoutMargins.right + self.spacing + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top),
+                        size: size)
                 } else {
                     return CGRect(origin: CGPoint(
-                            x: frame.minX + e2.layoutMargins.left,
-                            y: frame.minY + e2.layoutMargins.top),
-                            size: size)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top),
+                        size: size)
                 }
             }
         case (.horizontal, .reversed):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                        width: self.sizeThatFitsWithMargins(of: e2, size: frame.size).width,
-                        height: frame.height - e2.layoutMargins.top - e2.layoutMargins.bottom)
+                    width: self.sizeThatFitsWithMargins(of: e2, size: frame.size).width,
+                    height: frame.height - e2.layoutMargins.top - e2.layoutMargins.bottom)
                 if let e1 = e1 {
                     let prevFrame = e1.frame
                     return CGRect(origin: CGPoint(
-                            x: prevFrame.minX - e1.layoutMargins.left - self.spacing - e2.layoutMargins.right - size.width,
-                            y: frame.minY + e2.layoutMargins.top),
-                            size: size)
+                        x: prevFrame.minX - e1.layoutMargins.left - self.spacing - e2.layoutMargins.right - size.width,
+                        y: frame.minY + e2.layoutMargins.top),
+                        size: size)
                 } else {
                     return CGRect(origin: CGPoint(
-                            x: frame.maxX - e2.layoutMargins.right - size.width,
-                            y: frame.minY + e2.layoutMargins.top),
-                            size: size)
+                        x: frame.maxX - e2.layoutMargins.right - size.width,
+                        y: frame.minY + e2.layoutMargins.top),
+                        size: size)
                 }
             }
         case (.vertical, .normal):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                        width: frame.width - e2.layoutMargins.left - e2.layoutMargins.right,
-                        height: self.sizeThatFitsWithMargins(of: e2, size: frame.size).height)
+                    width: frame.width - e2.layoutMargins.left - e2.layoutMargins.right,
+                    height: self.sizeThatFitsWithMargins(of: e2, size: frame.size).height)
                 if let e1 = e1 {
                     let prevFrame = e1.frame
                     return CGRect(origin: CGPoint(
-                            x: frame.minX + e2.layoutMargins.left,
-                            y: prevFrame.maxY + e1.layoutMargins.bottom + self.spacing + e2.layoutMargins.top),
-                            size: size)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: prevFrame.maxY + e1.layoutMargins.bottom + self.spacing + e2.layoutMargins.top),
+                        size: size)
                 } else {
                     return CGRect(origin: CGPoint(
-                            x: frame.minX + e2.layoutMargins.left,
-                            y: frame.minY + e2.layoutMargins.top),
-                            size: size)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top),
+                        size: size)
                 }
             }
         case (.vertical, .reversed):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                        width: frame.width - e2.layoutMargins.left - e2.layoutMargins.right,
-                        height: self.sizeThatFitsWithMargins(of: e2, size: frame.size).height)
+                    width: frame.width - e2.layoutMargins.left - e2.layoutMargins.right,
+                    height: self.sizeThatFitsWithMargins(of: e2, size: frame.size).height)
                 if let e1 = e1 {
                     let prevFrame = e1.frame
                     return CGRect(origin: CGPoint(
-                            x: frame.minX + e2.layoutMargins.left,
-                            y: prevFrame.minY - e1.layoutMargins.top - self.spacing - e2.layoutMargins.bottom - size.height),
-                            size: size)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: prevFrame.minY - e1.layoutMargins.top - self.spacing - e2.layoutMargins.bottom - size.height),
+                        size: size)
                 } else {
                     return CGRect(origin: CGPoint(
-                            x: frame.minX + e2.layoutMargins.left,
-                            y: frame.maxY - e2.layoutMargins.bottom - size.height),
-                            size: size)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.maxY - e2.layoutMargins.bottom - size.height),
+                        size: size)
                 }
             }
         }
@@ -128,8 +128,8 @@ struct LinearLayout: Layout, LayoutIterator {
                 let fit = sizeThatFitsWithMargins(of: element, size: size)
                 resultSize.width += fit.width + element.layoutMargins.left + element.layoutMargins.right
                 resultSize.height = max(
-                        resultSize.height,
-                        fit.height + element.layoutMargins.top + element.layoutMargins.bottom)
+                    resultSize.height,
+                    fit.height + element.layoutMargins.top + element.layoutMargins.bottom)
             }
         case (.vertical, .normal): fallthrough
         case (.vertical, .reversed):
@@ -138,8 +138,8 @@ struct LinearLayout: Layout, LayoutIterator {
             for element in elements {
                 let fit = sizeThatFitsWithMargins(of: element, size: size)
                 resultSize.width = max(
-                        resultSize.width,
-                        fit.width + element.layoutMargins.left + element.layoutMargins.right)
+                    resultSize.width,
+                    fit.width + element.layoutMargins.left + element.layoutMargins.right)
                 resultSize.height += fit.height + element.layoutMargins.top + element.layoutMargins.bottom
             }
         }
