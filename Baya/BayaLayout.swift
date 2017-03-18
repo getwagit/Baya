@@ -5,7 +5,6 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     Protocol for any layout.
@@ -23,42 +22,42 @@ internal extension BayaLayout {
         - Parameter element: The element to call sizeThatFits on.
         - Parameter size: Available size for layout.
     */
-    func sizeThatFitsWithMargins(of element: Layoutable, size: CGSize) -> CGSize {
+    func sizeThatFitsWithMargins(of element: BayaLayoutable, size: CGSize) -> CGSize {
         return element.sizeThatFits(subtractMargins(size: size, element: element))
     }
 
     /**
         Convenience method for the height with margins!
     */
-    func heightWithMargins(of element: Layoutable) -> CGFloat {
+    func heightWithMargins(of element: BayaLayoutable) -> CGFloat {
         return element.frame.height + element.layoutMargins.top + element.layoutMargins.bottom
     }
 
     /**
         Convenience method for width with margins!
     */
-    func widthWithMargins(of element: Layoutable) -> CGFloat {
+    func widthWithMargins(of element: BayaLayoutable) -> CGFloat {
         return element.frame.width + element.layoutMargins.left + element.layoutMargins.right
     }
     
     /**
         Convenience method for horizontal margins!
      */
-    func horizontalMargins(of element: Layoutable) -> CGFloat {
+    func horizontalMargins(of element: BayaLayoutable) -> CGFloat {
         return element.layoutMargins.left + element.layoutMargins.right
     }
     
     /**
         Convenience method for vertical margins!
      */
-    func verticalMargins(of element: Layoutable) -> CGFloat {
+    func verticalMargins(of element: BayaLayoutable) -> CGFloat {
         return element.layoutMargins.top + element.layoutMargins.bottom
     }
 
     /**
         Subtract the margins of a given element from the size.
     */
-    func subtractMargins(size: CGSize, element: Layoutable) -> CGSize {
+    func subtractMargins(size: CGSize, element: BayaLayoutable) -> CGSize {
         return CGSize(
             width: max(size.width - element.layoutMargins.left - element.layoutMargins.right, 0),
             height: max(size.height - element.layoutMargins.top - element.layoutMargins.bottom, 0))
@@ -68,7 +67,7 @@ internal extension BayaLayout {
         Subtract the margins of a given element from the frame.
         This also repositions the frame.
     */
-    func subtractMargins(frame: CGRect, element: Layoutable) -> CGRect {
+    func subtractMargins(frame: CGRect, element: BayaLayoutable) -> CGRect {
         return CGRect(
             origin: CGPoint(
                 x: frame.minX + element.layoutMargins.left,
@@ -79,7 +78,7 @@ internal extension BayaLayout {
     /**
         Adds the margins of an element to the given size.
     */
-    func addMargins(size: CGSize, element: Layoutable) -> CGSize {
+    func addMargins(size: CGSize, element: BayaLayoutable) -> CGSize {
         return CGSize(
             width: size.width + element.layoutMargins.left + element.layoutMargins.right,
             height: size.height + element.layoutMargins.top + element.layoutMargins.bottom)

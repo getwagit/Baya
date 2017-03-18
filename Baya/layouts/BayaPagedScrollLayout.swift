@@ -9,22 +9,22 @@ import Foundation
     A layout that calculates the size of its content layoutable depending on the given frame,
     the number of pages, and an optional gutter. The container will be laid out according to the frame.
  */
-public struct PagedScrollLayout: Layout {
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
-    var orientation: LayoutOptions.Orientation
+public struct PagedScrollLayout: BayaLayout {
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
+    var orientation: BayaLayoutOptions.Orientation
     var pages: Int
     var gutter: CGFloat
 
     private var container: PagedScrollLayoutContainer
-    private var content: Layoutable
+    private var content: BayaLayoutable
 
     init(
-        content: Layoutable,
+        content: BayaLayoutable,
         container: PagedScrollLayoutContainer,
         pages: Int,
         gutter: CGFloat = 0,
-        orientation: LayoutOptions.Orientation = .horizontal,
+        orientation: BayaLayoutOptions.Orientation = .horizontal,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
 
         self.content = content
@@ -36,7 +36,7 @@ public struct PagedScrollLayout: Layout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
 
         let containerFrame = CGRect(
@@ -61,7 +61,7 @@ public struct PagedScrollLayout: Layout {
             height: orientation == .vertical ? contentFrame.height + gutter : contentFrame.height)
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         // PagedScrollLayout always fits the given size
         return size
     }
@@ -78,4 +78,4 @@ public protocol PagedScrollLayoutContainer {
 
 // MARK: UIKit specific extensions
 
-public extension UIScrollView: PagedScrollLayoutContainer {}
+extension UIScrollView: PagedScrollLayoutContainer {}

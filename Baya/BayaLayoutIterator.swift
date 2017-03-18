@@ -5,7 +5,6 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     This iterator provides simple iterating loops which can be used to layout children.
@@ -23,9 +22,8 @@ internal extension BayaLayoutIterator {
         - Parameter elements: The elements to iterate on. Array will get mutated.
         - Parameter l: The closure which will receive the previous and the current child.
     */
-    mutating func iterate(_ elements: inout [Layoutable], l: (Layoutable?, Layoutable) -> CGRect) {
+    mutating func iterate(_ elements: inout [BayaLayoutable], l: (BayaLayoutable?, BayaLayoutable) -> CGRect) {
         guard elements.count > 0 else {
-            Oak.i("Skipping layout because there are no elements iterate on")
             return
         }
         for i in 0..<elements.count { // Has to loop with i because of struct copies.

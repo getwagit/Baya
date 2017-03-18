@@ -5,15 +5,14 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     Simple layout that stacks Layoutables.
 */
 public struct FrameLayout: BayaLayout, BayaLayoutIterator {
 
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
 
     private var elements: [BayaLayoutable]
 
@@ -25,15 +24,16 @@ public struct FrameLayout: BayaLayout, BayaLayoutIterator {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
         iterate(&elements) {
             e1, e2 in
-            return self.subtractMargins(frame: frame, element: e2)
+            let frame = self.subtractMargins(frame: frame, element: e2)
+            return frame
         }
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         var maxWidth: CGFloat = 0
         var maxHeight: CGFloat = 0
         for element in elements {

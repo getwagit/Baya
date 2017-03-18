@@ -5,23 +5,21 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     A Layout that stretches a Layoutable to fill the available space.
  */
 public struct FlexibleContentLayout: BayaLayout {
-
-    var layoutMargins: UIEdgeInsets
-    var orientation: LayoutOptions.Orientation
-    var frame: CGRect
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
+    var orientation: BayaLayoutOptions.Orientation
     var spacing: CGFloat
 
     private var elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?)
 
     init(
         elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?),
-        orientation: LayoutOptions.Orientation,
+        orientation: BayaLayoutOptions.Orientation,
         spacing: Int = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
@@ -31,7 +29,7 @@ public struct FlexibleContentLayout: BayaLayout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
         switch orientation {
         case .horizontal:
@@ -100,9 +98,9 @@ public struct FlexibleContentLayout: BayaLayout {
         }
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         var fit = CGSize()
-        var optionalElements: [Layoutable] = []
+        var optionalElements: [BayaLayoutable] = []
         if let startElement = elements.before {
             optionalElements.append(startElement)
         }

@@ -5,15 +5,14 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     A layout that distributes the available size evenly among the given elements.
 */
 public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
-    var orientation: LayoutOptions.Orientation
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
+    var orientation: BayaLayoutOptions.Orientation
     var gutter: CGFloat
 
     private var elements: [BayaLayoutable]
@@ -30,7 +29,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
         switch orientation {
         case .horizontal:
@@ -67,7 +66,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         }
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         var size = CGSize()
         for element in elements {
             let fit = sizeThatFitsWithMargins(of: element, size: size)

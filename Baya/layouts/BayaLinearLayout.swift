@@ -5,18 +5,16 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     A simple layout that places children in a linear order.
     This Layout respects the margins of its children.
 */
 public struct LinearLayout: BayaLayout, BayaLayoutIterator {
-
-    var layoutMargins: UIEdgeInsets
-    var orientation: LayoutOptions.Orientation
-    var direction: LayoutOptions.Direction
-    var frame: CGRect
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
+    var orientation: BayaLayoutOptions.Orientation
+    var direction: BayaLayoutOptions.Direction
     var spacing: CGFloat
 
     private var elements: [BayaLayoutable]
@@ -35,7 +33,7 @@ public struct LinearLayout: BayaLayout, BayaLayoutIterator {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
         switch (orientation, direction) {
         case (.horizontal, .normal):
@@ -117,7 +115,7 @@ public struct LinearLayout: BayaLayout, BayaLayoutIterator {
         }
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         var resultSize: CGSize = CGSize()
         switch (orientation, direction) {
         case (.horizontal, .normal): fallthrough

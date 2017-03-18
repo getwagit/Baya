@@ -4,14 +4,13 @@
 //
 
 import Foundation
-import Oak
 
 /**
     A layout that uses a fixed size to layout its element.
 */
 public struct FixedSizeLayout: BayaLayout {
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
 
     private var element: BayaLayoutable
     private var fixedWidth: CGFloat?
@@ -29,12 +28,12 @@ public struct FixedSizeLayout: BayaLayout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
         element.layoutWith(frame: frame)
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         let fit = self.sizeThatFitsWithMargins(of: element, size: size)
         return CGSize(
             width: fixedWidth ?? (fit.width + horizontalMargins(of: element)),
@@ -45,7 +44,8 @@ public struct FixedSizeLayout: BayaLayout {
 // MARK: Fixed size shortcut
 
 public extension BayaLayoutable {
-    func fixedSize(width: CGFloat?, height: CGFloat?) -> Layoutable {
+    func fixedSize(width: CGFloat?, height: CGFloat?) ->
+        BayaLayoutable {
         return FixedSizeLayout(element: self, width: width, height: height)
     }
 }

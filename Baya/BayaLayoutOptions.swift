@@ -9,23 +9,23 @@ import Foundation
     Collection of layout specific options.
 */
 public struct BayaLayoutOptions {
-    enum Orientation {
+    public enum Orientation {
         case horizontal
         case vertical
     }
 
-    enum Direction {
+    public enum Direction {
         case normal
         case reversed
     }
 
-    struct Gravity {
-        enum Horizontal {
+    public struct Gravity {
+        public enum Horizontal {
             case left
             case center
             case right
         }
-        enum Vertical {
+        public enum Vertical {
             case top
             case middle
             case bottom

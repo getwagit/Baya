@@ -10,9 +10,8 @@ import UIKit
     A Layout for a ScrollContainer and its content.
 */
 public struct ScrollLayout: BayaLayout {
-
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
 
     private var container: ScrollLayoutContainer
@@ -30,7 +29,7 @@ public struct ScrollLayout: BayaLayout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
 
         let contentSize: CGSize = orientation == .horizontal ?
@@ -48,7 +47,7 @@ public struct ScrollLayout: BayaLayout {
         container.contentSize = contentSize
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         // ScrollLayout always fits the given frame
         return size
     }
@@ -64,4 +63,4 @@ public protocol ScrollLayoutContainer: class {
 
 // MARK: UIKit specific extensions
 
-public extension UIScrollView: ScrollLayoutContainer {}
+extension UIScrollView: ScrollLayoutContainer {}

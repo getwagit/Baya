@@ -4,7 +4,6 @@
 //
 
 import Foundation
-import Oak
 
 /**
     A Layout that uses a percental portion of the given size for measurement.
@@ -26,7 +25,7 @@ struct PercentalSizeLayout: BayaLayout {
         - Parameter layoutMargins: UIEdgeInsets defining the margins
      */
     init(
-        element: Layoutable,
+        element: BayaLayoutable,
         width: CGFloat? = nil,
         height: CGFloat? = nil,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {

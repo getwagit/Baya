@@ -5,7 +5,6 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     Something that you can layout.
@@ -23,8 +22,8 @@ public protocol BayaLayoutable {
 /**
     Apply LayoutTarget to UIView.
 */
-public extension UIView: BayaLayoutable {
-    func layoutWith(frame: CGRect) {
+extension UIView: BayaLayoutable {
+    public func layoutWith(frame: CGRect) {
         setFrameSafely(frame)
     }
 }

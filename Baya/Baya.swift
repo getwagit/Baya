@@ -33,7 +33,7 @@ public extension Array where Element: BayaLayoutable {
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
-            elements: elements,
+            elements: self,
             orientation: orientation,
             gutter: gutter,
             layoutMargins: layoutMargins)

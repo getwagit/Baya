@@ -10,8 +10,8 @@ import UIKit
     Lays the wrapped element out so it matches its parent's size.
  */
 public struct MatchParentLayout: BayaLayout {
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
 
     private var element: BayaLayoutable
     private let matchParent: (width: Bool, height: Bool)
@@ -26,7 +26,7 @@ public struct MatchParentLayout: BayaLayout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
         let size = sizeThatFitsWithMargins(of: element, size: frame.size)
 
@@ -37,7 +37,7 @@ public struct MatchParentLayout: BayaLayout {
             height: matchParent.height ? frame.height - self.verticalMargins(of: element) : size.height))
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         if matchParent.width && matchParent.height {
             return size
         }
@@ -54,19 +54,19 @@ public struct MatchParentLayout: BayaLayout {
 // MARK: Match Parent Shortcuts
 
 public extension BayaLayoutable {
-    func matchParentWidth() -> Layoutable {
+    func matchParentWidth() -> BayaLayoutable {
         return matchParent(width: true, height: false)
     }
 
-    func matchParentHeight() -> Layoutable {
+    func matchParentHeight() -> BayaLayoutable {
         return matchParent(width: false, height: true)
     }
 
-    func matchParent() -> Layoutable {
+    func matchParent() -> BayaLayoutable {
         return matchParent(width: true, height: true)
     }
 
-    func matchParent(width: Bool, height: Bool) -> Layoutable {
+    func matchParent(width: Bool, height: Bool) -> BayaLayoutable {
         return MatchParentLayout(
             element: self,
             matchParent: (width: width, height: height))

@@ -5,7 +5,6 @@
 
 import Foundation
 import UIKit
-import Oak
 
 /**
     Simple layout that positions one child according to its gravity.
@@ -58,21 +57,21 @@ struct GravityLayout: BayaLayout {
 // MARK: Gravity shortcuts
 
 public extension BayaLayoutable {
-    func gravitate(to horizontalGravity: LayoutOptions.Gravity.Horizontal) -> Layoutable {
+    func gravitate(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaLayoutable {
         return GravityLayout(
             element: self,
             gravity: (horizontalGravity, .top))
     }
 
-    func gravitate(to verticalGravity: LayoutOptions.Gravity.Vertical) -> Layoutable {
+    func gravitate(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaLayoutable {
         return GravityLayout(
             element: self,
             gravity: (.left, verticalGravity))
     }
 
     func gravitate(
-        horizontally horizontalGravity: LayoutOptions.Gravity.Horizontal,
-        vertically verticalGravity: LayoutOptions.Gravity.Vertical) -> Layoutable {
+        horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
+        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaLayoutable {
         return GravityLayout(
             element: self,
             gravity: (horizontalGravity, verticalGravity))
