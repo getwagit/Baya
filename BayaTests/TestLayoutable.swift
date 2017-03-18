@@ -8,10 +8,7 @@ import Baya
 
 class TestLayoutable: BayaLayoutable {
     var frame = CGRect()
-
-    var layoutMargins: UIEdgeInsets {
-        return UIEdgeInsets.zero
-    }
+    var layoutMargins = UIEdgeInsets.zero
 
     func sizeThatFits(_ size: CGSize) -> CGSize {
         return size
