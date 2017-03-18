@@ -9,9 +9,9 @@ import UIKit
 /**
     Simple layout that positions one child according to its gravity.
 */
-struct GravityLayout: BayaLayout {
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
+public struct BayaGravityLayout: BayaLayout {
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
 
     private var element: BayaLayoutable
     private let gravity: (BayaLayoutOptions.Gravity.Horizontal, BayaLayoutOptions.Gravity.Vertical)
@@ -26,7 +26,7 @@ struct GravityLayout: BayaLayout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    public mutating func layoutWith(frame: CGRect) {
         self.frame = frame
         let size = sizeThatFitsWithMargins(of: element, size: frame.size)
         var point = CGPoint()
@@ -48,31 +48,29 @@ struct GravityLayout: BayaLayout {
             size: size))
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         let fit = sizeThatFitsWithMargins(of: element, size: size)
         return addMargins(size: fit, element: element)
     }
 }
 
-// MARK: Gravity shortcuts
-
 public extension BayaLayoutable {
-    func gravitate(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaLayoutable {
-        return GravityLayout(
+    func layoutGravity(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
+        return BayaGravityLayout(
             element: self,
             gravity: (horizontalGravity, .top))
     }
 
-    func gravitate(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaLayoutable {
-        return GravityLayout(
+    func layoutGravity(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
+        return BayaGravityLayout(
             element: self,
             gravity: (.left, verticalGravity))
     }
 
-    func gravitate(
+    func layoutGravity(
         horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
-        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaLayoutable {
-        return GravityLayout(
+        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
+        return BayaGravityLayout(
             element: self,
             gravity: (horizontalGravity, verticalGravity))
     }
