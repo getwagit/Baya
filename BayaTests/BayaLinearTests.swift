@@ -73,13 +73,12 @@ class BayaLinearTests: XCTestCase {
         layout.layoutWith(frame: layoutRect)
 
         XCTAssertEqual(l3.frame, CGRect(
-            x: 3 + 300 -
-                LinearTestLayoutable.sideLength * 3 -
-                l1.horizontalMargins -
-                l2.horizontalMargins -
-                // left margin of l3 irrelevant for coordinate!
-                l3.layoutMargins.right -
-                20 * 2,
+            x: 3 + 300
+                - LinearTestLayoutable.sideLength * 3
+                - l1.horizontalMargins
+                - l2.horizontalMargins
+                - l3.layoutMargins.right // left margin of l3 irrelevant for coordinate!
+                - 20 * 2,
             y: 3 + l3.layoutMargins.top,
             width: 50,
             height: 300 - l3.verticalMargins),
