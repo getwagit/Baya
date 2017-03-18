@@ -35,12 +35,15 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
+        guard elements.count > 0 else {
+            return
+        }
         switch (orientation, direction) {
         case (.horizontal, .normal):
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                    width: e2.sizeThatFits(frame.size).width,
+                    width: e2.sizeThatFits(frame.size).width + e2.horizontalMargins,
                     height: frame.height)
                 let origin: CGPoint
                 if let e1 = e1 {
@@ -56,7 +59,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             iterate(&elements) {
                 e1, e2 in
                 let size = CGSize(
-                    width: e2.sizeThatFits(frame.size).width,
+                    width: e2.sizeThatFits(frame.size).width + e2.horizontalMargins,
                     height: frame.height)
                 let origin: CGPoint
                 if let e1 = e1 {
@@ -75,7 +78,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 e1, e2 in
                 let size = CGSize(
                     width: frame.width,
-                    height: e2.sizeThatFits(frame.size).height)
+                    height: e2.sizeThatFits(frame.size).height + e2.verticalMargins)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -91,7 +94,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 e1, e2 in
                 let size = CGSize(
                     width: frame.width,
-                    height: e2.sizeThatFits(frame.size).height)
+                    height: e2.sizeThatFits(frame.size).height + e2.verticalMargins)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
