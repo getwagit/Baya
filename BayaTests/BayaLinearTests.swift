@@ -12,12 +12,21 @@ class BayaLinearTests: XCTestCase {
     var l1: TestLayoutable!
     var l2: TestLayoutable!
     var l3: TestLayoutable!
+    let layoutRect = CGRect(
+        x: 3,
+        y: 3,
+        width: 300,
+        height: 300)
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = LinearTestLayoutable()
+        l2 = LinearTestLayoutable()
+        l3 = LinearTestLayoutable()
+
+        l1.m(8, 7, 4, 40)
+        l2.m(20, 13, 11, 4)
+        l3.m(3, 15, 8, 1)
     }
 
     override func tearDown() {
@@ -25,5 +34,65 @@ class BayaLinearTests: XCTestCase {
         l1 = nil
         l2 = nil
         l3 = nil
+    }
+
+    func testEmptyArray() {
+        var layout = [TestLayoutable]()
+            .layoutLinear(orientation: .horizontal)
+        layout.layoutWith(frame: CGRect())
+        XCTAssert(true) // Does not crash.
+    }
+
+    func testHorizontal() {
+        var layout = [l1, l2, l3].layoutLinear(
+            orientation: .horizontal,
+            direction: .normal,
+            spacing: 20)
+        layout.layoutWith(frame: layoutRect)
+
+        XCTAssertEqual(l1.frame, CGRect(
+            x: 3 + l1.layoutMargins.left,
+            y: 3 + l1.layoutMargins.top,
+            width: 50,
+            height: 300 - l1.verticalMargins),
+            "l1 not matching")
+        XCTAssertEqual(l2.frame, CGRect(
+            x: 3 + LinearTestLayoutable.sideLength +
+                l1.horizontalMargins + 20 + l2.layoutMargins.left,
+            y: 3 + l2.layoutMargins.top,
+            width: 50,
+            height: 300 - l2.verticalMargins),
+            "l2 not matching")
+    }
+
+    func testHorizontalReversed() {
+        var layout = [l1, l2, l3].layoutLinear(
+            orientation: .horizontal,
+            direction: .reversed,
+            spacing: 20)
+        layout.layoutWith(frame: layoutRect)
+
+        XCTAssertEqual(l3.frame, CGRect(
+            x: 3 + 300 -
+                LinearTestLayoutable.sideLength * 3 -
+                l1.horizontalMargins -
+                l2.horizontalMargins -
+                // left margin of l3 irrelevant for coordinate!
+                l3.layoutMargins.right -
+                20 * 2,
+            y: 3 + l3.layoutMargins.top,
+            width: 50,
+            height: 300 - l3.verticalMargins),
+            "l3 not matching")
+    }
+}
+
+class LinearTestLayoutable: TestLayoutable {
+    static let sideLength: CGFloat = 50
+
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(
+            width: LinearTestLayoutable.sideLength,
+            height: LinearTestLayoutable.sideLength)
     }
 }
