@@ -28,4 +28,21 @@ public extension Array where Element: BayaLayoutable {
     func layoutFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self, layoutMargins: layoutMargins)
     }
+
+    /**
+        Creates a linear layout.
+    */
+    func layoutLinear(
+        orientation: BayaLayoutOptions.Orientation,
+        direction: BayaLayoutOptions.Direction = .normal,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
+        spacing: Int = 0)
+            -> BayaLinearLayout {
+        return BayaLinearLayout(
+            elements: self,
+            orientation: orientation,
+            direction: direction,
+            layoutMargins: layoutMargins,
+            spacing: spacing)
+    }
 }
