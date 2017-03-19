@@ -20,9 +20,9 @@ class BayaLinearTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = LinearTestLayoutable()
-        l2 = LinearTestLayoutable()
-        l3 = LinearTestLayoutable()
+        l1 = TestLayoutable()
+        l2 = TestLayoutable()
+        l3 = TestLayoutable()
 
         l1.m(8, 7, 4, 40)
         l2.m(20, 13, 11, 4)
@@ -57,7 +57,7 @@ class BayaLinearTests: XCTestCase {
             height: 300 - l1.verticalMargins),
             "l1 not matching")
         XCTAssertEqual(l2.frame, CGRect(
-            x: 3 + LinearTestLayoutable.sideLength +
+            x: 3 + TestLayoutable.sideLength +
                 l1.horizontalMargins + 20 + l2.layoutMargins.left,
             y: 3 + l2.layoutMargins.top,
             width: 50,
@@ -74,7 +74,7 @@ class BayaLinearTests: XCTestCase {
 
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + 300
-                - LinearTestLayoutable.sideLength * 3
+                - TestLayoutable.sideLength * 3
                 - l1.horizontalMargins
                 - l2.horizontalMargins
                 - l3.layoutMargins.right // left margin of l3 irrelevant for coordinate!
@@ -94,7 +94,7 @@ class BayaLinearTests: XCTestCase {
 
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + l3.layoutMargins.left,
-            y: 3 + LinearTestLayoutable.sideLength * 2
+            y: 3 + TestLayoutable.sideLength * 2
                 + l1.verticalMargins + l2.verticalMargins
                 + l3.layoutMargins.top
                 + 20 * 2,
@@ -113,7 +113,7 @@ class BayaLinearTests: XCTestCase {
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + l3.layoutMargins.left,
             y: 3 + 300
-                - LinearTestLayoutable.sideLength * 3
+                - TestLayoutable.sideLength * 3
                 - l1.verticalMargins - l2.verticalMargins
                 - l3.layoutMargins.bottom
                 - 20 * 2,
@@ -128,10 +128,10 @@ class BayaLinearTests: XCTestCase {
             direction: .normal,
             spacing: 20)
         let size = layout.sizeThatFits(layoutRect.size)
-        let largestHeight = LinearTestLayoutable.sideLength + l2.verticalMargins // l2 has the biggest vertical margins.
+        let largestHeight = TestLayoutable.sideLength + l2.verticalMargins // l2 has the biggest vertical margins.
 
         XCTAssertEqual(size, CGSize(
-            width: LinearTestLayoutable.sideLength * 3
+            width: TestLayoutable.sideLength * 3
             + 20 * 2
             + l1.horizontalMargins + l2.horizontalMargins + l3.horizontalMargins,
             height: largestHeight),
@@ -144,23 +144,13 @@ class BayaLinearTests: XCTestCase {
             direction: .normal,
             spacing: 20)
         let size = layout.sizeThatFits(layoutRect.size)
-        let largestWidth = LinearTestLayoutable.sideLength + l1.horizontalMargins // l1 has the biggest horizontal margins.
+        let largestWidth = TestLayoutable.sideLength + l1.horizontalMargins // l1 has the biggest horizontal margins.
 
         XCTAssertEqual(size, CGSize(
             width: largestWidth,
-            height: LinearTestLayoutable.sideLength * 3
+            height: TestLayoutable.sideLength * 3
                 + 20 * 2
                 + l1.verticalMargins + l2.verticalMargins + l3.verticalMargins),
             "size does not match")
-    }
-}
-
-class LinearTestLayoutable: TestLayoutable {
-    static let sideLength: CGFloat = 50
-
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        return CGSize(
-            width: LinearTestLayoutable.sideLength,
-            height: LinearTestLayoutable.sideLength)
     }
 }

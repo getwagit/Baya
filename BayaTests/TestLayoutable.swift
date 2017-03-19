@@ -7,11 +7,14 @@ import Foundation
 import Baya
 
 class TestLayoutable: BayaLayoutable {
+    static let sideLength: CGFloat = 50
     var frame = CGRect()
     var layoutMargins = UIEdgeInsets.zero
 
     func sizeThatFits(_ size: CGSize) -> CGSize {
-        return size
+        return CGSize(
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength)
     }
 
     func layoutWith(frame: CGRect) {
