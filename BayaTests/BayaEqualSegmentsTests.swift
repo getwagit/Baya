@@ -115,4 +115,46 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssertEqual(l1.frame.origin.y, 6 + 8, "unexpected y")
         XCTAssertEqual(l2.frame.origin.y, 6 + 100 + 10, "unexpected l2 position")
     }
+
+    func testMeasureHorizontal() {
+        l1.m(5, 45, 2, 23)
+        l2.m(1, 2, 3, 4)
+        l3.m(5, 11, 2, 1)
+        let layout = [l1, l2, l3].layoutEqualSegments(
+            orientation: .horizontal,
+            gutter: 10)
+
+        let targetSize = CGSize(
+            width: (TestLayoutable.sideLength + l1.horizontalMargins) * 3
+                + 10 * 2,
+            height: TestLayoutable.sideLength + l1.verticalMargins)  // largest vertical margins
+        let size1 = layout.sizeThatFits(CGSize(width: 400, height: 300))
+        let size2 = layout.sizeThatFits(CGSize(width: 200, height: 30))
+
+        XCTAssertEqual(size1, targetSize,
+            "bigger size does not match")
+        XCTAssertEqual(size2, targetSize,
+            "smaller size does not match")
+    }
+
+    func testMeasureVertical() {
+        l1.m(5, 45, 2, 23)
+        l2.m(1, 2, 3, 4)
+        l3.m(5, 11, 2, 1)
+        let layout = [l1, l2, l3].layoutEqualSegments(
+            orientation: .vertical,
+            gutter: 10)
+
+        let targetSize = CGSize(
+            width: TestLayoutable.sideLength + l1.horizontalMargins,
+            height: (TestLayoutable.sideLength + l1.verticalMargins) * 3
+                + 10 * 2)  // largest vertical margins
+        let size1 = layout.sizeThatFits(CGSize(width: 400, height: 300))
+        let size2 = layout.sizeThatFits(CGSize(width: 10, height: 30))
+
+        XCTAssertEqual(size1, targetSize,
+            "bigger size does not match")
+        XCTAssertEqual(size2, targetSize,
+            "smaller size does not match")
+    }
 }
