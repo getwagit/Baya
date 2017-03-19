@@ -84,6 +84,51 @@ class BayaLinearTests: XCTestCase {
             height: 300 - l3.verticalMargins),
             "l3 not matching")
     }
+
+    func testVertical() {
+        var layout = [l1, l2, l3].layoutLinear(
+            orientation: .vertical,
+            direction: .normal,
+            spacing: 20)
+        layout.layoutWith(frame: layoutRect)
+
+        XCTAssertEqual(l3.frame, CGRect(
+            x: 3 + l3.layoutMargins.left,
+            y: 3 + LinearTestLayoutable.sideLength * 2
+                + l1.verticalMargins + l2.verticalMargins
+                + l3.layoutMargins.top
+            + 20 * 2,
+            width: 300 - l3.horizontalMargins,
+            height: 50),
+            "l3 not matching")
+    }
+
+    func testVerticalReversed() {
+        var layout = [l1, l2, l3].layoutLinear(
+            orientation: .vertical,
+            direction: .reversed,
+            spacing: 20)
+        layout.layoutWith(frame: layoutRect)
+
+        XCTAssertEqual(l3.frame, CGRect(
+            x: 3 + l3.layoutMargins.left,
+            y: 3 + 300
+            - LinearTestLayoutable.sideLength * 3
+            - l1.verticalMargins - l2.verticalMargins
+            - l3.layoutMargins.bottom
+            - 20 * 2,
+            width: 300 - l3.horizontalMargins,
+            height: 50),
+            "l3 not matching")
+    }
+
+    func testMeasureHorizontal() {
+        XCTAssert(true)
+    }
+
+    func testMeasureVertical() {
+        XCTAssert(true)
+    }
 }
 
 class LinearTestLayoutable: TestLayoutable {
