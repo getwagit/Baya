@@ -18,6 +18,18 @@ class BayaFrameTests: XCTestCase {
         l1 = TestLayoutable()
         l2 = TestLayoutable()
         l3 = TestLayoutable()
+
+        l1.layoutMargins = UIEdgeInsets(
+            top: 8,
+            left: 7,
+            bottom: 4,
+            right: 3)
+        l2.layoutMargins = UIEdgeInsets(
+            top: 20,
+            left: 50,
+            bottom: 23,
+            right: 12)
+        l3.layoutMargins = UIEdgeInsets.zero
     }
 
     override func tearDown() {
@@ -36,18 +48,6 @@ class BayaFrameTests: XCTestCase {
     func testSizes() {
         var layout = [l1, l2, l3]
             .layoutFrame()
-
-        l1.layoutMargins = UIEdgeInsets(
-            top: 8,
-            left: 7,
-            bottom: 4,
-            right: 3)
-        l2.layoutMargins = UIEdgeInsets(
-            top: 20,
-            left: 50,
-            bottom: 23,
-            right: 12)
-        l3.layoutMargins = UIEdgeInsets.zero
 
         layout.layoutWith(
             frame: CGRect(
@@ -74,5 +74,19 @@ class BayaFrameTests: XCTestCase {
             width: 300 - l3.horizontalMargins,
             height: 300 - l3.verticalMargins),
             "unexpected l3 frame")
+    }
+
+    func testMeasures() {
+        let layout = [l1, l2, l3]
+            .layoutFrame()
+        let size = layout.sizeThatFits(CGSize(
+            width: 300,
+            height: 200))
+
+        // l2 has the biggest margins and should define the size.
+        XCTAssertEqual(size, CGSize(
+            width: TestLayoutable.sideLength + l2.horizontalMargins,
+            height: TestLayoutable.sideLength + l2.verticalMargins),
+            "sizes don't match")
     }
 }
