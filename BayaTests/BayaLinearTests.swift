@@ -97,7 +97,7 @@ class BayaLinearTests: XCTestCase {
             y: 3 + LinearTestLayoutable.sideLength * 2
                 + l1.verticalMargins + l2.verticalMargins
                 + l3.layoutMargins.top
-            + 20 * 2,
+                + 20 * 2,
             width: 300 - l3.horizontalMargins,
             height: 50),
             "l3 not matching")
@@ -113,21 +113,45 @@ class BayaLinearTests: XCTestCase {
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + l3.layoutMargins.left,
             y: 3 + 300
-            - LinearTestLayoutable.sideLength * 3
-            - l1.verticalMargins - l2.verticalMargins
-            - l3.layoutMargins.bottom
-            - 20 * 2,
+                - LinearTestLayoutable.sideLength * 3
+                - l1.verticalMargins - l2.verticalMargins
+                - l3.layoutMargins.bottom
+                - 20 * 2,
             width: 300 - l3.horizontalMargins,
             height: 50),
             "l3 not matching")
     }
 
     func testMeasureHorizontal() {
-        XCTAssert(true)
+        let layout = [l1, l2, l3].layoutLinear(
+            orientation: .horizontal,
+            direction: .normal,
+            spacing: 20)
+        let size = layout.sizeThatFits(layoutRect.size)
+        let largestHeight = LinearTestLayoutable.sideLength + l2.verticalMargins // l2 has the biggest vertical margins.
+
+        XCTAssertEqual(size, CGSize(
+            width: LinearTestLayoutable.sideLength * 3
+            + 20 * 2
+            + l1.horizontalMargins + l2.horizontalMargins + l3.horizontalMargins,
+            height: largestHeight),
+            "size does not match")
     }
 
     func testMeasureVertical() {
-        XCTAssert(true)
+        let layout = [l1, l2, l3].layoutLinear(
+            orientation: .vertical,
+            direction: .normal,
+            spacing: 20)
+        let size = layout.sizeThatFits(layoutRect.size)
+        let largestWidth = LinearTestLayoutable.sideLength + l1.horizontalMargins // l1 has the biggest horizontal margins.
+
+        XCTAssertEqual(size, CGSize(
+            width: largestWidth,
+            height: LinearTestLayoutable.sideLength * 3
+                + 20 * 2
+                + l1.verticalMargins + l2.verticalMargins + l3.verticalMargins),
+            "size does not match")
     }
 }
 
