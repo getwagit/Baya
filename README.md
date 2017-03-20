@@ -69,6 +69,8 @@ layout = [pictureLayout, usernameLayout, buttonRowLayout]
 ## Docs
 For a list of all layout methods check out the wiki!
 
+## Contributing
+Contributions are welcome! Please use the branch `develop` as base/target. If you modifiy the `project.pbxproj` file, use [xUnique](https://github.com/truebit/xUnique).
 
 ## License 
 Baya is available under the MIT license.
