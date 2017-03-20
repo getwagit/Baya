@@ -69,9 +69,12 @@ public extension BayaLayoutable {
 
     func layoutGravity(
         horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
-        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
+        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
-            gravity: (horizontalGravity, verticalGravity))
+            gravity: (horizontalGravity, verticalGravity),
+            layoutMargins: layoutMargins)
     }
 }
