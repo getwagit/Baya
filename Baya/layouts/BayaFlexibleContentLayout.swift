@@ -145,9 +145,6 @@ public struct FlexibleContentLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /**
-        Gives this element a fixed sized container.
-    */
     func layoutFlexibleContent(
         orientation: BayaLayoutOptions.Orientation,
         before: BayaLayoutable?,
