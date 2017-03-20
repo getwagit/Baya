@@ -76,6 +76,4 @@ public protocol PagedScrollLayoutContainer {
     func layoutWith(frame: CGRect) -> Void
 }
 
-// MARK: UIKit specific extensions
-
 extension UIScrollView: PagedScrollLayoutContainer {}

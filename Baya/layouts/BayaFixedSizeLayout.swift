@@ -46,7 +46,15 @@ public extension BayaLayoutable {
     /**
         Gives this element a fixed sized container.
     */
-    func layoutFixedSize(width: CGFloat?, height: CGFloat?) -> BayaFixedSizeLayout {
-        return BayaFixedSizeLayout(element: self, width: width, height: height)
+    func layoutFixedSize(
+        width: CGFloat?,
+        height: CGFloat?,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaFixedSizeLayout {
+        return BayaFixedSizeLayout(
+            element: self,
+            width: width,
+            height: height,
+            layoutMargins: layoutMargins)
     }
 }

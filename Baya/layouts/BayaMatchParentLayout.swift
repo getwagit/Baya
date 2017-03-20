@@ -66,9 +66,14 @@ public extension BayaLayoutable {
         return matchParent(width: true, height: true)
     }
 
-    func matchParent(width: Bool, height: Bool) -> BayaLayoutable {
+    func matchParent(
+        width: Bool,
+        height: Bool,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaLayoutable {
         return MatchParentLayout(
             element: self,
-            matchParent: (width: width, height: height))
+            matchParent: (width: width, height: height),
+            layoutMargins: layoutMargins)
     }
 }

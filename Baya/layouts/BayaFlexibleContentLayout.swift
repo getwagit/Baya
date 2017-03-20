@@ -143,3 +143,19 @@ public struct FlexibleContentLayout: BayaLayout {
         return fit
     }
 }
+
+public extension BayaLayoutable {
+    func layoutFlexibleContent(
+        orientation: BayaLayoutOptions.Orientation,
+        before: BayaLayoutable?,
+        after: BayaLayoutable?,
+        spacing: Int = 0,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> FlexibleContentLayout {
+        return FlexibleContentLayout(
+            elements: (before:  before, content: self, after: after),
+            orientation: orientation,
+            spacing: spacing,
+            layoutMargins: layoutMargins)
+    }
+}
