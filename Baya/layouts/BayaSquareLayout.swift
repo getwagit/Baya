@@ -10,7 +10,7 @@ import UIKit
     Layout that uses only the reference side for measurement, or the smaller side if not specified.
     When setting the frame of its element, it uses the smaller side to ensure the square fits in the available space.
 */
-public struct SquareLayout: BayaLayout {
+public struct BayaSquareLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
@@ -73,9 +73,13 @@ private extension CGSize {
 // MARK: Square shortcuts.
 
 public extension BayaLayoutable {
-    func square(basedOn referenceSide: BayaLayoutOptions.Orientation) -> BayaLayoutable {
-        return SquareLayout(
+    func layoutSquare(
+        referenceSide: BayaLayoutOptions.Orientation,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaSquareLayout {
+        return BayaSquareLayout(
             element: self,
-            referenceSide: referenceSide)
+            referenceSide: referenceSide,
+            layoutMargins: layoutMargins)
     }
 }

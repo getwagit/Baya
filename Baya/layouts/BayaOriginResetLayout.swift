@@ -37,7 +37,7 @@ public struct BayaOriginResetLayout: BayaLayout {
     Reset origin shortcut
 */
 public extension BayaLayoutable {
-    func resetOrigin() -> BayaLayout {
-        return BayaOriginResetLayout(element: self)
+    func resetOrigin(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayout {
+        return BayaOriginResetLayout(element: self, layoutMargins: layoutMargins)
     }
 }

@@ -8,9 +8,9 @@ import Foundation
 /**
     A Layout that uses a percental portion of the given size for measurement.
  */
-struct PercentalSizeLayout: BayaLayout {
-    var layoutMargins: UIEdgeInsets
-    var frame: CGRect
+public struct BayaPercentalSizeLayout: BayaLayout {
+    public var layoutMargins: UIEdgeInsets
+    public var frame: CGRect
 
     private var element: BayaLayoutable
     private var percentalWidth: CGFloat?
@@ -36,12 +36,12 @@ struct PercentalSizeLayout: BayaLayout {
         self.frame = CGRect()
     }
 
-    mutating func layoutWith(frame: CGRect) {
+    public mutating func layoutWith(frame: CGRect) {
         self.frame = frame
         element.layoutWith(frame: subtractMargins(frame: frame, element: element))
     }
 
-    func sizeThatFits(_ size: CGSize) -> CGSize {
+    public func sizeThatFits(_ size: CGSize) -> CGSize {
         var fit = self.sizeThatFitsWithMargins(
             of: element,
             size: CGSize(
@@ -52,5 +52,19 @@ struct PercentalSizeLayout: BayaLayout {
         return CGSize(
             width: (percentalWidth != nil) ? max(size.width * percentalWidth!, fit.width) : fit.width,
             height: (percentalHeight != nil) ? max(size.height * percentalHeight!, fit.height) : fit.height)
+    }
+}
+
+public extension BayaLayoutable {
+    func layoutPercentalSize(
+        width: CGFloat? = nil,
+        height: CGFloat? = nil,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaPercentalSizeLayout {
+        return BayaPercentalSizeLayout(
+            element: self,
+            width: width,
+            height: height,
+            layoutMargins: layoutMargins)
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 /**
     A Layout for a ScrollContainer and its content.
 */
-public struct ScrollLayout: BayaLayout {
+public struct BayaScrollLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
@@ -61,6 +61,18 @@ public protocol ScrollLayoutContainer: class {
     func layoutWith(frame: CGRect) -> ()
 }
 
-// MARK: UIKit specific extensions
-
 extension UIScrollView: ScrollLayoutContainer {}
+
+public extension BayaLayoutable {
+    func layoutScrollContent(
+        container: ScrollLayoutContainer,
+        orientation: BayaLayoutOptions.Orientation = .vertical,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaScrollLayout {
+        return BayaScrollLayout(
+            content: self,
+            container: container,
+            orientation: orientation,
+            layoutMargins: layoutMargins)
+    }
+}

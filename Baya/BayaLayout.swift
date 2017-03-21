@@ -12,6 +12,30 @@ import UIKit
 public protocol BayaLayout: BayaLayoutable {}
 
 /**
+    Methods just for the layout!
+*/
+public extension BayaLayout {
+    /**
+        Kick off the layout routine of the root element.
+        Only call this method on the root element.
+    */
+    mutating public func startLayout(with frame: CGRect) {
+        let origin = frame.origin
+        let size = self.sizeThatFitsWithMargins(frame.size).addMargins(ofElement: self)
+        self.layoutWith(frame: CGRect(
+            origin: origin,
+            size: size))
+    }
+}
+
+
+
+
+// ------------------------------
+// Deprecate below here!
+
+
+/**
     Extension for working with margins.
     Keep margin related logic away from the Layoutable!
 */
