@@ -167,7 +167,7 @@
 /* Begin PBXNativeTarget section */
 		62F0E6C68DBA0BB806E5858792B3CAE4 /* Baya */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A770C9AC98798C7310A2343139F962B0 /* Build configuration list for PBXNativeTarget "Baya" */;
+			buildConfigurationList = F68B735C8BDDA0A8B09AD646B47060BD /* Build configuration list for PBXNativeTarget "Baya" */;
 			buildPhases = (
 				DBC0403FAC1BA33CAEA2E59624CDD574 /* Sources */,
 				706A6736FE15BB7DFD8CE95FA5653405 /* Frameworks */,
@@ -185,7 +185,7 @@
 		};
 		D0359E5A84FB8EA523D558CF07EA1A71 /* BayaTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = CB8FF5C8E891521EDEE6DE2E2F91223C /* Build configuration list for PBXNativeTarget "BayaTests" */;
+			buildConfigurationList = 4625A5977C99AF4394C9DDD92B636912 /* Build configuration list for PBXNativeTarget "BayaTests" */;
 			buildPhases = (
 				790510874CDDFCD4EABE51AA3CBA4B55 /* Sources */,
 				4277EFF983EF9FC3B0BD39147A1BCC69 /* Frameworks */,
@@ -302,7 +302,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		073CFCCAD81465581F03C134C73A00BA /* Release */ = {
+		B2C37C93CBD036858E79BBF35C007B86 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BayaTests/Info.plist;
@@ -313,7 +313,7 @@
 			};
 			name = Release;
 		};
-		162FEB2CC3CDFB496EB4E2154A951EBD /* Release */ = {
+		FC959EF1E43DA9C597505E7B679F0AE4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -430,7 +430,7 @@
 			};
 			name = Debug;
 		};
-		BE1E1B879E214CDCD9AEA5F01590B0F5 /* Debug */ = {
+		D5610D359CB83B923175E89AF69F5A9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BayaTests/Info.plist;
@@ -441,7 +441,7 @@
 			};
 			name = Debug;
 		};
-		C096074817C79D438845CBBE4EED562C /* Debug */ = {
+		C8898746DCDBCC2EB8C6268A819D9D47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -471,21 +471,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A770C9AC98798C7310A2343139F962B0 /* Build configuration list for PBXNativeTarget "Baya" */ = {
+		F68B735C8BDDA0A8B09AD646B47060BD /* Build configuration list for PBXNativeTarget "Baya" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C096074817C79D438845CBBE4EED562C /* Debug */,
-				162FEB2CC3CDFB496EB4E2154A951EBD /* Release */,
+				C8898746DCDBCC2EB8C6268A819D9D47 /* Debug */,
+				FC959EF1E43DA9C597505E7B679F0AE4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		CB8FF5C8E891521EDEE6DE2E2F91223C /* Build configuration list for PBXNativeTarget "BayaTests" */ = {
+		4625A5977C99AF4394C9DDD92B636912 /* Build configuration list for PBXNativeTarget "BayaTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BE1E1B879E214CDCD9AEA5F01590B0F5 /* Debug */,
-				073CFCCAD81465581F03C134C73A00BA /* Release */,
+				D5610D359CB83B923175E89AF69F5A9A /* Debug */,
+				B2C37C93CBD036858E79BBF35C007B86 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
