@@ -32,8 +32,8 @@ class BayaMatchParentTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: layoutRect.width - l.layoutMargins.left - l.layoutMargins.right,
-                height: layoutRect.height - l.layoutMargins.top - l.layoutMargins.bottom),
+                width: layoutRect.width - l.horizontalMargins,
+                height: layoutRect.height - l.verticalMargins),
             "frame not matching")
     }
 
@@ -46,7 +46,7 @@ class BayaMatchParentTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: layoutRect.width - l.layoutMargins.left - l.layoutMargins.right,
+                width: layoutRect.width - l.horizontalMargins,
                 height: TestLayoutable.sideLength),
             "frame not matching")
     }
@@ -61,7 +61,7 @@ class BayaMatchParentTests: XCTestCase {
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
                 width: TestLayoutable.sideLength,
-                height: layoutRect.height - l.layoutMargins.top - l.layoutMargins.bottom),
+                height: layoutRect.height - l.verticalMargins),
             "frame not matching")
     }
 
