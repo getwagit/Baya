@@ -9,7 +9,7 @@ import UIKit
 /**
     Lays the wrapped element out so it matches its parent's size.
  */
-public struct MatchParentLayout: BayaLayout {
+public struct BayaMatchParentLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
@@ -50,28 +50,13 @@ public struct MatchParentLayout: BayaLayout {
     }
 }
 
-
-// MARK: Match Parent Shortcuts
-
 public extension BayaLayoutable {
-    func matchParentWidth() -> BayaLayoutable {
-        return matchParent(width: true, height: false)
-    }
-
-    func matchParentHeight() -> BayaLayoutable {
-        return matchParent(width: false, height: true)
-    }
-
-    func matchParent() -> BayaLayoutable {
-        return matchParent(width: true, height: true)
-    }
-
-    func matchParent(
+    func layoutMatchParent(
         width: Bool,
         height: Bool,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
-            -> BayaLayoutable {
-        return MatchParentLayout(
+            -> BayaMatchParentLayout {
+        return BayaMatchParentLayout(
             element: self,
             matchParent: (width: width, height: height),
             layoutMargins: layoutMargins)
