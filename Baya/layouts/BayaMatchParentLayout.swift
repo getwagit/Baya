@@ -28,13 +28,7 @@ public struct BayaMatchParentLayout: BayaLayout {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
-        let size = sizeThatFitsWithMargins(of: element, size: frame.size)
-
-        element.layoutWith(frame: CGRect(
-            x: frame.minX + element.layoutMargins.left,
-            y: frame.minY + element.layoutMargins.top,
-            width: matchParent.width ? frame.width - self.horizontalMargins(of: element) : size.width,
-            height: matchParent.height ? frame.height - self.verticalMargins(of: element) : size.height))
+        element.subtractMarginsAndLayoutWith(frame: frame)
     }
 
     public func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -43,10 +37,8 @@ public struct BayaMatchParentLayout: BayaLayout {
         }
         let fit = sizeThatFitsWithMargins(of: element, size: size)
         return CGSize(
-            width: matchParent.width ? size.width :
-            fit.width + element.layoutMargins.left + element.layoutMargins.right,
-            height: matchParent.height ? size.height :
-            fit.height + element.layoutMargins.top + element.layoutMargins.bottom)
+            width: matchParent.width ? size.width : fit.width + element.horizontalMargins,
+            height: matchParent.height ? size.height : fit.height + element.verticalMargins)
     }
 }
 
