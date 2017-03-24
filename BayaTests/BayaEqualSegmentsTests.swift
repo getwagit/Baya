@@ -158,4 +158,24 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssertEqual(size2, targetSize,
             "smaller size does not match")
     }
+
+    func testDifferentTypesPossible() {
+        let anotherOne = AnotherOne()
+        var layout = [l1, anotherOne].layoutEqualSegments(orientation: .horizontal)
+        layout.startLayout(with: layoutRect)
+        XCTAssert(true)
+    }
+}
+
+private class AnotherOne: BayaLayoutable {
+    var layoutMargins = UIEdgeInsets.zero
+    var frame = CGRect()
+
+    func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: 30, height: 30)
+    }
+
+    func layoutWith(frame: CGRect) {
+        self.frame = frame
+    }
 }

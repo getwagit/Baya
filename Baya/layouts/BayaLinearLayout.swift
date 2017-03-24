@@ -152,7 +152,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
     }
 }
 
-public extension Array where Element: BayaLayoutable {
+extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Creates a linear layout.
     */
@@ -163,7 +163,26 @@ public extension Array where Element: BayaLayoutable {
         spacing: Int = 0)
             -> BayaLinearLayout {
         return BayaLinearLayout(
-            elements: self,
+            elements: self.array(),
+            orientation: orientation,
+            direction: direction,
+            layoutMargins: layoutMargins,
+            spacing: spacing)
+    }
+}
+
+extension Sequence where Iterator.Element == BayaLayoutable {
+    /**
+        Creates a linear layout.
+    */
+    func layoutLinear(
+        orientation: BayaLayoutOptions.Orientation,
+        direction: BayaLayoutOptions.Direction = .normal,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
+        spacing: Int = 0)
+            -> BayaLinearLayout {
+        return BayaLinearLayout(
+            elements: self.array(),
             orientation: orientation,
             direction: direction,
             layoutMargins: layoutMargins,

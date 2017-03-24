@@ -183,6 +183,13 @@ class BayaLinearTests: XCTestCase {
                 + l1.verticalMargins + l2.verticalMargins + l3.verticalMargins),
             "size does not match")
     }
+
+    func testDifferentTypesPossible() {
+        let anotherOne = AnotherOne()
+        var layout = [l1, anotherOne].layoutLinear(orientation: .horizontal)
+        layout.startLayout(with: layoutRect)
+        XCTAssert(true)
+    }
 }
 
 private class AnotherOne: BayaLayoutable {

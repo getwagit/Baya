@@ -54,6 +54,38 @@ internal extension BayaLayoutable {
     }
 }
 
+// MARK: Sequence Helper
+
+/**
+    Converts any sequence into an array if it is not an Array already.
+    Needed because we ca not extend an Array with BayaLayoutable as generic parameter.
+*/
+internal extension Sequence where Iterator.Element == BayaLayoutable {
+    func array() -> [BayaLayoutable] {
+        if let array = self as? [BayaLayoutable] {
+            return array
+        }
+        return Array(self)
+    }
+}
+
+/**
+    Upcast a sequence of a type that implements BayaLayoutable.
+    And convert to Array.
+*/
+internal extension Sequence where Iterator.Element: BayaLayoutable {
+    func array() -> [BayaLayoutable] {
+        if let array = self as? [Iterator.Element] {
+            return upcast(array: array)
+        }
+        return upcast(array: Array(self))
+    }
+
+    func upcast<T: BayaLayoutable>(array: [T]) -> [BayaLayoutable] {
+        return array.map { $0 as BayaLayoutable }
+    }
+}
+
 // MARK: UIKit specific extensions
 
 /**
