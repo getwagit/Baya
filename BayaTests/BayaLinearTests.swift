@@ -139,6 +139,15 @@ class BayaLinearTests: XCTestCase {
             + l2.verticalMargins
             + l3.verticalMargins
         
+        XCTAssertEqual(l1.frame, CGRect(
+            x: layoutRect.origin.x + l1.layoutMargins.left,
+            y: layoutRect.origin.y
+                + expectedFinalHeight
+                - TestLayoutable.sideLength
+                - l1.layoutMargins.bottom,
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength),
+            "l1 not matching")
         XCTAssertEqual(l3.frame, CGRect(
             x: layoutRect.origin.x + l3.layoutMargins.left,
             y: layoutRect.origin.y
@@ -156,13 +165,13 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinear(
             orientation: .horizontal,
             direction: .normal,
-            spacing: 20)
+            spacing: Int(spacing))
         let size = layout.sizeThatFits(layoutRect.size)
         let largestHeight = TestLayoutable.sideLength + l2.verticalMargins // l2 has the biggest vertical margins.
 
         XCTAssertEqual(size, CGSize(
             width: TestLayoutable.sideLength * 3
-            + 20 * 2
+            + spacing * 2
             + l1.horizontalMargins + l2.horizontalMargins + l3.horizontalMargins,
             height: largestHeight),
             "size does not match")
@@ -172,18 +181,18 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinear(
             orientation: .vertical,
             direction: .normal,
-            spacing: 20)
+            spacing: Int(spacing))
         let size = layout.sizeThatFits(layoutRect.size)
         let largestWidth = TestLayoutable.sideLength + l1.horizontalMargins // l1 has the biggest horizontal margins.
 
         XCTAssertEqual(size, CGSize(
             width: largestWidth,
             height: TestLayoutable.sideLength * 3
-                + 20 * 2
+                + spacing * 2
                 + l1.verticalMargins + l2.verticalMargins + l3.verticalMargins),
             "size does not match")
     }
-
+    
     func testDifferentTypesPossible() {
         let anotherOne = AnotherOne()
         var layout = [l1, anotherOne].layoutLinear(orientation: .horizontal)

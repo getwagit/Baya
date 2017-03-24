@@ -25,7 +25,7 @@ public extension BayaLayout {
         let measuredSize = self.sizeThatFitsWithMargins(frame.size).addMargins(ofElement: self)
         let size = CGSize(
             width: min(frame.size.width, measuredSize.width),
-            height: min(frame.size.width, measuredSize.width))
+            height: min(frame.size.height, measuredSize.height))
         self.layoutWith(frame: CGRect(
             origin: origin,
             size: size))
