@@ -28,7 +28,8 @@ class BayaEqualSegmentsTests: XCTestCase {
     func testEmptyArray() {
         var layout = [TestLayoutable]()
             .layoutEqualSegments(orientation: .horizontal)
-        layout.layoutWith(frame: CGRect())
+        layout.startLayout(
+            with: CGRect())
         XCTAssert(true) // Does not crash.
     }
 
@@ -36,8 +37,8 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutEqualSegments(orientation: .horizontal)
 
-        layout.layoutWith(
-            frame: CGRect(
+        layout.startLayout(
+            with: CGRect(
                 x: 5,
                 y: 5,
                 width: 300,
@@ -53,8 +54,8 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutEqualSegments(orientation: .vertical)
 
-        layout.layoutWith(
-            frame: CGRect(
+        layout.startLayout(
+            with: CGRect(
                 x: 5,
                 y: 5,
                 width: 100,
@@ -77,8 +78,8 @@ class BayaEqualSegmentsTests: XCTestCase {
             orientation: .horizontal,
             gutter: 10)
 
-        layout1.layoutWith(
-            frame: CGRect(
+        layout1.startLayout(
+            with: CGRect(
                 x: 6,
                 y: 6,
                 width: 100 * 3 + 10 * 2,
@@ -102,8 +103,8 @@ class BayaEqualSegmentsTests: XCTestCase {
             orientation: .vertical,
             gutter: 10)
 
-        layout1.layoutWith(
-            frame: CGRect(
+        layout1.startLayout(
+            with: CGRect(
                 x: 6,
                 y: 6,
                 width: 100,
@@ -120,7 +121,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         l1.m(5, 45, 2, 23)
         l2.m(1, 2, 3, 4)
         l3.m(5, 11, 2, 1)
-        let layout = [l1, l2, l3].layoutEqualSegments(
+        var layout = [l1, l2, l3].layoutEqualSegments(
             orientation: .horizontal,
             gutter: 10)
 
@@ -141,7 +142,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         l1.m(5, 45, 2, 23)
         l2.m(1, 2, 3, 4)
         l3.m(5, 11, 2, 1)
-        let layout = [l1, l2, l3].layoutEqualSegments(
+        var layout = [l1, l2, l3].layoutEqualSegments(
             orientation: .vertical,
             gutter: 10)
 

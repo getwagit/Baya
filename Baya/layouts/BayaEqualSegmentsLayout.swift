@@ -16,6 +16,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     var gutter: CGFloat
 
     private var elements: [BayaLayoutable]
+    private var measures = [CGSize]()
 
     init(
         elements: [BayaLayoutable],
@@ -36,41 +37,42 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         }
         switch orientation {
         case .horizontal:
-            var elementSize = frame.size
-            elementSize.width = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
-            iterate(&elements) { e1, e2 in
+            let segmentWidth = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: e1.frame.maxX + e1.layoutMargins.right + gutter,
+                        x: e1.frame.minX - e1.layoutMargins.left + segmentWidth + gutter,
                         y: frame.minY)
                 } else {
                     origin = frame.origin
                 }
-                return CGRect(origin: origin, size: elementSize)
+                return CGRect(origin: origin, size: size)
             }
         case .vertical:
-            var elementSize = frame.size
-            elementSize.height = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
-            iterate(&elements) {
-                e1, e2 in
+            let segmentHeight = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: frame.minX,
-                        y: e1.frame.maxY + e1.layoutMargins.bottom + gutter)
+                        y: e1.frame.minY - e1.layoutMargins.top + segmentHeight + gutter)
                 } else {
                     origin = frame.origin
                 }
-                return CGRect(origin: origin, size: elementSize)
+                return CGRect(origin: origin, size: size)
             }
         }
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+        measures = measure(&elements, size: size)
         var size = CGSize()
-        for element in elements {
-            let fit = element.sizeThatFitsWithMargins(size)
+        for i in 0..<elements.count {
+            let fit = measures[i]
+            let element = elements[i]
             size.width = max(fit.width + element.horizontalMargins, size.width)
             size.height = max(fit.height + element.verticalMargins, size.height)
         }

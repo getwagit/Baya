@@ -28,7 +28,7 @@ public struct BayaGravityLayout: BayaLayout {
 
     public mutating func layoutWith(frame: CGRect) {
         self.frame = frame
-        let size = sizeThatFitsWithMargins(of: element, size: frame.size)
+        let size = element.sizeThatFitsWithMargins(frame.size)
         var point = CGPoint()
 
         switch gravity.0 {
@@ -48,9 +48,9 @@ public struct BayaGravityLayout: BayaLayout {
             size: size))
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
-        let fit = sizeThatFitsWithMargins(of: element, size: size)
-        return addMargins(size: fit, element: element)
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+        let fit = element.sizeThatFitsWithMargins(size)
+        return fit.addMargins(ofElement: element)
     }
 }
 

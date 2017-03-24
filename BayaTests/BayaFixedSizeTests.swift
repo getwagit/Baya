@@ -74,7 +74,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testMeasureFixedSize() {
         let fixedSize: CGSize = CGSize(width: 40, height: 70)
-        let layout = l.layoutFixedSize(width: fixedSize.width, height: fixedSize.height)
+        var layout = l.layoutFixedSize(width: fixedSize.width, height: fixedSize.height)
         let fit = layout.sizeThatFits(layoutRect.size)
 
         XCTAssertEqual(
@@ -85,7 +85,7 @@ class BayaFixedSizeTests: XCTestCase {
     
     func testMeasureFixedHeight() {
         let fixedHeight: CGFloat = 60
-        let layout = l.layoutFixedSize(width: nil, height: fixedHeight)
+        var layout = l.layoutFixedSize(width: nil, height: fixedHeight)
         let fit = layout.sizeThatFits(layoutRect.size)
 
         XCTAssertEqual(
@@ -98,7 +98,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testMeasureFixedWidth() {
         let fixedWidth: CGFloat = 34
-        let layout = l.layoutFixedSize(width: fixedWidth, height: nil)
+        var layout = l.layoutFixedSize(width: fixedWidth, height: nil)
         let fit = layout.sizeThatFits(layoutRect.size)
 
         XCTAssertEqual(

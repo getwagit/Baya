@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
     Sets the origin of a given element to x: 0, y: 0. Handy when laying out views in deeper view hierarchies.
@@ -27,17 +28,14 @@ public struct BayaOriginResetLayout: BayaLayout {
         element.layoutWith(frame: self.frame)
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
-        let fit = self.sizeThatFitsWithMargins(of: element, size: size)
-        return self.addMargins(size: fit, element: self)
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+        let fit = element.sizeThatFitsWithMargins(size)
+        return fit.addMargins(ofElement: element)
     }
 }
 
-/**
-    Reset origin shortcut
-*/
 public extension BayaLayoutable {
-    func resetOrigin(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayout {
+    func layoutResetOrigin(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayout {
         return BayaOriginResetLayout(element: self, layoutMargins: layoutMargins)
     }
 }

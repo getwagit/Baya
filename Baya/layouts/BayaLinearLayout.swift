@@ -18,6 +18,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
     var spacing: CGFloat
 
     private var elements: [BayaLayoutable]
+    private var measures = [CGSize]()
 
     init(
         elements: [BayaLayoutable],
@@ -40,11 +41,8 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         }
         switch (orientation, direction) {
         case (.horizontal, .normal):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: e2.sizeThatFits(frame.size).width + e2.horizontalMargins,
-                    height: frame.height)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -56,11 +54,8 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 return CGRect(origin: origin, size: size)
             }
         case (.horizontal, .reversed):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: e2.sizeThatFits(frame.size).width + e2.horizontalMargins,
-                    height: frame.height)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -74,11 +69,8 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 return CGRect(origin: origin, size: size)
             }
         case (.vertical, .normal):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: frame.width,
-                    height: e2.sizeThatFits(frame.size).height + e2.verticalMargins)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -90,11 +82,8 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 return CGRect(origin: origin, size: size)
             }
         case (.vertical, .reversed):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: frame.width,
-                    height: e2.sizeThatFits(frame.size).height + e2.verticalMargins)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -110,15 +99,17 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         }
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
+    mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
+        measures = measure(&elements, size: size)
         var resultSize: CGSize = CGSize()
         switch (orientation, direction) {
         case (.horizontal, .normal): fallthrough
         case (.horizontal, .reversed):
             let elementCount = elements.count
             resultSize.width = elementCount > 1 ? (CGFloat(elementCount - 1) * spacing) : 0
-            for element in elements {
-                let fit = element.sizeThatFitsWithMargins(size)
+            for i in 0..<elements.count {
+                let fit = measures[i]
+                let element = elements[i]
                 resultSize.width += fit.width + element.layoutMargins.left + element.layoutMargins.right
                 resultSize.height = max(
                     resultSize.height,
@@ -128,8 +119,9 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         case (.vertical, .reversed):
             let elementCount = elements.count
             resultSize.height = elementCount > 1 ? (CGFloat(elementCount - 1) * spacing) : 0
-            for element in elements {
-                let fit = element.sizeThatFitsWithMargins(size)
+            for i in 0..<elements.count {
+                let fit = measures[i]
+                let element = elements[i]
                 resultSize.width = max(
                     resultSize.width,
                     fit.width + element.layoutMargins.left + element.layoutMargins.right)

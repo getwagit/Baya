@@ -13,7 +13,7 @@ import UIKit
 public protocol BayaLayoutable {
     var layoutMargins: UIEdgeInsets {get}
     var frame: CGRect {get}
-    func sizeThatFits(_ size: CGSize) -> CGSize
+    mutating func sizeThatFits(_ size: CGSize) -> CGSize
     mutating func layoutWith(frame: CGRect)
 }
 
@@ -49,7 +49,7 @@ internal extension BayaLayoutable {
         return frame.width + horizontalMargins
     }
 
-    func sizeThatFitsWithMargins(_ size: CGSize) -> CGSize {
+    mutating func sizeThatFitsWithMargins(_ size: CGSize) -> CGSize {
         return sizeThatFits(size.subtractMargins(ofElement: self))
     }
 }

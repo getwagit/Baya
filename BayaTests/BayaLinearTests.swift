@@ -39,7 +39,7 @@ class BayaLinearTests: XCTestCase {
     func testEmptyArray() {
         var layout = [TestLayoutable]()
             .layoutLinear(orientation: .horizontal)
-        layout.layoutWith(frame: CGRect())
+        layout.startLayout(with: CGRect())
         XCTAssert(true) // Does not crash.
     }
 
@@ -48,20 +48,21 @@ class BayaLinearTests: XCTestCase {
             orientation: .horizontal,
             direction: .normal,
             spacing: 20)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(
+            with: layoutRect)
 
         XCTAssertEqual(l1.frame, CGRect(
             x: 3 + l1.layoutMargins.left,
             y: 3 + l1.layoutMargins.top,
-            width: 50,
-            height: 300 - l1.verticalMargins),
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength),
             "l1 not matching")
         XCTAssertEqual(l2.frame, CGRect(
             x: 3 + TestLayoutable.sideLength +
                 l1.horizontalMargins + 20 + l2.layoutMargins.left,
             y: 3 + l2.layoutMargins.top,
-            width: 50,
-            height: 300 - l2.verticalMargins),
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength),
             "l2 not matching")
     }
 
@@ -70,7 +71,8 @@ class BayaLinearTests: XCTestCase {
             orientation: .horizontal,
             direction: .reversed,
             spacing: 20)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(
+            with: layoutRect)
 
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + 300
@@ -90,7 +92,8 @@ class BayaLinearTests: XCTestCase {
             orientation: .vertical,
             direction: .normal,
             spacing: 20)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(
+            with: layoutRect)
 
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + l3.layoutMargins.left,
@@ -108,7 +111,8 @@ class BayaLinearTests: XCTestCase {
             orientation: .vertical,
             direction: .reversed,
             spacing: 20)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(
+            with: layoutRect)
 
         XCTAssertEqual(l3.frame, CGRect(
             x: 3 + l3.layoutMargins.left,
@@ -123,7 +127,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testMeasureHorizontal() {
-        let layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinear(
             orientation: .horizontal,
             direction: .normal,
             spacing: 20)
@@ -139,7 +143,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testMeasureVertical() {
-        let layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinear(
             orientation: .vertical,
             direction: .normal,
             spacing: 20)
@@ -154,3 +158,17 @@ class BayaLinearTests: XCTestCase {
             "size does not match")
     }
 }
+
+private class AnotherOne: BayaLayoutable {
+    var layoutMargins = UIEdgeInsets.zero
+    var frame = CGRect()
+
+    func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: 30, height: 30)
+    }
+
+    func layoutWith(frame: CGRect) {
+        self.frame = frame
+    }
+}
+

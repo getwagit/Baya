@@ -41,7 +41,8 @@ class BayaFrameTests: XCTestCase {
 
     func testEmptyArray() {
         var layout = [TestLayoutable]().layoutFrame()
-        layout.layoutWith(frame: CGRect())
+        layout.startLayout(
+            with: CGRect())
         XCTAssert(true) // Does not crash.
     }
 
@@ -49,8 +50,8 @@ class BayaFrameTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutFrame()
 
-        layout.layoutWith(
-            frame: CGRect(
+        layout.startLayout(
+            with: CGRect(
                 x: 5,
                 y: 10,
                 width: 300,
@@ -77,7 +78,7 @@ class BayaFrameTests: XCTestCase {
     }
 
     func testMeasures() {
-        let layout = [l1, l2, l3]
+        var layout = [l1, l2, l3]
             .layoutFrame()
         let size = layout.sizeThatFits(CGSize(
             width: 300,
