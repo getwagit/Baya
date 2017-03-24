@@ -29,7 +29,11 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
         iterate(&elements, measures) {
             e1, e2, e2s in
             let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
-            return CGRect(origin: frame.origin, size: size)
+            return CGRect(
+                origin: CGPoint(
+                    x: frame.minX + e2.layoutMargins.left,
+                    y: frame.minY + e2.layoutMargins.top),
+                size: size)
         }
     }
 
