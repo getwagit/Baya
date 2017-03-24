@@ -17,6 +17,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
 
     private var elements: [BayaLayoutable]
     private var measures = [CGSize]()
+    private var measuredMaxDimension: CGSize?
 
     init(
         elements: [BayaLayoutable],
@@ -35,39 +36,73 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         guard elements.count > 0 else {
             return
         }
+        if measuredMaxDimension == nil {
+            measuredMaxDimension = measureChildrenAndFindMaxDimensions(frame.size)
+        }
         switch orientation {
         case .horizontal:
-            let segmentWidth = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            let maxSegmentWidth = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            let segmentWidth = min(maxSegmentWidth > 0 ? maxSegmentWidth : 0, measuredMaxDimension!.width)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
                 let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: e1.frame.minX - e1.layoutMargins.left + segmentWidth + gutter,
-                        y: frame.minY)
+                        x: e1.frame.minX
+                            - e1.layoutMargins.left
+                            + segmentWidth
+                            + gutter
+                            + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 } else {
-                    origin = frame.origin
+                    origin = CGPoint(
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
         case .vertical:
-            let segmentHeight = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            let maxSegmentHeight = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            let segmentHeight = min(maxSegmentHeight > 0 ? maxSegmentHeight : 0, measuredMaxDimension!.height)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
                 let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: e1.frame.minY - e1.layoutMargins.top + segmentHeight + gutter)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: e1.frame.minY
+                            - e1.layoutMargins.top
+                            + segmentHeight
+                            + gutter
+                            + e2.layoutMargins.top)
                 } else {
-                    origin = frame.origin
+                    origin = CGPoint(
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
         }
     }
 
-    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+    mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
+        guard elements.count > 0 else {
+            return CGSize()
+        }
+        measuredMaxDimension = measureChildrenAndFindMaxDimensions(size)
+        switch orientation {
+        case .horizontal:
+            return CGSize(
+                width: measuredMaxDimension!.width * CGFloat(elements.count) + gutter * CGFloat(elements.count - 1),
+                height: measuredMaxDimension!.height)
+        case .vertical:
+            return CGSize(
+                width: measuredMaxDimension!.width,
+                height: measuredMaxDimension!.height * CGFloat(elements.count) + gutter * CGFloat(elements.count - 1))
+        }
+    }
+
+    mutating private func measureChildrenAndFindMaxDimensions(_ size: CGSize) -> CGSize {
         measures = measure(&elements, size: size)
         var size = CGSize()
         for i in 0..<elements.count {
@@ -75,12 +110,6 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
             let element = elements[i]
             size.width = max(fit.width + element.horizontalMargins, size.width)
             size.height = max(fit.height + element.verticalMargins, size.height)
-        }
-        switch orientation {
-        case .horizontal:
-            size.width = size.width * CGFloat(elements.count) + gutter * CGFloat(elements.count - 1)
-        case .vertical:
-            size.height = size.height * CGFloat(elements.count) + gutter * CGFloat(elements.count - 1)
         }
         return size
     }
@@ -113,7 +142,6 @@ extension Sequence where Iterator.Element == BayaLayoutable {
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
-            elements: self,
             elements: self.array(),
             orientation: orientation,
             gutter: gutter,
