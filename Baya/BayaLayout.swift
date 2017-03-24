@@ -18,10 +18,14 @@ public extension BayaLayout {
     /**
         Kick off the layout routine of the root element.
         Only call this method on the root element.
+        Measures child layoutables but tries to keep them within the frame.
     */
     mutating public func startLayout(with frame: CGRect) {
         let origin = frame.origin
-        let size = self.sizeThatFitsWithMargins(frame.size).addMargins(ofElement: self)
+        let measuredSize = self.sizeThatFitsWithMargins(frame.size).addMargins(ofElement: self)
+        let size = CGSize(
+            width: min(frame.size.width, measuredSize.width),
+            height: min(frame.size.width, measuredSize.width))
         self.layoutWith(frame: CGRect(
             origin: origin,
             size: size))
