@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
     A layout that calculates the size of its content layoutable depending on the given frame,
