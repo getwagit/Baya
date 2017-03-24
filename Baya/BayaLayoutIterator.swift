@@ -56,7 +56,8 @@ internal extension BayaLayoutIterator {
         - Parameter size: the base size used for measurement if necessary.
     */
     func saveMeasure(e2s: CGSize?, e2: inout BayaLayoutable, size: CGSize) -> CGSize {
-        return e2s?.addMargins(ofElement: e2) ??
-            e2.sizeThatFitsWithMargins(size).addMargins(ofElement: e2)
+//        return e2s?.addMargins(ofElement: e2) ??
+//            e2.sizeThatFitsWithMargins(size).addMargins(ofElement: e2)
+        return e2s ?? e2.sizeThatFitsWithMargins(size)
     }
 }

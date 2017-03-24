@@ -46,10 +46,15 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: e1.frame.maxX + e1.layoutMargins.right + spacing,
-                        y: frame.minY)
+                        x: e1.frame.maxX
+                            + e1.layoutMargins.right
+                            + spacing
+                            + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 } else {
-                    origin = frame.origin
+                    origin = CGPoint(
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -59,12 +64,16 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: e1.frame.minX - e1.layoutMargins.left - spacing - size.width,
-                        y: frame.minY)
+                        x: e1.frame.minX
+                            - e1.layoutMargins.left
+                            - spacing
+                            - e2.layoutMargins.right
+                            - size.width,
+                        y: frame.minY + e2.layoutMargins.top)
                 } else {
                     origin = CGPoint(
-                        x: frame.maxX - size.width,
-                        y: frame.minY)
+                        x: frame.maxX - size.width - e2.layoutMargins.right,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -74,10 +83,15 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: e1.frame.maxY + e1.layoutMargins.bottom + spacing)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: e1.frame.maxY
+                            + e1.layoutMargins.bottom
+                            + spacing
+                            + e2.layoutMargins.top)
                 } else {
-                    origin = frame.origin
+                    origin = CGPoint(
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -87,12 +101,18 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: e1.frame.minY - e1.layoutMargins.top - spacing - size.height)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: e1.frame.minY
+                            - e1.layoutMargins.top
+                            - spacing
+                            - e2.layoutMargins.bottom
+                            - size.height)
                 } else {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: frame.maxY - size.height)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.maxY
+                            - e2.layoutMargins.bottom
+                            - size.height)
                 }
                 return CGRect(origin: origin, size: size)
             }
