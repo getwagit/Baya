@@ -4,12 +4,13 @@
 //
 
 import Foundation
+import UIKit
 
 /**
     A layout that calculates the size of its content layoutable depending on the given frame,
     the number of pages, and an optional gutter. The container will be laid out according to the frame.
  */
-public struct PagedScrollLayout: BayaLayout {
+public struct BayaPagedScrollLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
@@ -64,6 +65,24 @@ public struct PagedScrollLayout: BayaLayout {
     public func sizeThatFits(_ size: CGSize) -> CGSize {
         // PagedScrollLayout always fits the given size
         return size
+    }
+}
+
+public extension BayaLayoutable {
+    func layoutPagedScrollContent(
+        container: PagedScrollLayoutContainer,
+        pages: Int,
+        gutter: CGFloat = 0,
+        orientation: BayaLayoutOptions.Orientation = .horizontal,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+            -> BayaPagedScrollLayout {
+        return BayaPagedScrollLayout(
+            content: self,
+            container: container,
+            pages: pages,
+            gutter: gutter,
+            orientation: orientation,
+            layoutMargins: layoutMargins)
     }
 }
 

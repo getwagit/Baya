@@ -13,7 +13,7 @@ import UIKit
 public protocol BayaLayoutable {
     var layoutMargins: UIEdgeInsets {get}
     var frame: CGRect {get}
-    func sizeThatFits(_ size: CGSize) -> CGSize
+    mutating func sizeThatFits(_ size: CGSize) -> CGSize
     mutating func layoutWith(frame: CGRect)
 }
 
@@ -49,8 +49,40 @@ internal extension BayaLayoutable {
         return frame.width + horizontalMargins
     }
 
-    func sizeThatFitsWithMargins(_ size: CGSize) -> CGSize {
+    mutating func sizeThatFitsWithMargins(_ size: CGSize) -> CGSize {
         return sizeThatFits(size.subtractMargins(ofElement: self))
+    }
+}
+
+// MARK: Sequence Helper
+
+/**
+    Converts any sequence into an array if it is not an Array already.
+    Needed because we ca not extend an Array with BayaLayoutable as generic parameter.
+*/
+internal extension Sequence where Iterator.Element == BayaLayoutable {
+    func array() -> [BayaLayoutable] {
+        if let array = self as? [BayaLayoutable] {
+            return array
+        }
+        return Array(self)
+    }
+}
+
+/**
+    Upcast a sequence of a type that implements BayaLayoutable.
+    And convert to Array.
+*/
+internal extension Sequence where Iterator.Element: BayaLayoutable {
+    func array() -> [BayaLayoutable] {
+        if let array = self as? [Iterator.Element] {
+            return upcast(array: array)
+        }
+        return upcast(array: Array(self))
+    }
+
+    func upcast<T: BayaLayoutable>(array: [T]) -> [BayaLayoutable] {
+        return array.map { $0 as BayaLayoutable }
     }
 }
 

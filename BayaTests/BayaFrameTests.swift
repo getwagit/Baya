@@ -41,43 +41,43 @@ class BayaFrameTests: XCTestCase {
 
     func testEmptyArray() {
         var layout = [TestLayoutable]().layoutFrame()
-        layout.layoutWith(frame: CGRect())
+        layout.startLayout(
+            with: CGRect())
         XCTAssert(true) // Does not crash.
     }
 
     func testSizes() {
         var layout = [l1, l2, l3]
             .layoutFrame()
-
-        layout.layoutWith(
-            frame: CGRect(
-                x: 5,
-                y: 10,
-                width: 300,
-                height: 300))
+        let layoutRect = CGRect(
+            x: 5,
+            y: 10,
+            width: 300,
+            height: 300)
+        layout.startLayout(with: layoutRect)
 
         XCTAssertEqual(l1.frame, CGRect(
-            x: 5 + l1.layoutMargins.left,
-            y: 10 + l1.layoutMargins.top,
-            width: 300 - l1.horizontalMargins,
-            height: 300 - l1.verticalMargins),
+            x: layoutRect.origin.x + l1.layoutMargins.left,
+            y: layoutRect.origin.y + l1.layoutMargins.top,
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength),
             "unexpected l1 frame")
         XCTAssertEqual(l2.frame, CGRect(
-            x: 5 + l2.layoutMargins.left,
-            y: 10 + l2.layoutMargins.top,
-            width: 300 - l2.horizontalMargins,
-            height: 300 - l2.verticalMargins),
+            x: layoutRect.origin.x + l2.layoutMargins.left,
+            y: layoutRect.origin.y + l2.layoutMargins.top,
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength),
             "unexpected l2 frame")
         XCTAssertEqual(l3.frame, CGRect(
-            x: 5 + l3.layoutMargins.left,
-            y: 10 + l3.layoutMargins.top,
-            width: 300 - l3.horizontalMargins,
-            height: 300 - l3.verticalMargins),
+            x: layoutRect.origin.x + l3.layoutMargins.left,
+            y: layoutRect.origin.y + l3.layoutMargins.top,
+            width: TestLayoutable.sideLength,
+            height: TestLayoutable.sideLength),
             "unexpected l3 frame")
     }
 
     func testMeasures() {
-        let layout = [l1, l2, l3]
+        var layout = [l1, l2, l3]
             .layoutFrame()
         let size = layout.sizeThatFits(CGSize(
             width: 300,

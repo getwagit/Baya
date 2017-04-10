@@ -66,7 +66,7 @@ class BayaMatchParentTests: XCTestCase {
     }
 
     func testMeasureMatchParent() {
-        let layout = l.layoutMatchParent(width: true, height: true)
+        var layout = l.layoutMatchParent(width: true, height: true)
         let fit = layout.sizeThatFits(layoutRect.size)
         
         XCTAssertEqual(
@@ -76,7 +76,7 @@ class BayaMatchParentTests: XCTestCase {
     }
 
     func testMeasureMatchParentWidth() {
-        let layout = l.layoutMatchParent(width: true, height: false)
+        var layout = l.layoutMatchParent(width: true, height: false)
         let fit = layout.sizeThatFits(layoutRect.size)
         
         XCTAssertEqual(
@@ -88,7 +88,7 @@ class BayaMatchParentTests: XCTestCase {
     }
 
     func testMeasureMatchParentHeight() {
-        let layout = l.layoutMatchParent(width: false, height: true)
+        var layout = l.layoutMatchParent(width: false, height: true)
         let fit = layout.sizeThatFits(layoutRect.size)
         
         XCTAssertEqual(

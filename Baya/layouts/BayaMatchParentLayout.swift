@@ -31,11 +31,11 @@ public struct BayaMatchParentLayout: BayaLayout {
         element.subtractMarginsAndLayoutWith(frame: frame)
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
         if matchParent.width && matchParent.height {
             return size
         }
-        let fit = sizeThatFitsWithMargins(of: element, size: size)
+        let fit = element.sizeThatFitsWithMargins(size)
         return CGSize(
             width: matchParent.width ? size.width : fit.width + element.horizontalMargins,
             height: matchParent.height ? size.height : fit.height + element.verticalMargins)

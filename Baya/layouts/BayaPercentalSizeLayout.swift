@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
     A Layout that uses a percental portion of the given size for measurement.
@@ -38,16 +39,14 @@ public struct BayaPercentalSizeLayout: BayaLayout {
 
     public mutating func layoutWith(frame: CGRect) {
         self.frame = frame
-        element.layoutWith(frame: subtractMargins(frame: frame, element: element))
+        element.layoutWith(frame: frame.subtractMargins(ofElement: element))
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
-        var fit = self.sizeThatFitsWithMargins(
-            of: element,
-            size: CGSize(
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+        let fit = element.sizeThatFitsWithMargins(CGSize(
                 width: size.width * (percentalWidth ?? 1),
                 height: size.height * (percentalHeight ?? 1)))
-        fit = addMargins(size: fit, element: element)
+            .addMargins(ofElement: element)
 
         return CGSize(
             width: (percentalWidth != nil) ? max(size.width * percentalWidth!, fit.width) : fit.width,

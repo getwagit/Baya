@@ -18,6 +18,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
     var spacing: CGFloat
 
     private var elements: [BayaLayoutable]
+    private var measures = [CGSize]()
 
     init(
         elements: [BayaLayoutable],
@@ -40,85 +41,95 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         }
         switch (orientation, direction) {
         case (.horizontal, .normal):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: e2.sizeThatFits(frame.size).width + e2.horizontalMargins,
-                    height: frame.height)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: e1.frame.maxX + e1.layoutMargins.right + spacing,
-                        y: frame.minY)
+                        x: e1.frame.maxX
+                            + e1.layoutMargins.right
+                            + spacing
+                            + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 } else {
-                    origin = frame.origin
+                    origin = CGPoint(
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
         case (.horizontal, .reversed):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: e2.sizeThatFits(frame.size).width + e2.horizontalMargins,
-                    height: frame.height)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: e1.frame.minX - e1.layoutMargins.left - spacing - size.width,
-                        y: frame.minY)
+                        x: e1.frame.minX
+                            - e1.layoutMargins.left
+                            - spacing
+                            - e2.layoutMargins.right
+                            - size.width,
+                        y: frame.minY + e2.layoutMargins.top)
                 } else {
                     origin = CGPoint(
-                        x: frame.maxX - size.width,
-                        y: frame.minY)
+                        x: frame.maxX - size.width - e2.layoutMargins.right,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
         case (.vertical, .normal):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: frame.width,
-                    height: e2.sizeThatFits(frame.size).height + e2.verticalMargins)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: e1.frame.maxY + e1.layoutMargins.bottom + spacing)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: e1.frame.maxY
+                            + e1.layoutMargins.bottom
+                            + spacing
+                            + e2.layoutMargins.top)
                 } else {
-                    origin = frame.origin
+                    origin = CGPoint(
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.minY + e2.layoutMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
         case (.vertical, .reversed):
-            iterate(&elements) {
-                e1, e2 in
-                let size = CGSize(
-                    width: frame.width,
-                    height: e2.sizeThatFits(frame.size).height + e2.verticalMargins)
+            iterate(&elements, measures) { e1, e2, e2s in
+                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: e1.frame.minY - e1.layoutMargins.top - spacing - size.height)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: e1.frame.minY
+                            - e1.layoutMargins.top
+                            - spacing
+                            - e2.layoutMargins.bottom
+                            - size.height)
                 } else {
                     origin = CGPoint(
-                        x: frame.minX,
-                        y: frame.maxY - size.height)
+                        x: frame.minX + e2.layoutMargins.left,
+                        y: frame.maxY
+                            - e2.layoutMargins.bottom
+                            - size.height)
                 }
                 return CGRect(origin: origin, size: size)
             }
         }
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
+    mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
+        measures = measure(&elements, size: size)
         var resultSize: CGSize = CGSize()
         switch (orientation, direction) {
         case (.horizontal, .normal): fallthrough
         case (.horizontal, .reversed):
             let elementCount = elements.count
             resultSize.width = elementCount > 1 ? (CGFloat(elementCount - 1) * spacing) : 0
-            for element in elements {
-                let fit = element.sizeThatFitsWithMargins(size)
+            for i in 0..<elements.count {
+                let fit = measures[i]
+                let element = elements[i]
                 resultSize.width += fit.width + element.layoutMargins.left + element.layoutMargins.right
                 resultSize.height = max(
                     resultSize.height,
@@ -128,8 +139,9 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         case (.vertical, .reversed):
             let elementCount = elements.count
             resultSize.height = elementCount > 1 ? (CGFloat(elementCount - 1) * spacing) : 0
-            for element in elements {
-                let fit = element.sizeThatFitsWithMargins(size)
+            for i in 0..<elements.count {
+                let fit = measures[i]
+                let element = elements[i]
                 resultSize.width = max(
                     resultSize.width,
                     fit.width + element.layoutMargins.left + element.layoutMargins.right)
@@ -140,7 +152,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
     }
 }
 
-public extension Array where Element: BayaLayoutable {
+extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Creates a linear layout.
     */
@@ -151,7 +163,26 @@ public extension Array where Element: BayaLayoutable {
         spacing: Int = 0)
             -> BayaLinearLayout {
         return BayaLinearLayout(
-            elements: self,
+            elements: self.array(),
+            orientation: orientation,
+            direction: direction,
+            layoutMargins: layoutMargins,
+            spacing: spacing)
+    }
+}
+
+extension Sequence where Iterator.Element == BayaLayoutable {
+    /**
+        Creates a linear layout.
+    */
+    func layoutLinear(
+        orientation: BayaLayoutOptions.Orientation,
+        direction: BayaLayoutOptions.Direction = .normal,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
+        spacing: Int = 0)
+            -> BayaLinearLayout {
+        return BayaLinearLayout(
+            elements: self.array(),
             orientation: orientation,
             direction: direction,
             layoutMargins: layoutMargins,

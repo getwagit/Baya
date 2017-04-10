@@ -16,6 +16,7 @@ public struct BayaScrollLayout: BayaLayout {
 
     private var container: ScrollLayoutContainer
     private var content: BayaLayoutable
+    private var contentMeasure: CGSize?
 
     init(
         content: BayaLayoutable,
@@ -31,32 +32,32 @@ public struct BayaScrollLayout: BayaLayout {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
-
-        let contentSize: CGSize = orientation == .horizontal ?
-            content.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: frame.height)) :
-            content.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
+        let contentSize = contentMeasure ?? measureContent(frame.size)
 
         content.layoutWith(frame: CGRect(
             origin: CGPoint(),
             size: contentSize))
-        container.layoutWith(frame: CGRect(
-            x: frame.origin.x + layoutMargins.left,
-            y: frame.origin.y + layoutMargins.top,
-            width: frame.width - layoutMargins.left - layoutMargins.right,
-            height: frame.height - layoutMargins.top - layoutMargins.top))
+        container.layoutWith(frame: frame.subtractMargins(ofElement: container))
         container.contentSize = contentSize
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
+    mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
+        contentMeasure = measureContent(size)
         // ScrollLayout always fits the given frame
         return size
+    }
+
+    mutating private func measureContent(_ size: CGSize) -> CGSize {
+        return orientation == .horizontal ?
+            content.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: size.height)) :
+            content.sizeThatFits(CGSize(width: size.width, height: CGFloat.greatestFiniteMagnitude))
     }
 }
 
 /**
     Implement this protocol for the scroll layout container.
  */
-public protocol ScrollLayoutContainer: class {
+public protocol ScrollLayoutContainer: class, BayaLayoutable {
     var contentSize: CGSize { get set }
     func layoutWith(frame: CGRect) -> ()
 }
