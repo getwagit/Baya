@@ -34,13 +34,13 @@ public struct BayaGravityLayout: BayaLayout {
 
         switch gravity.0 {
         case .left: point.x = frame.minX + element.layoutMargins.left
-        case .center: point.x = frame.midX - (size.width * 0.5)
+        case .center: point.x = frame.midX - (size.width * 0.5) + element.layoutMargins.left - element.layoutMargins.right
         case .right: point.x = frame.maxX - size.width - element.layoutMargins.right
         }
 
         switch gravity.1 {
         case .top: point.y = frame.minY + element.layoutMargins.top
-        case .middle: point.y = frame.midY - (size.height * 0.5)
+        case .middle: point.y = frame.midY - (size.height * 0.5) + element.layoutMargins.top - element.layoutMargins.bottom
         case .bottom: point.y = frame.maxY - size.height - element.layoutMargins.bottom
         }
 
