@@ -20,6 +20,7 @@
 		54471EE876C4D0A85C07780C38A45B3D /* BayaOriginResetLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304BCCB876A2BF35B546DBBBD34CC7EB /* BayaOriginResetLayout.swift */; };
 		5B9DC9B16B45EADBEF7BC43BF831752A /* BayaEqualSegmentsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567F4070A0548912A6605154490D31E8 /* BayaEqualSegmentsTests.swift */; };
 		6EFCFCF5B8663617DC4D0D031608FEC4 /* TestLayoutable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42AB25E157C90AF7CDC36FAC00EC5191 /* TestLayoutable.swift */; };
+		93FB627410521E8C2EF32B6D7B9C067A /* BayaFlexibleContentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D104AE5D42A3A84F1C00A35FC5DB2 /* BayaFlexibleContentTests.swift */; };
 		963CF5D2C24FE6CB3A98E1EB6E44BCE7 /* BayaLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A184C750F9E0F01F14B90E954B6F8A53 /* BayaLayout.swift */; };
 		A84CD432AA1C02F7DC2CE6DA701BD4F8 /* BayaGravityLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BCBC55E061AC05FD0A52BA54CF379F7 /* BayaGravityLayout.swift */; };
 		A967692EDD83636DBBDEF9C763389390 /* BayaMatchParentLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6337C103C86EFDFCD1D9DFC8EE1D99B /* BayaMatchParentLayout.swift */; };
@@ -70,6 +71,7 @@
 		AF4F8F4BCC964D7343AAACBD60D370E8 /* BayaFlexibleContentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFlexibleContentLayout.swift; sourceTree = "<group>"; };
 		BFDA2896654D28CABD15D4FB18BE3257 /* BayaLinearLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaLinearLayout.swift; sourceTree = "<group>"; };
 		C6337C103C86EFDFCD1D9DFC8EE1D99B /* BayaMatchParentLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaMatchParentLayout.swift; sourceTree = "<group>"; };
+		D50D104AE5D42A3A84F1C00A35FC5DB2 /* BayaFlexibleContentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFlexibleContentTests.swift; sourceTree = "<group>"; };
 		E7C172F694DAF80EA172DE619B8170D5 /* BayaFrameLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BayaFrameLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +113,7 @@
 			children = (
 				567F4070A0548912A6605154490D31E8 /* BayaEqualSegmentsTests.swift */,
 				70AE3FC76A07635C0258A51DE1864434 /* BayaFixedSizeTests.swift */,
+				D50D104AE5D42A3A84F1C00A35FC5DB2 /* BayaFlexibleContentTests.swift */,
 				798A5583106F36F2496D119CDC48E06D /* BayaFrameTests.swift */,
 				58378CD74DB24590479AD25E6EEEFAFF /* BayaLinearTests.swift */,
 				96CE90882C36EBEB4A94CEFC79F3DEF5 /* BayaMatchParentTests.swift */,
@@ -269,6 +272,7 @@
 			files = (
 				5B9DC9B16B45EADBEF7BC43BF831752A /* BayaEqualSegmentsTests.swift in Sources */,
 				EEB794FC1342C43EF4F9F3EF7F63080C /* BayaFixedSizeTests.swift in Sources */,
+				93FB627410521E8C2EF32B6D7B9C067A /* BayaFlexibleContentTests.swift in Sources */,
 				184BCA06BDCC2102EE128519C5AED0DB /* BayaFrameTests.swift in Sources */,
 				23F7B2F6634422B164F40FA71D212F9B /* BayaLinearTests.swift in Sources */,
 				E92AA5F7CC3CEC71FBC66FD6D18EEB35 /* BayaMatchParentTests.swift in Sources */,
