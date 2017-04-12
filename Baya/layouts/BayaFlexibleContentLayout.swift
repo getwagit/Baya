@@ -38,8 +38,36 @@ public struct FlexibleContentLayout: BayaLayout {
         if measures.after == nil {
             measures.after = elements.after?.sizeThatFitsWithMargins(frame.size)
         }
-        if measures.content == nil {
-            measures.content = elements.content.sizeThatFitsWithMargins(frame.size)
+        let relevantBeforeWidth: CGFloat
+        let relevantAfterWidth: CGFloat
+        let relevantBeforeHeight: CGFloat
+        let relevantAfterHeight: CGFloat
+
+        switch orientation {
+        case .horizontal:
+            relevantBeforeWidth = measures.before?.width
+                .add(elements.before!.horizontalMargins).add(spacing) ?? 0
+            relevantAfterWidth = measures.after?.width
+                .add(elements.after!.horizontalMargins).add(spacing) ?? 0
+            relevantBeforeHeight = 0
+            relevantAfterHeight = 0
+            if measures.content == nil {
+                measures.content = elements.content.sizeThatFitsWithMargins(CGSize(
+                    width: frame.width - relevantBeforeWidth - relevantAfterWidth,
+                    height: frame.height))
+            }
+        case .vertical:
+            relevantBeforeWidth = 0
+            relevantAfterWidth = 0
+            relevantBeforeHeight = measures.before?.height
+                .add(elements.before!.verticalMargins).add(spacing) ?? 0
+            relevantAfterHeight = measures.after?.height
+                .add(elements.after!.verticalMargins).add(spacing) ?? 0
+            if measures.content == nil {
+                measures.content = elements.content.sizeThatFitsWithMargins(CGSize(
+                    width: frame.width,
+                    height: frame.height - relevantBeforeHeight - relevantAfterHeight))
+            }
         }
 
         switch orientation {
@@ -49,60 +77,48 @@ public struct FlexibleContentLayout: BayaLayout {
                     x: frame.minX + elements.before!.layoutMargins.left,
                     y: frame.minY + elements.before!.layoutMargins.top,
                     width: measures.before!.width,
-                    height: frame.height - elements.before!.verticalMargins))
+                    height: measures.before!.height))
             }
 
             if elements.after != nil {
                 elements.after!.layoutWith(frame: CGRect(
-                    x: frame.minX + frame.width - measures.after!.width - elements.after!.layoutMargins.right,
+                    x: frame.maxX - measures.after!.width - elements.after!.layoutMargins.right,
                     y: frame.minY + elements.after!.layoutMargins.top,
                     width: measures.after!.width,
-                    height: frame.height - elements.after!.verticalMargins))
+                    height: measures.after!.height))
             }
 
-            let relevantBeforeWidth = elements.before?.widthWithMargins.add(spacing) ?? 0
-            let relevantAfterWidth = elements.after?.widthWithMargins.add(spacing) ?? 0
             elements.content.layoutWith(frame: CGRect(
                 x: frame.minX
                     + relevantBeforeWidth
                     + elements.content.layoutMargins.left,
                 y: frame.minY + elements.content.layoutMargins.top,
-                width: frame.width
-                    - elements.content.horizontalMargins
-                    - relevantBeforeWidth
-                    - relevantAfterWidth,
-                height: frame.height
-                    - elements.content.verticalMargins))
+                width: measures.content!.width,
+                height: measures.content!.height))
         case .vertical:
             if elements.before != nil {
                 elements.before!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.before!.layoutMargins.left,
                     y: frame.minY + elements.before!.layoutMargins.top,
-                    width: frame.width - elements.before!.horizontalMargins,
+                    width:  measures.before!.width,
                     height: measures.before!.height))
             }
 
             if elements.after != nil {
                 elements.after!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.after!.layoutMargins.left,
-                    y: frame.minY + frame.height - measures.after!.height - elements.after!.layoutMargins.bottom,
-                    width: frame.width - elements.after!.horizontalMargins,
+                    y: frame.maxY - measures.after!.height - elements.after!.layoutMargins.bottom,
+                    width: measures.before!.width,
                     height: measures.after!.height))
             }
 
-            let relevantBeforeHeight = elements.before?.heightWithMargins.add(spacing) ?? 0
-            let relevantAfterHeight = elements.after?.heightWithMargins.add(spacing) ?? 0
             elements.content.layoutWith(frame: CGRect(
                 x: frame.minX + elements.content.layoutMargins.left,
                 y: frame.minY
                     + relevantBeforeHeight
                     + elements.content.layoutMargins.top,
-                width: frame.width
-                    - elements.content.horizontalMargins,
-                height: frame.height
-                    - elements.content.verticalMargins
-                    - relevantBeforeHeight
-                    - relevantAfterHeight))
+                width: measures.content!.width,
+                height: measures.content!.height))
         }
     }
 
@@ -118,18 +134,20 @@ public struct FlexibleContentLayout: BayaLayout {
             let relevantAfterWidth = afterWithMargins?.width.add(spacing) ?? 0
             let availableWidth = max(size.width - relevantBeforeWidth - relevantAfterWidth, 0)
             measures.content = elements.content.sizeThatFitsWithMargins(CGSize(width: availableWidth, height: size.height))
+            let contentWithMargins = measures.content!.addMargins(ofElement: elements.content)
             return CGSize(
-                width: relevantBeforeWidth + relevantAfterWidth + measures.content!.width,
-                height: max(beforeWithMargins?.height ?? 0, afterWithMargins?.height ?? 0, measures.content!.height))
+                width: relevantBeforeWidth + relevantAfterWidth + contentWithMargins.width,
+                height: max(beforeWithMargins?.height ?? 0, afterWithMargins?.height ?? 0, contentWithMargins.height))
 
         case .vertical:
             let relevantBeforeHeight = beforeWithMargins?.height.add(spacing) ?? 0
             let relevantAfterHeight = afterWithMargins?.height.add(spacing) ?? 0
             let availableHeight = max(size.width - relevantBeforeHeight - relevantAfterHeight, 0)
             measures.content = elements.content.sizeThatFitsWithMargins(CGSize(width: size.width, height: availableHeight))
+            let contentWithMargins = measures.content!.addMargins(ofElement: elements.content)
             return CGSize(
-                width: max(beforeWithMargins?.width ?? 0, afterWithMargins?.width ?? 0, measures.content!.width),
-                height: relevantBeforeHeight + relevantAfterHeight + measures.content!.height)
+                width: max(beforeWithMargins?.width ?? 0, afterWithMargins?.width ?? 0, contentWithMargins.width),
+                height: relevantBeforeHeight + relevantAfterHeight + contentWithMargins.height)
         }
     }
 }
@@ -137,8 +155,8 @@ public struct FlexibleContentLayout: BayaLayout {
 public extension BayaLayoutable {
     func layoutFlexibleContent(
         orientation: BayaLayoutOptions.Orientation,
-        before: BayaLayoutable?,
-        after: BayaLayoutable?,
+        before: BayaLayoutable? = nil,
+        after: BayaLayoutable? = nil,
         spacing: Int = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> FlexibleContentLayout {
