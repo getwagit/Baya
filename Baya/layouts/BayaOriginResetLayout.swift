@@ -37,7 +37,7 @@ public struct BayaOriginResetLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    func layoutResetOrigin(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayout {
+    func layoutResettingOrigin(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayout {
         return BayaOriginResetLayout(element: self, layoutMargins: layoutMargins)
     }
 }

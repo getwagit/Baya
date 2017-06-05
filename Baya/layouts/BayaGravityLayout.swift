@@ -56,19 +56,19 @@ public struct BayaGravityLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    func layoutGravity(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
+    func layoutGravitating(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
             gravity: (horizontalGravity, .top))
     }
 
-    func layoutGravity(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
+    func layoutGravitating(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
             gravity: (.left, verticalGravity))
     }
 
-    func layoutGravity(
+    func layoutGravitating(
         horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
         vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)

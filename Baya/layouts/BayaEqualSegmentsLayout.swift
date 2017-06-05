@@ -119,7 +119,7 @@ extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Distributes the available size evenly.
     */
-    func layoutEqualSegments(
+    func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         gutter: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
@@ -136,7 +136,7 @@ extension Sequence where Iterator.Element == BayaLayoutable {
     /**
         Distributes the available size evenly.
     */
-    func layoutEqualSegments(
+    func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         gutter: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)

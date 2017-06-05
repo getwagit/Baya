@@ -29,7 +29,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testFixedHeight() {
         let fixedHeight: CGFloat = 100
-        var layout = l.layoutFixedSize(width: nil, height: fixedHeight)
+        var layout = l.layoutWithFixedSize(width: nil, height: fixedHeight)
         layout.startLayout(with: layoutRect)
 
         XCTAssertEqual(
@@ -44,7 +44,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testFixedWidth() {
         let fixedWidth: CGFloat = 75
-        var layout = l.layoutFixedSize(width: fixedWidth, height: nil)
+        var layout = l.layoutWithFixedSize(width: fixedWidth, height: nil)
         layout.startLayout(with: layoutRect)
 
         XCTAssertEqual(
@@ -59,7 +59,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testFixedSize() {
         let fixedSize: CGSize = CGSize(width: 55, height: 99)
-        var layout = l.layoutFixedSize(width: fixedSize.width, height: fixedSize.height)
+        var layout = l.layoutWithFixedSize(width: fixedSize.width, height: fixedSize.height)
         layout.startLayout(with: layoutRect)
 
         XCTAssertEqual(
@@ -74,7 +74,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testMeasureFixedSize() {
         let fixedSize: CGSize = CGSize(width: 40, height: 70)
-        var layout = l.layoutFixedSize(width: fixedSize.width, height: fixedSize.height)
+        var layout = l.layoutWithFixedSize(width: fixedSize.width, height: fixedSize.height)
         let fit = layout.sizeThatFits(layoutRect.size)
 
         XCTAssertEqual(
@@ -85,7 +85,7 @@ class BayaFixedSizeTests: XCTestCase {
     
     func testMeasureFixedHeight() {
         let fixedHeight: CGFloat = 60
-        var layout = l.layoutFixedSize(width: nil, height: fixedHeight)
+        var layout = l.layoutWithFixedSize(width: nil, height: fixedHeight)
         let fit = layout.sizeThatFits(layoutRect.size)
 
         XCTAssertEqual(
@@ -98,7 +98,7 @@ class BayaFixedSizeTests: XCTestCase {
 
     func testMeasureFixedWidth() {
         let fixedWidth: CGFloat = 34
-        var layout = l.layoutFixedSize(width: fixedWidth, height: nil)
+        var layout = l.layoutWithFixedSize(width: fixedWidth, height: nil)
         let fit = layout.sizeThatFits(layoutRect.size)
 
         XCTAssertEqual(

@@ -43,7 +43,7 @@ public struct BayaMatchParentLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    func layoutMatchParent(
+    func layoutMatchingParent(
         width: Bool,
         height: Bool,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)

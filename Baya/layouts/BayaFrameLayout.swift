@@ -55,7 +55,7 @@ extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Groups the layoutables together.
     */
-    func layoutFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
+    func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
     }
 }
@@ -64,7 +64,7 @@ extension Sequence where Iterator.Element == BayaLayoutable {
     /**
         Groups the layoutables together.
     */
-    func layoutFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
+    func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
     }
 }

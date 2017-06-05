@@ -156,7 +156,7 @@ extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Creates a linear layout.
     */
-    func layoutLinear(
+    func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         direction: BayaLayoutOptions.Direction = .normal,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
@@ -175,7 +175,7 @@ extension Sequence where Iterator.Element == BayaLayoutable {
     /**
         Creates a linear layout.
     */
-    func layoutLinear(
+    func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         direction: BayaLayoutOptions.Direction = .normal,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,

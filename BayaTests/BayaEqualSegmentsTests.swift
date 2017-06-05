@@ -42,7 +42,7 @@ class BayaEqualSegmentsTests: XCTestCase {
 
     func testEmptyArray() {
         var layout = [BayaLayoutable]()
-            .layoutEqualSegments(
+            .layoutAsEqualSegments(
                 orientation: .horizontal,
                 gutter: spacing)
         layout.startLayout(
@@ -52,7 +52,7 @@ class BayaEqualSegmentsTests: XCTestCase {
 
     func testHorizontal() {
         var layout = [l1, l2, l3]
-            .layoutEqualSegments(
+            .layoutAsEqualSegments(
                 orientation: .horizontal,
                 gutter: spacing)
 
@@ -84,7 +84,7 @@ class BayaEqualSegmentsTests: XCTestCase {
     
     func testHorizontalSmallEnforcedFrame() {
         var layout = [l1, l2, l3]
-            .layoutEqualSegments(
+            .layoutAsEqualSegments(
                 orientation: .horizontal,
                 gutter: spacing)
         
@@ -116,7 +116,7 @@ class BayaEqualSegmentsTests: XCTestCase {
 
     func testVertical() {
         var layout = [l1, l2, l3]
-            .layoutEqualSegments(
+            .layoutAsEqualSegments(
                 orientation: .vertical,
                 gutter: spacing)
         
@@ -147,7 +147,7 @@ class BayaEqualSegmentsTests: XCTestCase {
     }
 
     func testMeasureHorizontal() {
-        var layout = [l1, l2, l3].layoutEqualSegments(
+        var layout = [l1, l2, l3].layoutAsEqualSegments(
             orientation: .horizontal,
             gutter: spacing)
 
@@ -165,7 +165,7 @@ class BayaEqualSegmentsTests: XCTestCase {
     }
 
     func testMeasureVertical() {
-        var layout = [l1, l2, l3].layoutEqualSegments(
+        var layout = [l1, l2, l3].layoutAsEqualSegments(
             orientation: .vertical,
             gutter: spacing)
 
@@ -184,7 +184,7 @@ class BayaEqualSegmentsTests: XCTestCase {
 
     func testDifferentTypesPossible() {
         let anotherOne = AnotherOne()
-        var layout = [l1, anotherOne].layoutEqualSegments(orientation: .horizontal)
+        var layout = [l1, anotherOne].layoutAsEqualSegments(orientation: .horizontal)
         layout.startLayout(with: layoutRect)
         XCTAssert(true)
     }
