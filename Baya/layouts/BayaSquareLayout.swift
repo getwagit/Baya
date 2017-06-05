@@ -69,7 +69,7 @@ private extension CGSize {
 // MARK: Square shortcuts.
 
 public extension BayaLayoutable {
-    func layoutSquare(
+    func layoutAsSquare(
         referenceSide: BayaLayoutOptions.Orientation,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaSquareLayout {

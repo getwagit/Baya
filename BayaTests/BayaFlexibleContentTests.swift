@@ -41,10 +41,10 @@ class BayaFlexibleContentTests: XCTestCase {
     }
 
     func testMeasureHorizontal() {
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: l1,
+            elementAfter: l3,
             orientation: .horizontal,
-            before: l1,
-            after: l3,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         let measuredSize = layout.sizeThatFitsWithMargins(layoutRect.size)
@@ -60,10 +60,10 @@ class BayaFlexibleContentTests: XCTestCase {
     }
 
     func testMeasureVertical() {
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: l1,
+            elementAfter: l3,
             orientation: .vertical,
-            before: l1,
-            after: l3,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         let measuredSize = layout.sizeThatFitsWithMargins(layoutRect.size)
@@ -79,10 +79,10 @@ class BayaFlexibleContentTests: XCTestCase {
     }
 
     func testHorizontal() {
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: l1,
+            elementAfter: l3,
             orientation: .horizontal,
-            before: l1,
-            after: l3,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         layout.startLayout(with: layoutRect)
@@ -111,10 +111,10 @@ class BayaFlexibleContentTests: XCTestCase {
     }
 
     func testVertical() {
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: l1,
+            elementAfter: l3,
             orientation: .vertical,
-            before: l1,
-            after: l3,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         layout.startLayout(with: layoutRect)
@@ -143,10 +143,10 @@ class BayaFlexibleContentTests: XCTestCase {
     }
 
     func testHorizontalWithNoOptionalElements() {
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: nil,
+            elementAfter: nil,
             orientation: .horizontal,
-            before: nil,
-            after: nil,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         layout.startLayout(with: layoutRect)
@@ -159,10 +159,10 @@ class BayaFlexibleContentTests: XCTestCase {
     }
 
     func testVerticalWithNoOptionalElements() {
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: nil,
+            elementAfter: nil,
             orientation: .vertical,
-            before: nil,
-            after: nil,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         layout.startLayout(with: layoutRect)
@@ -178,10 +178,10 @@ class BayaFlexibleContentTests: XCTestCase {
         l2 = TakesWhatItGets()
         l2.m(1, 2, 3, 4)
 
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: l1,
+            elementAfter: l3,
             orientation: .horizontal,
-            before: l1,
-            after: l3,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         layout.startLayout(with: layoutRect)
@@ -207,10 +207,10 @@ class BayaFlexibleContentTests: XCTestCase {
         l2 = TakesWhatItGets()
         l2.m(1, 2, 3, 4)
 
-        var layout = l2.layoutFlexibleContent(
+        var layout = l2.layoutFlexible(
+            elementBefore: l1,
+            elementAfter: l3,
             orientation: .vertical,
-            before: l1,
-            after: l3,
             spacing: Int(spacing),
             layoutMargins: UIEdgeInsets.zero)
         layout.startLayout(with: layoutRect)

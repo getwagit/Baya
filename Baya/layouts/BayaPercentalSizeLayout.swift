@@ -7,15 +7,15 @@ import Foundation
 import UIKit
 
 /**
-    A Layout that uses a percental portion of the given size for measurement.
+    A Layout that uses a portion of the given size for measurement.
  */
-public struct BayaPercentalSizeLayout: BayaLayout {
+public struct BayaProportionalSizeLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
     private var element: BayaLayoutable
-    private var percentalWidth: CGFloat?
-    private var percentalHeight: CGFloat?
+    private var widthFactor: CGFloat?
+    private var heightFactor: CGFloat?
 
     /**
         - Parameter element: The element to be laid out
@@ -27,12 +27,12 @@ public struct BayaPercentalSizeLayout: BayaLayout {
      */
     init(
         element: BayaLayoutable,
-        width: CGFloat? = nil,
-        height: CGFloat? = nil,
+        widthFactor: CGFloat? = nil,
+        heightFactor: CGFloat? = nil,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.element = element
-        self.percentalWidth = width
-        self.percentalHeight = height
+        self.widthFactor = widthFactor
+        self.heightFactor = heightFactor
         self.layoutMargins = layoutMargins
         self.frame = CGRect()
     }
@@ -44,26 +44,26 @@ public struct BayaPercentalSizeLayout: BayaLayout {
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
         let fit = element.sizeThatFitsWithMargins(CGSize(
-                width: size.width * (percentalWidth ?? 1),
-                height: size.height * (percentalHeight ?? 1)))
+                width: size.width * (widthFactor ?? 1),
+                height: size.height * (heightFactor ?? 1)))
             .addMargins(ofElement: element)
 
         return CGSize(
-            width: (percentalWidth != nil) ? max(size.width * percentalWidth!, fit.width) : fit.width,
-            height: (percentalHeight != nil) ? max(size.height * percentalHeight!, fit.height) : fit.height)
+            width: (widthFactor != nil) ? max(size.width * widthFactor!, fit.width) : fit.width,
+            height: (heightFactor != nil) ? max(size.height * heightFactor!, fit.height) : fit.height)
     }
 }
 
 public extension BayaLayoutable {
-    func layoutPercentalSize(
-        width: CGFloat? = nil,
-        height: CGFloat? = nil,
+    func layoutWithPortion(
+        ofWidth: CGFloat? = nil,
+        ofHeight: CGFloat? = nil,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
-            -> BayaPercentalSizeLayout {
-        return BayaPercentalSizeLayout(
+            -> BayaProportionalSizeLayout {
+        return BayaProportionalSizeLayout(
             element: self,
-            width: width,
-            height: height,
+            widthFactor: ofWidth,
+            heightFactor: ofHeight,
             layoutMargins: layoutMargins)
     }
 }

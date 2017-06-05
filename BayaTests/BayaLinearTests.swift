@@ -39,13 +39,13 @@ class BayaLinearTests: XCTestCase {
 
     func testEmptyArray() {
         var layout = [TestLayoutable]()
-            .layoutLinear(orientation: .horizontal)
+            .layoutLinearly(orientation: .horizontal)
         layout.startLayout(with: CGRect())
         XCTAssert(true) // Does not crash.
     }
 
     func testHorizontal() {
-        var layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
             spacing: Int(spacing))
@@ -71,7 +71,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testHorizontalReversed() {
-        var layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .reversed,
             spacing: Int(spacing))
@@ -107,7 +107,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testVertical() {
-        var layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
             spacing: Int(spacing))
@@ -127,7 +127,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testVerticalReversed() {
-        var layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .reversed,
             spacing: 20)
@@ -162,7 +162,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testMeasureHorizontal() {
-        var layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
             spacing: Int(spacing))
@@ -178,7 +178,7 @@ class BayaLinearTests: XCTestCase {
     }
 
     func testMeasureVertical() {
-        var layout = [l1, l2, l3].layoutLinear(
+        var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
             spacing: Int(spacing))
@@ -195,7 +195,7 @@ class BayaLinearTests: XCTestCase {
     
     func testDifferentTypesPossible() {
         let anotherOne = AnotherOne()
-        var layout = [l1, anotherOne].layoutLinear(orientation: .horizontal)
+        var layout = [l1, anotherOne].layoutLinearly(orientation: .horizontal)
         layout.startLayout(with: layoutRect)
         XCTAssert(true)
     }

@@ -23,7 +23,7 @@ class BayaOriginResetTests: XCTestCase {
     }
 
     func testMeasure() {
-        var layout = l.layoutResetOrigin()
+        var layout = l.layoutResettingOrigin()
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -34,7 +34,7 @@ class BayaOriginResetTests: XCTestCase {
     }
 
     func testResetsOrigin() {
-        var layout = l.layoutResetOrigin()
+        var layout = l.layoutResettingOrigin()
         l.frame.origin.x = 20;
         l.frame.origin.y = 31;
         layout.layoutWith(frame: layoutRect)

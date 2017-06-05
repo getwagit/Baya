@@ -7,7 +7,9 @@ import Foundation
 import UIKit
 
 /**
-    A Layout that stretches a Layoutable to fill the available space.
+    A layout that subtracts the frames of two optional elements before laying out its content element.
+    First the elements before and after the content will be measured and positioned, then the content
+    element will be measured and positioned with the remaining space.
  */
 public struct FlexibleContentLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
@@ -153,15 +155,15 @@ public struct FlexibleContentLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    func layoutFlexibleContent(
-        orientation: BayaLayoutOptions.Orientation,
-        before: BayaLayoutable? = nil,
-        after: BayaLayoutable? = nil,
+    func layoutFlexible(
+        elementBefore: BayaLayoutable? = nil,
+        elementAfter: BayaLayoutable? = nil,
+        orientation: BayaLayoutOptions.Orientation = .horizontal,
         spacing: Int = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> FlexibleContentLayout {
         return FlexibleContentLayout(
-            elements: (before:  before, content: self, after: after),
+            elements: (before:  elementBefore, content: self, after: elementAfter),
             orientation: orientation,
             spacing: spacing,
             layoutMargins: layoutMargins)
