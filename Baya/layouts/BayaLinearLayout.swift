@@ -152,7 +152,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
     }
 }
 
-extension Sequence where Iterator.Element: BayaLayoutable {
+public extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Creates a linear layout.
     */
@@ -171,7 +171,7 @@ extension Sequence where Iterator.Element: BayaLayoutable {
     }
 }
 
-extension Sequence where Iterator.Element == BayaLayoutable {
+public extension Sequence where Iterator.Element == BayaLayoutable {
     /**
         Creates a linear layout.
     */
