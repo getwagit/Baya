@@ -115,7 +115,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     }
 }
 
-extension Sequence where Iterator.Element: BayaLayoutable {
+public extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Distributes the available size evenly.
     */
@@ -132,7 +132,7 @@ extension Sequence where Iterator.Element: BayaLayoutable {
     }
 }
 
-extension Sequence where Iterator.Element == BayaLayoutable {
+public extension Sequence where Iterator.Element == BayaLayoutable {
     /**
         Distributes the available size evenly.
     */
