@@ -29,22 +29,18 @@ public struct BayaSquareLayout: BayaLayout {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
-        element.layoutWith(frame: subtractMargins(frame: frame, element: element).toSquare())
+        element.layoutWith(frame: frame.subtractMargins(ofElement: element).toSquare())
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
-        let adjustedSize = subtractMargins(size: size, element: element)
-        let margins: (CGSize) -> CGSize = { size in
-            return self.addMargins(size: size, element: self.element)
-        }
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+        let adjustedSize = size.subtractMargins(ofElement: element)
         switch referenceSide {
         case .some(.horizontal):
-            let zeSize = margins(element.sizeThatFits(adjustedSize.toSquareFromWidth()))
-            return zeSize
+            return element.sizeThatFits(adjustedSize.toSquareFromWidth()).addMargins(ofElement: element)
         case .some(.vertical):
-            return margins(element.sizeThatFits(adjustedSize.toSquareFromHeight()))
+            return element.sizeThatFits(adjustedSize.toSquareFromHeight()).addMargins(ofElement: element)
         case .none:
-            return margins(element.sizeThatFits(adjustedSize.toSquare()))
+            return element.sizeThatFits(adjustedSize.toSquare()).addMargins(ofElement: element)
         }
     }
 }
@@ -73,7 +69,7 @@ private extension CGSize {
 // MARK: Square shortcuts.
 
 public extension BayaLayoutable {
-    func layoutSquare(
+    func layoutAsSquare(
         referenceSide: BayaLayoutOptions.Orientation,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaSquareLayout {

@@ -34,7 +34,7 @@ public struct BayaFixedSizeLayout: BayaLayout {
         element.subtractMarginsAndLayoutWith(frame: frame)
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
         let fit = element.sizeThatFitsWithMargins(size)
         return CGSize(
             width: fixedWidth ?? (fit.width + element.horizontalMargins),
@@ -46,7 +46,7 @@ public extension BayaLayoutable {
     /**
         Gives this element a fixed sized container.
     */
-    func layoutFixedSize(
+    func layoutWithFixedSize(
         width: CGFloat?,
         height: CGFloat?,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)

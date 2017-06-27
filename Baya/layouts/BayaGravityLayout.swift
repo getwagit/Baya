@@ -14,6 +14,7 @@ public struct BayaGravityLayout: BayaLayout {
     public var frame: CGRect
 
     private var element: BayaLayoutable
+    private var measure: CGSize?
     private let gravity: (BayaLayoutOptions.Gravity.Horizontal, BayaLayoutOptions.Gravity.Vertical)
 
     init(
@@ -28,7 +29,7 @@ public struct BayaGravityLayout: BayaLayout {
 
     public mutating func layoutWith(frame: CGRect) {
         self.frame = frame
-        let size = sizeThatFitsWithMargins(of: element, size: frame.size)
+        let size = measure ?? element.sizeThatFitsWithMargins(frame.size)
         var point = CGPoint()
 
         switch gravity.0 {
@@ -48,26 +49,26 @@ public struct BayaGravityLayout: BayaLayout {
             size: size))
     }
 
-    public func sizeThatFits(_ size: CGSize) -> CGSize {
-        let fit = sizeThatFitsWithMargins(of: element, size: size)
-        return addMargins(size: fit, element: element)
+    public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
+        measure = element.sizeThatFitsWithMargins(size)
+        return measure!.addMargins(ofElement: element)
     }
 }
 
 public extension BayaLayoutable {
-    func layoutGravity(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
+    func layoutGravitating(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
             gravity: (horizontalGravity, .top))
     }
 
-    func layoutGravity(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
+    func layoutGravitating(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
             gravity: (.left, verticalGravity))
     }
 
-    func layoutGravity(
+    func layoutGravitating(
         horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
         vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
