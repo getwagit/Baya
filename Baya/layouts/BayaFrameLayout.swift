@@ -7,7 +7,8 @@ import Foundation
 import UIKit
 
 /**
-    Simple layout that stacks Layoutables.
+    A layout that acts as a frame. It measures the largest dimensions and applies its frame to all children.
+    It is suggested to use it with BayaGravityLayout as children.
 */
 public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
     public var layoutMargins: UIEdgeInsets
@@ -28,7 +29,7 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
         self.frame = frame
         iterate(&elements, measures) {
             e1, e2, e2s in
-            let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
+            let size = frame.size.subtractMargins(ofElement: e2)
             return CGRect(
                 origin: CGPoint(
                     x: frame.minX + e2.layoutMargins.left,
@@ -53,7 +54,8 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
     /**
-        Groups the layoutables together.
+        Measures the largest dimensions and applies its frame to all children.
+        It is suggested to use it with BayaGravityLayout as children.
     */
     func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
@@ -62,7 +64,8 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
     /**
-        Groups the layoutables together.
+        Measures the largest dimensions and applies its frame to all children.
+        It is suggested to use it with BayaGravityLayout as children.
     */
     func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
