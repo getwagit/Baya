@@ -51,7 +51,7 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
     }
 }
 
-extension Sequence where Iterator.Element: BayaLayoutable {
+public extension Sequence where Iterator.Element: BayaLayoutable {
     /**
         Groups the layoutables together.
     */
@@ -60,7 +60,7 @@ extension Sequence where Iterator.Element: BayaLayoutable {
     }
 }
 
-extension Sequence where Iterator.Element == BayaLayoutable {
+public extension Sequence where Iterator.Element == BayaLayoutable {
     /**
         Groups the layoutables together.
     */
