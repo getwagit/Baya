@@ -1,16 +1,16 @@
 //
-// Copyright (c) 2016-2017 wag it GmbH.
+// Copyright (c) 2017 wag it GmbH.
 // License: MIT
 //
 
 import Foundation
-import UIKit
 
 /**
-    A layout that acts as a frame. It measures the largest dimensions and applies its frame to all children.
-    It is suggested to use it with BayaGravityLayout as children.
+    Simple layout that stacks Layoutables.
+    The frame of the Layoutables is not adjusted. BayaGroupLayout measures each element
+    and applies the size it requested.
 */
-public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
+public struct BayaGroupLayout: BayaLayout, BayaLayoutIterator {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
 
@@ -29,7 +29,7 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
         self.frame = frame
         iterate(&elements, measures) {
             e1, e2, e2s in
-            let size = frame.size.subtractMargins(ofElement: e2)
+            let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
             return CGRect(
                 origin: CGPoint(
                     x: frame.minX + e2.layoutMargins.left,
@@ -54,20 +54,21 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
     /**
-        Measures the largest dimensions and applies its frame to all children.
-        It is suggested to use it with BayaGravityLayout as children.
+        Groups the layoutables together.
+        Layoutables are given the size that they request.
     */
-    func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
-        return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
+    func layoutAsGroup(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaGroupLayout {
+        return BayaGroupLayout(elements: self.array(), layoutMargins: layoutMargins)
     }
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
     /**
-        Measures the largest dimensions and applies its frame to all children.
-        It is suggested to use it with BayaGravityLayout as children.
+        Groups the layoutables together.
+        Layoutables are given the size that they request.
     */
-    func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
-        return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
+    func layoutAsGroup(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaGroupLayout {
+        return BayaGroupLayout(elements: self.array(), layoutMargins: layoutMargins)
     }
 }
+
