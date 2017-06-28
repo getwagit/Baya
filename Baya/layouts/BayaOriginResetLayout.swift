@@ -12,7 +12,6 @@ import UIKit
 public struct BayaOriginResetLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
-
     private var element: BayaLayoutable
     private var measure: CGSize?
 

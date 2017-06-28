@@ -13,7 +13,6 @@ import Foundation
 public struct BayaGroupLayout: BayaLayout, BayaLayoutIterator {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
-
     private var elements: [BayaLayoutable]
     private var measures = [CGSize]()
 

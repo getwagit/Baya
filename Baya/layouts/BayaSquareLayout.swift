@@ -13,7 +13,6 @@ import UIKit
 public struct BayaSquareLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
-
     private var element: BayaLayoutable
     private let referenceSide: BayaLayoutOptions.Orientation?
 

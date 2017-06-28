@@ -7,50 +7,58 @@ import Foundation
 import UIKit
 
 /**
-    Lays the wrapped element out so it matches its parent's size.
+    Wraps a Layoutable in order to modify its measures modes.
  */
 public struct BayaMatchParentLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
-    public var frame: CGRect
+    public var layoutMargins: UIEdgeInsets {
+        return element.layoutMargins
+    }
+    public var frame: CGRect {
+        return element.frame;
+    }
+    public var layoutModes: BayaLayoutModes = defaultLayoutModes
 
     private var element: BayaLayoutable
-    private let matchParent: (width: Bool, height: Bool)
 
     init(
         element: BayaLayoutable,
-        matchParent: (width: Bool, height: Bool),
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        layoutModes: BayaLayoutModes) {
         self.element = element
-        self.matchParent = matchParent
-        self.layoutMargins = layoutMargins
-        self.frame = CGRect()
+        self.layoutModes = layoutModes
     }
 
     mutating public func layoutWith(frame: CGRect) {
-        self.frame = frame
-        element.subtractMarginsAndLayoutWith(frame: frame)
+        element.layoutWith(frame: frame)
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        if matchParent.width && matchParent.height {
-            return size
-        }
-        let fit = element.sizeThatFitsWithMargins(size)
-        return CGSize(
-            width: matchParent.width ? size.width : fit.width + element.horizontalMargins,
-            height: matchParent.height ? size.height : fit.height + element.verticalMargins)
+        return element.sizeThatFits(size)
     }
 }
 
 public extension BayaLayoutable {
-    func layoutMatchingParent(
-        width: Bool,
-        height: Bool,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
-            -> BayaMatchParentLayout {
+    func layoutMatchingParentWidth() -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            matchParent: (width: width, height: height),
-            layoutMargins: layoutMargins)
+            layoutModes: BayaLayoutModes(
+                width: .matchParent,
+                height: .wrapContent))
+    }
+
+    func layoutMatchingParentHeight() -> BayaLayout {
+        return BayaMatchParentLayout(
+            element: self,
+            layoutModes: BayaLayoutModes(
+                width: .wrapContent,
+                height: .matchParent))
+    }
+
+    func layoutMatchingParent()
+            -> BayaLayout {
+        return BayaMatchParentLayout(
+            element: self,
+            layoutModes: BayaLayoutModes(
+                width: .matchParent,
+                height: .matchParent))
     }
 }
