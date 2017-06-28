@@ -24,9 +24,9 @@ class BayaFlexibleContentTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = TestLayoutable(sideLength: 40)
+        l2 = TestLayoutable(sideLength: 60)
+        l3 = TestLayoutable(sideLength: 100)
 
         l1.m(5, 45, 2, 23)
         l2.m(1, 2, 3, 4)
@@ -56,9 +56,8 @@ class BayaFlexibleContentTests: XCTestCase {
             + l2.horizontalMargins
             + l3.horizontalMargins
             + spacing * 2
-        let requiredHeight = max(l1.sideLength, l2.sideLength, l3.sideLength)
-            + max(l1.verticalMargins, l2.verticalMargins, l3.verticalMargins)
-
+        let requiredHeight = max(l1.sideLength + l1.verticalMargins, l2.sideLength + l2.verticalMargins, l3.sideLength + l3.verticalMargins)
+        
         XCTAssertEqual(measuredSize, CGSize(width: requiredWidth, height: requiredHeight))
     }
 
@@ -78,8 +77,7 @@ class BayaFlexibleContentTests: XCTestCase {
             + l2.verticalMargins
             + l3.verticalMargins
             + spacing * 2
-        let requiredWidth = max(l1.sideLength, l2.sideLength, l3.sideLength)
-            + max(l1.horizontalMargins, l2.horizontalMargins, l3.horizontalMargins)
+        let requiredWidth = max(l1.sideLength + l1.horizontalMargins, l2.sideLength + l2.horizontalMargins, l3.sideLength + l3.horizontalMargins)
 
         XCTAssertEqual(measuredSize, CGSize(width: requiredWidth, height: requiredHeight))
     }

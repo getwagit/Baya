@@ -110,7 +110,7 @@ public struct FlexibleContentLayout: BayaLayout {
                 elements.after!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.after!.layoutMargins.left,
                     y: frame.maxY - measures.after!.height - elements.after!.layoutMargins.bottom,
-                    width: measures.before!.width,
+                    width: measures.after!.width,
                     height: measures.after!.height))
             }
 
