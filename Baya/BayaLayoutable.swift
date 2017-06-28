@@ -13,7 +13,7 @@ import UIKit
 public protocol BayaLayoutable {
     var layoutMargins: UIEdgeInsets {get}
     var frame: CGRect {get}
-    var measureModes: BayaMeasureModes {get}
+    var layoutModes: BayaLayoutModes {get}
     mutating func sizeThatFits(_ size: CGSize) -> CGSize
     mutating func layoutWith(frame: CGRect)
 }
@@ -22,8 +22,8 @@ public protocol BayaLayoutable {
     Public helper.
 */
 public extension BayaLayoutable {
-    var measureModes: BayaMeasureModes {
-        return defaultMeasureModes
+    var layoutModes: BayaLayoutModes {
+        return defaultLayoutModes
     }
 }
 

@@ -69,7 +69,7 @@ internal extension BayaLayout {
         wrappingSize: CGSize,
         matchingSize: CGSize) -> CGSize {
         return CGSize(
-            width: element.measureModes.width == .matchParent ? matchingSize.width : wrappingSize.width,
-            height: element.measureModes.height  == .matchParent ? matchingSize.height : wrappingSize.height)
+            width: element.layoutModes.width == .matchParent ? matchingSize.width : wrappingSize.width,
+            height: element.layoutModes.height  == .matchParent ? matchingSize.height : wrappingSize.height)
     }
 }
