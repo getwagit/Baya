@@ -24,10 +24,13 @@ public extension BayaLayout {
         let origin = CGPoint(
             x: frame.origin.x + self.layoutMargins.left,
             y: frame.origin.y + self.layoutMargins.top)
-        let size = combineSizeForLayout(
+        let combinedSize = combineSizeForLayout(
             for: self,
             wrappingSize: self.sizeThatFitsWithMargins(frame.size),
             matchingSize: frame.size.subtractMargins(ofElement: self))
+        let size = CGSize(
+            width: min(frame.width, combinedSize.width),
+            height: min(frame.height, combinedSize.height))
 
         self.layoutWith(frame: CGRect(
             origin: origin,
