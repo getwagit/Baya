@@ -7,7 +7,8 @@ import Foundation
 import UIKit
 
 /**
-    Wraps a Layoutable in order to modify its measures modes.
+    Wraps a Layoutable in order to modify its layout modes.
+    Mirrors layout modes and frame from its child.
  */
 public struct BayaMatchParentLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets {
