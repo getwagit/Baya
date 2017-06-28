@@ -40,8 +40,8 @@ public struct BayaFixedSizeLayout: BayaLayout {
         } else {
             let defaultSize = calculateSizeForLayout(forChild: &element, cachedSize: measure, ownSize: frame.size)
             size = CGSize(
-                width: fixedWidth != nil ? fixedWidth! - element.horizontalMargins : defaultSize.width,
-                height: fixedHeight != nil ? fixedHeight! - element.verticalMargins : defaultSize.height)
+                width: fixedWidth?.subtract(element.horizontalMargins) ?? defaultSize.width,
+                height: fixedHeight?.subtract(element.verticalMargins) ?? defaultSize.height)
         }
 
         element.layoutWith(frame: CGRect(
@@ -72,5 +72,11 @@ public extension BayaLayoutable {
             element: self,
             width: width,
             height: height)
+    }
+}
+
+private extension CGFloat {
+    func subtract(_ other: CGFloat) -> CGFloat {
+        return self - other
     }
 }
