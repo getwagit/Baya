@@ -28,7 +28,7 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
         self.frame = frame
         iterate(&elements, measures) {
             e1, e2, e2s in
-            let size = frame.size.subtractMargins(ofElement: e2)
+            let size = calculateSizeForLayout(forChild: &e2, cachedSize: e2s, ownSize: frame.size)
             return CGRect(
                 origin: CGPoint(
                     x: frame.minX + e2.layoutMargins.left,
