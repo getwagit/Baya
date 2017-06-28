@@ -11,8 +11,13 @@ public enum BayaLayoutMode {
 }
 
 public struct BayaLayoutModes {
-    let width: BayaLayoutMode;
-    let height: BayaLayoutMode;
+    let width: BayaLayoutMode
+    let height: BayaLayoutMode
+    
+    public init(width: BayaLayoutMode, height: BayaLayoutMode) {
+        self.width = width
+        self.height = height
+    }
 }
 
 internal let defaultLayoutModes = BayaLayoutModes(width: .wrapContent, height: .wrapContent)
