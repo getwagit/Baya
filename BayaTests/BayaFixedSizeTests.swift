@@ -37,7 +37,7 @@ class BayaFixedSizeTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: TestLayoutable.sideLength,
+                width: l.sideLength,
                 height: fixedHeight - l.layoutMargins.top - l.layoutMargins.bottom),
             "frame not matching")
     }
@@ -53,7 +53,7 @@ class BayaFixedSizeTests: XCTestCase {
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
                 width: fixedWidth - l.layoutMargins.left - l.layoutMargins.right,
-                height: TestLayoutable.sideLength),
+                height: l.sideLength),
             "frame not matching")
     }
 
@@ -91,7 +91,7 @@ class BayaFixedSizeTests: XCTestCase {
         XCTAssertEqual(
             fit,
             CGSize(
-                width: l.layoutMargins.left + l.layoutMargins.right + TestLayoutable.sideLength,
+                width: l.layoutMargins.left + l.layoutMargins.right + l.sideLength,
                 height: fixedHeight),
             "size not matching")
     }
@@ -105,7 +105,7 @@ class BayaFixedSizeTests: XCTestCase {
             fit,
             CGSize(
                 width: fixedWidth,
-                height: l.layoutMargins.top + l.layoutMargins.bottom + TestLayoutable.sideLength),
+                height: l.layoutMargins.top + l.layoutMargins.bottom + l.sideLength),
             "size not matching")
     }
 }
