@@ -24,9 +24,9 @@ class BayaEqualSegmentsTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = TestLayoutable(sideLength: 30)
+        l2 = TestLayoutable(sideLength: 60)
+        l3 = TestLayoutable(sideLength: 90)
 
         l1.m(5, 45, 2, 23)
         l2.m(1, 2, 3, 4)
@@ -57,29 +57,29 @@ class BayaEqualSegmentsTests: XCTestCase {
                 gutter: spacing)
 
         layout.startLayout(with: layoutRect)
-        let availableSideLength = (TestLayoutable.sideLength + l1.horizontalMargins) // Largest element as base.
+        let availableSideLength = (l3.sideLength + l3.horizontalMargins) // Largest element as base.
 
         XCTAssertEqual(l1.frame, CGRect(
             x: layoutRect.origin.x + l1.layoutMargins.left,
             y: layoutRect.origin.y + l1.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l1.sideLength,
+            height: l1.sideLength))
         XCTAssertEqual(l2.frame, CGRect(
             x: layoutRect.origin.x
                 + availableSideLength
                 + spacing
                 + l2.layoutMargins.left,
             y: layoutRect.origin.y + l2.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l2.sideLength,
+            height: l2.sideLength))
         XCTAssertEqual(l3.frame,CGRect(
             x: layoutRect.origin.x
                 + availableSideLength * 2
                 + spacing * 2
                 + l3.layoutMargins.left,
             y: layoutRect.origin.y + l3.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l3.sideLength,
+            height: l3.sideLength))
     }
     
     func testHorizontalSmallEnforcedFrame() {
@@ -94,24 +94,24 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssertEqual(l1.frame, CGRect(
             x: layoutRectTooSmall.origin.x + l1.layoutMargins.left,
             y: layoutRectTooSmall.origin.y + l1.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l1.sideLength,
+            height: l1.sideLength))
         XCTAssertEqual(l2.frame, CGRect(
             x: layoutRectTooSmall.origin.x
                 + availableSideLength
                 + spacing
                 + l2.layoutMargins.left,
             y: layoutRectTooSmall.origin.y + l2.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l2.sideLength,
+            height: l2.sideLength))
         XCTAssertEqual(l3.frame,CGRect(
             x: layoutRectTooSmall.origin.x
                 + availableSideLength * 2
                 + spacing * 2
                 + l3.layoutMargins.left,
             y: layoutRectTooSmall.origin.y + l3.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l3.sideLength,
+            height: l3.sideLength))
     }
 
     func testVertical() {
@@ -121,29 +121,29 @@ class BayaEqualSegmentsTests: XCTestCase {
                 gutter: spacing)
         
         layout.startLayout(with: layoutRect)
-        let availableSideLength = (TestLayoutable.sideLength + l1.verticalMargins) // Largest element as base.
+        let availableSideLength = (l3.sideLength + l3.verticalMargins) // Largest element as base.
         
         XCTAssertEqual(l1.frame, CGRect(
             x: layoutRect.origin.x + l1.layoutMargins.left,
             y: layoutRect.origin.y + l1.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l1.sideLength,
+            height: l1.sideLength))
         XCTAssertEqual(l2.frame, CGRect(
             x: layoutRect.origin.x + l2.layoutMargins.left,
             y: layoutRect.origin.y
                 + availableSideLength
                 + spacing
                 + l2.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l2.sideLength,
+            height: l2.sideLength))
         XCTAssertEqual(l3.frame,CGRect(
             x: layoutRect.origin.x + l3.layoutMargins.left,
             y: layoutRect.origin.y
                 + availableSideLength * 2
                 + spacing * 2
                 + l3.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength))
+            width: l3.sideLength,
+            height: l3.sideLength))
     }
 
     func testMeasureHorizontal() {
@@ -152,9 +152,9 @@ class BayaEqualSegmentsTests: XCTestCase {
             gutter: spacing)
 
         let targetSize = CGSize(
-            width: (TestLayoutable.sideLength + l1.horizontalMargins) * 3
+            width: (l3.sideLength + l3.horizontalMargins) * 3
                 + spacing * 2,
-            height: TestLayoutable.sideLength + l1.verticalMargins)  // largest vertical margins
+            height: l3.sideLength + l3.verticalMargins)  // largest element
         let size1 = layout.sizeThatFits(CGSize(width: 400, height: 300))
         let size2 = layout.sizeThatFits(CGSize(width: 200, height: 30))
 
@@ -170,9 +170,9 @@ class BayaEqualSegmentsTests: XCTestCase {
             gutter: spacing)
 
         let targetSize = CGSize(
-            width: TestLayoutable.sideLength + l1.horizontalMargins,
-            height: (TestLayoutable.sideLength + l1.verticalMargins) * 3
-                + spacing * 2)  // largest vertical margins
+            width: l3.sideLength + l3.horizontalMargins,
+            height: (l3.sideLength + l3.verticalMargins) * 3
+                + spacing * 2)  // largest element
         let size1 = layout.sizeThatFits(CGSize(width: 400, height: 300))
         let size2 = layout.sizeThatFits(CGSize(width: 10, height: 30))
 

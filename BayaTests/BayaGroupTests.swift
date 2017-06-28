@@ -15,9 +15,9 @@ class BayaGroupTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = TestLayoutable(sideLength: 30)
+        l2 = TestLayoutable(sideLength: 60)
+        l3 = TestLayoutable(sideLength: 90)
 
         l1.layoutMargins = UIEdgeInsets(
             top: 8,
@@ -59,20 +59,20 @@ class BayaGroupTests: XCTestCase {
         XCTAssertEqual(l1.frame, CGRect(
             x: layoutRect.origin.x + l1.layoutMargins.left,
             y: layoutRect.origin.y + l1.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
+            width: l1.sideLength,
+            height: l1.sideLength),
             "unexpected l1 frame")
         XCTAssertEqual(l2.frame, CGRect(
             x: layoutRect.origin.x + l2.layoutMargins.left,
             y: layoutRect.origin.y + l2.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
+            width: l2.sideLength,
+            height: l2.sideLength),
             "unexpected l2 frame")
         XCTAssertEqual(l3.frame, CGRect(
             x: layoutRect.origin.x + l3.layoutMargins.left,
             y: layoutRect.origin.y + l3.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
+            width: l3.sideLength,
+            height: l3.sideLength),
             "unexpected l3 frame")
     }
 
@@ -85,8 +85,8 @@ class BayaGroupTests: XCTestCase {
 
         // l2 has the biggest margins and should define the size.
         XCTAssertEqual(size, CGSize(
-            width: TestLayoutable.sideLength + l2.horizontalMargins,
-            height: TestLayoutable.sideLength + l2.verticalMargins),
+            width: l2.sideLength + l2.horizontalMargins,
+            height: l2.sideLength + l2.verticalMargins),
             "sizes don't match")
     }
 }
