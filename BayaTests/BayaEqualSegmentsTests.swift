@@ -190,8 +190,8 @@ class BayaEqualSegmentsTests: XCTestCase {
             CGRect(
                 x: layoutRectTooSmall.origin.x + l1.layoutMargins.left,
                 y: layoutRectTooSmall.origin.y + l1.layoutMargins.top,
-                width: max(availableSideLength - l1.horizontalMargins, l1.sideLength),
-                height: max(maxHeight - l1.verticalMargins, l1.sideLength)))
+                width: availableSideLength - l1.horizontalMargins,
+                height: maxHeight - l1.verticalMargins))
         XCTAssertEqual(
             l2.frame,
             CGRect(
@@ -200,8 +200,8 @@ class BayaEqualSegmentsTests: XCTestCase {
                     + spacing
                     + l2.layoutMargins.left,
                 y: layoutRectTooSmall.origin.y + l2.layoutMargins.top,
-                width: max(availableSideLength - l2.horizontalMargins, l2.sideLength),
-                height: max(maxHeight - l2.verticalMargins, l2.sideLength)))
+                width: availableSideLength - l2.horizontalMargins,
+                height: maxHeight - l2.verticalMargins))
         XCTAssertEqual(
             l3.frame,
             CGRect(
@@ -210,8 +210,8 @@ class BayaEqualSegmentsTests: XCTestCase {
                     + spacing * 2
                     + l3.layoutMargins.left,
                 y: layoutRectTooSmall.origin.y + l3.layoutMargins.top,
-                width: max(availableSideLength - l3.horizontalMargins, l3.sideLength),
-                height: max(maxHeight - l3.verticalMargins, l3.sideLength)))
+                width: availableSideLength - l3.horizontalMargins,
+                height: maxHeight - l3.verticalMargins))
     }
     
 
@@ -330,11 +330,11 @@ class BayaEqualSegmentsTests: XCTestCase {
         XCTAssertEqual(
             l3.frame,
             CGRect(
-                x: layoutRectTooSmall.origin.x
+                x: layoutRectTooSmall.origin.x + l3.layoutMargins.left,
+                y: layoutRectTooSmall.origin.y
                     + availableSideLength * 2
                     + spacing * 2
-                    + l3.layoutMargins.left,
-                y: layoutRectTooSmall.origin.y + l3.layoutMargins.top,
+                    + l3.layoutMargins.top,
                 width: l3.sideLength,
                 height: l3.sideLength))
     }
@@ -345,7 +345,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
-                orientation: .horizontal,
+                orientation: .vertical,
                 gutter: spacing)
         
         layout.startLayout(with: layoutRect)
@@ -363,8 +363,8 @@ class BayaEqualSegmentsTests: XCTestCase {
             CGRect(
                 x: layoutRectTooSmall.origin.x + l1.layoutMargins.left,
                 y: layoutRectTooSmall.origin.y + l1.layoutMargins.top,
-                width: max(maxWidth - l1.horizontalMargins, l1.sideLength),
-                height: max(availableSideLength - l1.verticalMargins, l1.sideLength)))
+                width: maxWidth - l1.horizontalMargins,
+                height: availableSideLength - l1.verticalMargins))
         XCTAssertEqual(
             l2.frame,
             CGRect(
@@ -373,18 +373,18 @@ class BayaEqualSegmentsTests: XCTestCase {
                     + availableSideLength
                     + spacing
                     + l2.layoutMargins.top,
-                width: max(maxWidth - l2.horizontalMargins, l2.sideLength),
-                height: max(availableSideLength - l1.verticalMargins, l2.sideLength)))
+                width: maxWidth - l2.horizontalMargins,
+                height: availableSideLength - l1.verticalMargins))
         XCTAssertEqual(
             l3.frame,
             CGRect(
-                x: layoutRectTooSmall.origin.x
+                x: layoutRectTooSmall.origin.x + l3.layoutMargins.left,
+                y: layoutRectTooSmall.origin.y
                     + availableSideLength * 2
                     + spacing * 2
-                    + l3.layoutMargins.left,
-                y: layoutRectTooSmall.origin.y + l3.layoutMargins.top,
-                width: max(maxWidth - l3.horizontalMargins, l3.sideLength),
-                height: max(availableSideLength - l3.verticalMargins, l3.sideLength)))
+                    + l2.layoutMargins.top,
+                width: maxWidth - l3.horizontalMargins,
+                height: availableSideLength - l3.verticalMargins))
     }
 
     func testMeasureHorizontal() {
