@@ -8,15 +8,15 @@ import Baya
 
 class TestLayoutable: BayaLayoutable {
     let sideLength: CGFloat
-    let layoutMode: BayaLayoutMode
+    let layoutModes: BayaLayoutModes
     var frame = CGRect()
     var layoutMargins = UIEdgeInsets.zero
 
     init(
         sideLength: CGFloat = 50,
-        layoutMode: BayaLayoutMode = .wrapContent) {
+        layoutModes: BayaLayoutModes? = nil) {
         self.sideLength = sideLength
-        self.layoutMode = layoutMode
+        self.layoutModes = layoutModes ?? BayaLayoutModes(width: .wrapContent, height: .wrapContent)
     }
 
     func sizeThatFits(_ size: CGSize) -> CGSize {
