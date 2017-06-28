@@ -15,9 +15,9 @@ class BayaGroupTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = TestLayoutable(sideLength: 30)
+        l2 = TestLayoutable(sideLength: 60)
+        l3 = TestLayoutable(sideLength: 90)
 
         l1.layoutMargins = UIEdgeInsets(
             top: 8,

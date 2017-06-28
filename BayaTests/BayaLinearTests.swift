@@ -21,9 +21,9 @@ class BayaLinearTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = TestLayoutable(sideLength: 30)
+        l2 = TestLayoutable(sideLength: 60)
+        l3 = TestLayoutable(sideLength: 90)
 
         l1.m(8, 7, 4, 40)
         l2.m(20, 13, 11, 4)
@@ -201,9 +201,11 @@ class BayaLinearTests: XCTestCase {
             direction: .normal,
             spacing: Int(spacing))
         let size = layout.sizeThatFits(layoutRect.size)
-        let largestHeight = l2.sideLength + l2.verticalMargins // l2 has the biggest vertical margins.
+        let largestHeight = l3.sideLength + l3.verticalMargins // l3 is largest.
 
-        XCTAssertEqual(size, CGSize(
+        XCTAssertEqual(
+            size,
+            CGSize(
             width: l1.sideLength
                 + l2.sideLength
                 + l3.sideLength
@@ -221,7 +223,7 @@ class BayaLinearTests: XCTestCase {
             direction: .normal,
             spacing: Int(spacing))
         let size = layout.sizeThatFits(layoutRect.size)
-        let largestWidth = l1.sideLength + l1.horizontalMargins // l1 has the biggest horizontal margins.
+        let largestWidth = l3.sideLength + l3.horizontalMargins // l3 is largest.
 
         XCTAssertEqual(size, CGSize(
             width: largestWidth,
