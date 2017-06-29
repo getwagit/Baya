@@ -42,7 +42,11 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         switch (orientation, direction) {
         case (.horizontal, .normal):
             iterate(&elements, measures) { e1, e2, e2s in
-                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
+                let size = calculateSizeForLayout(
+                    withOrientation: .horizontal,
+                    forChild: &e2,
+                    cachedSize: e2s,
+                    ownSize: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -60,7 +64,11 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             }
         case (.horizontal, .reversed):
             iterate(&elements, measures) { e1, e2, e2s in
-                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
+                let size = calculateSizeForLayout(
+                    withOrientation: .horizontal,
+                    forChild: &e2,
+                    cachedSize: e2s,
+                    ownSize: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -79,7 +87,11 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             }
         case (.vertical, .normal):
             iterate(&elements, measures) { e1, e2, e2s in
-                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
+                let size = calculateSizeForLayout(
+                    withOrientation: .vertical,
+                    forChild: &e2,
+                    cachedSize: e2s,
+                    ownSize: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -97,7 +109,11 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             }
         case (.vertical, .reversed):
             iterate(&elements, measures) { e1, e2, e2s in
-                let size = saveMeasure(e2s: e2s, e2: &e2, size: frame.size)
+                let size = calculateSizeForLayout(
+                    withOrientation: .vertical,
+                    forChild: &e2,
+                    cachedSize: e2s,
+                    ownSize: frame.size)
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
@@ -149,6 +165,31 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             }
         }
         return resultSize
+    }
+
+    private func calculateSizeForLayout(
+        withOrientation orientation: BayaLayoutOptions.Orientation,
+        forChild element: inout BayaLayoutable,
+        cachedSize: CGSize?,
+        ownSize availableSize: CGSize)
+            -> CGSize {
+        let measuredSize = saveMeasure(e2s: cachedSize, e2: &element, size: availableSize)
+        switch orientation {
+        case .horizontal:
+            guard element.layoutModes.height == .matchParent else {
+                return measuredSize
+            }
+            return CGSize(
+                width: measuredSize.width,
+                height: availableSize.height - element.verticalMargins)
+        case .vertical:
+            guard element.layoutModes.width == .matchParent else {
+                return measuredSize
+            }
+            return CGSize(
+                width: availableSize.width - element.horizontalMargins,
+                height: measuredSize.height)
+        }
     }
 }
 
