@@ -23,7 +23,6 @@ public struct BayaSquareLayout: BayaLayout {
         return defaultLayoutModes
     }
     private var element: BayaLayoutable
-    private var measure: CGSize?
     private let referenceSide: BayaLayoutOptions.Orientation?
 
     init(
@@ -34,21 +33,26 @@ public struct BayaSquareLayout: BayaLayout {
     }
 
     mutating public func layoutWith(frame: CGRect) {
-        element.layoutWith(frame: frame.toSquare())
+        element.layoutWith(frame: CGRect(
+            origin: frame.origin,
+            size: squareSizeBasedOnReferenceSide(frame.size)))
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        let adjustedSize: CGSize
+        let adjustedSize = squareSizeBasedOnReferenceSide(size)
+        let _ = element.sizeThatFits(adjustedSize)
+        return adjustedSize
+    }
+
+    private func squareSizeBasedOnReferenceSide(_ size: CGSize) -> CGSize {
         switch referenceSide {
         case .some(.horizontal):
-            adjustedSize = size.toSquareFromWidth()
+            return size.toSquareFromWidth()
         case .some(.vertical):
-            adjustedSize = size.toSquareFromHeight()
+            return size.toSquareFromHeight()
         case .none:
-            adjustedSize = size.toSquare()
+            return size.toSquare()
         }
-        measure = element.sizeThatFits(adjustedSize)
-        return adjustedSize
     }
 }
 
@@ -76,8 +80,13 @@ private extension CGSize {
 // MARK: Square shortcuts.
 
 public extension BayaLayoutable {
-    func layoutAsSquare(
-        referenceSide: BayaLayoutOptions.Orientation)
+    func layoutAsSquare() -> BayaSquareLayout {
+        return BayaSquareLayout(
+            element: self,
+            referenceSide: nil)
+    }
+
+    func layoutAsSquare(referenceSide: BayaLayoutOptions.Orientation)
             -> BayaSquareLayout {
         return BayaSquareLayout(
             element: self,
