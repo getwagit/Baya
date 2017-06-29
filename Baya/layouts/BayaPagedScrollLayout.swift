@@ -9,6 +9,7 @@ import UIKit
 /**
     A layout that calculates the size of its content layoutable depending on the given frame,
     the number of pages, and an optional gutter. The container will be laid out according to the frame.
+    This layout assumes that its child has the implicit layout mode .matchParent.
  */
 public struct BayaPagedScrollLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
