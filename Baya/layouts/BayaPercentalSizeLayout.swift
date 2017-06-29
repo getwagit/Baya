@@ -7,62 +7,69 @@ import Foundation
 import UIKit
 
 /**
-    A Layout that uses a portion of the given size for measurement.
+    A Layout that uses a portion of the given size for measurement and layout.
+    Mirrors frame and layoutMargin from its child.
+    Overrides layoutModes so that proportional axis are matchParent.
  */
 public struct BayaProportionalSizeLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
-    public var frame: CGRect
+    public var layoutMargins: UIEdgeInsets {
+        return element.layoutMargins
+    }
+    public var frame: CGRect {
+        return element.frame
+    }
     private var element: BayaLayoutable
+    private var measure: CGSize?
+    public let layoutModes: BayaLayoutModes
     private var widthFactor: CGFloat?
     private var heightFactor: CGFloat?
 
-    /**
-        - Parameter element: The element to be laid out
-        - Parameter width: The portion of the width that should be available for the element.
-              A value of 0 equals 0%, a value of 1 equals 100%.
-        - Parameter height: The portion of the height that should be available for the element.
-              A value of 0 equals 0%, a value of 1 equals 100%.
-        - Parameter layoutMargins: UIEdgeInsets defining the margins
-     */
     init(
         element: BayaLayoutable,
         widthFactor: CGFloat? = nil,
-        heightFactor: CGFloat? = nil,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        heightFactor: CGFloat? = nil) {
         self.element = element
         self.widthFactor = widthFactor
         self.heightFactor = heightFactor
-        self.layoutMargins = layoutMargins
-        self.frame = CGRect()
+        layoutModes = BayaLayoutModes(
+            width: widthFactor != nil ? .matchParent : element.layoutModes.width,
+            height: heightFactor != nil ? .matchParent : element.layoutModes.height)
     }
 
     public mutating func layoutWith(frame: CGRect) {
-        self.frame = frame
-        element.layoutWith(frame: frame.subtractMargins(ofElement: element))
+        let size = measure ?? element.sizeThatFits(sizeForMeasurement(frame.size))
+        let frame = CGRect(
+            origin: frame.origin,
+            size: CGSize(
+                width: widthFactor != nil ? frame.width * widthFactor! :
+                    (element.layoutModes.width == .matchParent ? frame.width : size.width),
+                height: heightFactor != nil ? frame.height * heightFactor! :
+                    (element.layoutModes.height == .matchParent ? frame.height : size.height)))
+        element.layoutWith(frame: frame)
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        let fit = element.sizeThatFitsWithMargins(CGSize(
-                width: size.width * (widthFactor ?? 1),
-                height: size.height * (heightFactor ?? 1)))
-            .addMargins(ofElement: element)
-
+        measure = element.sizeThatFits(sizeForMeasurement(size))
         return CGSize(
-            width: (widthFactor != nil) ? max(size.width * widthFactor!, fit.width) : fit.width,
-            height: (heightFactor != nil) ? max(size.height * heightFactor!, fit.height) : fit.height)
+            width: (widthFactor != nil) ? max(size.width * widthFactor!, measure!.width) : measure!.width,
+            height: (heightFactor != nil) ? max(size.height * heightFactor!, measure!.height) : measure!.height)
+    }
+
+    private func sizeForMeasurement(_ size: CGSize) -> CGSize {
+        return CGSize(
+            width: size.width * (widthFactor ?? 1),
+            height: size.height * (heightFactor ?? 1))
     }
 }
 
 public extension BayaLayoutable {
     func layoutWithPortion(
         ofWidth: CGFloat? = nil,
-        ofHeight: CGFloat? = nil,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        ofHeight: CGFloat? = nil)
             -> BayaProportionalSizeLayout {
         return BayaProportionalSizeLayout(
             element: self,
             widthFactor: ofWidth,
-            heightFactor: ofHeight,
-            layoutMargins: layoutMargins)
+            heightFactor: ofHeight)
     }
 }
