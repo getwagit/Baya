@@ -46,4 +46,22 @@ class BayaOriginResetTests: XCTestCase {
                 width: l.sideLength,
                 height: l.sideLength))
     }
+    
+    func testMemberMirroring() {
+        l = TestLayoutable(layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        var layout = l.layoutResettingOrigin()
+        layout.startLayout(with: layoutRect)
+        XCTAssertEqual(
+            l.layoutModes.height,
+            layout.layoutModes.height)
+        XCTAssertEqual(
+            l.layoutModes.width,
+            layout.layoutModes.width)
+        XCTAssertEqual(
+            l.layoutMargins,
+            layout.layoutMargins)
+        XCTAssertEqual(
+            l.frame,
+            layout.frame)
+    }
 }
