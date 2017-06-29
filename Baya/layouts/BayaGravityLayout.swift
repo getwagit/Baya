@@ -19,8 +19,6 @@ public struct BayaGravityLayout: BayaLayout {
     private let horizontalGravity: BayaLayoutOptions.Gravity.Horizontal?
     private let verticalGravity: BayaLayoutOptions.Gravity.Vertical?
 
-
-
     init(
         element: BayaLayoutable,
         horizontalGravity: BayaLayoutOptions.Gravity.Horizontal?,
