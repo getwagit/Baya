@@ -23,12 +23,12 @@ public struct FlexibleContentLayout: BayaLayout {
     init(
         elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?),
         orientation: BayaLayoutOptions.Orientation,
-        spacing: Int = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.orientation = orientation
         self.layoutMargins = layoutMargins
-        self.spacing = CGFloat(spacing)
+        self.spacing = spacing
         self.frame = CGRect()
     }
 
@@ -175,7 +175,7 @@ public extension BayaLayoutable {
         elementBefore: BayaLayoutable? = nil,
         elementAfter: BayaLayoutable? = nil,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
-        spacing: Int = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> FlexibleContentLayout {
         return FlexibleContentLayout(
