@@ -28,8 +28,8 @@ class BayaOriginResetTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: l.sideLength + l.horizontalMargins,
-                height: l.sideLength + l.verticalMargins),
+                width: l.sideLength,
+                height: l.sideLength),
             "size does not match")
     }
 
@@ -37,7 +37,7 @@ class BayaOriginResetTests: XCTestCase {
         var layout = l.layoutResettingOrigin()
         l.frame.origin.x = 20;
         l.frame.origin.y = 31;
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
