@@ -8,39 +8,47 @@ import UIKit
 
 /**
     Layout that uses only the reference side for measurement, or the smaller side if not specified.
+    Mirrors layoutMargins and frame of its child.
     When setting the frame of its element, it uses the smaller side to ensure the square fits in the available space.
 */
 public struct BayaSquareLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
-    public var frame: CGRect
+    public var layoutMargins: UIEdgeInsets {
+        return element.layoutMargins
+    }
+    public var frame: CGRect {
+        return element.frame
+    }
+    public var layoutModes: BayaLayoutModes {
+        // BayaSquareLayout wants its parent to used the measured sizes.
+        return defaultLayoutModes
+    }
     private var element: BayaLayoutable
+    private var measure: CGSize?
     private let referenceSide: BayaLayoutOptions.Orientation?
 
     init(
         element: BayaLayoutable,
-        referenceSide: BayaLayoutOptions.Orientation?,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        referenceSide: BayaLayoutOptions.Orientation?) {
         self.element = element
-        self.layoutMargins = layoutMargins
         self.referenceSide = referenceSide
-        self.frame = CGRect()
     }
 
     mutating public func layoutWith(frame: CGRect) {
-        self.frame = frame
-        element.layoutWith(frame: frame.subtractMargins(ofElement: element).toSquare())
+        element.layoutWith(frame: frame.toSquare())
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        let adjustedSize = size.subtractMargins(ofElement: element)
+        let adjustedSize: CGSize
         switch referenceSide {
         case .some(.horizontal):
-            return element.sizeThatFits(adjustedSize.toSquareFromWidth()).addMargins(ofElement: element)
+            adjustedSize = size.toSquareFromWidth()
         case .some(.vertical):
-            return element.sizeThatFits(adjustedSize.toSquareFromHeight()).addMargins(ofElement: element)
+            adjustedSize = size.toSquareFromHeight()
         case .none:
-            return element.sizeThatFits(adjustedSize.toSquare()).addMargins(ofElement: element)
+            adjustedSize = size.toSquare()
         }
+        measure = element.sizeThatFits(adjustedSize)
+        return adjustedSize
     }
 }
 
@@ -69,12 +77,10 @@ private extension CGSize {
 
 public extension BayaLayoutable {
     func layoutAsSquare(
-        referenceSide: BayaLayoutOptions.Orientation,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        referenceSide: BayaLayoutOptions.Orientation)
             -> BayaSquareLayout {
         return BayaSquareLayout(
             element: self,
-            referenceSide: referenceSide,
-            layoutMargins: layoutMargins)
+            referenceSide: referenceSide)
     }
 }
