@@ -102,7 +102,8 @@ public struct FlexibleContentLayout: BayaLayout {
                     + relevantBeforeWidth
                     + elements.content.layoutMargins.left,
                 y: frame.minY + elements.content.layoutMargins.top,
-                width: measures.content!.width,
+                width: elements.content.layoutModes.width == .wrapContent ?
+                    measures.content!.width : frame.width - relevantBeforeWidth - relevantAfterWidth,
                 height: elements.content.layoutModes.height == .wrapContent ?
                     measures.content!.height : maxHeight - elements.content.verticalMargins))
         case .vertical:
@@ -136,7 +137,8 @@ public struct FlexibleContentLayout: BayaLayout {
                     + elements.content.layoutMargins.top,
                 width: elements.content.layoutModes.width == .wrapContent ?
                     measures.content!.width : maxWidth - elements.content.horizontalMargins,
-                height: measures.content!.height))
+                height: elements.content.layoutModes.height == .wrapContent ?
+                    measures.content!.height : frame.height - relevantBeforeHeight - relevantAfterHeight))
         }
     }
 
