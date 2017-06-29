@@ -48,7 +48,7 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         layout.startLayout(
             with: layoutRect)
 
@@ -93,7 +93,7 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .reversed,
-            spacing: Int(spacing))
+            spacing: spacing)
         layout.startLayout(
             with: layoutRect)
         let expectedFinalWidth = l1.sideLength
@@ -132,12 +132,16 @@ class BayaLinearTests: XCTestCase {
                 height: l3.sideLength),
             "l3 not matching")
     }
+    
+    func testHorizontalMatchParent() {
+        
+    }
 
     func testVertical() {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         layout.startLayout(
             with: layoutRect)
 
@@ -199,7 +203,7 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         let size = layout.sizeThatFits(layoutRect.size)
         let largestHeight = l3.sideLength + l3.verticalMargins // l3 is largest.
 
@@ -221,7 +225,7 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         let size = layout.sizeThatFits(layoutRect.size)
         let largestWidth = l3.sideLength + l3.horizontalMargins // l3 is largest.
 
