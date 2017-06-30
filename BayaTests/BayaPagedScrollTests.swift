@@ -96,11 +96,9 @@ class BayaPagedScrollTests: XCTestCase {
     }
 }
 
-private class TestPagedScrollLayoutContainer: TestLayoutable {
+private class TestPagedScrollLayoutContainer: TestLayoutable, PagedScrollLayoutContainer {
     var contentSize: CGSize = CGSize()
     var bounds: CGRect {
         return self.frame
     }
 }
-
-extension TestPagedScrollLayoutContainer: PagedScrollLayoutContainer {}
