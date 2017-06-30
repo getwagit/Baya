@@ -29,8 +29,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -40,8 +40,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -51,8 +51,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -62,8 +62,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -73,8 +73,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -84,8 +84,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -95,8 +95,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -106,8 +106,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -117,8 +117,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength + l.horizontalMargins,
+                height: l.sideLength + l.verticalMargins),
             "size does not match")
     }
     
@@ -131,36 +131,36 @@ class BayaGravityTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testCenterTop() {
         var layout = l
             .layoutGravitating(horizontally: .center, vertically: .top)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.midX - TestLayoutable.sideLength / 2,
+                x: layoutRect.midX - l.sideLength / 2,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testRightTop() {
         var layout = l
             .layoutGravitating(horizontally: .right, vertically: .top)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.maxX - TestLayoutable.sideLength - l.layoutMargins.right,
+                x: layoutRect.maxX - l.sideLength - l.layoutMargins.right,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
@@ -168,84 +168,84 @@ class BayaGravityTests: XCTestCase {
     func testLeftMiddle() {
         var layout = l
             .layoutGravitating(horizontally: .left, vertically: .middle)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.midY - TestLayoutable.sideLength / 2,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                y: layoutRect.midY - l.sideLength / 2,
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testCenterMiddle() {
         var layout = l
             .layoutGravitating(horizontally: .center, vertically: .middle)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.midX - TestLayoutable.sideLength / 2,
-                y: layoutRect.midY - TestLayoutable.sideLength / 2,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                x: layoutRect.midX - l.sideLength / 2,
+                y: layoutRect.midY - l.sideLength / 2,
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testRightMiddle() {
         var layout = l
             .layoutGravitating(horizontally: .right, vertically: .middle)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.maxX - TestLayoutable.sideLength - l.layoutMargins.right,
-                y: layoutRect.midY - TestLayoutable.sideLength / 2,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                x: layoutRect.maxX - l.sideLength - l.layoutMargins.right,
+                y: layoutRect.midY - l.sideLength / 2,
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testLeftBottom() {
         var layout = l
             .layoutGravitating(horizontally: .left, vertically: .bottom)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.maxY - TestLayoutable.sideLength - l.layoutMargins.bottom,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                y: layoutRect.maxY - l.sideLength - l.layoutMargins.bottom,
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testCenterBottom() {
         var layout = l
             .layoutGravitating(horizontally: .center, vertically: .bottom)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.midX - TestLayoutable.sideLength / 2,
-                y: layoutRect.maxY - TestLayoutable.sideLength - l.layoutMargins.bottom,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                x: layoutRect.midX - l.sideLength / 2,
+                y: layoutRect.maxY - l.sideLength - l.layoutMargins.bottom,
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
     
     func testRightBottom() {
         var layout = l
             .layoutGravitating(horizontally: .right, vertically: .bottom)
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.maxX - TestLayoutable.sideLength - l.layoutMargins.right,
-                y: layoutRect.maxY - TestLayoutable.sideLength - l.layoutMargins.bottom,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength),
+                x: layoutRect.maxX - l.sideLength - l.layoutMargins.right,
+                y: layoutRect.maxY - l.sideLength - l.layoutMargins.bottom,
+                width: l.sideLength,
+                height: l.sideLength),
             "frame not matching")
     }
 }

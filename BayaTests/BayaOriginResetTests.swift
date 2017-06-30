@@ -28,8 +28,8 @@ class BayaOriginResetTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: TestLayoutable.sideLength + l.verticalMargins),
+                width: l.sideLength,
+                height: l.sideLength),
             "size does not match")
     }
 
@@ -37,13 +37,31 @@ class BayaOriginResetTests: XCTestCase {
         var layout = l.layoutResettingOrigin()
         l.frame.origin.x = 20;
         l.frame.origin.y = 31;
-        layout.layoutWith(frame: layoutRect)
+        layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
             CGRect(
                 x: 0,
                 y: 0,
-                width: TestLayoutable.sideLength,
-                height: TestLayoutable.sideLength))
+                width: l.sideLength,
+                height: l.sideLength))
+    }
+    
+    func testMemberMirroring() {
+        l = TestLayoutable(layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        var layout = l.layoutResettingOrigin()
+        layout.startLayout(with: layoutRect)
+        XCTAssertEqual(
+            l.layoutModes.height,
+            layout.layoutModes.height)
+        XCTAssertEqual(
+            l.layoutModes.width,
+            layout.layoutModes.width)
+        XCTAssertEqual(
+            l.layoutMargins,
+            layout.layoutMargins)
+        XCTAssertEqual(
+            l.frame,
+            layout.frame)
     }
 }

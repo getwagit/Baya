@@ -24,7 +24,7 @@ class BayaMatchParentTests: XCTestCase {
     }
 
     func testMatchParent() {
-        var layout = l.layoutMatchingParent(width: true, height: true)
+        var layout = l.layoutMatchingParent()
         layout.startLayout(with: layoutRect)
 
         XCTAssertEqual(
@@ -38,7 +38,7 @@ class BayaMatchParentTests: XCTestCase {
     }
 
     func testMatchParentWidth() {
-        var layout = l.layoutMatchingParent(width: true, height: false)
+        var layout = l.layoutMatchingParentWidth()
         layout.startLayout(with: layoutRect)
 
         XCTAssertEqual(
@@ -47,12 +47,12 @@ class BayaMatchParentTests: XCTestCase {
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
                 width: layoutRect.width - l.horizontalMargins,
-                height: TestLayoutable.sideLength),
+                height: l.sideLength),
             "frame not matching")
     }
 
     func testMatchParentHeight() {
-        var layout = l.layoutMatchingParent(width: false, height: true)
+        var layout = l.layoutMatchingParentHeight()
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -60,42 +60,18 @@ class BayaMatchParentTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: TestLayoutable.sideLength,
+                width: l.sideLength,
                 height: layoutRect.height - l.verticalMargins),
             "frame not matching")
     }
 
-    func testMeasureMatchParent() {
-        var layout = l.layoutMatchingParent(width: true, height: true)
+    func testMeasureNotAffectedByMatchParent() {
+        var layout = l.layoutMatchingParent()
         let fit = layout.sizeThatFits(layoutRect.size)
-        
-        XCTAssertEqual(
-            fit,
-            layoutRect.size,
-            "size not matching")
-    }
 
-    func testMeasureMatchParentWidth() {
-        var layout = l.layoutMatchingParent(width: true, height: false)
-        let fit = layout.sizeThatFits(layoutRect.size)
-        
         XCTAssertEqual(
             fit,
-            CGSize(
-                width: layoutRect.width,
-                height: TestLayoutable.sideLength + l.verticalMargins),
-            "size not matching")
-    }
-
-    func testMeasureMatchParentHeight() {
-        var layout = l.layoutMatchingParent(width: false, height: true)
-        let fit = layout.sizeThatFits(layoutRect.size)
-        
-        XCTAssertEqual(
-            fit,
-            CGSize(
-                width: TestLayoutable.sideLength + l.horizontalMargins,
-                height: layoutRect.height),
+            CGSize(width: l.sideLength, height: l.sideLength),
             "size not matching")
     }
 }
