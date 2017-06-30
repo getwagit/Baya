@@ -41,6 +41,6 @@ class TestLayoutable: BayaLayoutable {
 class TestScrollLayoutContainer: TestLayoutable, BayaScrollLayoutContainer {
     var contentSize: CGSize = CGSize()
     var bounds: CGRect {
-        return self.frame
+        return CGRect(origin: CGPoint(), size: frame.size)
     }
 }
