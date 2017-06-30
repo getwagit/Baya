@@ -18,9 +18,9 @@ public struct BayaSquareLayout: BayaLayout {
     public var frame: CGRect {
         return element.frame
     }
-    public var layoutModes: BayaLayoutModes {
+    public var layoutModes: BayaLayoutOptions.Modes {
         // BayaSquareLayout wants its parent to used the measured sizes.
-        return defaultLayoutModes
+        return BayaLayoutOptions.Modes.default
     }
     private var element: BayaLayoutable
     private let referenceSide: BayaLayoutOptions.Orientation?

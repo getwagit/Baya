@@ -13,7 +13,7 @@ import UIKit
 public struct BayaGravityLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
     public var frame: CGRect
-    public let layoutModes: BayaLayoutModes
+    public let layoutModes: BayaLayoutOptions.Modes
     private var element: BayaLayoutable
     private var measure: CGSize?
     private let horizontalGravity: BayaLayoutOptions.Gravity.Horizontal?
@@ -27,7 +27,7 @@ public struct BayaGravityLayout: BayaLayout {
         self.horizontalGravity = horizontalGravity
         self.verticalGravity = verticalGravity
         self.frame = CGRect()
-        self.layoutModes = BayaLayoutModes(
+        self.layoutModes = BayaLayoutOptions.Modes(
             width: horizontalGravity != nil ? .matchParent : element.layoutModes.width,
             height: verticalGravity != nil ? .matchParent : element.layoutModes.height)
     }

@@ -20,7 +20,7 @@ public struct BayaProportionalSizeLayout: BayaLayout {
     }
     private var element: BayaLayoutable
     private var measure: CGSize?
-    public let layoutModes: BayaLayoutModes
+    public let layoutModes: BayaLayoutOptions.Modes
     private var widthFactor: CGFloat?
     private var heightFactor: CGFloat?
 
@@ -31,7 +31,7 @@ public struct BayaProportionalSizeLayout: BayaLayout {
         self.element = element
         self.widthFactor = widthFactor
         self.heightFactor = heightFactor
-        layoutModes = BayaLayoutModes(
+        layoutModes = BayaLayoutOptions.Modes(
             width: widthFactor != nil ? .matchParent : element.layoutModes.width,
             height: heightFactor != nil ? .matchParent : element.layoutModes.height)
     }

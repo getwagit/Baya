@@ -12,7 +12,7 @@ import UIKit
 public struct BayaScrollLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
-    public let layoutModes: BayaLayoutModes
+    public let layoutModes: BayaLayoutOptions.Modes
     var orientation: BayaLayoutOptions.Orientation
 
     private var container: BayaScrollLayoutContainer
@@ -29,7 +29,7 @@ public struct BayaScrollLayout: BayaLayout {
         self.orientation = orientation
         self.layoutMargins = layoutMargins
         self.frame = CGRect()
-        self.layoutModes = BayaLayoutModes(
+        self.layoutModes = BayaLayoutOptions.Modes(
             width: content.layoutModes.width == .wrapContent && container.layoutModes.width == .wrapContent ?
                 .wrapContent : .matchParent,
             height: content.layoutModes.height == .wrapContent && container.layoutModes.height == .wrapContent ?

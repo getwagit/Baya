@@ -13,7 +13,7 @@ import UIKit
 public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
     public var frame = CGRect()
-    public var layoutModes: BayaLayoutModes {
+    public var layoutModes: BayaLayoutOptions.Modes {
         return element.layoutModes
     }
     private var element: BayaLayoutable

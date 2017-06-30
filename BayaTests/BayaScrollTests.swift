@@ -108,7 +108,7 @@ class BayaScrollTests: XCTestCase {
     }
     
     func testHorizontalSmallContentMatchParent() {
-        content = TestLayoutable(sideLength: 80, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        content = TestLayoutable(sideLength: 80, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         content.m(1, 2, 3, 4)
         var layout = content.layoutScrollContent(container: container, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
@@ -191,7 +191,7 @@ class BayaScrollTests: XCTestCase {
     func testVerticalSmallContentMatchParent() {
         content = TestLayoutable(
             sideLength: 100,
-            layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         content.m(1, 2, 3, 4)
         var layout = content.layoutScrollContent(container: container, orientation: .vertical)
         layout.startLayout(with: layoutRect)
