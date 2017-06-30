@@ -45,15 +45,19 @@ public struct BayaScrollLayout: BayaLayout {
         case .horizontal:
             adjustedContentSize = CGSize(
                 width: content.layoutModes.width == .wrapContent ?
-                    measuredContentSize.width : max(measuredContentSize.width, maximalAvailableContentSize.width),
+                    measuredContentSize.width : max(
+                        measuredContentSize.width,
+                        frame.size.width - container.horizontalMargins - content.horizontalMargins),
                 height: content.layoutModes.height == .wrapContent ?
-                    measuredContentSize.height : frame.height - content.verticalMargins)
+                    measuredContentSize.height : frame.height - content.verticalMargins - container.verticalMargins)
         case .vertical:
             adjustedContentSize = CGSize(
                 width: content.layoutModes.width == .wrapContent ?
-                    measuredContentSize.width : frame.width - content.horizontalMargins,
+                    measuredContentSize.width : frame.width - content.horizontalMargins - container.horizontalMargins,
                 height: content.layoutModes.height == .wrapContent ?
-                    measuredContentSize.height : max(measuredContentSize.height, maximalAvailableContentSize.height)
+                    measuredContentSize.height : max(
+                        measuredContentSize.height,
+                        frame.size.height - container.verticalMargins - content.verticalMargins)
             )
         }
 
@@ -74,8 +78,8 @@ public struct BayaScrollLayout: BayaLayout {
             size: adjustedContentSize))
         container.layoutWith(frame: CGRect(
             origin: CGPoint(
-                x: container.layoutMargins.left,
-                y: container.layoutMargins.top),
+                x: frame.minX + container.layoutMargins.left,
+                y: frame.minY + container.layoutMargins.top),
             size: containerSize))
         container.contentSize = adjustedContentSize.addMargins(ofElement: content)
     }
@@ -83,8 +87,8 @@ public struct BayaScrollLayout: BayaLayout {
     mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
         contentMeasure = content.sizeThatFits(sizeForMeasurement(size))
         return CGSize(
-            width: min(contentMeasure!.width + content.horizontalMargins, size.width),
-            height: min(contentMeasure!.height + content.verticalMargins, size.height))
+            width: min(contentMeasure!.width + content.horizontalMargins + container.horizontalMargins, size.width),
+            height: min(contentMeasure!.height + content.verticalMargins + container.verticalMargins, size.height))
     }
 
     private func sizeForMeasurement(_ size: CGSize) -> CGSize {
