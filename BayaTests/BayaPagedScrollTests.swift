@@ -10,7 +10,7 @@ import XCTest
 
 class BayaPagedScrollTests: XCTestCase {
     var l: TestLayoutable!
-    fileprivate var c: TestPagedScrollLayoutContainer!
+    fileprivate var c: TestScrollLayoutContainer!
     var layoutRect = CGRect(x: 3, y: 4, width: 400, height: 500)
     var pages: Int = 3
     var gutter: CGFloat = 20
@@ -18,7 +18,7 @@ class BayaPagedScrollTests: XCTestCase {
     override func setUp() {
         super.setUp()
         l = TestLayoutable(sideLength: 60)
-        c = TestPagedScrollLayoutContainer()
+        c = TestScrollLayoutContainer()
         l.m(1, 2, 3, 4)
         l.m(5, 6, 7, 8)
     }
@@ -93,12 +93,5 @@ class BayaPagedScrollTests: XCTestCase {
             CGSize(
                 width: layoutRect.width,
                 height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages)))
-    }
-}
-
-private class TestPagedScrollLayoutContainer: TestLayoutable, PagedScrollLayoutContainer {
-    var contentSize: CGSize = CGSize()
-    var bounds: CGRect {
-        return self.frame
     }
 }

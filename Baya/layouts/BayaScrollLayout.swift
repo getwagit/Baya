@@ -15,13 +15,13 @@ public struct BayaScrollLayout: BayaLayout {
     public let layoutModes: BayaLayoutModes
     var orientation: BayaLayoutOptions.Orientation
 
-    private var container: ScrollLayoutContainer
+    private var container: BayaScrollLayoutContainer
     private var content: BayaLayoutable
     private var contentMeasure: CGSize?
 
     init(
         content: BayaLayoutable,
-        container: ScrollLayoutContainer,
+        container: BayaScrollLayoutContainer,
         orientation: BayaLayoutOptions.Orientation = .vertical,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.content = content
@@ -102,19 +102,9 @@ public struct BayaScrollLayout: BayaLayout {
     }
 }
 
-/**
-    Implement this protocol for the scroll layout container.
- */
-public protocol ScrollLayoutContainer: class, BayaLayoutable {
-    var contentSize: CGSize { get set }
-    func layoutWith(frame: CGRect) -> ()
-}
-
-extension UIScrollView: ScrollLayoutContainer {}
-
 public extension BayaLayoutable {
     func layoutScrollContent(
-        container: ScrollLayoutContainer,
+        container: BayaScrollLayoutContainer,
         orientation: BayaLayoutOptions.Orientation = .vertical,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaScrollLayout {
