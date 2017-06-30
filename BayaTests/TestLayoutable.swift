@@ -37,3 +37,10 @@ class TestLayoutable: BayaLayoutable {
             right: right)
     }
 }
+
+class TestScrollLayoutContainer: TestLayoutable, BayaScrollLayoutContainer {
+    var contentSize: CGSize = CGSize()
+    var bounds: CGRect {
+        return self.frame
+    }
+}

@@ -18,12 +18,12 @@ public struct BayaPagedScrollLayout: BayaLayout {
     var pages: Int
     var gutter: CGFloat
 
-    private var container: PagedScrollLayoutContainer
+    private var container: BayaScrollLayoutContainer
     private var content: BayaLayoutable
 
     init(
         content: BayaLayoutable,
-        container: PagedScrollLayoutContainer,
+        container: BayaScrollLayoutContainer,
         pages: Int,
         gutter: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
@@ -71,7 +71,7 @@ public struct BayaPagedScrollLayout: BayaLayout {
 
 public extension BayaLayoutable {
     func layoutPagedScrollContent(
-        container: PagedScrollLayoutContainer,
+        container: BayaScrollLayoutContainer,
         pages: Int,
         gutter: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
@@ -86,14 +86,3 @@ public extension BayaLayoutable {
             layoutMargins: layoutMargins)
     }
 }
-
-/**
-    Implement this protocol for the paged scroll layout container
- */
-public protocol PagedScrollLayoutContainer {
-    var contentSize: CGSize {get set}
-    var bounds: CGRect {get}
-    func layoutWith(frame: CGRect) -> Void
-}
-
-extension UIScrollView: PagedScrollLayoutContainer {}
