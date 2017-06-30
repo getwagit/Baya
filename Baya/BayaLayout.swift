@@ -36,6 +36,23 @@ public extension BayaLayout {
             origin: origin,
             size: size))
     }
+
+    /**
+        Start a dedicated measure pass.
+        Note: You do NOT need to call this method under common conditions.
+        Only if you need to measure your layouts for e.g. a UICollectionViewCell's
+        sizeThatFits method, use this convenience helper.
+    */
+    mutating public func startMeasure(with size: CGSize) -> CGSize {
+        guard self.layoutModes.width == .wrapContent || self.layoutModes.height == .wrapContent else {
+            return size
+        }
+        let measuredSize = self.sizeThatFitsWithMargins(size)
+        let adjustedSize = measuredSize.addMargins(ofElement: self)
+        return CGSize(
+            width: self.layoutModes.width == .wrapContent ? adjustedSize.width : size.width,
+            height: self.layoutModes.height == .wrapContent ? adjustedSize.height : size.height)
+    }
 }
 
 /**
