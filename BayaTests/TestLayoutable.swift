@@ -7,14 +7,22 @@ import Foundation
 import Baya
 
 class TestLayoutable: BayaLayoutable {
-    static let sideLength: CGFloat = 50
+    let sideLength: CGFloat
+    let layoutModes: BayaLayoutOptions.Modes
     var frame = CGRect()
     var layoutMargins = UIEdgeInsets.zero
 
+    init(
+        sideLength: CGFloat = 50,
+        layoutModes: BayaLayoutOptions.Modes? = nil) {
+        self.sideLength = sideLength
+        self.layoutModes = layoutModes ?? BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent)
+    }
+
     func sizeThatFits(_ size: CGSize) -> CGSize {
         return CGSize(
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength)
+            width: self.sideLength,
+            height: self.sideLength)
     }
 
     func layoutWith(frame: CGRect) {
@@ -27,5 +35,12 @@ class TestLayoutable: BayaLayoutable {
             left: left,
             bottom: bottom,
             right: right)
+    }
+}
+
+class TestScrollLayoutContainer: TestLayoutable, BayaScrollLayoutContainer {
+    var contentSize: CGSize = CGSize()
+    var bounds: CGRect {
+        return CGRect(origin: CGPoint(), size: frame.size)
     }
 }

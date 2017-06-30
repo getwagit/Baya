@@ -8,36 +8,35 @@ import UIKit
 
 /**
     Sets the origin of a given element to x: 0, y: 0. Handy when laying out views in deeper view hierarchies.
+    Mirrors frame, layoutMargins and layoutModes from its child.
 */
 public struct BayaOriginResetLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
-    public var frame: CGRect
-
+    public var layoutMargins: UIEdgeInsets {
+        return element.layoutMargins
+    }
+    public var frame: CGRect {
+        return element.frame
+    }
+    public var layoutModes: BayaLayoutOptions.Modes {
+        return element.layoutModes
+    }
     private var element: BayaLayoutable
-    private var measure: CGSize?
 
-    init(
-        element: BayaLayoutable,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+    init(element: BayaLayoutable) {
         self.element = element
-        self.layoutMargins = layoutMargins
-        self.frame = CGRect()
     }
 
     mutating public func layoutWith(frame: CGRect) {
-        self.frame = frame;
-        let size = measure ?? element.sizeThatFitsWithMargins(frame.size)
-        element.layoutWith(frame: CGRect(origin: CGPoint(), size: size))
+        element.layoutWith(frame: CGRect(origin: CGPoint(), size: frame.size))
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        measure = element.sizeThatFitsWithMargins(size)
-        return measure!.addMargins(ofElement: element)
+        return element.sizeThatFits(size)
     }
 }
 
 public extension BayaLayoutable {
-    func layoutResettingOrigin(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayout {
-        return BayaOriginResetLayout(element: self, layoutMargins: layoutMargins)
+    func layoutResettingOrigin() -> BayaLayout {
+        return BayaOriginResetLayout(element: self)
     }
 }

@@ -21,9 +21,9 @@ class BayaLinearTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        l1 = TestLayoutable()
-        l2 = TestLayoutable()
-        l3 = TestLayoutable()
+        l1 = TestLayoutable(sideLength: 30)
+        l2 = TestLayoutable(sideLength: 60)
+        l3 = TestLayoutable(sideLength: 90)
 
         l1.m(8, 7, 4, 40)
         l2.m(20, 13, 11, 4)
@@ -48,132 +48,418 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         layout.startLayout(
             with: layoutRect)
 
-        XCTAssertEqual(l1.frame, CGRect(
-            x: layoutRect.origin.x + l1.layoutMargins.left,
-            y: layoutRect.origin.y + l1.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.origin.x + l1.layoutMargins.left,
+                y: layoutRect.origin.y + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: l1.sideLength),
             "l1 not matching")
-        XCTAssertEqual(l2.frame, CGRect(
-            x: layoutRect.origin.x
-                + TestLayoutable.sideLength
-                + l1.horizontalMargins
-                + spacing
-                + l2.layoutMargins.left,
-            y: layoutRect.origin.y + l2.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.origin.x
+                    + l1.sideLength
+                    + l1.horizontalMargins
+                    + spacing
+                    + l2.layoutMargins.left,
+                y: layoutRect.origin.y + l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: l2.sideLength),
             "l2 not matching")
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.origin.x
+                    + l1.sideLength
+                    + l1.horizontalMargins
+                    + spacing
+                    + l2.sideLength
+                    + l2.horizontalMargins
+                    + spacing +
+                    l3.layoutMargins.left,
+                y: layoutRect.origin.y + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: l3.sideLength),
+            "l3 not matching")
     }
 
     func testHorizontalReversed() {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .reversed,
-            spacing: Int(spacing))
+            spacing: spacing)
         layout.startLayout(
             with: layoutRect)
-        let expectedFinalWidth = TestLayoutable.sideLength * 3
+        let expectedFinalWidth = l1.sideLength
+            + l2.sideLength
+            + l3.sideLength
             + spacing * 2
             + l1.horizontalMargins
             + l2.horizontalMargins
             + l3.horizontalMargins;
 
-        XCTAssertEqual(l1.frame, CGRect(
-            x: layoutRect.origin.x
-                + expectedFinalWidth
-                - l1.layoutMargins.right
-                - TestLayoutable.sideLength,
-            y: layoutRect.origin.y + l1.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
-                       "l1 not matching")
-        XCTAssertEqual(l3.frame, CGRect(
-            x: layoutRect.origin.x
-                + expectedFinalWidth
-                - TestLayoutable.sideLength * 3
-                - l1.horizontalMargins
-                - l2.horizontalMargins
-                - l3.layoutMargins.right // left margin of l3 irrelevant for coordinate!
-                - spacing * 2,
-            y: layoutRect.origin.y + l3.layoutMargins.top,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.origin.x
+                    + expectedFinalWidth
+                    - l1.layoutMargins.right
+                    - l1.sideLength,
+                y: layoutRect.origin.y + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: l1.sideLength),
+            "l1 not matching")
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.origin.x
+                    + expectedFinalWidth
+                    - l1.sideLength
+                    - l1.horizontalMargins
+                    - l2.sideLength
+                    - l2.horizontalMargins
+                    - l3.sideLength
+                    - l3.layoutMargins.right // left margin of l3 irrelevant for coordinate!
+                    - spacing * 2,
+                y: layoutRect.origin.y + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: l3.sideLength),
             "l3 not matching")
+    }
+    
+    func testHorizontalMatchParent() {
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        var layout = [l1, l2, l3].layoutLinearly(
+            orientation: .horizontal,
+            direction: .normal,
+            spacing: spacing)
+        layout.startLayout(with: layoutRect)
+        let maxHeight = max(
+            l1.sideLength + l1.verticalMargins,
+            l2.sideLength + l2.verticalMargins,
+            l3.sideLength + l3.verticalMargins)
+        
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: maxHeight - l1.verticalMargins))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.sideLength
+                    + l1.horizontalMargins
+                    + spacing
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    - l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: maxHeight
+                    - l2.verticalMargins))
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.horizontalMargins
+                    + l1.sideLength
+                    + spacing
+                    + l2.sideLength
+                    + l2.horizontalMargins
+                    + spacing
+                    + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: maxHeight
+                    - l3.verticalMargins))
+    }
+    
+    func testHorizontalReversedMatchParent() {
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        var layout = [l1, l2, l3].layoutLinearly(
+            orientation: .horizontal,
+            direction: .reversed,
+            spacing: spacing)
+        layout.startLayout(with: layoutRect)
+        let maxHeight = max(
+            l1.sideLength + l1.verticalMargins,
+            l2.sideLength + l2.verticalMargins,
+            l3.sideLength + l3.verticalMargins)
+        
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: maxHeight - l3.verticalMargins))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l3.sideLength
+                    + l3.horizontalMargins
+                    + spacing
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    - l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: maxHeight
+                    - l2.verticalMargins))
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l3.horizontalMargins
+                    + l3.sideLength
+                    + spacing
+                    + l2.sideLength
+                    + l2.horizontalMargins
+                    + spacing
+                    + l1.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: maxHeight
+                    - l1.verticalMargins))
     }
 
     func testVertical() {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
-            spacing: Int(spacing))
-        layout.startLayout(
-            with: layoutRect)
+            spacing: spacing)
+        layout.startLayout(with: layoutRect)
 
-        XCTAssertEqual(l3.frame, CGRect(
-            x: layoutRect.origin.x + l3.layoutMargins.left,
-            y: layoutRect.origin.y
-                + TestLayoutable.sideLength * 2
-                + l1.verticalMargins + l2.verticalMargins
-                + l3.layoutMargins.top
-                + spacing * 2,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
-            "l3 not matching")
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: l1.sideLength))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.verticalMargins
+                    + l1.sideLength
+                    + spacing
+                    + l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: l2.sideLength))
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.sideLength
+                    + l1.verticalMargins
+                    + l2.sideLength
+                    + l2.verticalMargins
+                    + l3.layoutMargins.top
+                    + spacing * 2,
+                width: l3.sideLength,
+                height: l3.sideLength))
     }
 
     func testVerticalReversed() {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .reversed,
-            spacing: 20)
-        layout.startLayout(
-            with: layoutRect)
-        let expectedFinalHeight = TestLayoutable.sideLength * 3
-            + spacing * 2
-            + l1.verticalMargins
-            + l2.verticalMargins
-            + l3.verticalMargins
+            spacing: spacing)
+        layout.startLayout(with: layoutRect)
         
-        XCTAssertEqual(l1.frame, CGRect(
-            x: layoutRect.origin.x + l1.layoutMargins.left,
-            y: layoutRect.origin.y
-                + expectedFinalHeight
-                - TestLayoutable.sideLength
-                - l1.layoutMargins.bottom,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
-            "l1 not matching")
-        XCTAssertEqual(l3.frame, CGRect(
-            x: layoutRect.origin.x + l3.layoutMargins.left,
-            y: layoutRect.origin.y
-                + expectedFinalHeight
-                - TestLayoutable.sideLength * 3
-                - l1.verticalMargins - l2.verticalMargins
-                - l3.layoutMargins.bottom
-                - spacing * 2,
-            width: TestLayoutable.sideLength,
-            height: TestLayoutable.sideLength),
-            "l3 not matching")
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: l3.sideLength))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.sideLength
+                    + l3.verticalMargins
+                    + spacing
+                    + l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: l2.sideLength))
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.sideLength
+                    + l3.verticalMargins
+                    + l2.sideLength
+                    + l2.verticalMargins
+                    + l1.layoutMargins.top
+                    + spacing * 2,
+                width: l1.sideLength,
+                height: l1.sideLength))
+    }
+    
+    func testVerticalMatchParent() {
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        var layout = [l1, l2, l3].layoutLinearly(
+            orientation: .vertical,
+            direction: .normal,
+            spacing: spacing)
+        layout.startLayout(with: layoutRect)
+        
+        let maxWidth = max(
+            l1.sideLength + l1.horizontalMargins,
+            l2.sideLength + l2.horizontalMargins,
+            l3.sideLength + l3.horizontalMargins)
+        
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.layoutMargins.top,
+                width: maxWidth
+                    - l1.horizontalMargins,
+                height: l1.sideLength))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.verticalMargins
+                    + l1.sideLength
+                    + spacing
+                    + l2.layoutMargins.top,
+                width: maxWidth
+                    - l2.horizontalMargins,
+                height: l2.sideLength))
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + l1.sideLength
+                    + l1.verticalMargins
+                    + l2.sideLength
+                    + l2.verticalMargins
+                    + l3.layoutMargins.top
+                    + spacing * 2,
+                width: maxWidth
+                    - l3.horizontalMargins,
+                height: l3.sideLength))
+    }
+    
+    func testVerticalReversedMatchParent() {
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        var layout = [l1, l2, l3].layoutLinearly(
+            orientation: .vertical,
+            direction: .reversed,
+            spacing: spacing)
+        layout.startLayout(with: layoutRect)
+        
+        let maxWidth = max(
+            l1.sideLength + l1.horizontalMargins,
+            l2.sideLength + l2.horizontalMargins,
+            l3.sideLength + l3.horizontalMargins)
+        
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.layoutMargins.top,
+                width: maxWidth
+                    - l3.horizontalMargins,
+                height: l3.sideLength))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.verticalMargins
+                    + l3.sideLength
+                    + spacing
+                    + l2.layoutMargins.top,
+                width: maxWidth
+                    - l2.horizontalMargins,
+                height: l2.sideLength))
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + l1.layoutMargins.left,
+                y: layoutRect.minY
+                    + l3.sideLength
+                    + l3.verticalMargins
+                    + l2.sideLength
+                    + l2.verticalMargins
+                    + l1.layoutMargins.top
+                    + spacing * 2,
+                width: maxWidth
+                    - l1.horizontalMargins,
+                height: l1.sideLength))
     }
 
     func testMeasureHorizontal() {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         let size = layout.sizeThatFits(layoutRect.size)
-        let largestHeight = TestLayoutable.sideLength + l2.verticalMargins // l2 has the biggest vertical margins.
+        let maxHeight = max(
+            l1.sideLength + l1.verticalMargins,
+            l2.sideLength + l2.verticalMargins,
+            l3.sideLength + l3.verticalMargins)
 
-        XCTAssertEqual(size, CGSize(
-            width: TestLayoutable.sideLength * 3
-            + spacing * 2
-            + l1.horizontalMargins + l2.horizontalMargins + l3.horizontalMargins,
-            height: largestHeight),
+        XCTAssertEqual(
+            size,
+            CGSize(
+            width: l1.sideLength
+                + l2.sideLength
+                + l3.sideLength
+                + spacing * 2
+                + l1.horizontalMargins
+                + l2.horizontalMargins
+                + l3.horizontalMargins,
+            height: maxHeight),
             "size does not match")
     }
 
@@ -181,15 +467,22 @@ class BayaLinearTests: XCTestCase {
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
-            spacing: Int(spacing))
+            spacing: spacing)
         let size = layout.sizeThatFits(layoutRect.size)
-        let largestWidth = TestLayoutable.sideLength + l1.horizontalMargins // l1 has the biggest horizontal margins.
+        let maxWidth = max(
+            l1.sideLength + l1.horizontalMargins,
+            l2.sideLength + l2.horizontalMargins,
+            l3.sideLength + l3.horizontalMargins)
 
         XCTAssertEqual(size, CGSize(
-            width: largestWidth,
-            height: TestLayoutable.sideLength * 3
+            width: maxWidth,
+            height: l1.sideLength
+                + l2.sideLength
+                + l3.sideLength
                 + spacing * 2
-                + l1.verticalMargins + l2.verticalMargins + l3.verticalMargins),
+                + l1.verticalMargins
+                + l2.verticalMargins
+                + l3.verticalMargins),
             "size does not match")
     }
     

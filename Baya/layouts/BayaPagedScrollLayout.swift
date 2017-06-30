@@ -9,6 +9,7 @@ import UIKit
 /**
     A layout that calculates the size of its content layoutable depending on the given frame,
     the number of pages, and an optional gutter. The container will be laid out according to the frame.
+    This layout assumes that its child has the implicit layout mode .matchParent.
  */
 public struct BayaPagedScrollLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
@@ -17,12 +18,12 @@ public struct BayaPagedScrollLayout: BayaLayout {
     var pages: Int
     var gutter: CGFloat
 
-    private var container: PagedScrollLayoutContainer
+    private var container: BayaScrollLayoutContainer
     private var content: BayaLayoutable
 
     init(
         content: BayaLayoutable,
-        container: PagedScrollLayoutContainer,
+        container: BayaScrollLayoutContainer,
         pages: Int,
         gutter: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
@@ -70,7 +71,7 @@ public struct BayaPagedScrollLayout: BayaLayout {
 
 public extension BayaLayoutable {
     func layoutPagedScrollContent(
-        container: PagedScrollLayoutContainer,
+        container: BayaScrollLayoutContainer,
         pages: Int,
         gutter: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
@@ -85,14 +86,3 @@ public extension BayaLayoutable {
             layoutMargins: layoutMargins)
     }
 }
-
-/**
-    Implement this protocol for the paged scroll layout container
- */
-public protocol PagedScrollLayoutContainer {
-    var contentSize: CGSize {get set}
-    var bounds: CGRect {get}
-    func layoutWith(frame: CGRect) -> Void
-}
-
-extension UIScrollView: PagedScrollLayoutContainer {}

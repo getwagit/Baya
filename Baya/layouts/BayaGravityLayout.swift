@@ -8,40 +8,47 @@ import UIKit
 
 /**
     Simple layout that positions one child according to its gravity.
+    It also assumes layout mode .matchParent for gravitating axis.
 */
 public struct BayaGravityLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
+    public var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
     public var frame: CGRect
-
+    public let layoutModes: BayaLayoutOptions.Modes
     private var element: BayaLayoutable
     private var measure: CGSize?
-    private let gravity: (BayaLayoutOptions.Gravity.Horizontal, BayaLayoutOptions.Gravity.Vertical)
+    private let horizontalGravity: BayaLayoutOptions.Gravity.Horizontal?
+    private let verticalGravity: BayaLayoutOptions.Gravity.Vertical?
 
     init(
         element: BayaLayoutable,
-        gravity: (BayaLayoutOptions.Gravity.Horizontal, BayaLayoutOptions.Gravity.Vertical),
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        horizontalGravity: BayaLayoutOptions.Gravity.Horizontal?,
+        verticalGravity: BayaLayoutOptions.Gravity.Vertical?) {
         self.element = element
-        self.layoutMargins = layoutMargins
-        self.gravity = gravity
+        self.horizontalGravity = horizontalGravity
+        self.verticalGravity = verticalGravity
         self.frame = CGRect()
+        self.layoutModes = BayaLayoutOptions.Modes(
+            width: horizontalGravity != nil ? .matchParent : element.layoutModes.width,
+            height: verticalGravity != nil ? .matchParent : element.layoutModes.height)
     }
 
     public mutating func layoutWith(frame: CGRect) {
         self.frame = frame
-        let size = measure ?? element.sizeThatFitsWithMargins(frame.size)
+        let size = calculateSizeForLayout(forChild: &element, cachedSize: measure, ownSize: frame.size)
         var point = CGPoint()
 
-        switch gravity.0 {
-        case .left: point.x = frame.minX + element.layoutMargins.left
-        case .center: point.x = frame.midX - (size.width * 0.5)
-        case .right: point.x = frame.maxX - size.width - element.layoutMargins.right
+        switch horizontalGravity {
+        case .none: fallthrough
+        case .some(.left): point.x = frame.minX + element.layoutMargins.left
+        case .some(.center): point.x = frame.midX - (size.width * 0.5)
+        case .some(.right): point.x = frame.maxX - size.width - element.layoutMargins.right
         }
 
-        switch gravity.1 {
-        case .top: point.y = frame.minY + element.layoutMargins.top
-        case .middle: point.y = frame.midY - (size.height * 0.5)
-        case .bottom: point.y = frame.maxY - size.height - element.layoutMargins.bottom
+        switch verticalGravity {
+        case .none: fallthrough
+        case .some(.top): point.y = frame.minY + element.layoutMargins.top
+        case .some(.middle): point.y = frame.midY - (size.height * 0.5)
+        case .some(.bottom): point.y = frame.maxY - size.height - element.layoutMargins.bottom
         }
 
         element.layoutWith(frame: CGRect(
@@ -59,23 +66,24 @@ public extension BayaLayoutable {
     func layoutGravitating(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
-            gravity: (horizontalGravity, .top))
+            horizontalGravity: horizontalGravity,
+            verticalGravity: nil)
     }
 
     func layoutGravitating(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
-            gravity: (.left, verticalGravity))
+            horizontalGravity: nil,
+            verticalGravity: verticalGravity)
     }
 
     func layoutGravitating(
         horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
-        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical)
             -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
-            gravity: (horizontalGravity, verticalGravity),
-            layoutMargins: layoutMargins)
+            horizontalGravity: horizontalGravity,
+            verticalGravity: verticalGravity)
     }
 }

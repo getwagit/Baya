@@ -23,12 +23,12 @@ public struct FlexibleContentLayout: BayaLayout {
     init(
         elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?),
         orientation: BayaLayoutOptions.Orientation,
-        spacing: Int = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.orientation = orientation
         self.layoutMargins = layoutMargins
-        self.spacing = CGFloat(spacing)
+        self.spacing = spacing
         self.frame = CGRect()
     }
 
@@ -74,12 +74,18 @@ public struct FlexibleContentLayout: BayaLayout {
 
         switch orientation {
         case .horizontal:
+            let maxHeight = max(
+                measures.before?.height.add(elements.before!.verticalMargins) ?? 0,
+                measures.after?.height.add(elements.after!.verticalMargins) ?? 0,
+                measures.content!.height.add(elements.content.verticalMargins))
+
             if elements.before != nil {
                 elements.before!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.before!.layoutMargins.left,
                     y: frame.minY + elements.before!.layoutMargins.top,
                     width: measures.before!.width,
-                    height: measures.before!.height))
+                    height: elements.before!.layoutModes.height == .wrapContent ?
+                        measures.before!.height : maxHeight - elements.before!.verticalMargins))
             }
 
             if elements.after != nil {
@@ -87,7 +93,8 @@ public struct FlexibleContentLayout: BayaLayout {
                     x: frame.maxX - measures.after!.width - elements.after!.layoutMargins.right,
                     y: frame.minY + elements.after!.layoutMargins.top,
                     width: measures.after!.width,
-                    height: measures.after!.height))
+                    height: elements.after!.layoutModes.width == .wrapContent ?
+                        measures.after!.height : maxHeight - elements.after!.verticalMargins))
             }
 
             elements.content.layoutWith(frame: CGRect(
@@ -95,14 +102,22 @@ public struct FlexibleContentLayout: BayaLayout {
                     + relevantBeforeWidth
                     + elements.content.layoutMargins.left,
                 y: frame.minY + elements.content.layoutMargins.top,
-                width: measures.content!.width,
-                height: measures.content!.height))
+                width: elements.content.layoutModes.width == .wrapContent ?
+                    measures.content!.width : frame.width - relevantBeforeWidth - relevantAfterWidth,
+                height: elements.content.layoutModes.height == .wrapContent ?
+                    measures.content!.height : maxHeight - elements.content.verticalMargins))
         case .vertical:
+            let maxWidth = max(
+                measures.before?.width.add(elements.before!.horizontalMargins) ?? 0,
+                measures.after?.width.add(elements.after!.horizontalMargins) ?? 0,
+                measures.content!.width.add(elements.content.horizontalMargins))
+
             if elements.before != nil {
                 elements.before!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.before!.layoutMargins.left,
                     y: frame.minY + elements.before!.layoutMargins.top,
-                    width:  measures.before!.width,
+                    width:  elements.before!.layoutModes.width == .wrapContent ?
+                        measures.before!.width : maxWidth - elements.before!.horizontalMargins,
                     height: measures.before!.height))
             }
 
@@ -110,7 +125,8 @@ public struct FlexibleContentLayout: BayaLayout {
                 elements.after!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.after!.layoutMargins.left,
                     y: frame.maxY - measures.after!.height - elements.after!.layoutMargins.bottom,
-                    width: measures.before!.width,
+                    width: elements.after!.layoutModes.width == .wrapContent ?
+                        measures.after!.width : maxWidth - elements.after!.horizontalMargins,
                     height: measures.after!.height))
             }
 
@@ -119,8 +135,10 @@ public struct FlexibleContentLayout: BayaLayout {
                 y: frame.minY
                     + relevantBeforeHeight
                     + elements.content.layoutMargins.top,
-                width: measures.content!.width,
-                height: measures.content!.height))
+                width: elements.content.layoutModes.width == .wrapContent ?
+                    measures.content!.width : maxWidth - elements.content.horizontalMargins,
+                height: elements.content.layoutModes.height == .wrapContent ?
+                    measures.content!.height : frame.height - relevantBeforeHeight - relevantAfterHeight))
         }
     }
 
@@ -159,7 +177,7 @@ public extension BayaLayoutable {
         elementBefore: BayaLayoutable? = nil,
         elementAfter: BayaLayoutable? = nil,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
-        spacing: Int = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> FlexibleContentLayout {
         return FlexibleContentLayout(
