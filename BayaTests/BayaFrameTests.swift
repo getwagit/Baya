@@ -86,9 +86,9 @@ class BayaFrameTests: XCTestCase {
     }
 
     func testSizesMatchingParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsFrame()
         let layoutRect = CGRect(

@@ -31,4 +31,20 @@ public struct BayaLayoutOptions {
             case bottom
         }
     }
+
+    public enum Mode {
+        case wrapContent
+        case matchParent
+    }
+
+    public struct Modes {
+        internal static let `default` = BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent)
+        let width: BayaLayoutOptions.Mode
+        let height: BayaLayoutOptions.Mode
+
+        public init(width: BayaLayoutOptions.Mode, height: BayaLayoutOptions.Mode) {
+            self.width = width
+            self.height = height
+        }
+    }
 }

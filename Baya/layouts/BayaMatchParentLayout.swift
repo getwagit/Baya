@@ -17,13 +17,13 @@ public struct BayaMatchParentLayout: BayaLayout {
     public var frame: CGRect {
         return element.frame;
     }
-    public var layoutModes: BayaLayoutModes = defaultLayoutModes
+    public var layoutModes: BayaLayoutOptions.Modes = BayaLayoutOptions.Modes.default
 
     private var element: BayaLayoutable
 
     init(
         element: BayaLayoutable,
-        layoutModes: BayaLayoutModes) {
+        layoutModes: BayaLayoutOptions.Modes) {
         self.element = element
         self.layoutModes = layoutModes
     }
@@ -41,7 +41,7 @@ public extension BayaLayoutable {
     func layoutMatchingParentWidth() -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            layoutModes: BayaLayoutModes(
+            layoutModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .wrapContent))
     }
@@ -49,7 +49,7 @@ public extension BayaLayoutable {
     func layoutMatchingParentHeight() -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            layoutModes: BayaLayoutModes(
+            layoutModes: BayaLayoutOptions.Modes(
                 width: .wrapContent,
                 height: .matchParent))
     }
@@ -58,7 +58,7 @@ public extension BayaLayoutable {
             -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            layoutModes: BayaLayoutModes(
+            layoutModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
     }

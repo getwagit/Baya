@@ -134,9 +134,9 @@ class BayaLinearTests: XCTestCase {
     }
     
     func testHorizontalMatchParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .normal,
@@ -188,9 +188,9 @@ class BayaLinearTests: XCTestCase {
     }
     
     func testHorizontalReversedMatchParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             direction: .reversed,
@@ -329,9 +329,9 @@ class BayaLinearTests: XCTestCase {
     }
     
     func testVerticalMatchParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .normal,
@@ -384,9 +384,9 @@ class BayaLinearTests: XCTestCase {
     }
     
     func testVerticalReversedMatchParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             direction: .reversed,

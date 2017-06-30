@@ -51,5 +51,5 @@ class BayaScrollTests: XCTestCase {
             "size does not match")
     }
 
-    
+
 }

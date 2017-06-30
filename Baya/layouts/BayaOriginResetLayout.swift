@@ -17,7 +17,7 @@ public struct BayaOriginResetLayout: BayaLayout {
     public var frame: CGRect {
         return element.frame
     }
-    public var layoutModes: BayaLayoutModes {
+    public var layoutModes: BayaLayoutOptions.Modes {
         return element.layoutModes
     }
     private var element: BayaLayoutable

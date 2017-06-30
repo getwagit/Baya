@@ -82,9 +82,9 @@ class BayaEqualSegmentsTests: XCTestCase {
     }
     
     func testHorizontalMatchingParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
@@ -168,9 +168,9 @@ class BayaEqualSegmentsTests: XCTestCase {
     }
     
     func testHorizontalSmallEnforcedFrameMatchingParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
@@ -254,9 +254,9 @@ class BayaEqualSegmentsTests: XCTestCase {
     }
 
     func testVerticalMatchingParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
             orientation: .vertical,
@@ -340,9 +340,9 @@ class BayaEqualSegmentsTests: XCTestCase {
     }
     
     func testVerticalSmallEnforcedFrameMatchingParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .vertical,

@@ -163,9 +163,9 @@ class BayaFlexibleContentTests: XCTestCase {
     }
     
     func testHorizontalMatchParent() {
-        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         
         var layout = l2.layoutFlexible(
             elementBefore: l1,
@@ -216,9 +216,9 @@ class BayaFlexibleContentTests: XCTestCase {
     }
     
     func testHorizontalLargeFrameMatchParent() {
-        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 70, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 70, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         
         var layout = l2.layoutFlexible(
             elementBefore: l1,
@@ -357,9 +357,9 @@ class BayaFlexibleContentTests: XCTestCase {
     }
     
     func testVerticalMatchParent() {
-        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 70, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 70, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         
         var layout = l2.layoutFlexible(
             elementBefore: l1,
@@ -417,9 +417,9 @@ class BayaFlexibleContentTests: XCTestCase {
     }
     
     func testVerticalLargeFrameMatchParent() {
-        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 70, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 40, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 70, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 100, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         
         var layout = l2.layoutFlexible(
             elementBefore: l1,

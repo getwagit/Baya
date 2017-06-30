@@ -44,7 +44,7 @@ class BayaFixedSizeTests: XCTestCase {
     
     func testFixedHeightMatchingWidth() {
         let fixedHeight: CGFloat = 100
-        l = TestLayoutable(layoutModes: BayaLayoutModes(width: .matchParent, height: .wrapContent))
+        l = TestLayoutable(layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .wrapContent))
         var layout = l.layoutWithFixedSize(width: nil, height: fixedHeight)
         layout.startLayout(with: layoutRect)
         
@@ -75,7 +75,7 @@ class BayaFixedSizeTests: XCTestCase {
     
     func testFixedWidthMatchingHeight() {
         let fixedWidth: CGFloat = 100
-        l = TestLayoutable(layoutModes: BayaLayoutModes(width: .wrapContent, height: .matchParent))
+        l = TestLayoutable(layoutModes: BayaLayoutOptions.Modes(width: .wrapContent, height: .matchParent))
         var layout = l.layoutWithFixedSize(width: fixedWidth, height: nil)
         layout.startLayout(with: layoutRect)
         

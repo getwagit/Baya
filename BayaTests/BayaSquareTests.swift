@@ -98,7 +98,7 @@ class BayaSquareTests: XCTestCase {
     }
 
     func testLayoutModesAreOverridden() {
-        l = TestLayoutable(sideLength: 50, layoutModes: BayaLayoutModes(width: .matchParent, height: .matchParent))
+        l = TestLayoutable(sideLength: 50, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = l.layoutAsSquare()
         layout.startLayout(with: layoutRect)
         // Would have a larger height if layout modes would be overridden.
@@ -111,7 +111,7 @@ class BayaSquareTests: XCTestCase {
                 height: 300 - l.horizontalMargins),
             "frame does not match when using matchParent")
         // Wrap content should not make any difference
-        let l2 = TestLayoutable(sideLength: 50, layoutModes: BayaLayoutModes(width: .wrapContent, height: .wrapContent))
+        let l2 = TestLayoutable(sideLength: 50, layoutModes: BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent))
         var layout2 = l2.layoutAsSquare()
         layout2.startLayout(with: layoutRect)
         XCTAssertEqual(
