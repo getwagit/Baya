@@ -27,10 +27,12 @@ class BayaProportionalSizeTests: XCTestCase {
         let widthFactor: CGFloat = 1/2
         var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: nil)
         let fit = layout.sizeThatFits(layoutRect.size)
+        // For the element to fit into a proportional layout with a factor of 0.5
+        // the frame size has to have twice the side length.
         XCTAssertEqual(
             fit,
             CGSize(
-                width: layoutRect.width * widthFactor,
+                width: l.sideLength / widthFactor,
                 height: l.sideLength))
     }
     
@@ -38,12 +40,13 @@ class BayaProportionalSizeTests: XCTestCase {
         let heightFactor: CGFloat = 1/4
         var layout = l.layoutWithPortion(ofWidth: nil, ofHeight: heightFactor)
         let fit = layout.sizeThatFits(layoutRect.size)
-        
+        // For the element to fit into a proportional layout with a factor of 0.25
+        // the frame size has to have four times the side length.
         XCTAssertEqual(
             fit,
             CGSize(
                 width: l.sideLength,
-                height: layoutRect.height * heightFactor))
+                height: l.sideLength / heightFactor))
     }
     
     func testMeasureBoth() {
@@ -51,12 +54,11 @@ class BayaProportionalSizeTests: XCTestCase {
         let widthFactor: CGFloat = 1/5
         var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: heightFactor)
         let fit = layout.sizeThatFits(layoutRect.size)
-        
         XCTAssertEqual(
             fit,
             CGSize(
-                width: layoutRect.width * widthFactor,
-                height: layoutRect.height * heightFactor))
+                width: l.sideLength / widthFactor,
+                height: l.sideLength / heightFactor))
     }
     
     func testWidth() {
@@ -102,7 +104,7 @@ class BayaProportionalSizeTests: XCTestCase {
                 height: (layoutRect.height - l.verticalMargins) * heightFactor))
     }
     
-    func testIncreaseBoth() {
+    func testFactorsLargerThanOneAreIgnored() {
         let widthFactor: CGFloat = 3
         let heightFactor: CGFloat = 10
         var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: heightFactor)
@@ -113,7 +115,7 @@ class BayaProportionalSizeTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: (layoutRect.width - l.horizontalMargins) * widthFactor,
-                height: (layoutRect.height - l.verticalMargins) * heightFactor))
+                width: (layoutRect.width - l.horizontalMargins),
+                height: (layoutRect.height - l.verticalMargins)))
     }
 }

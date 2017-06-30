@@ -29,8 +29,8 @@ public struct BayaProportionalSizeLayout: BayaLayout {
         widthFactor: CGFloat? = nil,
         heightFactor: CGFloat? = nil) {
         self.element = element
-        self.widthFactor = widthFactor
-        self.heightFactor = heightFactor
+        self.widthFactor = widthFactor.defaultToOneIfLarger()
+        self.heightFactor = heightFactor.defaultToOneIfLarger()
         layoutModes = BayaLayoutOptions.Modes(
             width: widthFactor != nil ? .matchParent : element.layoutModes.width,
             height: heightFactor != nil ? .matchParent : element.layoutModes.height)
@@ -51,14 +51,23 @@ public struct BayaProportionalSizeLayout: BayaLayout {
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
         measure = element.sizeThatFits(sizeForMeasurement(size))
         return CGSize(
-            width: (widthFactor != nil) ? max(size.width * widthFactor!, measure!.width) : measure!.width,
-            height: (heightFactor != nil) ? max(size.height * heightFactor!, measure!.height) : measure!.height)
+            width: (widthFactor != nil) ? measure!.width / widthFactor! : measure!.width,
+            height: (heightFactor != nil) ? measure!.height / heightFactor! : measure!.height)
     }
 
     private func sizeForMeasurement(_ size: CGSize) -> CGSize {
         return CGSize(
             width: size.width * (widthFactor ?? 1),
             height: size.height * (heightFactor ?? 1))
+    }
+}
+
+private extension Optional where Wrapped == CGFloat {
+    func defaultToOneIfLarger() -> CGFloat? {
+        guard let value = self else {
+            return nil
+        }
+        return value < 1 ? value : 1
     }
 }
 
