@@ -85,11 +85,14 @@ class BayaEqualSegmentsTests: XCTestCase {
         l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l1.m(1, 2, 3, 4)
+        l2.m(5, 6, 7, 8)
+        l3.m(9, 10, 11, 12)
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
                 gutter: spacing)
-        
+
         layout.startLayout(with: layoutRect)
         let maxHeight = max(
             l1.sideLength + l1.verticalMargins,
@@ -129,6 +132,44 @@ class BayaEqualSegmentsTests: XCTestCase {
                 height: maxHeight - l3.verticalMargins))
     }
 
+    func testHorizontalBigEnforcedFrame() {
+        var layout = [l1, l2, l3]
+            .layoutAsEqualSegments(
+                orientation: .horizontal,
+                gutter: spacing)
+
+        layout.layoutWith(frame: layoutRect)
+        let availableSideLength = (layoutRect.width - spacing * 2) / 3 // Rect dictates the size
+        
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX + l1.layoutMargins.left,
+                y: layoutRect.minY + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: l1.sideLength))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + availableSideLength
+                    + spacing
+                    + l2.layoutMargins.left,
+                y: layoutRect.minY + l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: l2.sideLength))
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX
+                    + availableSideLength * 2
+                    + spacing * 2
+                    + l3.layoutMargins.left,
+                y: layoutRect.minY + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: l3.sideLength))
+    }
+    
     func testHorizontalBigEnforcedFrameMatchingParent() {
         l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
@@ -220,8 +261,7 @@ class BayaEqualSegmentsTests: XCTestCase {
             .layoutAsEqualSegments(
                 orientation: .horizontal,
                 gutter: spacing)
-        
-        layout.startLayout(with: layoutRect)
+
         let maxHeight = max(
             l1.sideLength + l1.verticalMargins,
             l2.sideLength + l2.verticalMargins,
@@ -345,6 +385,44 @@ class BayaEqualSegmentsTests: XCTestCase {
                 width: maxWidth - l3.horizontalMargins,
                 height: maxHeight - l3.verticalMargins))
     }
+    
+    func testVerticalBigEnforcedFrame() {
+        var layout = [l1, l2, l3]
+            .layoutAsEqualSegments(
+                orientation: .vertical,
+                gutter: spacing)
+        
+        layout.layoutWith(frame: layoutRect)
+        let availableSideLength = (layoutRect.width - spacing * 2) / 3 // Rect dictates the size
+        
+        XCTAssertEqual(
+            l1.frame,
+            CGRect(
+                x: layoutRect.minX + l1.layoutMargins.left,
+                y: layoutRect.minY + l1.layoutMargins.top,
+                width: l1.sideLength,
+                height: l1.sideLength))
+        XCTAssertEqual(
+            l2.frame,
+            CGRect(
+                x: layoutRect.minX + l2.layoutMargins.left,
+                y: layoutRect.minY
+                    + availableSideLength
+                    + spacing
+                    + l2.layoutMargins.top,
+                width: l2.sideLength,
+                height: l2.sideLength))
+        XCTAssertEqual(
+            l3.frame,
+            CGRect(
+                x: layoutRect.minX + l3.layoutMargins.left,
+                y: layoutRect.minY
+                    + availableSideLength * 2
+                    + spacing * 2
+                    + l3.layoutMargins.top,
+                width: l3.sideLength,
+                height: l3.sideLength))
+    }
 
     func testVerticalBigEnforcedFrameMatchingParent() {
         l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
@@ -438,9 +516,7 @@ class BayaEqualSegmentsTests: XCTestCase {
             .layoutAsEqualSegments(
                 orientation: .vertical,
                 gutter: spacing)
-        
-        layout.startLayout(with: layoutRect)
-        
+
         let maxWidth = max(
             l1.sideLength + l1.horizontalMargins,
             l2.sideLength + l2.horizontalMargins,
