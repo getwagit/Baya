@@ -42,7 +42,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         switch orientation {
         case .horizontal:
             let maxSegmentWidth = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
-            let segmentWidth = min(maxSegmentWidth > 0 ? maxSegmentWidth : 0, measuredMaxDimension!.width)
+            let segmentWidth = maxSegmentWidth > 0 ? maxSegmentWidth : 0
             let segmentSize = CGSize(width: segmentWidth, height: frame.height)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
@@ -64,7 +64,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
             }
         case .vertical:
             let maxSegmentHeight = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
-            let segmentHeight = min(maxSegmentHeight > 0 ? maxSegmentHeight : 0, measuredMaxDimension!.height)
+            let segmentHeight = maxSegmentHeight > 0 ? maxSegmentHeight : 0
             let segmentSize = CGSize(width: frame.width, height: segmentHeight)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
