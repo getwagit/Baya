@@ -29,8 +29,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             measure,
             CGSize(
-                width: layoutRect.size.width,
-                height: layoutRect.size.width),
+                width: l.width,
+                height: l.height),
             "size does not match")
     }
 
@@ -41,12 +41,12 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             measure,
             CGSize(
-                width: layoutRect.size.height,
-                height: layoutRect.size.height),
+                width: l.width,
+                height: l.height),
             "size does not match")
     }
 
-    func testMeasureSquareFromSmallerSide() {
+    func testMeasureSquareFromBiggerSide() {
         var layout = l.layoutAsSquare()
         let measure = layout.sizeThatFits(layoutRect.size)
 
@@ -66,8 +66,8 @@ class BayaSquareTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: 300 - l.horizontalMargins,
-                height: 300 - l.horizontalMargins),
+                width: layoutRect.width - l.horizontalMargins,
+                height: layoutRect.width - l.horizontalMargins),
             "frame does not match")
     }
 
@@ -79,8 +79,8 @@ class BayaSquareTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: 400 - l.verticalMargins,
-                height: 400 - l.verticalMargins),
+                width: layoutRect.height - l.verticalMargins,
+                height: layoutRect.height - l.verticalMargins),
             "frame does not match")
     }
 
@@ -92,8 +92,8 @@ class BayaSquareTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: 300 - l.horizontalMargins,
-                height: 300 - l.horizontalMargins),
+                width: layoutRect.width - l.horizontalMargins,
+                height: layoutRect.width - l.horizontalMargins),
             "frame does not match")
     }
 
@@ -107,8 +107,8 @@ class BayaSquareTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: 300 - l.horizontalMargins,
-                height: 300 - l.horizontalMargins),
+                width: layoutRect.width - l.horizontalMargins,
+                height: layoutRect.width - l.horizontalMargins),
             "frame does not match when using matchParent")
         // Wrap content should not make any difference
         let l2 = TestLayoutable(sideLength: 50, layoutModes: BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent))
