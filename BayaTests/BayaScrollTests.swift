@@ -35,8 +35,8 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             measure,
             CGSize(
-                width: content.sideLength + content.horizontalMargins + container.horizontalMargins,
-                height: content.sideLength + content.verticalMargins + container.verticalMargins),
+                width: content.width + content.horizontalMargins + container.horizontalMargins,
+                height: content.height + content.verticalMargins + container.verticalMargins),
             "size does not match")
     }
 
@@ -64,8 +64,8 @@ class BayaScrollTests: XCTestCase {
             CGRect(
                 x: container.bounds.minX + content.layoutMargins.left,
                 y: container.bounds.minY + content.layoutMargins.top,
-                width: content.sideLength,
-                height: content.sideLength))
+                width: content.width,
+                height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
@@ -76,8 +76,8 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             container.contentSize,
             CGSize(
-                width: content.sideLength + content.horizontalMargins,
-                height: content.sideLength + content.verticalMargins))
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
     }
     
     func testHorizontalSmallContent() {
@@ -91,8 +91,8 @@ class BayaScrollTests: XCTestCase {
             CGRect(
                 x: container.bounds.minX + content.layoutMargins.left,
                 y: container.bounds.minY + content.layoutMargins.top,
-                width: content.sideLength,
-                height: content.sideLength))
+                width: content.width,
+                height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
@@ -145,8 +145,8 @@ class BayaScrollTests: XCTestCase {
             CGRect(
                 x: container.bounds.minX + content.layoutMargins.left,
                 y: container.bounds.minY + content.layoutMargins.top,
-                width: content.sideLength,
-                height: content.sideLength))
+                width: content.width,
+                height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
@@ -157,8 +157,8 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             container.contentSize,
             CGSize(
-                width: content.sideLength + content.horizontalMargins,
-                height: content.sideLength + content.verticalMargins))
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
     }
     
     func testVerticalSmallContent() {
@@ -172,20 +172,20 @@ class BayaScrollTests: XCTestCase {
             CGRect(
                 x: container.bounds.minX + content.layoutMargins.left,
                 y: container.bounds.minY + content.layoutMargins.top,
-                width: content.sideLength,
-                height: content.sideLength))
+                width: content.width,
+                height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
                 x: layoutRect.minX + container.layoutMargins.left,
                 y: layoutRect.minY + container.layoutMargins.top,
-                width: content.sideLength + content.horizontalMargins,
-                height: content.sideLength + content.verticalMargins))
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
         XCTAssertEqual(
             container.contentSize,
             CGSize(
-                width: content.sideLength + content.horizontalMargins,
-                height: content.sideLength + content.verticalMargins))
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
     }
     
     func testVerticalSmallContentMatchParent() {

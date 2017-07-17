@@ -28,8 +28,8 @@ class BayaOriginResetTests: XCTestCase {
         XCTAssertEqual(
             size,
             CGSize(
-                width: l.sideLength,
-                height: l.sideLength),
+                width: l.width,
+                height: l.height),
             "size does not match")
     }
 
@@ -43,8 +43,8 @@ class BayaOriginResetTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: l.sideLength,
-                height: l.sideLength))
+                width: l.width,
+                height: l.height))
     }
     
     func testMemberMirroring() {
