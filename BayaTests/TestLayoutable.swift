@@ -18,7 +18,7 @@ class TestLayoutable: BayaLayoutable {
         height: CGFloat = 50,
         layoutModes: BayaLayoutOptions.Modes? = nil) {
         self.width = width
-        self.height = width
+        self.height = height
         self.layoutModes = layoutModes ?? BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent)
     }
     
