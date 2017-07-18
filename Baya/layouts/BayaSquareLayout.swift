@@ -43,8 +43,7 @@ public struct BayaSquareLayout: BayaLayout {
             return squareSizeBasedOnReferenceSide(size)
         } else {
             let fit = element.sizeThatFits(size.toSquare())
-            let bigSide = max(fit.height, fit.width)
-            return CGSize(width: bigSide, height: bigSide)
+            return fit.toBigSquare()
         }
     }
 
@@ -78,6 +77,11 @@ private extension CGSize {
     func toSquare() -> CGSize {
         let sideLength = min(width, height)
         return CGSize(width: sideLength, height: sideLength)
+    }
+    
+    func toBigSquare() -> CGSize {
+        let bigSide = max(height, width)
+        return CGSize(width: bigSide, height: bigSide)
     }
 }
 
