@@ -105,7 +105,11 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     }
 
     mutating private func measureChildrenAndFindMaxDimensions(_ size: CGSize) -> CGSize {
-        measures = measure(&elements, size: size)
+        let elementCount = CGFloat(elements.count)
+        let segmentSize = orientation == .horizontal ?
+            CGSize(width: (size.width - (elementCount - 1) * gutter) / elementCount, height: size.height) :
+            CGSize(width: size.width, height: (size.height - (elementCount - 1) * gutter) / elementCount)
+        measures = measure(&elements, size: segmentSize)
         var size = CGSize()
         for i in 0..<elements.count {
             let fit = measures[i]

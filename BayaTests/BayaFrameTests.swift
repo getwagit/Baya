@@ -63,8 +63,8 @@ class BayaFrameTests: XCTestCase {
                     + l2.layoutMargins.left,
                 y: layoutRect.origin.y
                     + l2.layoutMargins.top,
-                width: l2.sideLength,
-                height: l2.sideLength))
+                width: l2.width,
+                height: l2.height))
         XCTAssertEqual(
             l1.frame,
             CGRect(
@@ -72,8 +72,8 @@ class BayaFrameTests: XCTestCase {
                     + l1.layoutMargins.left,
                 y: layoutRect.origin.y
                     + l1.layoutMargins.top,
-                width: l1.sideLength,
-                height: l1.sideLength))
+                width: l1.width,
+                height: l1.height))
         XCTAssertEqual(
             l3.frame,
             CGRect(
@@ -81,8 +81,8 @@ class BayaFrameTests: XCTestCase {
                     + l3.layoutMargins.left,
                 y: layoutRect.origin.y
                     + l3.layoutMargins.top,
-                width: l3.sideLength,
-                height: l3.sideLength))
+                width: l3.width,
+                height: l3.height))
     }
 
     func testSizesMatchingParent() {
@@ -99,13 +99,13 @@ class BayaFrameTests: XCTestCase {
         layout.startLayout(with: layoutRect)
         
         let maxWidth = max(
-            l1.sideLength + l1.horizontalMargins,
-            l2.sideLength + l2.horizontalMargins,
-            l3.sideLength + l3.horizontalMargins)
+            l1.width + l1.horizontalMargins,
+            l2.width + l2.horizontalMargins,
+            l3.width + l3.horizontalMargins)
         let maxHeight = max(
-            l1.sideLength + l1.verticalMargins,
-            l2.sideLength + l2.verticalMargins,
-            l3.sideLength + l3.verticalMargins)
+            l1.height + l1.verticalMargins,
+            l2.height + l2.verticalMargins,
+            l3.height + l3.verticalMargins)
 
         XCTAssertEqual(
             l1.frame,
@@ -149,13 +149,13 @@ class BayaFrameTests: XCTestCase {
             height: 200))
 
         let maxWidth = max(
-            l1.sideLength + l1.horizontalMargins,
-            l2.sideLength + l2.horizontalMargins,
-            l3.sideLength + l3.horizontalMargins)
+            l1.width + l1.horizontalMargins,
+            l2.width + l2.horizontalMargins,
+            l3.width + l3.horizontalMargins)
         let maxHeight = max(
-            l1.sideLength + l1.verticalMargins,
-            l2.sideLength + l2.verticalMargins,
-            l3.sideLength + l3.verticalMargins)
+            l1.height + l1.verticalMargins,
+            l2.height + l2.verticalMargins,
+            l3.height + l3.verticalMargins)
 
         XCTAssertEqual(size, CGSize(
             width: maxWidth,
