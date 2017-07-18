@@ -7,7 +7,7 @@ import Foundation
 import UIKit
 
 /**
-    Layout that uses only the reference side for measurement, or the smaller side if not specified.
+    Layout that uses only the reference side for measurement, or the bigger side if not specified.
     Mirrors layoutMargins and frame of its child.
     When setting the frame of its element, it uses the smaller side to ensure the square fits in the available space.
 */
@@ -33,15 +33,26 @@ public struct BayaSquareLayout: BayaLayout {
     }
 
     mutating public func layoutWith(frame: CGRect) {
-        element.layoutWith(frame: CGRect(
-            origin: frame.origin,
-            size: squareSizeBasedOnReferenceSide(frame.size)))
+        element.layoutWith(
+            // A safety measure to ensure that this layout squares its element,
+            // even if the given frame is a regular rectangle.
+            frame: CGRect(
+                origin: frame.origin,
+                size: squareSizeBasedOnReferenceSide(frame.size)))
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        let adjustedSize = squareSizeBasedOnReferenceSide(size)
-        let _ = element.sizeThatFits(adjustedSize)
-        return adjustedSize
+        // If a reference side is specified
+        // the square wants to match the available space on this side
+        // and a square based on this referenceSide is returned.
+        // When no reference side is specified the element is measured
+        // and a square based on the bigger side is returned.
+        if referenceSide != nil {
+            return squareSizeBasedOnReferenceSide(size)
+        } else {
+            let fit = element.sizeThatFits(size.toSquare())
+            return fit.toBigSquare()
+        }
     }
 
     private func squareSizeBasedOnReferenceSide(_ size: CGSize) -> CGSize {
@@ -74,6 +85,11 @@ private extension CGSize {
     func toSquare() -> CGSize {
         let sideLength = min(width, height)
         return CGSize(width: sideLength, height: sideLength)
+    }
+    
+    func toBigSquare() -> CGSize {
+        let bigSide = max(height, width)
+        return CGSize(width: bigSide, height: bigSide)
     }
 }
 

@@ -32,8 +32,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             fit,
             CGSize(
-                width: l.sideLength / widthFactor,
-                height: l.sideLength))
+                width: l.width / widthFactor,
+                height: l.height))
     }
     
     func testMeasureHeight() {
@@ -45,8 +45,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             fit,
             CGSize(
-                width: l.sideLength,
-                height: l.sideLength / heightFactor))
+                width: l.width,
+                height: l.height / heightFactor))
     }
     
     func testMeasureBoth() {
@@ -57,8 +57,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             fit,
             CGSize(
-                width: l.sideLength / widthFactor,
-                height: l.sideLength / heightFactor))
+                width: l.width / widthFactor,
+                height: l.height / heightFactor))
     }
     
     func testWidth() {
@@ -72,7 +72,7 @@ class BayaProportionalSizeTests: XCTestCase {
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
                 width: (layoutRect.width - l.horizontalMargins) * widthFactor,
-                height: l.sideLength))
+                height: l.height))
     }
     
     func testHeight() {
@@ -85,7 +85,7 @@ class BayaProportionalSizeTests: XCTestCase {
             CGRect(
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
-                width: l.sideLength,
+                width: l.width,
                 height: (layoutRect.height - l.verticalMargins) * heightFactor))
     }
     
