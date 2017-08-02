@@ -74,18 +74,13 @@ public struct FlexibleContentLayout: BayaLayout {
 
         switch orientation {
         case .horizontal:
-            let maxHeight = max(
-                measures.before?.height.add(elements.before!.verticalMargins) ?? 0,
-                measures.after?.height.add(elements.after!.verticalMargins) ?? 0,
-                measures.content!.height.add(elements.content.verticalMargins))
-
             if elements.before != nil {
                 elements.before!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.before!.layoutMargins.left,
                     y: frame.minY + elements.before!.layoutMargins.top,
                     width: measures.before!.width,
                     height: elements.before!.layoutModes.height == .wrapContent ?
-                        measures.before!.height : maxHeight - elements.before!.verticalMargins))
+                        measures.before!.height : frame.height - elements.before!.verticalMargins))
             }
 
             if elements.after != nil {
@@ -94,7 +89,7 @@ public struct FlexibleContentLayout: BayaLayout {
                     y: frame.minY + elements.after!.layoutMargins.top,
                     width: measures.after!.width,
                     height: elements.after!.layoutModes.width == .wrapContent ?
-                        measures.after!.height : maxHeight - elements.after!.verticalMargins))
+                        measures.after!.height : frame.height - elements.after!.verticalMargins))
             }
 
             elements.content.layoutWith(frame: CGRect(
@@ -105,19 +100,14 @@ public struct FlexibleContentLayout: BayaLayout {
                 width: elements.content.layoutModes.width == .wrapContent ?
                     measures.content!.width : frame.width - relevantBeforeWidth - relevantAfterWidth,
                 height: elements.content.layoutModes.height == .wrapContent ?
-                    measures.content!.height : maxHeight - elements.content.verticalMargins))
+                    measures.content!.height : frame.height - elements.content.verticalMargins))
         case .vertical:
-            let maxWidth = max(
-                measures.before?.width.add(elements.before!.horizontalMargins) ?? 0,
-                measures.after?.width.add(elements.after!.horizontalMargins) ?? 0,
-                measures.content!.width.add(elements.content.horizontalMargins))
-
             if elements.before != nil {
                 elements.before!.layoutWith(frame: CGRect(
                     x: frame.minX + elements.before!.layoutMargins.left,
                     y: frame.minY + elements.before!.layoutMargins.top,
                     width:  elements.before!.layoutModes.width == .wrapContent ?
-                        measures.before!.width : maxWidth - elements.before!.horizontalMargins,
+                        measures.before!.width : frame.width - elements.before!.horizontalMargins,
                     height: measures.before!.height))
             }
 
@@ -126,7 +116,7 @@ public struct FlexibleContentLayout: BayaLayout {
                     x: frame.minX + elements.after!.layoutMargins.left,
                     y: frame.maxY - measures.after!.height - elements.after!.layoutMargins.bottom,
                     width: elements.after!.layoutModes.width == .wrapContent ?
-                        measures.after!.width : maxWidth - elements.after!.horizontalMargins,
+                        measures.after!.width : frame.width - elements.after!.horizontalMargins,
                     height: measures.after!.height))
             }
 
@@ -136,7 +126,7 @@ public struct FlexibleContentLayout: BayaLayout {
                     + relevantBeforeHeight
                     + elements.content.layoutMargins.top,
                 width: elements.content.layoutModes.width == .wrapContent ?
-                    measures.content!.width : maxWidth - elements.content.horizontalMargins,
+                    measures.content!.width : frame.width - elements.content.horizontalMargins,
                 height: elements.content.layoutModes.height == .wrapContent ?
                     measures.content!.height : frame.height - relevantBeforeHeight - relevantAfterHeight))
         }
