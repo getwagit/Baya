@@ -234,11 +234,6 @@ class BayaFlexibleContentTests: XCTestCase {
             spacing: spacing)
         layout.layoutWith(frame: layoutRect)
         
-        let maxHeight = max(
-            l1.height + l1.verticalMargins,
-            l2.height + l2.verticalMargins,
-            l3.height + l3.verticalMargins)
-        
         XCTAssertEqual(
             l1.frame,
             CGRect(
@@ -247,7 +242,7 @@ class BayaFlexibleContentTests: XCTestCase {
                 y: layoutRect.minY
                     + l1.layoutMargins.top,
                 width: l1.width,
-                height: maxHeight
+                height: layoutRect.height
                     - l1.verticalMargins))
         XCTAssertEqual(
             l2.frame,
@@ -267,7 +262,7 @@ class BayaFlexibleContentTests: XCTestCase {
                     - spacing
                     - l3.width
                     - l3.horizontalMargins,
-                height: maxHeight
+                height: layoutRect.height
                     - l2.verticalMargins))
         XCTAssertEqual(
             l3.frame,
@@ -278,7 +273,7 @@ class BayaFlexibleContentTests: XCTestCase {
                 y: layoutRect.minY
                     + l3.layoutMargins.top,
                 width: l3.width,
-                height: maxHeight
+                height: layoutRect.height
                     - l3.verticalMargins))
     }
 
@@ -435,11 +430,6 @@ class BayaFlexibleContentTests: XCTestCase {
             spacing: spacing)
         layout.layoutWith(frame: layoutRect)
         
-        let maxWidth = max(
-            l1.width + l1.horizontalMargins,
-            l2.width + l2.horizontalMargins,
-            l3.width + l3.horizontalMargins)
-        
         XCTAssertEqual(
             l1.frame,
             CGRect(
@@ -447,7 +437,7 @@ class BayaFlexibleContentTests: XCTestCase {
                     + l1.layoutMargins.left,
                 y: layoutRect.minY
                     + l1.layoutMargins.top,
-                width: maxWidth
+                width: layoutRect.width
                     - l1.horizontalMargins,
                 height: l1.height))
         XCTAssertEqual(
@@ -460,7 +450,7 @@ class BayaFlexibleContentTests: XCTestCase {
                     + l1.verticalMargins
                     + spacing
                     + l2.layoutMargins.top,
-                width: maxWidth
+                width: layoutRect.width
                     - l2.horizontalMargins,
                 height: layoutRect.height
                     - l1.height
@@ -477,7 +467,7 @@ class BayaFlexibleContentTests: XCTestCase {
                 y: layoutRect.maxY
                     - l3.height
                     - l3.layoutMargins.bottom,
-                width: maxWidth
+                width: layoutRect.width
                     - l3.horizontalMargins,
                 height: l3.height))
     }
