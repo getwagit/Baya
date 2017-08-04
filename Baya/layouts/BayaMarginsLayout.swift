@@ -6,7 +6,8 @@
 import Foundation
 
 /**
-    BayaLayoutables have the member layoutMargins.
+    This Layout should only be used on Layoutables whose margins cannot be controlled otherwise, 
+    for example the root view of an UIViewController.
     Mirrors the child's layoutModes.
  */
 internal struct BayaMarginsLayout: BayaLayout {
@@ -42,11 +43,5 @@ internal extension BayaLayoutable {
         return BayaMarginsLayout(
             element: self,
             layoutMargins: layoutMargins)
-    }
-}
-
-public extension UIViewController {
-    public func getViewAsLayoutable(with margins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {
-        return view.layoutWithMargins(layoutMargins: margins)
     }
 }

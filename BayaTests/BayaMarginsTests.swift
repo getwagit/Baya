@@ -24,7 +24,24 @@ class BayaMarginsTests: XCTestCase {
     }
     
     func testMeasure() {
+        let margins = UIEdgeInsets(top: 6, left: 20, bottom: 18, right: 40)
+        var layout = l.layoutWithMargins(layoutMargins: margins)
+        let fit = layout.sizeThatFits(layoutRect.size)
         
+        XCTAssertEqual(
+            fit,
+            CGSize(
+                width: l.width,
+                height: l.height))
+        
+        let smallLayoutRect = CGRect(x: 3, y: 6, width: 30, height: 50)
+        let fitSmallRect = layout.sizeThatFits(smallLayoutRect.size)
+        
+        XCTAssertEqual(
+            fitSmallRect,
+            CGSize(
+                width: l.width,
+                height: l.height))
     }
     
     func testLayout() {
