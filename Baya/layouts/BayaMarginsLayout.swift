@@ -43,3 +43,14 @@ internal extension BayaLayoutable {
             layoutMargins: layoutMargins)
     }
 }
+
+extension UIViewController {
+    /**
+     The layoutMargins of UIViewController's root view are managed by the system, and cannot be changed.
+     To prevent unwanted layout behavior, use this function, which enables full control over
+     the root view's margins by wrapping the it in a BayaMarginsLayout.
+     */
+    public func getRootViewAsLayoutable(with margins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {
+        return view.layoutWithMargins(layoutMargins: margins)
+    }
+}
