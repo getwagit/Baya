@@ -8,7 +8,7 @@ import Foundation
 /**
     This Layout should only be used on Layoutables whose margins cannot be controlled otherwise, 
     for example the root view of an UIViewController.
-    Mirrors the child's layoutModes.
+    Mirrors the child's layoutModes and frame.
  */
 internal struct BayaMarginsLayout: BayaLayout {
     public var layoutModes: BayaLayoutOptions.Modes {
