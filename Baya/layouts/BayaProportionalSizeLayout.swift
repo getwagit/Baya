@@ -9,7 +9,7 @@ import UIKit
 /**
     A Layout that uses a portion of the given size for measurement and layout.
     Mirrors frame and layoutMargin from its child.
-    Overrides layoutModes so that proportional axis are matchParent.
+    Overrides layoutModes so that proportional axis are wrapContent.
  */
 public struct BayaProportionalSizeLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets {
@@ -32,8 +32,8 @@ public struct BayaProportionalSizeLayout: BayaLayout {
         self.widthFactor = widthFactor.defaultToOneIfLarger()
         self.heightFactor = heightFactor.defaultToOneIfLarger()
         layoutModes = BayaLayoutOptions.Modes(
-            width: widthFactor != nil ? .matchParent : element.layoutModes.width,
-            height: heightFactor != nil ? .matchParent : element.layoutModes.height)
+            width: widthFactor != nil ? .wrapContent : element.layoutModes.width,
+            height: heightFactor != nil ? .wrapContent : element.layoutModes.height)
     }
 
     public mutating func layoutWith(frame: CGRect) {
