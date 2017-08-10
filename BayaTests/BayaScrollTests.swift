@@ -80,35 +80,6 @@ class BayaScrollTests: XCTestCase {
                 height: content.height + content.verticalMargins))
     }
     
-    func testHorizontalBigContentEnforcedFrame() {
-        content = TestLayoutable(sideLength: 1200)
-        content.m(1, 2, 3, 4)
-        var layout = content.layoutScrollContent(
-            container: container,
-            orientation: .horizontal)
-        layout.layoutWith(frame: layoutRect)
-
-        XCTAssertEqual(
-            content.frame,
-            CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
-                width: content.width,
-                height: content.height))
-        XCTAssertEqual(
-            container.frame,
-            CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
-                width: layoutRect.width - container.horizontalMargins,
-                height: layoutRect.height - container.verticalMargins))
-        XCTAssertEqual(
-            container.contentSize,
-            CGSize(
-                width: content.width + content.horizontalMargins,
-                height: content.height + content.verticalMargins))
-    }
-    
     func testHorizontalSmallContent() {
         content = TestLayoutable(sideLength: 80)
         content.m(1, 2, 3, 4)
@@ -134,35 +105,6 @@ class BayaScrollTests: XCTestCase {
             CGSize(
                 width: content.widthWithMargins,
                 height: content.heightWithMargins))
-    }
-
-    func testHorizontalSmallContentEnforcedFrame() {
-        content = TestLayoutable(sideLength: 100)
-        content.m(1, 2, 3, 4)
-        var layout = content.layoutScrollContent(
-            container: container,
-            orientation: .horizontal)
-        layout.layoutWith(frame: layoutRect)
-        
-        XCTAssertEqual(
-            content.frame,
-            CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
-                width: content.width,
-                height: content.height))
-        XCTAssertEqual(
-            container.frame,
-            CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
-                width: layoutRect.width - container.horizontalMargins,
-                height: layoutRect.height - container.verticalMargins))
-        XCTAssertEqual(
-            container.contentSize,
-            CGSize(
-                width: content.width + content.horizontalMargins,
-                height: content.height + content.verticalMargins))
     }
     
     func testHorizontalSmallContentMatchParent() {
@@ -218,35 +160,6 @@ class BayaScrollTests: XCTestCase {
                 width: content.width + content.horizontalMargins,
                 height: content.height + content.verticalMargins))
     }
-
-    func testVerticalBigContentEnforcedFrame() {
-        content = TestLayoutable(sideLength: 1200)
-        content.m(1, 2, 3, 4)
-        var layout = content.layoutScrollContent(
-            container: container,
-            orientation: .vertical)
-        layout.layoutWith(frame: layoutRect)
-        
-        XCTAssertEqual(
-            content.frame,
-            CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
-                width: content.width,
-                height: content.height))
-        XCTAssertEqual(
-            container.frame,
-            CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
-                width: layoutRect.width - container.horizontalMargins,
-                height: layoutRect.height - container.verticalMargins))
-        XCTAssertEqual(
-            container.contentSize,
-            CGSize(
-                width: content.width + content.horizontalMargins,
-                height: content.height + content.verticalMargins))
-    }
     
     func testVerticalSmallContent() {
         content = TestLayoutable(sideLength: 100)
@@ -268,35 +181,6 @@ class BayaScrollTests: XCTestCase {
                 y: layoutRect.minY + container.layoutMargins.top,
                 width: content.width + content.horizontalMargins,
                 height: content.height + content.verticalMargins))
-        XCTAssertEqual(
-            container.contentSize,
-            CGSize(
-                width: content.width + content.horizontalMargins,
-                height: content.height + content.verticalMargins))
-    }
-    
-    func testVerticalSmallContentEnforcedFrame() {
-        content = TestLayoutable(sideLength: 100)
-        content.m(1, 2, 3, 4)
-        var layout = content.layoutScrollContent(
-            container: container,
-            orientation: .vertical)
-        layout.layoutWith(frame: layoutRect)
-        
-        XCTAssertEqual(
-            content.frame,
-            CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
-                width: content.width,
-                height: content.height))
-        XCTAssertEqual(
-            container.frame,
-            CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
-                width: layoutRect.width - container.horizontalMargins,
-                height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
             container.contentSize,
             CGSize(
@@ -331,5 +215,133 @@ class BayaScrollTests: XCTestCase {
             CGSize(
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
+    }
+    
+    func testContainerMatchesFrameVerticalBigContent() {
+        content = TestLayoutable(sideLength: 1200)
+        content.m(1, 2, 3, 4)
+        var layout = content.layoutScrollContent(
+            container: container,
+            orientation: .vertical)
+        // Using layoutWith to emulate the behavior of layoutMatchingParent()
+        // In this case the scrollContainer should match its parent,
+        // no matter if the content is big or small.
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            content.frame,
+            CGRect(
+                x: container.bounds.minX + content.layoutMargins.left,
+                y: container.bounds.minY + content.layoutMargins.top,
+                width: content.width,
+                height: content.height))
+        XCTAssertEqual(
+            container.frame,
+            CGRect(
+                x: layoutRect.minX + container.layoutMargins.left,
+                y: layoutRect.minY + container.layoutMargins.top,
+                width: layoutRect.width - container.horizontalMargins,
+                height: layoutRect.height - container.verticalMargins))
+        XCTAssertEqual(
+            container.contentSize,
+            CGSize(
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
+    }
+    
+    func testContainerMatchesFrameVerticalSmallContent() {
+        content = TestLayoutable(sideLength: 100)
+        content.m(1, 2, 3, 4)
+        var layout = content.layoutScrollContent(
+            container: container,
+            orientation: .vertical)
+        // Using layoutWith to emulate the behavior of layoutMatchingParent()
+        // In this case the scrollContainer should match its parent, 
+        // no matter if the content is big or small.
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            content.frame,
+            CGRect(
+                x: container.bounds.minX + content.layoutMargins.left,
+                y: container.bounds.minY + content.layoutMargins.top,
+                width: content.width,
+                height: content.height))
+        XCTAssertEqual(
+            container.frame,
+            CGRect(
+                x: layoutRect.minX + container.layoutMargins.left,
+                y: layoutRect.minY + container.layoutMargins.top,
+                width: layoutRect.width - container.horizontalMargins,
+                height: layoutRect.height - container.verticalMargins))
+        XCTAssertEqual(
+            container.contentSize,
+            CGSize(
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
+    }
+    
+    func testContainerMatchesFrameHorizontalSmallContent() {
+        content = TestLayoutable(sideLength: 100)
+        content.m(1, 2, 3, 4)
+        var layout = content.layoutScrollContent(
+            container: container,
+            orientation: .horizontal)
+        // Using layoutWith to emulate the behavior of layoutMatchingParent()
+        // In this case the scrollContainer should match its parent,
+        // no matter if the content is big or small.
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            content.frame,
+            CGRect(
+                x: container.bounds.minX + content.layoutMargins.left,
+                y: container.bounds.minY + content.layoutMargins.top,
+                width: content.width,
+                height: content.height))
+        XCTAssertEqual(
+            container.frame,
+            CGRect(
+                x: layoutRect.minX + container.layoutMargins.left,
+                y: layoutRect.minY + container.layoutMargins.top,
+                width: layoutRect.width - container.horizontalMargins,
+                height: layoutRect.height - container.verticalMargins))
+        XCTAssertEqual(
+            container.contentSize,
+            CGSize(
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
+    }
+    
+    func testContainerMatchesFrameHorizontalBigContent() {
+        content = TestLayoutable(sideLength: 1200)
+        content.m(1, 2, 3, 4)
+        var layout = content.layoutScrollContent(
+            container: container,
+            orientation: .horizontal)
+        // Using layoutWith to emulate the behavior of layoutMatchingParent()
+        // In this case the scrollContainer should match its parent,
+        // no matter if the content is big or small.
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            content.frame,
+            CGRect(
+                x: container.bounds.minX + content.layoutMargins.left,
+                y: container.bounds.minY + content.layoutMargins.top,
+                width: content.width,
+                height: content.height))
+        XCTAssertEqual(
+            container.frame,
+            CGRect(
+                x: layoutRect.minX + container.layoutMargins.left,
+                y: layoutRect.minY + container.layoutMargins.top,
+                width: layoutRect.width - container.horizontalMargins,
+                height: layoutRect.height - container.verticalMargins))
+        XCTAssertEqual(
+            container.contentSize,
+            CGSize(
+                width: content.width + content.horizontalMargins,
+                height: content.height + content.verticalMargins))
     }
 }
