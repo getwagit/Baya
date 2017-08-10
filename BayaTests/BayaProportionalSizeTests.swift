@@ -27,12 +27,11 @@ class BayaProportionalSizeTests: XCTestCase {
         let widthFactor: CGFloat = 1/2
         var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: nil)
         let fit = layout.sizeThatFits(layoutRect.size)
-        // For the element to fit into a proportional layout with a factor of 0.5
-        // the frame size has to have twice the side length.
+
         XCTAssertEqual(
             fit,
             CGSize(
-                width: l.width / widthFactor,
+                width: layoutRect.width * widthFactor,
                 height: l.height))
     }
     
@@ -40,13 +39,12 @@ class BayaProportionalSizeTests: XCTestCase {
         let heightFactor: CGFloat = 1/4
         var layout = l.layoutWithPortion(ofWidth: nil, ofHeight: heightFactor)
         let fit = layout.sizeThatFits(layoutRect.size)
-        // For the element to fit into a proportional layout with a factor of 0.25
-        // the frame size has to have four times the side length.
+
         XCTAssertEqual(
             fit,
             CGSize(
                 width: l.width,
-                height: l.height / heightFactor))
+                height: layoutRect.height * heightFactor))
     }
     
     func testMeasureBoth() {
@@ -57,8 +55,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             fit,
             CGSize(
-                width: l.width / widthFactor,
-                height: l.height / heightFactor))
+                width: layoutRect.width * widthFactor,
+                height: layoutRect.height * heightFactor))
     }
     
     func testWidth() {
@@ -75,6 +73,26 @@ class BayaProportionalSizeTests: XCTestCase {
                 height: l.height))
     }
     
+    func testWidthMatchingParent() {
+        l = TestLayoutable(
+            width: 80,
+            height: 90,
+            layoutModes: BayaLayoutOptions.Modes(
+                width: .matchParent,
+                height: .matchParent))
+        let widthFactor: CGFloat = 13/15
+        var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: nil)
+        layout.startLayout(with: layoutRect)
+        
+        XCTAssertEqual(
+            l.frame,
+            CGRect(
+                x: layoutRect.minX + l.layoutMargins.left,
+                y: layoutRect.minY + l.layoutMargins.top,
+                width: (layoutRect.width - l.horizontalMargins) * widthFactor,
+                height: layoutRect.height - l.verticalMargins))
+    }
+    
     func testHeight() {
         let heightFactor: CGFloat = 3/5
         var layout = l.layoutWithPortion(ofWidth: nil, ofHeight: heightFactor)
@@ -86,6 +104,26 @@ class BayaProportionalSizeTests: XCTestCase {
                 x: layoutRect.minX + l.layoutMargins.left,
                 y: layoutRect.minY + l.layoutMargins.top,
                 width: l.width,
+                height: (layoutRect.height - l.verticalMargins) * heightFactor))
+    }
+    
+    func testHeightMatchingParent() {
+        l = TestLayoutable(
+            width: 80,
+            height: 90,
+            layoutModes: BayaLayoutOptions.Modes(
+                width: .matchParent,
+                height: .matchParent))
+        let heightFactor: CGFloat = 3/5
+        var layout = l.layoutWithPortion(ofWidth: nil, ofHeight: heightFactor)
+        layout.startLayout(with: layoutRect)
+        
+        XCTAssertEqual(
+            l.frame,
+            CGRect(
+                x: layoutRect.minX + l.layoutMargins.left,
+                y: layoutRect.minY + l.layoutMargins.top,
+                width: layoutRect.width - l.horizontalMargins,
                 height: (layoutRect.height - l.verticalMargins) * heightFactor))
     }
     
@@ -117,5 +155,61 @@ class BayaProportionalSizeTests: XCTestCase {
                 y: layoutRect.minY + l.layoutMargins.top,
                 width: (layoutRect.width - l.horizontalMargins),
                 height: (layoutRect.height - l.verticalMargins)))
+    }
+    
+    func testProportionalWidthWhenMeasureSkipped() {
+        let widthFactor: CGFloat = 1/2
+        var layout = l.layoutWithPortion(ofWidth: widthFactor)
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            l.frame.size,
+            CGSize(
+                width: layoutRect.width * widthFactor,
+                height: l.height))
+    }
+    
+    func testProportionalHeightWhenMeasureSkipped() {
+        let heightFactor: CGFloat = 1/5
+        var layout = l.layoutWithPortion(ofHeight: heightFactor)
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            l.frame.size,
+            CGSize(
+                width: l.width,
+                height: layoutRect.height * heightFactor))
+    }
+    
+    func testProportionalSizeWhenMeasureSkipped() {
+        let widthFactor: CGFloat = 1/3
+        let heightFactor: CGFloat = 11/12
+        var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: heightFactor)
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            l.frame.size,
+            CGSize(
+                width: layoutRect.width * widthFactor,
+                height: layoutRect.height * heightFactor))
+    }
+    
+    func testProportionalSizeMatchingParentWhenMeasureSkipped() {
+        l = TestLayoutable(
+            width: 100,
+            height: 133,
+            layoutModes: BayaLayoutOptions.Modes(
+                width: .matchParent,
+                height: .matchParent))
+        let widthFactor: CGFloat = 1/3
+        let heightFactor: CGFloat = 11/12
+        var layout = l.layoutWithPortion(ofWidth: widthFactor, ofHeight: heightFactor)
+        layout.layoutWith(frame: layoutRect)
+        
+        XCTAssertEqual(
+            l.frame.size,
+            CGSize(
+                width: layoutRect.width * widthFactor,
+                height: layoutRect.height * heightFactor))
     }
 }
