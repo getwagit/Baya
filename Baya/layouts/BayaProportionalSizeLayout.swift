@@ -9,7 +9,7 @@ import UIKit
 /**
     A Layout that uses a portion of the given size for measurement and layout.
     Mirrors frame and layoutMargin from its child.
-    Overrides layoutModes so that proportional axis are matchParent.
+    Overrides layoutModes so that proportional axis are wrapContent.
  */
 public struct BayaProportionalSizeLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets {
@@ -32,33 +32,42 @@ public struct BayaProportionalSizeLayout: BayaLayout {
         self.widthFactor = widthFactor.defaultToOneIfLarger()
         self.heightFactor = heightFactor.defaultToOneIfLarger()
         layoutModes = BayaLayoutOptions.Modes(
-            width: widthFactor != nil ? .matchParent : element.layoutModes.width,
-            height: heightFactor != nil ? .matchParent : element.layoutModes.height)
+            width: widthFactor != nil ? .wrapContent : element.layoutModes.width,
+            height: heightFactor != nil ? .wrapContent : element.layoutModes.height)
     }
 
     public mutating func layoutWith(frame: CGRect) {
-        let size = measure ?? element.sizeThatFits(sizeForMeasurement(frame.size))
-        let frame = CGRect(
-            origin: frame.origin,
-            size: CGSize(
-                width: widthFactor != nil ? frame.width * widthFactor! :
-                    (element.layoutModes.width == .matchParent ? frame.width : size.width),
-                height: heightFactor != nil ? frame.height * heightFactor! :
-                    (element.layoutModes.height == .matchParent ? frame.height : size.height)))
-        element.layoutWith(frame: frame)
+        // Account for the edge case that this layout wasn't measured before laying it out
+        let measure: CGSize = {
+            guard let cachedMeasure = self.measure else {
+                return calculateMeasure(frame.size)
+            }
+            return cachedMeasure
+        }()
+        
+        // Only if a side has no portion factor and the layoutMode .matchParent it should actually
+        // match the parent.
+        let size = CGSize(
+            width: widthFactor != nil || element.layoutModes.width == .wrapContent ?
+                measure.width :
+                frame.subtractMargins(ofElement: element).width,
+            height: heightFactor != nil || element.layoutModes.height == .wrapContent ?
+                measure.height :
+                frame.subtractMargins(ofElement: element).height)
+
+        element.layoutWith(frame: CGRect(origin: frame.origin, size: size))
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {
-        measure = element.sizeThatFits(sizeForMeasurement(size))
-        return CGSize(
-            width: (widthFactor != nil) ? measure!.width / widthFactor! : measure!.width,
-            height: (heightFactor != nil) ? measure!.height / heightFactor! : measure!.height)
+        measure = calculateMeasure(size)
+        return measure!
     }
-
-    private func sizeForMeasurement(_ size: CGSize) -> CGSize {
+    
+    private mutating func calculateMeasure(_ size: CGSize) -> CGSize {
+        let fit = element.sizeThatFits(size)
         return CGSize(
-            width: size.width * (widthFactor ?? 1),
-            height: size.height * (heightFactor ?? 1))
+            width: widthFactor != nil ? size.width * widthFactor! : fit.width,
+            height: heightFactor != nil ? size.height * heightFactor! : fit.height)
     }
 }
 
