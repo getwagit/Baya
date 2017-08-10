@@ -65,11 +65,7 @@ public struct BayaScrollLayout: BayaLayout {
                 x: content.layoutMargins.left,
                 y: content.layoutMargins.top),
             size: adjustedContentSize))
-        container.layoutWith(frame: CGRect(
-            x: frame.minX + container.layoutMargins.left,
-            y: frame.minY + container.layoutMargins.top,
-            width: frame.width - container.horizontalMargins,
-            height: frame.height - container.verticalMargins))
+        container.layoutWith(frame: frame.subtractMargins(ofElement: container))
         container.contentSize = adjustedContentSize.addMargins(ofElement: content)
     }
 
