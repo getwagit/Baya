@@ -60,27 +60,16 @@ public struct BayaScrollLayout: BayaLayout {
                         frame.size.height - container.verticalMargins - content.verticalMargins)
             )
         }
-
-        let minContainerWidth = measuredContentSize.width + content.horizontalMargins
-        let minContainerHeight = measuredContentSize.height + content.verticalMargins
-        let maxContainerWidth = frame.width - container.horizontalMargins
-        let maxContainerHeight = frame.height - container.verticalMargins
-        let containerSize = CGSize(
-            width: container.layoutModes.width == .wrapContent && content.layoutModes.width == .wrapContent ?
-                min(minContainerWidth, maxContainerWidth) : maxContainerWidth,
-            height: container.layoutModes.height == .wrapContent && content.layoutModes.height == .wrapContent ?
-                min(minContainerHeight, maxContainerHeight) : maxContainerHeight)
-
         content.layoutWith(frame: CGRect(
             origin: CGPoint(
                 x: content.layoutMargins.left,
                 y: content.layoutMargins.top),
             size: adjustedContentSize))
         container.layoutWith(frame: CGRect(
-            origin: CGPoint(
-                x: frame.minX + container.layoutMargins.left,
-                y: frame.minY + container.layoutMargins.top),
-            size: containerSize))
+            x: frame.minX + container.layoutMargins.left,
+            y: frame.minY + container.layoutMargins.top,
+            width: frame.width - container.horizontalMargins,
+            height: frame.height - container.verticalMargins))
         container.contentSize = adjustedContentSize.addMargins(ofElement: content)
     }
 
