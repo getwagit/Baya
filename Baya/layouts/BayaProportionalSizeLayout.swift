@@ -37,25 +37,23 @@ public struct BayaProportionalSizeLayout: BayaLayout {
     }
 
     public mutating func layoutWith(frame: CGRect) {
-        // Account for the edge case that this layout wasn't measured before laying it out.
-        var proportionalSize: CGSize
-        if let measure = measure {
-            proportionalSize = measure
-        } else {
-            proportionalSize = calculateMeasure(frame.size)
-        }
+        // Account for the edge case that this layout wasn't measured before laying it out
+        let measure: CGSize = {
+            guard let cachedMeasure = self.measure else {
+                return calculateMeasure(frame.size)
+            }
+            return cachedMeasure
+        }()
         
-        let sizeRespectingLayoutModes = calculateSizeForLayout(
-            forChild: &element,
-            cachedSize: proportionalSize,
-            ownSize: frame.size)
-        
-        // The actual size. We can't be sure that the sizeRespectingLayoutModes is the correct, 
-        // proportional size (a .matchParent could mess this up.). So we check for the portion factors
-        // and use the proportional size when appropriate.
+        // Only if a side has no portion factor and the layoutMode .matchParent it should actually
+        // match the parent.
         let size = CGSize(
-            width: widthFactor != nil ? proportionalSize.width : sizeRespectingLayoutModes.width,
-            height: heightFactor != nil ? proportionalSize.height : sizeRespectingLayoutModes.height)
+            width: widthFactor != nil || element.layoutModes.width == .wrapContent ?
+                measure.width :
+                frame.subtractMargins(ofElement: element).width,
+            height: heightFactor != nil || element.layoutModes.height == .wrapContent ?
+                measure.height :
+                frame.subtractMargins(ofElement: element).height)
 
         element.layoutWith(frame: CGRect(origin: frame.origin, size: size))
     }
