@@ -11,7 +11,7 @@ import UIKit
     First the elements before and after the content will be measured and positioned, then the content
     element will be measured and positioned with the remaining space.
  */
-public struct FlexibleContentLayout: BayaLayout {
+public struct BayaFlexibleContentLayout: BayaLayout {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
@@ -169,8 +169,8 @@ public extension BayaLayoutable {
         orientation: BayaLayoutOptions.Orientation = .horizontal,
         spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
-            -> FlexibleContentLayout {
-        return FlexibleContentLayout(
+            -> BayaFlexibleContentLayout {
+        return BayaFlexibleContentLayout(
             elements: (before:  elementBefore, content: self, after: elementAfter),
             orientation: orientation,
             spacing: spacing,
