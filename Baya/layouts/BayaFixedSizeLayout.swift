@@ -12,7 +12,7 @@ import UIKit
 */
 public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
-    public var frame = CGRect()
+    public var frame: CGRect
     public var layoutModes: BayaLayoutOptions.Modes {
         return element.layoutModes
     }
@@ -28,6 +28,7 @@ public struct BayaFixedSizeLayout: BayaLayout {
         self.fixedWidth = width
         self.fixedHeight = height
         self.element = element
+        self.frame = CGRect()
     }
 
     mutating public func layoutWith(frame: CGRect) {
