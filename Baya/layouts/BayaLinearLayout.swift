@@ -24,8 +24,8 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         elements: [BayaLayoutable],
         orientation: BayaLayoutOptions.Orientation,
         direction: BayaLayoutOptions.Direction = .normal,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
-        spacing: CGFloat = 0) {
+        spacing: CGFloat = 0,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.orientation = orientation
         self.direction = direction
@@ -207,8 +207,8 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
             elements: self.array(),
             orientation: orientation,
             direction: direction,
-            layoutMargins: layoutMargins,
-            spacing: spacing)
+            spacing: spacing,
+            layoutMargins: layoutMargins)
     }
 }
 
@@ -226,7 +226,7 @@ public extension Sequence where Iterator.Element == BayaLayoutable {
             elements: self.array(),
             orientation: orientation,
             direction: direction,
-            layoutMargins: layoutMargins,
-            spacing: spacing)
+            spacing: spacing,
+            layoutMargins: layoutMargins)
     }
 }
