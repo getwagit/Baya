@@ -127,13 +127,13 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
     */
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
-        gutter: CGFloat = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
             elements: self.array(),
             orientation: orientation,
-            spacing: gutter,
+            spacing: spacing,
             layoutMargins: layoutMargins)
     }
 }
