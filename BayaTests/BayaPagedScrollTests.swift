@@ -47,7 +47,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testHorizontal() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -76,7 +76,7 @@ class BayaPagedScrollTests: XCTestCase {
             sideLength: 50,
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -101,7 +101,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testHorizontalBigEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -131,7 +131,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
 
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -156,7 +156,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testHorizontalSmallEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -186,7 +186,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -211,7 +211,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testVertical() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -240,7 +240,7 @@ class BayaPagedScrollTests: XCTestCase {
             sideLength: 50,
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -265,7 +265,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testVerticalBigEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -295,7 +295,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -320,7 +320,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testVerticalSmallEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -350,7 +350,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, gutter: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
