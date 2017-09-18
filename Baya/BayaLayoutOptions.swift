@@ -14,11 +14,6 @@ public struct BayaLayoutOptions {
         case vertical
     }
 
-    public enum Direction {
-        case normal
-        case reversed
-    }
-
     public struct Gravity {
         public enum Horizontal {
             case left
