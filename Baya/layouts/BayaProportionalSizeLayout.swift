@@ -82,12 +82,12 @@ private extension Optional where Wrapped == CGFloat {
 
 public extension BayaLayoutable {
     func layoutWithPortion(
-        ofWidth widthPortion: CGFloat? = nil,
-        ofHeight heightPortion: CGFloat? = nil)
+        ofWidth widthFactor: CGFloat? = nil,
+        ofHeight heightFactor: CGFloat? = nil)
             -> BayaProportionalSizeLayout {
         return BayaProportionalSizeLayout(
             element: self,
-            widthFactor: widthPortion,
-            heightFactor: heightPortion)
+            widthFactor: widthFactor,
+            heightFactor: heightFactor)
     }
 }
