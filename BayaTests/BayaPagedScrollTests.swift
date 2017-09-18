@@ -14,7 +14,7 @@ class BayaPagedScrollTests: XCTestCase {
     var layoutRect = CGRect(x: 3, y: 4, width: 400, height: 500)
     var layoutRectTooSmall = CGRect(x: 1, y: 2, width: 40, height: 40)
     var pages: Int = 2
-    var gutter: CGFloat = 20
+    var spacing: CGFloat = 20
     
     override func setUp() {
         super.setUp()
@@ -47,7 +47,7 @@ class BayaPagedScrollTests: XCTestCase {
     }
     
     func testHorizontal() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -55,19 +55,19 @@ class BayaPagedScrollTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages - 1),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages - 1),
                 height: layoutRect.height))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
-                width: layoutRect.width + gutter,
+                width: layoutRect.width + spacing,
                 height: layoutRect.height))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages),
                 height: layoutRect.height))
     }
     
@@ -76,7 +76,7 @@ class BayaPagedScrollTests: XCTestCase {
             sideLength: 50,
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -84,24 +84,24 @@ class BayaPagedScrollTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages - 1),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages - 1),
                 height: layoutRect.height))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
-                width: layoutRect.width + gutter,
+                width: layoutRect.width + spacing,
                 height: layoutRect.height))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages),
                 height: layoutRect.height))
     }
     
     func testHorizontalBigEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -109,19 +109,19 @@ class BayaPagedScrollTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages - 1),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages - 1),
                 height: layoutRect.height))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
-                width: layoutRect.width + gutter,
+                width: layoutRect.width + spacing,
                 height: layoutRect.height))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages),
                 height: layoutRect.height))
     }
     
@@ -131,7 +131,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
 
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -139,24 +139,24 @@ class BayaPagedScrollTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages - 1),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages - 1),
                 height: layoutRect.height))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
-                width: layoutRect.width + gutter,
+                width: layoutRect.width + spacing,
                 height: layoutRect.height))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
-                width: layoutRect.width * CGFloat(pages) + gutter * CGFloat(pages),
+                width: layoutRect.width * CGFloat(pages) + spacing * CGFloat(pages),
                 height: layoutRect.height))
     }
     
     func testHorizontalSmallEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -164,19 +164,19 @@ class BayaPagedScrollTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: layoutRectTooSmall.width * CGFloat(pages) + gutter * CGFloat(pages - 1),
+                width: layoutRectTooSmall.width * CGFloat(pages) + spacing * CGFloat(pages - 1),
                 height: layoutRectTooSmall.height))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRectTooSmall.minX,
                 y: layoutRectTooSmall.minY,
-                width: layoutRectTooSmall.width + gutter,
+                width: layoutRectTooSmall.width + spacing,
                 height: layoutRectTooSmall.height))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
-                width: layoutRectTooSmall.width * CGFloat(pages) + gutter * CGFloat(pages),
+                width: layoutRectTooSmall.width * CGFloat(pages) + spacing * CGFloat(pages),
                 height: layoutRectTooSmall.height))
     }
     
@@ -186,7 +186,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .horizontal)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -194,24 +194,24 @@ class BayaPagedScrollTests: XCTestCase {
             CGRect(
                 x: 0,
                 y: 0,
-                width: layoutRectTooSmall.width * CGFloat(pages) + gutter * CGFloat(pages - 1),
+                width: layoutRectTooSmall.width * CGFloat(pages) + spacing * CGFloat(pages - 1),
                 height: layoutRectTooSmall.height))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRectTooSmall.minX,
                 y: layoutRectTooSmall.minY,
-                width: layoutRectTooSmall.width + gutter,
+                width: layoutRectTooSmall.width + spacing,
                 height: layoutRectTooSmall.height))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
-                width: layoutRectTooSmall.width * CGFloat(pages) + gutter * CGFloat(pages),
+                width: layoutRectTooSmall.width * CGFloat(pages) + spacing * CGFloat(pages),
                 height: layoutRectTooSmall.height))
     }
     
     func testVertical() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -220,19 +220,19 @@ class BayaPagedScrollTests: XCTestCase {
                 x: 0,
                 y: 0,
                 width: layoutRect.width,
-                height: layout.frame.height * CGFloat(pages) + gutter * CGFloat(pages - 1)))
+                height: layout.frame.height * CGFloat(pages) + spacing * CGFloat(pages - 1)))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
                 width: layoutRect.width,
-                height: layoutRect.height + gutter))
+                height: layoutRect.height + spacing))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
                 width: layoutRect.width,
-                height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages)))
+                height: layoutRect.height * CGFloat(pages) + spacing * CGFloat(pages)))
     }
     
     func testVerticalMatchingParent() {
@@ -240,7 +240,7 @@ class BayaPagedScrollTests: XCTestCase {
             sideLength: 50,
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
@@ -249,23 +249,23 @@ class BayaPagedScrollTests: XCTestCase {
                 x: 0,
                 y: 0,
                 width: layoutRect.width,
-                height: layout.frame.height * CGFloat(pages) + gutter * CGFloat(pages - 1)))
+                height: layout.frame.height * CGFloat(pages) + spacing * CGFloat(pages - 1)))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
                 width: layoutRect.width,
-                height: layoutRect.height + gutter))
+                height: layoutRect.height + spacing))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
                 width: layoutRect.width,
-                height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages)))
+                height: layoutRect.height * CGFloat(pages) + spacing * CGFloat(pages)))
     }
     
     func testVerticalBigEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -274,19 +274,19 @@ class BayaPagedScrollTests: XCTestCase {
                 x: 0,
                 y: 0,
                 width: layoutRect.width,
-                height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages - 1)))
+                height: layoutRect.height * CGFloat(pages) + spacing * CGFloat(pages - 1)))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
                 width: layoutRect.width,
-                height: layoutRect.height + gutter))
+                height: layoutRect.height + spacing))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
                 width: layoutRect.width,
-                height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages)))
+                height: layoutRect.height * CGFloat(pages) + spacing * CGFloat(pages)))
     }
     
     func testVerticalBigEnforcedFrameMatchingParent() {
@@ -295,7 +295,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.layoutWith(frame: layoutRect)
         
         XCTAssertEqual(
@@ -304,23 +304,23 @@ class BayaPagedScrollTests: XCTestCase {
                 x: 0,
                 y: 0,
                 width: layoutRect.width,
-                height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages - 1)))
+                height: layoutRect.height * CGFloat(pages) + spacing * CGFloat(pages - 1)))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRect.minX,
                 y: layoutRect.minY,
                 width: layoutRect.width,
-                height: layoutRect.height + gutter))
+                height: layoutRect.height + spacing))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
                 width: layoutRect.width,
-                height: layoutRect.height * CGFloat(pages) + gutter * CGFloat(pages)))
+                height: layoutRect.height * CGFloat(pages) + spacing * CGFloat(pages)))
     }
     
     func testVerticalSmallEnforcedFrame() {
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -329,19 +329,19 @@ class BayaPagedScrollTests: XCTestCase {
                 x: 0,
                 y: 0,
                 width: layoutRectTooSmall.width,
-                height: layoutRectTooSmall.height * CGFloat(pages) + gutter * CGFloat(pages - 1)))
+                height: layoutRectTooSmall.height * CGFloat(pages) + spacing * CGFloat(pages - 1)))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRectTooSmall.minX,
                 y: layoutRectTooSmall.minY,
                 width: layoutRectTooSmall.width,
-                height: layoutRectTooSmall.height + gutter))
+                height: layoutRectTooSmall.height + spacing))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
                 width: layoutRectTooSmall.width,
-                height: layoutRectTooSmall.height * CGFloat(pages) + gutter * CGFloat(pages)))
+                height: layoutRectTooSmall.height * CGFloat(pages) + spacing * CGFloat(pages)))
     }
     
     func testVerticalSmallEnforcedFrameMatchingParent() {
@@ -350,7 +350,7 @@ class BayaPagedScrollTests: XCTestCase {
             layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
-        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: gutter, orientation: .vertical)
+        var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.startLayout(with: layoutRectTooSmall)
         
         XCTAssertEqual(
@@ -359,18 +359,18 @@ class BayaPagedScrollTests: XCTestCase {
                 x: 0,
                 y: 0,
                 width: layoutRectTooSmall.width,
-                height: layoutRectTooSmall.height * CGFloat(pages) + gutter * CGFloat(pages - 1)))
+                height: layoutRectTooSmall.height * CGFloat(pages) + spacing * CGFloat(pages - 1)))
         XCTAssertEqual(
             c.frame,
             CGRect(
                 x: layoutRectTooSmall.minX,
                 y: layoutRectTooSmall.minY,
                 width: layoutRectTooSmall.width,
-                height: layoutRectTooSmall.height + gutter))
+                height: layoutRectTooSmall.height + spacing))
         XCTAssertEqual(
             c.contentSize,
             CGSize(
                 width: layoutRectTooSmall.width,
-                height: layoutRectTooSmall.height * CGFloat(pages) + gutter * CGFloat(pages)))
+                height: layoutRectTooSmall.height * CGFloat(pages) + spacing * CGFloat(pages)))
     }
 }
