@@ -16,7 +16,7 @@ public struct BayaPagedScrollLayout: BayaLayout {
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
     var pages: Int
-    var gutter: CGFloat
+    var spacing: CGFloat
 
     private var container: BayaScrollLayoutContainer
     private var content: BayaLayoutable
@@ -25,14 +25,13 @@ public struct BayaPagedScrollLayout: BayaLayout {
         content: BayaLayoutable,
         container: BayaScrollLayoutContainer,
         pages: Int,
-        gutter: CGFloat = 0,
+        spacing: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
-
         self.content = content
         self.container = container
         self.pages = pages
-        self.gutter = gutter
+        self.spacing = spacing
         self.orientation = orientation
         self.layoutMargins = layoutMargins
         self.frame = CGRect()
@@ -44,23 +43,23 @@ public struct BayaPagedScrollLayout: BayaLayout {
         let containerFrame = CGRect(
             x: frame.minX,
             y: frame.minY,
-            width: orientation == .horizontal ? frame.width + gutter : frame.width,
-            height: orientation == .vertical ? frame.height + gutter : frame.height)
+            width: orientation == .horizontal ? frame.width + spacing : frame.width,
+            height: orientation == .vertical ? frame.height + spacing : frame.height)
         container.layoutWith(frame: containerFrame)
 
         let contentFrame = CGRect(
             x: 0,
             y: 0,
             width: orientation == .horizontal ?
-            frame.width * CGFloat(pages) + gutter * CGFloat(pages - 1) : frame.width,
+            frame.width * CGFloat(pages) + spacing * CGFloat(pages - 1) : frame.width,
             height: orientation == .vertical ?
-            frame.height * CGFloat(pages) + gutter * CGFloat(pages - 1) : frame.height)
+            frame.height * CGFloat(pages) + spacing * CGFloat(pages - 1) : frame.height)
         content.layoutWith(frame: contentFrame)
 
         container.contentSize = CGSize(
             // increase the contentSize for a trailing gutter (which won't be shown).
-            width: orientation == .horizontal ? contentFrame.width + gutter : contentFrame.width,
-            height: orientation == .vertical ? contentFrame.height + gutter : contentFrame.height)
+            width: orientation == .horizontal ? contentFrame.width + spacing : contentFrame.width,
+            height: orientation == .vertical ? contentFrame.height + spacing : contentFrame.height)
     }
 
     public func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -73,7 +72,7 @@ public extension BayaLayoutable {
     func layoutPagedScrollContent(
         container: BayaScrollLayoutContainer,
         pages: Int,
-        gutter: CGFloat = 0,
+        spacing: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaPagedScrollLayout {
@@ -81,7 +80,7 @@ public extension BayaLayoutable {
             content: self,
             container: container,
             pages: pages,
-            gutter: gutter,
+            spacing: spacing,
             orientation: orientation,
             layoutMargins: layoutMargins)
     }

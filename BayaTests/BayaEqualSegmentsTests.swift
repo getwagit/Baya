@@ -44,7 +44,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [BayaLayoutable]()
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
         layout.startLayout(
             with: CGRect())
         XCTAssert(true) // Does not crash.
@@ -54,7 +54,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
         layout.startLayout(with: layoutRect)
         let availableSideLength = (l3.width + l3.horizontalMargins) // Largest element as base.
 
@@ -91,7 +91,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
 
         layout.startLayout(with: layoutRect)
         let maxHeight = max(
@@ -136,7 +136,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
 
         layout.layoutWith(frame: layoutRect)
         let availableSideLength = (layoutRect.width - spacing * 2) / 3 // Rect dictates the size
@@ -181,7 +181,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
         
         layout.layoutWith(frame: layoutRect)
         let availableSideLength = (layoutRect.width - spacing * 2) / 3 // Rect dictates the size
@@ -219,7 +219,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
         
         layout.startLayout(with: layoutRectTooSmall)
         let availableSideLength = (layoutRectTooSmall.width - spacing * 2) / 3 // Rect now dictates the size
@@ -260,7 +260,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .horizontal,
-                gutter: spacing)
+                spacing: spacing)
 
         let maxHeight = max(
             l1.height + l1.verticalMargins,
@@ -304,7 +304,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .vertical,
-                gutter: spacing)
+                spacing: spacing)
         
         layout.startLayout(with: layoutRect)
         let availableSideLength = (l3.height + l3.verticalMargins) // Largest element as base.
@@ -345,7 +345,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
             orientation: .vertical,
-            gutter: spacing)
+            spacing: spacing)
         
         layout.startLayout(with: layoutRect)
         let maxHeight = max(
@@ -390,7 +390,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .vertical,
-                gutter: spacing)
+                spacing: spacing)
         
         layout.layoutWith(frame: layoutRect)
         let availableSideLength = (layoutRect.width - spacing * 2) / 3 // Rect dictates the size
@@ -435,7 +435,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .vertical,
-                gutter: spacing)
+                spacing: spacing)
         
         layout.layoutWith(frame: layoutRect)
         
@@ -474,7 +474,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
             orientation: .vertical,
-            gutter: spacing)
+            spacing: spacing)
 
         layout.startLayout(with: layoutRectTooSmall)
         let availableSideLength = (layoutRectTooSmall.height - spacing * 2) / 3 // Rect now dictates the size
@@ -515,7 +515,7 @@ class BayaEqualSegmentsTests: XCTestCase {
         var layout = [l1, l2, l3]
             .layoutAsEqualSegments(
                 orientation: .vertical,
-                gutter: spacing)
+                spacing: spacing)
 
         let maxWidth = max(
             l1.width + l1.horizontalMargins,
@@ -557,7 +557,7 @@ class BayaEqualSegmentsTests: XCTestCase {
     func testMeasureHorizontal() {
         var layout = [l1, l2, l3].layoutAsEqualSegments(
             orientation: .horizontal,
-            gutter: spacing)
+            spacing: spacing)
 
         let maxHeight = max(
             l1.height + l1.verticalMargins,
@@ -583,7 +583,7 @@ class BayaEqualSegmentsTests: XCTestCase {
     func testMeasureVertical() {
         var layout = [l1, l2, l3].layoutAsEqualSegments(
             orientation: .vertical,
-            gutter: spacing)
+            spacing: spacing)
 
         let maxHeight = max(
             l1.height + l1.verticalMargins,

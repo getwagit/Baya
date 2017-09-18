@@ -50,7 +50,7 @@ extension UIViewController {
      To prevent unwanted layout behavior, use this function, which enables full control over
      the root view's margins by wrapping the it in a BayaMarginsLayout.
      */
-    public func getRootViewAsLayoutable(with margins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {
-        return view.layoutWithMargins(layoutMargins: margins)
+    public func getRootViewAsLayoutable(with layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {
+        return view.layoutWithMargins(layoutMargins: layoutMargins)
     }
 }
