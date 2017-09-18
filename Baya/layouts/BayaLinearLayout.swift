@@ -200,8 +200,8 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
     func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         direction: BayaLayoutOptions.Direction = .normal,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
-        spacing: CGFloat = 0)
+        spacing: CGFloat = 0,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaLinearLayout {
         return BayaLinearLayout(
             elements: self.array(),
@@ -219,8 +219,8 @@ public extension Sequence where Iterator.Element == BayaLayoutable {
     func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         direction: BayaLayoutOptions.Direction = .normal,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero,
-        spacing: CGFloat = 0)
+        spacing: CGFloat = 0,
+        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaLinearLayout {
         return BayaLinearLayout(
             elements: self.array(),
