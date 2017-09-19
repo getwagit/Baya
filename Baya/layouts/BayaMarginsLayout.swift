@@ -51,7 +51,7 @@ internal extension BayaLayoutable {
 extension UIViewController {
     /// Enables full control over the root view's margins by wrapping the it in a BayaMarginsLayout. 
     /// The layoutMargins of UIViewController's root view are managed by the system, and cannot be changed.
-    /// To prevent unwanted layout behavior, use this function
+    /// To prevent unwanted layout behavior, use this function.
     /// - parameter layoutMargins: The desired layoutMargins around the view.
     /// - returns: A BayaMarginsLayout containing the ViewController's root view.
     public func getRootViewAsLayoutable(with layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {

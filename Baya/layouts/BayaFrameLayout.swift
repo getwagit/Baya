@@ -52,7 +52,7 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 }
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
-    /// Lays the elements out in a frame. By default all elements will be positioned top left and might overlap, 
+    /// Places the elements in a frame. By default all elements will be positioned top left and might overlap,
     /// so it is suggested to gravitate the the elements to the positions you need them (using BayaGravityLayout).
     /// - parameter layoutMargins: The layout's margins.
     /// - returns: A BayaFrameLayout.
@@ -62,7 +62,7 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
-    /// Lays the elements out in a frame. By default all elements will be positioned top left and might overlap,
+    /// Places the elements in a frame. By default all elements will be positioned top left and might overlap,
     /// so it is suggested to gravitate the the elements to the positions you need them (using BayaGravityLayout).
     /// - parameter layoutMargins: The layout's margins.
     /// - returns: A BayaFrameLayout.

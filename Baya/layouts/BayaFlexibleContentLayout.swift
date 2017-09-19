@@ -163,11 +163,12 @@ public struct BayaFlexibleContentLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /// Calculates the sizes of the optional elements before and after the content element, 
-    /// subtracts them from the available size, and lays them out.
-    /// The content element is then laid out to fill the remaining space.
-    /// - parameter elementBefore: This optional element will be placed before the content element. Its required size will be subtracted from the available size.
-    /// - parameter elementAfter: This optional element will be placed after the content element. Its required size will be subtracted from the available size.
+    /// Calculates the sizes of the optional elements before and after the content element, subtracts them from the
+    /// available size, and lays them out. The content element is then laid out to fill the remaining space.
+    /// - parameter elementBefore: This optional element will be placed before the content element. Its required size
+    ///   will be subtracted from the available size.
+    /// - parameter elementAfter: This optional element will be placed after the content element. Its required size will
+    ///   be subtracted from the available size.
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
     /// - parameter spacing: The gap between the elements.
     /// - parameter layoutMargins: The layout's margins.

@@ -38,7 +38,7 @@ public struct BayaMatchParentLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /// Specifies that the element should match its parent's width instead of taking up only its measured width.
+    /// Specifies that the element should fill its parent's width.
     /// - returns: A BayaMatchParentLayout.
     func layoutMatchingParentWidth() -> BayaLayout {
         return BayaMatchParentLayout(
@@ -48,7 +48,7 @@ public extension BayaLayoutable {
                 height: .wrapContent))
     }
 
-    /// Specifies that the element should match its parent's height instead of taking up only its measured height.
+    /// Specifies that the element should fill its parent's height.
     /// - returns: A BayaMatchParentLayout.
     func layoutMatchingParentHeight() -> BayaLayout {
         return BayaMatchParentLayout(
@@ -58,7 +58,7 @@ public extension BayaLayoutable {
                 height: .matchParent))
     }
 
-    /// Specifies that the element should match its parent's size instead of taking up only its measured size.
+    /// Specifies that the element should fill its parent's size.
     /// - returns: A BayaMatchParentLayout.
     func layoutMatchingParent()
             -> BayaLayout {
