@@ -8,7 +8,7 @@ import UIKit
 
 /**
     A layout that calculates the size of its content layoutable depending on the given frame,
-    the number of pages, and an optional gutter. The container will be laid out according to the frame.
+    the number of pages, and an optional spacing. The container will be laid out according to the frame.
     This layout assumes that its child has the implicit layout mode .matchParent.
  */
 public struct BayaPagedScrollLayout: BayaLayout {
@@ -69,6 +69,14 @@ public struct BayaPagedScrollLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
+    /// Lays out the scroll container to fit the available size. The scroll content is laid out in a 
+    /// frame which is defined by the size of the container multiplied by the desired amount of pages.
+    /// - parameter container: Typically a `UIScrollView`. All views contained in the content element should be subviews of the container.
+    /// - parameter pages: Determines the size of the content element.
+    /// - parameter spacing: The gap between the pages.
+    /// - parameter orientation: Determines if the pages are laid out in horizontal or vertical direction.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A BayaPagedScrollLayout.
     func layoutPagedScrollContent(
         container: BayaScrollLayoutContainer,
         pages: Int,
