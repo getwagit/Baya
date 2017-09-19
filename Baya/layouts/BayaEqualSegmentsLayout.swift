@@ -122,9 +122,11 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
 }
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
-    /**
-        Distributes the available size evenly.
-    */
+    /// Distributes the available width or height evenly among the elements. Lays out the elements in horizontal or vertical direction.
+    /// - parameter orientation: Determines if the elements should be laid out on the horizontal or vertical axis. Also determines which side of the available size should be segmented and distributed among the elements.
+    /// - parameter spacing: The gap between the elements.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A BayaEqualSegmentsLayout
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
@@ -139,9 +141,11 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
-    /**
-        Distributes the available size evenly.
-    */
+    /// Distributes the available width or height evenly among the elements. Lays out the elements in horizontal or vertical direction.
+    /// - parameter orientation: Determines if the elements should be laid out on the horizontal or vertical axis. Also determines which side of the available size should be segmented and distributed among the elements.
+    /// - parameter spacing: The gap between the elements.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A BayaEqualSegmentsLayout
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
