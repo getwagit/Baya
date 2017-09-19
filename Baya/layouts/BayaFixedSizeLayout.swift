@@ -61,10 +61,10 @@ public struct BayaFixedSizeLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /**
-        Gives this element a fixed sized container.
-        Mirrors layout modes that are not fixed sizes from this element.
-    */
+    /// Sets a fixed size for the element.
+    /// - parameter width: The desired width in points. If nil is passed as argument, the element's measured width is used.
+    /// - parameter height: The desired height in points. If nil is passed as argument, the element's measured height is used.
+    /// - returns: A BayaFixedSizeLayout
     func layoutWithFixedSize(
         width: CGFloat?,
         height: CGFloat?)
