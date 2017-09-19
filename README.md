@@ -22,8 +22,9 @@ github "getwagit/Baya" ~> 1.0.0
 ```
 
 
-## Usage
-A basic layout with *Baya* looks like this:
+## Basic Usage
+With *Baya* you first define your layout and then apply it. In most cases you want to define your layout once and apply it whenever the `frame` or content changes.
+A basic layout in a `ViewController` could look like this:
 
 ```swift
 ...
@@ -35,7 +36,9 @@ override func loadView() {
   view.addSubView(profilePicture)
   ...
 
-  // Create your layout. In this case just a simple linear layout.
+  // To create a layout call Baya's layout functions on a BayaLayoutable or an Array of BayaLayoutables.
+  // A UIView is a BayaLayoutable by default.
+  // In this example three simple UIViews are lined up horizontally.
   layout = [profilePicture, userName, friendCount].layoutLinearly(orientation: .horizontal)
 }
 ```
@@ -46,7 +49,8 @@ override func viewWillLayoutSubviews() {
   layout?.startLayout(with: view.bounds)
 }
 ```
-Another example for a simple layout:
+You can use `BayaLayout`s to group `UIView`s and `BayaLayoutables` into tree-like layout structures. 
+The layout of a simple `UIViewController` might look like this:
 ```swift
 let buttonRowLayout = [button1, button2, button3]
   .layoutLinearly(
@@ -58,12 +62,18 @@ let pictureLayout = profilePicture
     width: 100,
     height: 100)
   .layoutGravitating(to: .center)
+  .layoutMatchingParentWidth()
 
 let usernameLayout = nameLabel
   .layoutGravitating(to: .center)
+  .layoutMatchingParentWidth()
 
 layout = [pictureLayout, usernameLayout, buttonRowLayout]
   .layoutLinearly(orientation: .vertical)
+  .layoutGravitating(
+        horizontally: .center,
+        vertically: .middle)
+  .layoutMatchingParent()
 ```
 
 ## Docs
