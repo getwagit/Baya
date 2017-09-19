@@ -53,8 +53,8 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
     /// Lays the elements out in a frame. By default all elements will be positioned top left and might overlap, 
-    /// so it is suggested to gravitate the the elements to the positions where you need them.
-    /// - parameters layoutMargins: The layout's margins.
+    /// so it is suggested to gravitate the the elements to the positions you need them (using BayaGravityLayout).
+    /// - parameter layoutMargins: The layout's margins.
     /// - returns: A BayaFrameLayout.
     func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
@@ -63,8 +63,8 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
     /// Lays the elements out in a frame. By default all elements will be positioned top left and might overlap,
-    /// so it is suggested to gravitate the the elements to the positions where you need them.
-    /// - parameters layoutMargins: The layout's margins.
+    /// so it is suggested to gravitate the the elements to the positions you need them (using BayaGravityLayout).
+    /// - parameter layoutMargins: The layout's margins.
     /// - returns: A BayaFrameLayout.
     func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
