@@ -69,7 +69,7 @@ public struct BayaPagedScrollLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /// Lays out the scroll container to fit the available size. The scroll content is laid out in a 
+    /// Lays out the container element to fit the available size. The content element is laid out in a 
     /// frame which is defined by the size of the container multiplied by the desired amount of pages.
     /// - parameter container: Typically a `UIScrollView`. All views contained in the content element should be subviews of the container.
     /// - parameter pages: Determines the size of the content element.
