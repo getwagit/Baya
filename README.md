@@ -39,7 +39,7 @@ override func loadView() {
   layout = [profilePicture, userName, friendCount].layoutLinearly(orientation: .horizontal)
 }
 ```
-Apply the layout by calling `startLayout(with:)`. In a `ViewController` a good place to do this is `viewWillLayoutSubviews()`.
+Apply the layout by calling `startLayout(with:)`. A good place to do this in a `ViewController` is `viewWillLayoutSubviews()`.
 ```swift
 override func viewWillLayoutSubviews() {
   // Apply the layout.
