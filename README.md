@@ -1,14 +1,14 @@
 ![Baya](logo.png)
 
 # Baya
-A basic layout framework for Swift.
+A simple layout framework written in Swift.
 
 ## Features
 
-- *Baya* uses structs to create a tree graph of layout rules. 
-- Nested layouts without a nested view hierachy. 
-- Simple and readable layout code.
-- Extendable.
+- *Baya* encapsulates layout logic in structs.
+- Build nested layouts without a nested view hierachy. 
+- Write simple and readable layout code.
+- It's extendable with your own layouts.
 - Works without Interface Builder or Auto Layout.
 
 
@@ -23,7 +23,7 @@ github "getwagit/Baya" ~> 1.0.0
 
 
 ## Usage
-A basic user profile layout could be defined with *Baya* like this:
+A basic layout with *Baya* looks like this:
 
 ```swift
 ...
@@ -31,46 +31,46 @@ var layout: BayaLayoutable?
 
 override func loadView() {
   ...
-  // Add subview directly as sub view to the ViewControlles's root view.
+  // Add views directly as sub views of the ViewControlles's root view.
   view.addSubView(profilePicture)
   ...
 
-  // Create your layout graph. In this case it is just a linear layout.
-  layout = [profilePicture, userName, friendCount].layoutLinear(orientation: .horizontal)
+  // Create your layout. In this case just a simple linear layout.
+  layout = [profilePicture, userName, friendCount].layoutLinearly(orientation: .horizontal)
 }
 ```
-Run your layout by calling `layoutWith`. In a `ViewController` the method `viewWillLayoutSubviews` is probably the best place to do this.
+Apply the layout by calling `startLayout(with:)`. A good place to do this in a `ViewController` is `viewWillLayoutSubviews()`.
 ```swift
 override func viewWillLayoutSubviews() {
   // Apply the layout.
-  layout?.layoutWith(frame: view.bounds)
+  layout?.startLayout(with: view.bounds)
 }
 ```
-This is what a layout graph might look like:
+Another example for a simple layout:
 ```swift
 let buttonRowLayout = [button1, button2, button3]
-  .layoutLinear(
+  .layoutLinearly(
     orientation: .horizontal,
     spacing: 20)
 
 let pictureLayout = profilePicture
-  .layoutFixedSize(
+  .layoutWithFixedSize(
     width: 100,
     height: 100)
-  .layoutGravitate(to: .center)
+  .layoutGravitating(to: .center)
 
 let usernameLayout = nameLabel
-  .layoutGravitate(to: .center)
+  .layoutGravitating(to: .center)
 
 layout = [pictureLayout, usernameLayout, buttonRowLayout]
-  .layoutLinear(orientation: .vertical)
+  .layoutLinearly(orientation: .vertical)
 ```
 
 ## Docs
-For a list of all layout methods check out the wiki!
+Visit the [wiki](https://github.com/getwagit/Baya/wiki) for more information on the default layouts and how to use them.
 
 ## Contributing
-Contributions are welcome! Please use the branch `develop` as base/target. If you modifiy the `project.pbxproj` file, use [xUnique](https://github.com/truebit/xUnique).
+Contributions are welcome! Please use the branch `develop` as base/target. If you modifiy the `project.pbxproj` file, use [xUnique](https://github.com/truebit/xUnique): `$ xunique -u -s -c Baya.xcodeproj`
 
 ## License 
 Baya is available under the MIT license.
