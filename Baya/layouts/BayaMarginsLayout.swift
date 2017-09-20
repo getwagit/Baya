@@ -37,8 +37,7 @@ internal struct BayaMarginsLayout: BayaLayout {
 }
 
 internal extension BayaLayoutable {
-    /// Disregards the element's margins and substitutes them with the margins passed as parameter. 
-    /// Useful when the element's margins cannot be controlled otherwise, which is the case for the root view of an `UIViewController`.
+    /// Disregards the element's margins and substitutes them with the margins passed as parameter.
     /// - parameter layoutMargins: The layout's margins.
     /// - returns: A `BayaMarginsLayout`.
     func layoutWithMargins(layoutMargins: UIEdgeInsets) -> BayaMarginsLayout {
