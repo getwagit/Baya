@@ -22,7 +22,7 @@ public struct BayaLayoutOptions {
         }
         public enum Vertical {
             case top
-            case middle
+            case center
             case bottom
         }
     }

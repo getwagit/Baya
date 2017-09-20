@@ -57,7 +57,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureLeftMiddle() {
-        var layout = l.layoutGravitating(horizontally: .left, vertically: .middle)
+        var layout = l.layoutGravitating(horizontally: .left, vertically: .center)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -68,7 +68,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureCenterMiddle() {
-        var layout = l.layoutGravitating(horizontally: .center, vertically: .middle)
+        var layout = l.layoutGravitating(horizontally: .center, vertically: .center)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -79,7 +79,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureRightMiddle() {
-        var layout = l.layoutGravitating(horizontally: .right, vertically: .middle)
+        var layout = l.layoutGravitating(horizontally: .right, vertically: .center)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -167,7 +167,7 @@ class BayaGravityTests: XCTestCase {
     
     func testLeftMiddle() {
         var layout = l
-            .layoutGravitating(horizontally: .left, vertically: .middle)
+            .layoutGravitating(horizontally: .left, vertically: .center)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
@@ -181,7 +181,7 @@ class BayaGravityTests: XCTestCase {
     
     func testCenterMiddle() {
         var layout = l
-            .layoutGravitating(horizontally: .center, vertically: .middle)
+            .layoutGravitating(horizontally: .center, vertically: .center)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
@@ -195,7 +195,7 @@ class BayaGravityTests: XCTestCase {
     
     func testRightMiddle() {
         var layout = l
-            .layoutGravitating(horizontally: .right, vertically: .middle)
+            .layoutGravitating(horizontally: .right, vertically: .center)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
