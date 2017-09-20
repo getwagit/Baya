@@ -35,7 +35,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureCenterTop() {
-        var layout = l.layoutGravitating(horizontally: .center, vertically: .top)
+        var layout = l.layoutGravitating(horizontally: .centerX, vertically: .top)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -57,7 +57,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureLeftMiddle() {
-        var layout = l.layoutGravitating(horizontally: .left, vertically: .center)
+        var layout = l.layoutGravitating(horizontally: .left, vertically: .centerY)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -68,7 +68,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureCenterMiddle() {
-        var layout = l.layoutGravitating(horizontally: .center, vertically: .center)
+        var layout = l.layoutGravitating(horizontally: .centerX, vertically: .centerY)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -79,7 +79,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureRightMiddle() {
-        var layout = l.layoutGravitating(horizontally: .right, vertically: .center)
+        var layout = l.layoutGravitating(horizontally: .right, vertically: .centerY)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -101,7 +101,7 @@ class BayaGravityTests: XCTestCase {
     }
     
     func testMeasureCenterBottom() {
-        var layout = l.layoutGravitating(horizontally: .center, vertically: .bottom)
+        var layout = l.layoutGravitating(horizontally: .centerX, vertically: .bottom)
         let size = layout.sizeThatFits(layoutRect.size)
         XCTAssertEqual(
             size,
@@ -138,7 +138,7 @@ class BayaGravityTests: XCTestCase {
     
     func testCenterTop() {
         var layout = l
-            .layoutGravitating(horizontally: .center, vertically: .top)
+            .layoutGravitating(horizontally: .centerX, vertically: .top)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
@@ -167,7 +167,7 @@ class BayaGravityTests: XCTestCase {
     
     func testLeftMiddle() {
         var layout = l
-            .layoutGravitating(horizontally: .left, vertically: .center)
+            .layoutGravitating(horizontally: .left, vertically: .centerY)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
@@ -181,7 +181,7 @@ class BayaGravityTests: XCTestCase {
     
     func testCenterMiddle() {
         var layout = l
-            .layoutGravitating(horizontally: .center, vertically: .center)
+            .layoutGravitating(horizontally: .centerX, vertically: .centerY)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
@@ -195,7 +195,7 @@ class BayaGravityTests: XCTestCase {
     
     func testRightMiddle() {
         var layout = l
-            .layoutGravitating(horizontally: .right, vertically: .center)
+            .layoutGravitating(horizontally: .right, vertically: .centerY)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,
@@ -223,7 +223,7 @@ class BayaGravityTests: XCTestCase {
     
     func testCenterBottom() {
         var layout = l
-            .layoutGravitating(horizontally: .center, vertically: .bottom)
+            .layoutGravitating(horizontally: .centerX, vertically: .bottom)
         layout.startLayout(with: layoutRect)
         XCTAssertEqual(
             l.frame,

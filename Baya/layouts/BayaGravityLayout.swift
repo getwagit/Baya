@@ -40,14 +40,14 @@ public struct BayaGravityLayout: BayaLayout {
         switch horizontalGravity {
         case .none: fallthrough
         case .some(.left): point.x = frame.minX + element.layoutMargins.left
-        case .some(.center): point.x = frame.midX - (size.width * 0.5)
+        case .some(.centerX): point.x = frame.midX - (size.width * 0.5)
         case .some(.right): point.x = frame.maxX - size.width - element.layoutMargins.right
         }
 
         switch verticalGravity {
         case .none: fallthrough
         case .some(.top): point.y = frame.minY + element.layoutMargins.top
-        case .some(.center): point.y = frame.midY - (size.height * 0.5)
+        case .some(.centerY): point.y = frame.midY - (size.height * 0.5)
         case .some(.bottom): point.y = frame.maxY - size.height - element.layoutMargins.bottom
         }
 
@@ -66,7 +66,7 @@ public extension BayaLayoutable {
     /// Positions the element on the horizontal axis.
     /// - parameter horizontalGravity: Specifies where the element should be positioned horizontally.
     /// - returns: A `BayaGravityLayout`.
-    func layoutGravitating(horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
+    func layoutGravitating(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
             horizontalGravity: horizontalGravity,
@@ -76,7 +76,7 @@ public extension BayaLayoutable {
     /// Positions the element on the vertical axis.
     /// - parameter verticalGravity: Specifies where the element should be positioned vertically.
     /// - returns: A `BayaGravityLayout`.
-    func layoutGravitating(vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
+    func layoutGravitating(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
             horizontalGravity: nil,
