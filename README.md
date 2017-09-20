@@ -61,18 +61,18 @@ let pictureLayout = profilePicture
   .layoutWithFixedSize(
     width: 100,
     height: 100)
-  .layoutGravitating(to: .center)
+  .layoutGravitating(to: .centerX)
   .layoutMatchingParentWidth()
 
 let usernameLayout = nameLabel
-  .layoutGravitating(to: .center)
+  .layoutGravitating(to: .centerX)
   .layoutMatchingParentWidth()
 
 layout = [pictureLayout, usernameLayout, buttonRowLayout]
   .layoutLinearly(orientation: .vertical)
   .layoutGravitating(
-        horizontally: .center,
-        vertically: .middle)
+        horizontally: .centerX,
+        vertically: .centerY)
   .layoutMatchingParent()
 ```
 

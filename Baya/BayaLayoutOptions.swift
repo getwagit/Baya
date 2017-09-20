@@ -17,12 +17,12 @@ public struct BayaLayoutOptions {
     public struct Gravity {
         public enum Horizontal {
             case left
-            case center
+            case centerX
             case right
         }
         public enum Vertical {
             case top
-            case middle
+            case centerY
             case bottom
         }
     }

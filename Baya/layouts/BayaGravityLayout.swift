@@ -40,14 +40,14 @@ public struct BayaGravityLayout: BayaLayout {
         switch horizontalGravity {
         case .none: fallthrough
         case .some(.left): point.x = frame.minX + element.layoutMargins.left
-        case .some(.center): point.x = frame.midX - (size.width * 0.5)
+        case .some(.centerX): point.x = frame.midX - (size.width * 0.5)
         case .some(.right): point.x = frame.maxX - size.width - element.layoutMargins.right
         }
 
         switch verticalGravity {
         case .none: fallthrough
         case .some(.top): point.y = frame.minY + element.layoutMargins.top
-        case .some(.middle): point.y = frame.midY - (size.height * 0.5)
+        case .some(.centerY): point.y = frame.midY - (size.height * 0.5)
         case .some(.bottom): point.y = frame.maxY - size.height - element.layoutMargins.bottom
         }
 
