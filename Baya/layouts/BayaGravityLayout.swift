@@ -63,6 +63,9 @@ public struct BayaGravityLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
+    /// Positions the element on the horizontal axis.
+    /// - parameter horizontalGravity: Specifies where the element should be positioned horizontally.
+    /// - returns: A `BayaGravityLayout`.
     func layoutGravitating(to horizontalGravity: BayaLayoutOptions.Gravity.Horizontal) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
@@ -70,6 +73,9 @@ public extension BayaLayoutable {
             verticalGravity: nil)
     }
 
+    /// Positions the element on the vertical axis.
+    /// - parameter verticalGravity: Specifies where the element should be positioned vertically.
+    /// - returns: A `BayaGravityLayout`.
     func layoutGravitating(to verticalGravity: BayaLayoutOptions.Gravity.Vertical) -> BayaGravityLayout {
         return BayaGravityLayout(
             element: self,
@@ -77,6 +83,10 @@ public extension BayaLayoutable {
             verticalGravity: verticalGravity)
     }
 
+    /// Positions the element on both the horizontal and vertical axis.
+    /// - parameter horizontalGravity: Specifies where the element should be positioned horizontally.
+    /// - parameter verticalGravity: Specifies where the element should be positioned vertically.
+    /// - returns: A `BayaGravityLayout`.
     func layoutGravitating(
         horizontally horizontalGravity: BayaLayoutOptions.Gravity.Horizontal,
         vertically verticalGravity: BayaLayoutOptions.Gravity.Vertical)

@@ -81,6 +81,12 @@ private extension Optional where Wrapped == CGFloat {
 }
 
 public extension BayaLayoutable {
+    /// Sets a portion of the available size as the size of the element.
+    /// - parameter widthFactor: A factor from 0 to 1, which (multiplied by the available width) defines the width of the
+    ///   element. If `nil` is passed as parameter the width is determined in accordance with the element's `layoutModes`.
+    /// - parameter heightFactor: A factor from 0 to 1, which (multiplied by the available height) defines the height of
+    ///   the element. If `nil` is passed as parameter the height is determined in accordance with the element's `layoutModes`.
+    /// - returns: A `BayaProportionalSizeLayout`.
     func layoutWithPortion(
         ofWidth widthFactor: CGFloat? = nil,
         ofHeight heightFactor: CGFloat? = nil)

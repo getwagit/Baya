@@ -141,9 +141,11 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
 }
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
-    /**
-        Creates a linear layout.
-    */
+    /// Aligns all elements in a single direction.
+    /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
+    /// - parameter spacing: The gap between the elements.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaLinearLayout`.
     func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
@@ -158,9 +160,11 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
-    /**
-        Creates a linear layout.
-    */
+    /// Aligns all elements in a single direction.
+    /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
+    /// - parameter spacing: The gap between the elements.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaLinearLayout`.
     func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,

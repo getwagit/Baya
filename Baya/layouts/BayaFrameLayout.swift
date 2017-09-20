@@ -52,20 +52,20 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 }
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
-    /**
-        Measures the largest dimensions and applies its frame to all children.
-        It is suggested to use it with BayaGravityLayout as children.
-    */
+    /// Places the elements in a frame. The `BayaFrameLayout` acts as a simple way to group elements and
+    /// applies only minimal layout logic.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaFrameLayout`.
     func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
     }
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
-    /**
-        Measures the largest dimensions and applies its frame to all children.
-        It is suggested to use it with BayaGravityLayout as children.
-    */
+    /// Places the elements in a frame. The `BayaFrameLayout` acts as a simple way to group elements and
+    /// applies only minimal layout logic.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaFrameLayout`.
     func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
         return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
     }

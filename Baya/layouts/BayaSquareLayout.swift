@@ -96,12 +96,17 @@ private extension CGSize {
 // MARK: Square shortcuts.
 
 public extension BayaLayoutable {
+    /// Lays out the element as a square. The element's bigger side will be used to determine the size of the square.
+    /// - returns: A `BayaSquareLayout`.
     func layoutAsSquare() -> BayaSquareLayout {
         return BayaSquareLayout(
             element: self,
             referenceSide: nil)
     }
 
+    /// Lays out the element as a square.
+    /// - parameter referenceSide: Specifies the side to base the square's size on.
+    /// - returns: A `BayaSquareLayout`.
     func layoutAsSquare(referenceSide: BayaLayoutOptions.Orientation)
             -> BayaSquareLayout {
         return BayaSquareLayout(

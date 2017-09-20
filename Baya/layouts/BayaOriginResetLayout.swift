@@ -36,6 +36,8 @@ public struct BayaOriginResetLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
+    /// Lays out the element at the origin x: 0, y: 0, disregarding the origin of the given frame.
+    /// - returns: A `BayaOriginResetLayout`.
     func layoutResettingOrigin() -> BayaLayout {
         return BayaOriginResetLayout(element: self)
     }
