@@ -163,16 +163,17 @@ public struct BayaFlexibleContentLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /// Calculates the sizes of the optional elements before and after the content element, subtracts them from the
-    /// available size, and lays them out. The content element is then laid out to fill the remaining space.
-    /// - parameter elementBefore: This optional element will be placed before the content element. Its required size
+    /// Calculates the sizes of the optional elements before and after the content element (the element this method is called on),
+    /// subtracts them from the available size, and lays them out. The content element is then measured with the remaining space and
+    /// laid out in accordance with its `layoutModes`.
+    /// - parameter elementBefore: This optional element will be placed before the content element. Its measured size
     ///   will be subtracted from the available size.
-    /// - parameter elementAfter: This optional element will be placed after the content element. Its required size will
+    /// - parameter elementAfter: This optional element will be placed after the content element. Its measured size will
     ///   be subtracted from the available size.
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
     /// - parameter spacing: The gap between the elements.
     /// - parameter layoutMargins: The layout's margins.
-    /// - returns: A BayaFlexibleContentLayout.
+    /// - returns: A `BayaFlexibleContentLayout`.
     func layoutFlexible(
         elementBefore: BayaLayoutable? = nil,
         elementAfter: BayaLayoutable? = nil,

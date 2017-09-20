@@ -128,7 +128,7 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
     ///   determines which side of the available size should be segmented and distributed among the elements.
     /// - parameter spacing: The gap between the elements.
     /// - parameter layoutMargins: The layout's margins.
-    /// - returns: A BayaEqualSegmentsLayout.
+    /// - returns: A `BayaEqualSegmentsLayout`.
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
@@ -149,7 +149,7 @@ public extension Sequence where Iterator.Element == BayaLayoutable {
     ///   determines which side of the available size should be segmented and distributed among the elements.
     /// - parameter spacing: The gap between the elements.
     /// - parameter layoutMargins: The layout's margins.
-    /// - returns: A BayaEqualSegmentsLayout.
+    /// - returns: A `BayaEqualSegmentsLayout`.
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,

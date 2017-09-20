@@ -69,15 +69,15 @@ public struct BayaPagedScrollLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /// Lays out the container element to fit the available size. The content element is laid out using a size which is
-    /// defined by the container's size multiplied with the desired amount of pages.
-    /// - parameter container: Typically a `UIScrollView`. All views contained in the content element should be subviews
-    ///   of the container.
+    /// Lays out the container to fit the available size. The content element (the element this method is called upon)
+    /// is laid out using a size which is defined by the container element's size multiplied with the desired amount of pages.
+    /// - parameter container: Typically a `UIScrollView`. All views contained in the content element should be subviews of the
+    ///   container.
     /// - parameter pages: Determines the size of the content element.
     /// - parameter spacing: The gap between the pages.
     /// - parameter orientation: Determines if the pages are laid out in horizontal or vertical direction.
     /// - parameter layoutMargins: The layout's margins.
-    /// - returns: A BayaPagedScrollLayout.
+    /// - returns: A `BayaPagedScrollLayout`.
     func layoutPagedScrollContent(
         container: BayaScrollLayoutContainer,
         pages: Int,

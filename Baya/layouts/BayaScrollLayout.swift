@@ -92,13 +92,13 @@ public struct BayaScrollLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /// Lays out the scroll container and its content element.
-    /// - parameter container: Typically a `UIScrollView`. All views contained in the content element should be subviews
+    /// Lays out the scroll container and its content element (the element this method is called on).
+    /// - parameter container: Typically a `UIScrollView`. All views contained in the content element should be sub views
     ///   of the container.
     /// - parameter orientation: Determines the direction in which the content element is allowed to extend past the
-    ///   container. This is the direction that may be scrolled, if the content is large enough.
+    ///   container. This is the direction that may be scrolled, if the content element is large enough.
     /// - parameter layoutMargins: The margins around the container element.
-    /// - returns: A BayaScrollLayout.
+    /// - returns: A `BayaScrollLayout`.
     func layoutScrollContent(
         container: BayaScrollLayoutContainer,
         orientation: BayaLayoutOptions.Orientation = .vertical,
