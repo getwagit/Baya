@@ -18,7 +18,7 @@ A simple layout framework written in Swift.
 
 Add the following to your `Cartfile`
 ```
-github "getwagit/Baya" ~> 1.0.0
+github "getwagit/Baya" ~> 0.1.0
 ```
 
 
