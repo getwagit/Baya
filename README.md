@@ -1,14 +1,14 @@
 ![Baya](logo.png)
 
 # Baya
-A basic layout framework for Swift.
+A simple layout framework written in Swift.
 
 ## Features
 
-- *Baya* uses structs to create a tree graph of layout rules. 
-- Nested layouts without a nested view hierachy. 
-- Simple and readable layout code.
-- Extendable.
+- *Baya* encapsulates layout logic in structs.
+- Build nested layouts without a nested view hierachy. 
+- Write simple and readable layout code.
+- It's extendable with your own layouts.
 - Works without Interface Builder or Auto Layout.
 
 
@@ -22,8 +22,9 @@ github "getwagit/Baya" ~> 1.0.0
 ```
 
 
-## Usage
-A basic user profile layout could be defined with *Baya* like this:
+## Basic Usage
+With *Baya* you first define your layout and then apply it. In most cases you want to define your layout once and apply it whenever the `frame` or content changes.
+A basic layout in a `ViewController` could look like this:
 
 ```swift
 ...
@@ -31,46 +32,55 @@ var layout: BayaLayoutable?
 
 override func loadView() {
   ...
-  // Add subview directly as sub view to the ViewControlles's root view.
+  // Add views directly as sub views of the ViewControlles's root view.
   view.addSubView(profilePicture)
   ...
 
-  // Create your layout graph. In this case it is just a linear layout.
-  layout = [profilePicture, userName, friendCount].layoutLinear(orientation: .horizontal)
+  // To create a layout call Baya's layout functions on a BayaLayoutable or an Array of BayaLayoutables.
+  // A UIView is a BayaLayoutable by default.
+  // In this example three simple UIViews are lined up horizontally.
+  layout = [profilePicture, userName, friendCount].layoutLinearly(orientation: .horizontal)
 }
 ```
-Run your layout by calling `layoutWith`. In a `ViewController` the method `viewWillLayoutSubviews` is probably the best place to do this.
+Apply the layout by calling `startLayout(with:)`. A good place to do this in a `ViewController` is `viewWillLayoutSubviews()`.
 ```swift
 override func viewWillLayoutSubviews() {
   // Apply the layout.
-  layout?.layoutWith(frame: view.bounds)
+  layout?.startLayout(with: view.bounds)
 }
 ```
-This is what a layout graph might look like:
+You can use `BayaLayout`s to group `UIView`s and `BayaLayoutables` into tree-like layout structures. 
+The layout of a simple `UIViewController` might look like this:
 ```swift
 let buttonRowLayout = [button1, button2, button3]
-  .layoutLinear(
+  .layoutLinearly(
     orientation: .horizontal,
     spacing: 20)
 
 let pictureLayout = profilePicture
-  .layoutFixedSize(
+  .layoutWithFixedSize(
     width: 100,
     height: 100)
-  .layoutGravitate(to: .center)
+  .layoutGravitating(to: .centerX)
+  .layoutMatchingParentWidth()
 
 let usernameLayout = nameLabel
-  .layoutGravitate(to: .center)
+  .layoutGravitating(to: .centerX)
+  .layoutMatchingParentWidth()
 
 layout = [pictureLayout, usernameLayout, buttonRowLayout]
-  .layoutLinear(orientation: .vertical)
+  .layoutLinearly(orientation: .vertical)
+  .layoutGravitating(
+        horizontally: .centerX,
+        vertically: .centerY)
+  .layoutMatchingParent()
 ```
 
 ## Docs
-For a list of all layout methods check out the wiki!
+Visit the [wiki](https://github.com/getwagit/Baya/wiki) for more information on the default layouts and how to use them.
 
 ## Contributing
-Contributions are welcome! Please use the branch `develop` as base/target. If you modifiy the `project.pbxproj` file, use [xUnique](https://github.com/truebit/xUnique).
+Contributions are welcome! Please use the branch `develop` as base/target. If you modifiy the `project.pbxproj` file, use [xUnique](https://github.com/truebit/xUnique): `$ xunique -u -s -c Baya.xcodeproj`
 
 ## License 
 Baya is available under the MIT license.

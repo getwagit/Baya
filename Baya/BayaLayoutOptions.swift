@@ -14,20 +14,15 @@ public struct BayaLayoutOptions {
         case vertical
     }
 
-    public enum Direction {
-        case normal
-        case reversed
-    }
-
     public struct Gravity {
         public enum Horizontal {
             case left
-            case center
+            case centerX
             case right
         }
         public enum Vertical {
             case top
-            case middle
+            case centerY
             case bottom
         }
     }
@@ -39,8 +34,8 @@ public struct BayaLayoutOptions {
 
     public struct Modes {
         internal static let `default` = BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent)
-        let width: BayaLayoutOptions.Mode
-        let height: BayaLayoutOptions.Mode
+        public let width: BayaLayoutOptions.Mode
+        public let height: BayaLayoutOptions.Mode
 
         public init(width: BayaLayoutOptions.Mode, height: BayaLayoutOptions.Mode) {
             self.width = width

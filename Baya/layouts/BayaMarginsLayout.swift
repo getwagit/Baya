@@ -37,6 +37,9 @@ internal struct BayaMarginsLayout: BayaLayout {
 }
 
 internal extension BayaLayoutable {
+    /// Disregards the element's margins and substitutes them with the margins passed as parameter.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaMarginsLayout`.
     func layoutWithMargins(layoutMargins: UIEdgeInsets) -> BayaMarginsLayout {
         return BayaMarginsLayout(
             element: self,
@@ -45,12 +48,12 @@ internal extension BayaLayoutable {
 }
 
 extension UIViewController {
-    /**
-     The layoutMargins of UIViewController's root view are managed by the system, and cannot be changed.
-     To prevent unwanted layout behavior, use this function, which enables full control over
-     the root view's margins by wrapping the it in a BayaMarginsLayout.
-     */
-    public func getRootViewAsLayoutable(with margins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {
-        return view.layoutWithMargins(layoutMargins: margins)
+    /// Enables full control over the root view's margins by wrapping it in a `BayaMarginsLayout`.
+    /// The `layoutMargins` of `UIViewController`s' root views are managed by the system, and cannot be changed.
+    /// To prevent unwanted layout behavior, use this function.
+    /// - parameter layoutMargins: The desired `layoutMargins` around the view.
+    /// - returns: A `BayaMarginsLayout` containing the `UIViewController`'s root view.
+    public func getRootViewAsLayoutable(with layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaLayoutable {
+        return view.layoutWithMargins(layoutMargins: layoutMargins)
     }
 }

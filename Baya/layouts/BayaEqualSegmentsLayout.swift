@@ -13,7 +13,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     public var layoutMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
-    var gutter: CGFloat
+    var spacing: CGFloat
 
     private var elements: [BayaLayoutable]
     private var measures = [CGSize]()
@@ -22,11 +22,11 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     init(
         elements: [BayaLayoutable],
         orientation: BayaLayoutOptions.Orientation,
-        gutter: CGFloat = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.orientation = orientation
-        self.gutter = gutter
+        self.spacing = spacing
         self.layoutMargins = layoutMargins
         self.frame = CGRect()
     }
@@ -41,7 +41,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         }
         switch orientation {
         case .horizontal:
-            let maxSegmentWidth = (frame.width - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            let maxSegmentWidth = (frame.width - spacing * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             let segmentWidth = maxSegmentWidth > 0 ? maxSegmentWidth : 0
             let segmentSize = CGSize(width: segmentWidth, height: frame.height)
             iterate(&elements, measures) { e1, e2, e2s in
@@ -52,7 +52,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                         x: e1.frame.minX
                             - e1.layoutMargins.left
                             + segmentWidth
-                            + gutter
+                            + spacing
                             + e2.layoutMargins.left,
                         y: frame.minY + e2.layoutMargins.top)
                 } else {
@@ -63,7 +63,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                 return CGRect(origin: origin, size: size)
             }
         case .vertical:
-            let maxSegmentHeight = (frame.height - gutter * CGFloat(elements.count - 1)) / CGFloat(elements.count)
+            let maxSegmentHeight = (frame.height - spacing * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             let segmentHeight = maxSegmentHeight > 0 ? maxSegmentHeight : 0
             let segmentSize = CGSize(width: frame.width, height: segmentHeight)
             iterate(&elements, measures) { e1, e2, e2s in
@@ -75,7 +75,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                         y: e1.frame.minY
                             - e1.layoutMargins.top
                             + segmentHeight
-                            + gutter
+                            + spacing
                             + e2.layoutMargins.top)
                 } else {
                     origin = CGPoint(
@@ -95,20 +95,20 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         switch orientation {
         case .horizontal:
             return CGSize(
-                width: measuredMaxDimension!.width * CGFloat(elements.count) + gutter * CGFloat(elements.count - 1),
+                width: measuredMaxDimension!.width * CGFloat(elements.count) + spacing * CGFloat(elements.count - 1),
                 height: measuredMaxDimension!.height)
         case .vertical:
             return CGSize(
                 width: measuredMaxDimension!.width,
-                height: measuredMaxDimension!.height * CGFloat(elements.count) + gutter * CGFloat(elements.count - 1))
+                height: measuredMaxDimension!.height * CGFloat(elements.count) + spacing * CGFloat(elements.count - 1))
         }
     }
 
     mutating private func measureChildrenAndFindMaxDimensions(_ size: CGSize) -> CGSize {
         let elementCount = CGFloat(elements.count)
         let segmentSize = orientation == .horizontal ?
-            CGSize(width: (size.width - (elementCount - 1) * gutter) / elementCount, height: size.height) :
-            CGSize(width: size.width, height: (size.height - (elementCount - 1) * gutter) / elementCount)
+            CGSize(width: (size.width - (elementCount - 1) * spacing) / elementCount, height: size.height) :
+            CGSize(width: size.width, height: (size.height - (elementCount - 1) * spacing) / elementCount)
         measures = measure(&elements, size: segmentSize)
         var size = CGSize()
         for i in 0..<elements.count {
@@ -122,35 +122,43 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
 }
 
 public extension Sequence where Iterator.Element: BayaLayoutable {
-    /**
-        Distributes the available size evenly.
-    */
+    /// Distributes the available width or height evenly among the elements. Lays out the elements in horizontal or
+    /// vertical direction.
+    /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction. Also
+    ///   determines which side of the available size should be segmented and distributed among the elements.
+    /// - parameter spacing: The gap between the elements.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaEqualSegmentsLayout`.
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
-        gutter: CGFloat = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
             elements: self.array(),
             orientation: orientation,
-            gutter: gutter,
+            spacing: spacing,
             layoutMargins: layoutMargins)
     }
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
-    /**
-        Distributes the available size evenly.
-    */
+    /// Distributes the available width or height evenly among the elements. Lays out the elements in horizontal or
+    /// vertical direction.
+    /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction. Also
+    ///   determines which side of the available size should be segmented and distributed among the elements.
+    /// - parameter spacing: The gap between the elements.
+    /// - parameter layoutMargins: The layout's margins.
+    /// - returns: A `BayaEqualSegmentsLayout`.
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
-        gutter: CGFloat = 0,
+        spacing: CGFloat = 0,
         layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
             elements: self.array(),
             orientation: orientation,
-            gutter: gutter,
+            spacing: spacing,
             layoutMargins: layoutMargins)
     }
 }

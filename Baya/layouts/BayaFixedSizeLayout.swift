@@ -12,7 +12,7 @@ import UIKit
 */
 public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
-    public var frame = CGRect()
+    public var frame: CGRect
     public var layoutModes: BayaLayoutOptions.Modes {
         return element.layoutModes
     }
@@ -28,6 +28,7 @@ public struct BayaFixedSizeLayout: BayaLayout {
         self.fixedWidth = width
         self.fixedHeight = height
         self.element = element
+        self.frame = CGRect()
     }
 
     mutating public func layoutWith(frame: CGRect) {
@@ -60,10 +61,12 @@ public struct BayaFixedSizeLayout: BayaLayout {
 }
 
 public extension BayaLayoutable {
-    /**
-        Gives this element a fixed sized container.
-        Mirrors layout modes that are not fixed sizes from this element.
-    */
+    /// Sets a fixed size for the element.
+    /// - parameter width: The desired width in points. If `nil` is passed as parameter the width is determined in
+    ///   accordance with the element's `layoutModes`.
+    /// - parameter height: The desired height in points. If `nil` is passed as parameter the height is determined
+    ///   in accordance with the element's `layoutModes`.
+    /// - returns: A `BayaFixedSizeLayout`.
     func layoutWithFixedSize(
         width: CGFloat?,
         height: CGFloat?)
