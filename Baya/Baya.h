@@ -1,9 +1,6 @@
 //
-//  Baya.h
-//  Baya
-//
-//  Created by Markus Riegel on 18.03.17.
-//  Copyright © 2017 wag it GmbH. All rights reserved.
+// Copyright (c) 2016-2017 wag it GmbH.
+// License: MIT
 //
 
 #import <UIKit/UIKit.h>
