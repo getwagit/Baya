@@ -7,8 +7,8 @@ import Foundation
 import UIKit
 
 /**
-    Wraps a layoutable and overrides layout modes by applying fixed sizes.
-    Mirrors layout modes from its child.
+    Sets a fixed size for the element.
+    Mirrors the `layoutModes` of its child on the sides with no set fixed size.
 */
 public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
