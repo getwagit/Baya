@@ -7,15 +7,13 @@ import Foundation
 import UIKit
 
 /**
-    Wraps a layoutable and overrides layout modes by applying fixed sizes.
-    Mirrors layout modes from its child.
+    Sets a fixed size for the element.
+    The `layoutModes` will be `.wrapContent` on sides with fixed size, or the element's `layoutModes`.
 */
 public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
     public var frame: CGRect
-    public var layoutModes: BayaLayoutOptions.Modes {
-        return element.layoutModes
-    }
+    public var layoutModes: BayaLayoutOptions.Modes
     private var element: BayaLayoutable
     private var measure: CGSize?
     private var fixedWidth: CGFloat?
@@ -29,6 +27,9 @@ public struct BayaFixedSizeLayout: BayaLayout {
         self.fixedHeight = height
         self.element = element
         self.frame = CGRect()
+        self.layoutModes = BayaLayoutOptions.Modes(
+            width: width != nil ? .wrapContent : element.layoutModes.width,
+            height: height != nil ? .wrapContent : element.layoutModes.height)
     }
 
     mutating public func layoutWith(frame: CGRect) {
