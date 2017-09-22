@@ -8,7 +8,7 @@ import UIKit
 
 /**
     Sets a fixed size for the element.
-    Mirrors the `layoutModes` of its child on the sides with no set fixed size.
+    The `layoutModes` will be `.wrapContent` on sides with fixed size, or the child's `layoutModes`.
 */
 public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
