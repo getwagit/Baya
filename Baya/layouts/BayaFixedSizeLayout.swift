@@ -14,7 +14,9 @@ public struct BayaFixedSizeLayout: BayaLayout {
     public var layoutMargins = UIEdgeInsets.zero
     public var frame: CGRect
     public var layoutModes: BayaLayoutOptions.Modes {
-        return element.layoutModes
+        return BayaLayoutOptions.Modes(
+            width: fixedWidth != nil ? .wrapContent : element.layoutModes.width,
+            height: fixedHeight != nil ? .wrapContent : element.layoutModes.height)
     }
     private var element: BayaLayoutable
     private var measure: CGSize?
