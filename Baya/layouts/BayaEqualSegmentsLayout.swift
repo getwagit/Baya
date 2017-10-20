@@ -39,15 +39,18 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         if measuredMaxDimension == nil {
             measuredMaxDimension = measureChildrenAndFindMaxDimensions(frame.size)
         }
-        let measures = measureIfNecessary(&elements, cache: self.measures, size: frame.size)
         switch orientation {
         case .horizontal:
             let maxSegmentWidth = (frame.width - spacing * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             let segmentWidth = maxSegmentWidth > 0 ? maxSegmentWidth : 0
             let segmentSize = CGSize(width: segmentWidth, height: frame.height)
+            let measures = measureIfNecessary(&elements, cache: self.measures, size: segmentSize)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
-                let size: CGSize = BayaEqualSegmentsLayout.combineSizeForLayout(for: e2, wrappingSize: e2s, matchingSize: segmentSize)
+                let size: CGSize = BayaEqualSegmentsLayout.combineSizeForLayout(
+                    for: e2,
+                    wrappingSize: e2s,
+                    matchingSize: segmentSize.subtractMargins(ofElement: e2))
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: e1.frame.minX
@@ -67,9 +70,13 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
             let maxSegmentHeight = (frame.height - spacing * CGFloat(elements.count - 1)) / CGFloat(elements.count)
             let segmentHeight = maxSegmentHeight > 0 ? maxSegmentHeight : 0
             let segmentSize = CGSize(width: frame.width, height: segmentHeight)
+            let measures = measureIfNecessary(&elements, cache: self.measures, size: segmentSize)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
-                let size: CGSize = BayaEqualSegmentsLayout.combineSizeForLayout(for: e2, wrappingSize: e2s, matchingSize: segmentSize)
+                let size: CGSize = BayaEqualSegmentsLayout.combineSizeForLayout(
+                    for: e2,
+                    wrappingSize: e2s,
+                    matchingSize: segmentSize.subtractMargins(ofElement: e2))
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: frame.minX + e2.layoutMargins.left,
