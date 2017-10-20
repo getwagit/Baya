@@ -74,60 +74,62 @@ public struct BayaFlexibleContentLayout: BayaLayout {
 
         switch orientation {
         case .horizontal:
-            if elements.before != nil {
-                elements.before!.layoutWith(frame: CGRect(
-                    x: frame.minX + elements.before!.layoutMargins.left,
-                    y: frame.minY + elements.before!.layoutMargins.top,
+            if let elementBefore = elements.before {
+                elements.before?.layoutWith(frame: CGRect(
+                    x: frame.minX + elementBefore.layoutMargins.left,
+                    y: frame.minY + elementBefore.layoutMargins.top,
                     width: measures.before!.width,
-                    height: elements.before!.layoutModes.height == .wrapContent ?
-                        measures.before!.height : frame.height - elements.before!.verticalMargins))
+                    height: elementBefore.layoutModes.height == .wrapContent ?
+                        measures.before!.height : frame.height - elementBefore.verticalMargins))
             }
 
-            if elements.after != nil {
-                elements.after!.layoutWith(frame: CGRect(
-                    x: frame.maxX - measures.after!.width - elements.after!.layoutMargins.right,
-                    y: frame.minY + elements.after!.layoutMargins.top,
+            if let elementAfter = elements.after {
+                elements.after?.layoutWith(frame: CGRect(
+                    x: frame.maxX - measures.after!.width - elementAfter.layoutMargins.right,
+                    y: frame.minY + elementAfter.layoutMargins.top,
                     width: measures.after!.width,
-                    height: elements.after!.layoutModes.width == .wrapContent ?
-                        measures.after!.height : frame.height - elements.after!.verticalMargins))
+                    height: elementAfter.layoutModes.width == .wrapContent ?
+                        measures.after!.height : frame.height - elementAfter.verticalMargins))
             }
 
+            let elementContent = elements.content
             elements.content.layoutWith(frame: CGRect(
                 x: frame.minX
                     + relevantBeforeWidth
-                    + elements.content.layoutMargins.left,
-                y: frame.minY + elements.content.layoutMargins.top,
-                width: elements.content.layoutModes.width == .wrapContent ?
+                    + elementContent.layoutMargins.left,
+                y: frame.minY + elementContent.layoutMargins.top,
+                width: elementContent.layoutModes.width == .wrapContent ?
                     measures.content!.width : frame.width - relevantBeforeWidth - relevantAfterWidth,
-                height: elements.content.layoutModes.height == .wrapContent ?
-                    measures.content!.height : frame.height - elements.content.verticalMargins))
+                height: elementContent.layoutModes.height == .wrapContent ?
+                    measures.content!.height : frame.height - elementContent.verticalMargins))
         case .vertical:
-            if elements.before != nil {
-                elements.before!.layoutWith(frame: CGRect(
-                    x: frame.minX + elements.before!.layoutMargins.left,
-                    y: frame.minY + elements.before!.layoutMargins.top,
-                    width:  elements.before!.layoutModes.width == .wrapContent ?
-                        measures.before!.width : frame.width - elements.before!.horizontalMargins,
+            if let elementBefore = elements.before {
+                elements.before?.layoutWith(frame: CGRect(
+                    x: frame.minX + elementBefore.layoutMargins.left,
+                    y: frame.minY + elementBefore.layoutMargins.top,
+                    width:  elementBefore.layoutModes.width == .wrapContent ?
+                        measures.before!.width : frame.width - elementBefore.horizontalMargins,
                     height: measures.before!.height))
             }
 
-            if elements.after != nil {
-                elements.after!.layoutWith(frame: CGRect(
-                    x: frame.minX + elements.after!.layoutMargins.left,
-                    y: frame.maxY - measures.after!.height - elements.after!.layoutMargins.bottom,
-                    width: elements.after!.layoutModes.width == .wrapContent ?
-                        measures.after!.width : frame.width - elements.after!.horizontalMargins,
+            if let elementAfter = elements.after {
+                elements.after?.layoutWith(frame: CGRect(
+                    x: frame.minX + elementAfter.layoutMargins.left,
+                    y: frame.maxY - measures.after!.height - elementAfter.layoutMargins.bottom,
+                    width: elementAfter.layoutModes.width == .wrapContent ?
+                        measures.after!.width : frame.width - elementAfter.horizontalMargins,
                     height: measures.after!.height))
             }
 
+            let elementContent = elements.content
             elements.content.layoutWith(frame: CGRect(
-                x: frame.minX + elements.content.layoutMargins.left,
+                x: frame.minX + elementContent.layoutMargins.left,
                 y: frame.minY
                     + relevantBeforeHeight
-                    + elements.content.layoutMargins.top,
-                width: elements.content.layoutModes.width == .wrapContent ?
-                    measures.content!.width : frame.width - elements.content.horizontalMargins,
-                height: elements.content.layoutModes.height == .wrapContent ?
+                    + elementContent.layoutMargins.top,
+                width: elementContent.layoutModes.width == .wrapContent ?
+                    measures.content!.width : frame.width - elementContent.horizontalMargins,
+                height: elementContent.layoutModes.height == .wrapContent ?
                     measures.content!.height : frame.height - relevantBeforeHeight - relevantAfterHeight))
         }
     }

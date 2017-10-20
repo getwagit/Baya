@@ -26,9 +26,10 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
+        let measures = measureIfNecessary(&elements, cache: self.measures, size: frame.size)
         iterate(&elements, measures) {
             e1, e2, e2s in
-            let size = calculateSizeForLayout(forChild: &e2, cachedSize: e2s, ownSize: frame.size)
+            let size = BayaFrameLayout.combineSizeForLayout(for: e2, wrappingSize: e2s, matchingSize: frame.size)
             return CGRect(
                 origin: CGPoint(
                     x: frame.minX + e2.layoutMargins.left,

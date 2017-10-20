@@ -39,6 +39,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
         if measuredMaxDimension == nil {
             measuredMaxDimension = measureChildrenAndFindMaxDimensions(frame.size)
         }
+        let measures = measureIfNecessary(&elements, cache: self.measures, size: frame.size)
         switch orientation {
         case .horizontal:
             let maxSegmentWidth = (frame.width - spacing * CGFloat(elements.count - 1)) / CGFloat(elements.count)
@@ -46,7 +47,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
             let segmentSize = CGSize(width: segmentWidth, height: frame.height)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
-                let size: CGSize = calculateSizeForLayout(forChild: &e2, cachedSize: e2s, ownSize: segmentSize)
+                let size: CGSize = BayaEqualSegmentsLayout.combineSizeForLayout(for: e2, wrappingSize: e2s, matchingSize: segmentSize)
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: e1.frame.minX
@@ -68,7 +69,7 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
             let segmentSize = CGSize(width: frame.width, height: segmentHeight)
             iterate(&elements, measures) { e1, e2, e2s in
                 let origin: CGPoint
-                let size: CGSize = calculateSizeForLayout(forChild: &e2, cachedSize: e2s, ownSize: segmentSize)
+                let size: CGSize = BayaEqualSegmentsLayout.combineSizeForLayout(for: e2, wrappingSize: e2s, matchingSize: segmentSize)
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: frame.minX + e2.layoutMargins.left,
