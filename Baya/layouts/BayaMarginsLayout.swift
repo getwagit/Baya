@@ -10,7 +10,7 @@ import Foundation
     for example the root view of an UIViewController.
     Mirrors the child's layoutModes and frame.
  */
-internal struct BayaMarginsLayout: BayaLayout {
+public struct BayaMarginsLayout: BayaLayout {
     public var layoutModes: BayaLayoutOptions.Modes {
         return element.layoutModes
     }
@@ -36,7 +36,7 @@ internal struct BayaMarginsLayout: BayaLayout {
     }
 }
 
-internal extension BayaLayoutable {
+public extension BayaLayoutable {
     /// Disregards the element's margins and substitutes them with the margins passed as parameter.
     /// - parameter layoutMargins: The layout's margins.
     /// - returns: A `BayaMarginsLayout`.
