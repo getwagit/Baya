@@ -21,14 +21,41 @@ internal extension BayaLayoutIterator {
         - Parameter elements: The elements to iterate on. Array will get mutated.
         - Parameter l: The closure which will receive the previous and the current child.
     */
-    mutating func iterate(_ elements: inout [BayaLayoutable], _ measures: [CGSize], l: (BayaLayoutable?, inout BayaLayoutable, CGSize?) -> CGRect) {
+    func iterate(_ elements: inout [BayaLayoutable], _ measures: [CGSize], l: (BayaLayoutable?, BayaLayoutable, CGSize) -> CGRect) {
         guard elements.count > 0 else {
             return
         }
-        for i in 0..<elements.count { // Has to loop with i because of struct copies.
-            let measure: CGSize? = measures.count > i ? measures[i] : nil
-            elements[i].layoutWith(frame: l(i == 0 ? nil : elements[i - 1], &elements[i], measure))
+        guard elements.count == measures.count else {
+            return
         }
+        for i in 0..<elements.count {
+            let prevElement = i == 0 ? nil : elements[i - 1]
+            let currentElement = elements[i]
+            elements[i].layoutWith(frame: l(prevElement, currentElement,  measures[i]))
+        }
+    }
+    
+    /**
+         Provide a cache of measurements and only measure items if necessary.
+         Modifies the input array.
+ 
+         - Parameter elements: The elements to measure. Array will be mutated.
+         - Parameter cache: The previous measurements if available
+         - Parameter size: The bas for the measurement
+    */
+    func measureIfNecessary(_ elements: inout [BayaLayoutable], cache: [CGSize], size: CGSize) -> [CGSize] {
+        guard elements.count > cache.count else {
+            return cache
+        }
+        var sizes = [CGSize](repeating: CGSize(), count: elements.count)
+        guard elements.count > 0 else {
+            return sizes
+        }
+        for i in 0..<elements.count {
+            let cached: CGSize? = cache.count > i ? cache[i] : nil
+            sizes[i] = cached ?? elements[i].sizeThatFitsWithMargins(size)
+        }
+        return sizes
     }
 
     /**

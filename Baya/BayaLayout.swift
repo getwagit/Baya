@@ -24,7 +24,7 @@ public extension BayaLayout {
         let origin = CGPoint(
             x: frame.origin.x + self.layoutMargins.left,
             y: frame.origin.y + self.layoutMargins.top)
-        let combinedSize = combineSizeForLayout(
+        let combinedSize = Self.combineSizeForLayout(
             for: self,
             wrappingSize: self.sizeThatFitsWithMargins(frame.size),
             matchingSize: frame.size.subtractMargins(ofElement: self))
@@ -71,7 +71,7 @@ internal extension BayaLayout {
         cachedSize measuredSize: CGSize?,
         ownSize availableSize: CGSize)
             -> CGSize {
-        return combineSizeForLayout(
+        return Self.combineSizeForLayout(
             for: element,
             wrappingSize: measuredSize ?? element.sizeThatFitsWithMargins(availableSize),
             matchingSize: availableSize.subtractMargins(ofElement: element))
@@ -84,7 +84,7 @@ internal extension BayaLayout {
         - Parameter wrappingSize: The measured size of the element.
         - Parameter matchingSize: The size of the element when matching the parent.
     */
-    func combineSizeForLayout(
+    static func combineSizeForLayout(
         `for` element: BayaLayoutable,
         wrappingSize: CGSize,
         matchingSize: CGSize) -> CGSize {

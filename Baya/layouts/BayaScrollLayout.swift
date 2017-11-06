@@ -60,17 +60,19 @@ public struct BayaScrollLayout: BayaLayout {
                         frame.size.height - container.verticalMargins - content.verticalMargins)
             )
         }
+        let layoutMargins = content.layoutMargins
         content.layoutWith(frame: CGRect(
             origin: CGPoint(
-                x: content.layoutMargins.left,
-                y: content.layoutMargins.top),
+                x: layoutMargins.left,
+                y: layoutMargins.top),
             size: adjustedContentSize))
         container.layoutWith(frame: frame.subtractMargins(ofElement: container))
         container.contentSize = adjustedContentSize.addMargins(ofElement: content)
     }
 
     mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
-        contentMeasure = content.sizeThatFits(sizeForMeasurement(size))
+        let measureSize = sizeForMeasurement(size)
+        contentMeasure = content.sizeThatFits(measureSize)
         return CGSize(
             width: min(contentMeasure!.width + content.horizontalMargins + container.horizontalMargins, size.width),
             height: min(contentMeasure!.height + content.verticalMargins + container.verticalMargins, size.height))

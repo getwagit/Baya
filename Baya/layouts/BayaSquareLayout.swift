@@ -33,12 +33,13 @@ public struct BayaSquareLayout: BayaLayout {
     }
 
     mutating public func layoutWith(frame: CGRect) {
+        let size = squareSizeBasedOnReferenceSide(frame.size)
         element.layoutWith(
             // A safety measure to ensure that this layout squares its element,
             // even if the given frame is a regular rectangle.
             frame: CGRect(
                 origin: frame.origin,
-                size: squareSizeBasedOnReferenceSide(frame.size)))
+                size: size))
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {

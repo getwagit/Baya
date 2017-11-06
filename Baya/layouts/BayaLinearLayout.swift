@@ -36,12 +36,13 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         guard elements.count > 0 else {
             return
         }
+        let measures = measureIfNecessary(&elements, cache: self.measures, size: frame.size)
         switch orientation {
         case .horizontal:
             iterate(&elements, measures) { e1, e2, e2s in
-                let size = calculateSizeForLayout(
+                let size = BayaLinearLayout.calculateSizeForLayout(
                     withOrientation: .horizontal,
-                    forChild: &e2,
+                    forChild: e2,
                     cachedSize: e2s,
                     ownSize: frame.size)
                 let origin: CGPoint
@@ -61,9 +62,9 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             }
         case .vertical:
             iterate(&elements, measures) { e1, e2, e2s in
-                let size = calculateSizeForLayout(
+                let size = BayaLinearLayout.calculateSizeForLayout(
                     withOrientation: .vertical,
-                    forChild: &e2,
+                    forChild: e2,
                     cachedSize: e2s,
                     ownSize: frame.size)
                 let origin: CGPoint
@@ -114,28 +115,27 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         return resultSize
     }
 
-    private func calculateSizeForLayout(
+    private static func calculateSizeForLayout(
         withOrientation orientation: BayaLayoutOptions.Orientation,
-        forChild element: inout BayaLayoutable,
-        cachedSize: CGSize?,
+        forChild element: BayaLayoutable,
+        cachedSize: CGSize,
         ownSize availableSize: CGSize)
             -> CGSize {
-        let measuredSize = saveMeasure(e2s: cachedSize, e2: &element, size: availableSize)
         switch orientation {
         case .horizontal:
             guard element.layoutModes.height == .matchParent else {
-                return measuredSize
+                return cachedSize
             }
             return CGSize(
-                width: measuredSize.width,
+                width: cachedSize.width,
                 height: availableSize.height - element.verticalMargins)
         case .vertical:
             guard element.layoutModes.width == .matchParent else {
-                return measuredSize
+                return cachedSize
             }
             return CGSize(
                 width: availableSize.width - element.horizontalMargins,
-                height: measuredSize.height)
+                height: cachedSize.height)
         }
     }
 }

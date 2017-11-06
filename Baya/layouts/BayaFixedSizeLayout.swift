@@ -46,10 +46,11 @@ public struct BayaFixedSizeLayout: BayaLayout {
                 height: fixedHeight?.subtract(element.verticalMargins) ?? defaultSize.height)
         }
 
+        let layoutMargins = element.layoutMargins
         element.layoutWith(frame: CGRect(
             origin: CGPoint(
-                x: frame.origin.x + element.layoutMargins.left,
-                y: frame.origin.y + element.layoutMargins.top),
+                x: frame.origin.x + layoutMargins.left,
+                y: frame.origin.y + layoutMargins.top),
             size: size))
     }
 
