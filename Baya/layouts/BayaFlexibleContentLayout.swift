@@ -12,7 +12,7 @@ import UIKit
     element will be measured and positioned with the remaining space.
  */
 public struct BayaFlexibleContentLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
+    public var bayaMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
     var spacing: CGFloat
@@ -24,10 +24,10 @@ public struct BayaFlexibleContentLayout: BayaLayout {
         elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?),
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
         self.elements = elements
         self.orientation = orientation
-        self.layoutMargins = layoutMargins
+        self.bayaMargins = bayaMargins
         self.spacing = spacing
         self.frame = CGRect()
     }
@@ -76,19 +76,19 @@ public struct BayaFlexibleContentLayout: BayaLayout {
         case .horizontal:
             if let elementBefore = elements.before {
                 elements.before?.layoutWith(frame: CGRect(
-                    x: frame.minX + elementBefore.layoutMargins.left,
-                    y: frame.minY + elementBefore.layoutMargins.top,
+                    x: frame.minX + elementBefore.bayaMargins.left,
+                    y: frame.minY + elementBefore.bayaMargins.top,
                     width: measures.before!.width,
-                    height: elementBefore.layoutModes.height == .wrapContent ?
+                    height: elementBefore.bayaModes.height == .wrapContent ?
                         measures.before!.height : frame.height - elementBefore.verticalMargins))
             }
 
             if let elementAfter = elements.after {
                 elements.after?.layoutWith(frame: CGRect(
-                    x: frame.maxX - measures.after!.width - elementAfter.layoutMargins.right,
-                    y: frame.minY + elementAfter.layoutMargins.top,
+                    x: frame.maxX - measures.after!.width - elementAfter.bayaMargins.right,
+                    y: frame.minY + elementAfter.bayaMargins.top,
                     width: measures.after!.width,
-                    height: elementAfter.layoutModes.width == .wrapContent ?
+                    height: elementAfter.bayaModes.width == .wrapContent ?
                         measures.after!.height : frame.height - elementAfter.verticalMargins))
             }
 
@@ -96,40 +96,40 @@ public struct BayaFlexibleContentLayout: BayaLayout {
             elements.content.layoutWith(frame: CGRect(
                 x: frame.minX
                     + relevantBeforeWidth
-                    + elementContent.layoutMargins.left,
-                y: frame.minY + elementContent.layoutMargins.top,
-                width: elementContent.layoutModes.width == .wrapContent ?
+                    + elementContent.bayaMargins.left,
+                y: frame.minY + elementContent.bayaMargins.top,
+                width: elementContent.bayaModes.width == .wrapContent ?
                     measures.content!.width : frame.width - relevantBeforeWidth - relevantAfterWidth,
-                height: elementContent.layoutModes.height == .wrapContent ?
+                height: elementContent.bayaModes.height == .wrapContent ?
                     measures.content!.height : frame.height - elementContent.verticalMargins))
         case .vertical:
             if let elementBefore = elements.before {
                 elements.before?.layoutWith(frame: CGRect(
-                    x: frame.minX + elementBefore.layoutMargins.left,
-                    y: frame.minY + elementBefore.layoutMargins.top,
-                    width:  elementBefore.layoutModes.width == .wrapContent ?
+                    x: frame.minX + elementBefore.bayaMargins.left,
+                    y: frame.minY + elementBefore.bayaMargins.top,
+                    width:  elementBefore.bayaModes.width == .wrapContent ?
                         measures.before!.width : frame.width - elementBefore.horizontalMargins,
                     height: measures.before!.height))
             }
 
             if let elementAfter = elements.after {
                 elements.after?.layoutWith(frame: CGRect(
-                    x: frame.minX + elementAfter.layoutMargins.left,
-                    y: frame.maxY - measures.after!.height - elementAfter.layoutMargins.bottom,
-                    width: elementAfter.layoutModes.width == .wrapContent ?
+                    x: frame.minX + elementAfter.bayaMargins.left,
+                    y: frame.maxY - measures.after!.height - elementAfter.bayaMargins.bottom,
+                    width: elementAfter.bayaModes.width == .wrapContent ?
                         measures.after!.width : frame.width - elementAfter.horizontalMargins,
                     height: measures.after!.height))
             }
 
             let elementContent = elements.content
             elements.content.layoutWith(frame: CGRect(
-                x: frame.minX + elementContent.layoutMargins.left,
+                x: frame.minX + elementContent.bayaMargins.left,
                 y: frame.minY
                     + relevantBeforeHeight
-                    + elementContent.layoutMargins.top,
-                width: elementContent.layoutModes.width == .wrapContent ?
+                    + elementContent.bayaMargins.top,
+                width: elementContent.bayaModes.width == .wrapContent ?
                     measures.content!.width : frame.width - elementContent.horizontalMargins,
-                height: elementContent.layoutModes.height == .wrapContent ?
+                height: elementContent.bayaModes.height == .wrapContent ?
                     measures.content!.height : frame.height - relevantBeforeHeight - relevantAfterHeight))
         }
     }
@@ -173,20 +173,20 @@ public extension BayaLayoutable {
     ///   the available size.
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
     /// - parameter spacing: The gap between the elements.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaFlexibleContentLayout`.
     func layoutFlexible(
         elementBefore: BayaLayoutable? = nil,
         elementAfter: BayaLayoutable? = nil,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaFlexibleContentLayout {
         return BayaFlexibleContentLayout(
             elements: (before:  elementBefore, content: self, after: elementAfter),
             orientation: orientation,
             spacing: spacing,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }
 

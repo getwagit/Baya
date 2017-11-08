@@ -54,8 +54,8 @@ class BayaLinearTests: XCTestCase {
         XCTAssertEqual(
             l1.frame,
             CGRect(
-                x: layoutRect.origin.x + l1.layoutMargins.left,
-                y: layoutRect.origin.y + l1.layoutMargins.top,
+                x: layoutRect.origin.x + l1.bayaMargins.left,
+                y: layoutRect.origin.y + l1.bayaMargins.top,
                 width: l1.width,
                 height: l1.height),
             "l1 not matching")
@@ -66,8 +66,8 @@ class BayaLinearTests: XCTestCase {
                     + l1.width
                     + l1.horizontalMargins
                     + spacing
-                    + l2.layoutMargins.left,
-                y: layoutRect.origin.y + l2.layoutMargins.top,
+                    + l2.bayaMargins.left,
+                y: layoutRect.origin.y + l2.bayaMargins.top,
                 width: l2.width,
                 height: l2.height),
             "l2 not matching")
@@ -81,17 +81,17 @@ class BayaLinearTests: XCTestCase {
                     + l2.width
                     + l2.horizontalMargins
                     + spacing +
-                    l3.layoutMargins.left,
-                y: layoutRect.origin.y + l3.layoutMargins.top,
+                    l3.bayaMargins.left,
+                y: layoutRect.origin.y + l3.bayaMargins.top,
                 width: l3.width,
                 height: l3.height),
             "l3 not matching")
     }
     
     func testHorizontalMatchParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .horizontal,
             spacing: spacing)
@@ -105,9 +105,9 @@ class BayaLinearTests: XCTestCase {
             l1.frame,
             CGRect(
                 x: layoutRect.minX
-                    + l1.layoutMargins.left,
+                    + l1.bayaMargins.left,
                 y: layoutRect.minY
-                    + l1.layoutMargins.top,
+                    + l1.bayaMargins.top,
                 width: l1.width,
                 height: maxHeight - l1.verticalMargins))
         XCTAssertEqual(
@@ -117,9 +117,9 @@ class BayaLinearTests: XCTestCase {
                     + l1.width
                     + l1.horizontalMargins
                     + spacing
-                    + l2.layoutMargins.left,
+                    + l2.bayaMargins.left,
                 y: layoutRect.minY
-                    - l2.layoutMargins.top,
+                    - l2.bayaMargins.top,
                 width: l2.width,
                 height: maxHeight
                     - l2.verticalMargins))
@@ -133,9 +133,9 @@ class BayaLinearTests: XCTestCase {
                     + l2.width
                     + l2.horizontalMargins
                     + spacing
-                    + l3.layoutMargins.left,
+                    + l3.bayaMargins.left,
                 y: layoutRect.minY
-                    + l3.layoutMargins.top,
+                    + l3.bayaMargins.top,
                 width: l3.width,
                 height: maxHeight
                     - l3.verticalMargins))
@@ -151,42 +151,42 @@ class BayaLinearTests: XCTestCase {
             l1.frame,
             CGRect(
                 x: layoutRect.minX
-                    + l1.layoutMargins.left,
+                    + l1.bayaMargins.left,
                 y: layoutRect.minY
-                    + l1.layoutMargins.top,
+                    + l1.bayaMargins.top,
                 width: l1.width,
                 height: l1.height))
         XCTAssertEqual(
             l2.frame,
             CGRect(
                 x: layoutRect.minX
-                    + l2.layoutMargins.left,
+                    + l2.bayaMargins.left,
                 y: layoutRect.minY
                     + l1.verticalMargins
                     + l1.height
                     + spacing
-                    + l2.layoutMargins.top,
+                    + l2.bayaMargins.top,
                 width: l2.width,
                 height: l2.height))
         XCTAssertEqual(
             l3.frame,
             CGRect(
-                x: layoutRect.minX + l3.layoutMargins.left,
+                x: layoutRect.minX + l3.bayaMargins.left,
                 y: layoutRect.minY
                     + l1.height
                     + l1.verticalMargins
                     + l2.height
                     + l2.verticalMargins
-                    + l3.layoutMargins.top
+                    + l3.bayaMargins.top
                     + spacing * 2,
                 width: l3.width,
                 height: l3.height))
     }
     
     func testVerticalMatchParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3].layoutLinearly(
             orientation: .vertical,
             spacing: spacing)
@@ -201,9 +201,9 @@ class BayaLinearTests: XCTestCase {
             l1.frame,
             CGRect(
                 x: layoutRect.minX
-                    + l1.layoutMargins.left,
+                    + l1.bayaMargins.left,
                 y: layoutRect.minY
-                    + l1.layoutMargins.top,
+                    + l1.bayaMargins.top,
                 width: maxWidth
                     - l1.horizontalMargins,
                 height: l1.height))
@@ -211,12 +211,12 @@ class BayaLinearTests: XCTestCase {
             l2.frame,
             CGRect(
                 x: layoutRect.minX
-                    + l2.layoutMargins.left,
+                    + l2.bayaMargins.left,
                 y: layoutRect.minY
                     + l1.verticalMargins
                     + l1.height
                     + spacing
-                    + l2.layoutMargins.top,
+                    + l2.bayaMargins.top,
                 width: maxWidth
                     - l2.horizontalMargins,
                 height: l2.height))
@@ -224,13 +224,13 @@ class BayaLinearTests: XCTestCase {
             l3.frame,
             CGRect(
                 x: layoutRect.minX
-                    + l3.layoutMargins.left,
+                    + l3.bayaMargins.left,
                 y: layoutRect.minY
                     + l1.height
                     + l1.verticalMargins
                     + l2.height
                     + l2.verticalMargins
-                    + l3.layoutMargins.top
+                    + l3.bayaMargins.top
                     + spacing * 2,
                 width: maxWidth
                     - l3.horizontalMargins,
@@ -292,7 +292,7 @@ class BayaLinearTests: XCTestCase {
 }
 
 private class AnotherOne: BayaLayoutable {
-    var layoutMargins = UIEdgeInsets.zero
+    var bayaMargins = UIEdgeInsets.zero
     var frame = CGRect()
 
     func sizeThatFits(_ size: CGSize) -> CGSize {

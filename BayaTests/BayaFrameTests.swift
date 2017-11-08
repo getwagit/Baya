@@ -19,17 +19,17 @@ class BayaFrameTests: XCTestCase {
         l2 = TestLayoutable(sideLength: 60)
         l3 = TestLayoutable(sideLength: 90)
 
-        l1.layoutMargins = UIEdgeInsets(
+        l1.bayaMargins = UIEdgeInsets(
             top: 8,
             left: 7,
             bottom: 4,
             right: 3)
-        l2.layoutMargins = UIEdgeInsets(
+        l2.bayaMargins = UIEdgeInsets(
             top: 20,
             left: 50,
             bottom: 23,
             right: 12)
-        l3.layoutMargins = UIEdgeInsets.zero
+        l3.bayaMargins = UIEdgeInsets.zero
     }
 
     override func tearDown() {
@@ -60,35 +60,35 @@ class BayaFrameTests: XCTestCase {
             l2.frame,
             CGRect(
                 x: layoutRect.origin.x
-                    + l2.layoutMargins.left,
+                    + l2.bayaMargins.left,
                 y: layoutRect.origin.y
-                    + l2.layoutMargins.top,
+                    + l2.bayaMargins.top,
                 width: l2.width,
                 height: l2.height))
         XCTAssertEqual(
             l1.frame,
             CGRect(
                 x: layoutRect.origin.x
-                    + l1.layoutMargins.left,
+                    + l1.bayaMargins.left,
                 y: layoutRect.origin.y
-                    + l1.layoutMargins.top,
+                    + l1.bayaMargins.top,
                 width: l1.width,
                 height: l1.height))
         XCTAssertEqual(
             l3.frame,
             CGRect(
                 x: layoutRect.origin.x
-                    + l3.layoutMargins.left,
+                    + l3.bayaMargins.left,
                 y: layoutRect.origin.y
-                    + l3.layoutMargins.top,
+                    + l3.bayaMargins.top,
                 width: l3.width,
                 height: l3.height))
     }
 
     func testSizesMatchingParent() {
-        l1 = TestLayoutable(sideLength: 30, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
-        l2 = TestLayoutable(sideLength: 60, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
-        l3 = TestLayoutable(sideLength: 90, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l1 = TestLayoutable(sideLength: 30, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l2 = TestLayoutable(sideLength: 60, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l3 = TestLayoutable(sideLength: 90, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         var layout = [l1, l2, l3]
             .layoutAsFrame()
         let layoutRect = CGRect(
@@ -111,9 +111,9 @@ class BayaFrameTests: XCTestCase {
             l1.frame,
             CGRect(
                 x: layoutRect.origin.x
-                    + l1.layoutMargins.left,
+                    + l1.bayaMargins.left,
                 y: layoutRect.origin.y
-                    + l1.layoutMargins.top,
+                    + l1.bayaMargins.top,
                 width: maxWidth
                     - l1.horizontalMargins,
                 height: maxHeight - l1.verticalMargins))
@@ -121,9 +121,9 @@ class BayaFrameTests: XCTestCase {
             l2.frame,
             CGRect(
                 x: layoutRect.origin.x
-                    + l2.layoutMargins.left,
+                    + l2.bayaMargins.left,
                 y: layoutRect.origin.y
-                    + l2.layoutMargins.top,
+                    + l2.bayaMargins.top,
                 width: maxWidth
                     - l2.horizontalMargins,
                 height: maxHeight
@@ -132,9 +132,9 @@ class BayaFrameTests: XCTestCase {
             l3.frame,
             CGRect(
                 x: layoutRect.origin.x
-                    + l3.layoutMargins.left,
+                    + l3.bayaMargins.left,
                 y: layoutRect.origin.y
-                    + l3.layoutMargins.top,
+                    + l3.bayaMargins.top,
                 width: maxWidth
                     - l3.horizontalMargins,
                 height: maxHeight

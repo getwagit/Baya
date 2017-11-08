@@ -8,17 +8,17 @@ import UIKit
 
 /**
     Layout that uses only the reference side for measurement, or the bigger side if not specified.
-    Mirrors layoutMargins and frame of its child.
+    Mirrors bayaMargins and frame of its child.
     When setting the frame of its element, it uses the smaller side to ensure the square fits in the available space.
 */
 public struct BayaSquareLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets {
-        return element.layoutMargins
+    public var bayaMargins: UIEdgeInsets {
+        return element.bayaMargins
     }
     public var frame: CGRect {
         return element.frame
     }
-    public var layoutModes: BayaLayoutOptions.Modes {
+    public var bayaModes: BayaLayoutOptions.Modes {
         // BayaSquareLayout wants its parent to used the measured sizes.
         return BayaLayoutOptions.Modes.default
     }

@@ -11,9 +11,9 @@ import UIKit
     It also assumes layout mode .matchParent for gravitating axis.
 */
 public struct BayaGravityLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets = UIEdgeInsets.zero
+    public var bayaMargins: UIEdgeInsets = UIEdgeInsets.zero
     public var frame: CGRect
-    public let layoutModes: BayaLayoutOptions.Modes
+    public let bayaModes: BayaLayoutOptions.Modes
     private var element: BayaLayoutable
     private var measure: CGSize?
     private let horizontalGravity: BayaLayoutOptions.Gravity.Horizontal?
@@ -27,9 +27,9 @@ public struct BayaGravityLayout: BayaLayout {
         self.horizontalGravity = horizontalGravity
         self.verticalGravity = verticalGravity
         self.frame = CGRect()
-        self.layoutModes = BayaLayoutOptions.Modes(
-            width: horizontalGravity != nil ? .matchParent : element.layoutModes.width,
-            height: verticalGravity != nil ? .matchParent : element.layoutModes.height)
+        self.bayaModes = BayaLayoutOptions.Modes(
+            width: horizontalGravity != nil ? .matchParent : element.bayaModes.width,
+            height: verticalGravity != nil ? .matchParent : element.bayaModes.height)
     }
 
     public mutating func layoutWith(frame: CGRect) {
@@ -39,16 +39,16 @@ public struct BayaGravityLayout: BayaLayout {
 
         switch horizontalGravity {
         case .none: fallthrough
-        case .some(.left): point.x = frame.minX + element.layoutMargins.left
+        case .some(.left): point.x = frame.minX + element.bayaMargins.left
         case .some(.centerX): point.x = frame.midX - (size.width * 0.5)
-        case .some(.right): point.x = frame.maxX - size.width - element.layoutMargins.right
+        case .some(.right): point.x = frame.maxX - size.width - element.bayaMargins.right
         }
 
         switch verticalGravity {
         case .none: fallthrough
-        case .some(.top): point.y = frame.minY + element.layoutMargins.top
+        case .some(.top): point.y = frame.minY + element.bayaMargins.top
         case .some(.centerY): point.y = frame.midY - (size.height * 0.5)
-        case .some(.bottom): point.y = frame.maxY - size.height - element.layoutMargins.bottom
+        case .some(.bottom): point.y = frame.maxY - size.height - element.bayaMargins.bottom
         }
 
         element.layoutWith(frame: CGRect(

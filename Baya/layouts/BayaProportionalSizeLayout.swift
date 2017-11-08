@@ -9,18 +9,18 @@ import UIKit
 /**
     A Layout that uses a portion of the given size for measurement and layout.
     Mirrors frame and layoutMargin from its child.
-    Overrides layoutModes so that proportional axis are wrapContent.
+    Overrides bayaModes so that proportional axis are wrapContent.
  */
 public struct BayaProportionalSizeLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets {
-        return element.layoutMargins
+    public var bayaMargins: UIEdgeInsets {
+        return element.bayaMargins
     }
     public var frame: CGRect {
         return element.frame
     }
     private var element: BayaLayoutable
     private var measure: CGSize?
-    public let layoutModes: BayaLayoutOptions.Modes
+    public let bayaModes: BayaLayoutOptions.Modes
     private var widthFactor: CGFloat?
     private var heightFactor: CGFloat?
 
@@ -31,9 +31,9 @@ public struct BayaProportionalSizeLayout: BayaLayout {
         self.element = element
         self.widthFactor = widthFactor.defaultToOneIfLarger()
         self.heightFactor = heightFactor.defaultToOneIfLarger()
-        layoutModes = BayaLayoutOptions.Modes(
-            width: widthFactor != nil ? .wrapContent : element.layoutModes.width,
-            height: heightFactor != nil ? .wrapContent : element.layoutModes.height)
+        bayaModes = BayaLayoutOptions.Modes(
+            width: widthFactor != nil ? .wrapContent : element.bayaModes.width,
+            height: heightFactor != nil ? .wrapContent : element.bayaModes.height)
     }
 
     public mutating func layoutWith(frame: CGRect) {
@@ -48,10 +48,10 @@ public struct BayaProportionalSizeLayout: BayaLayout {
         // Only if a side has no portion factor and the layoutMode .matchParent it should actually
         // match the parent.
         let size = CGSize(
-            width: widthFactor != nil || element.layoutModes.width == .wrapContent ?
+            width: widthFactor != nil || element.bayaModes.width == .wrapContent ?
                 measure.width :
                 frame.subtractMargins(ofElement: element).width,
-            height: heightFactor != nil || element.layoutModes.height == .wrapContent ?
+            height: heightFactor != nil || element.bayaModes.height == .wrapContent ?
                 measure.height :
                 frame.subtractMargins(ofElement: element).height)
 
@@ -83,9 +83,9 @@ private extension Optional where Wrapped == CGFloat {
 public extension BayaLayoutable {
     /// Sets a portion of the available size as the size of the element.
     /// - parameter widthFactor: A factor from 0 to 1, which (multiplied by the available width) defines the width of the
-    ///   element. If `nil` is passed as parameter the width is determined in accordance with the element's `layoutModes`.
+    ///   element. If `nil` is passed as parameter the width is determined in accordance with the element's `bayaModes`.
     /// - parameter heightFactor: A factor from 0 to 1, which (multiplied by the available height) defines the height of
-    ///   the element. If `nil` is passed as parameter the height is determined in accordance with the element's `layoutModes`.
+    ///   the element. If `nil` is passed as parameter the height is determined in accordance with the element's `bayaModes`.
     /// - returns: A `BayaProportionalSizeLayout`.
     func layoutWithPortion(
         ofWidth widthFactor: CGFloat? = nil,

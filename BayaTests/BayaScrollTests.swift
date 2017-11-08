@@ -62,15 +62,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -89,15 +89,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: content.widthWithMargins,
                 height: content.heightWithMargins))
         XCTAssertEqual(
@@ -108,7 +108,7 @@ class BayaScrollTests: XCTestCase {
     }
     
     func testHorizontalSmallContentMatchParent() {
-        content = TestLayoutable(sideLength: 80, layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        content = TestLayoutable(sideLength: 80, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         content.m(1, 2, 3, 4)
         var layout = content.layoutScrollContent(container: container, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
@@ -116,15 +116,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: layoutRect.width - content.horizontalMargins - container.horizontalMargins,
                 height: layoutRect.height - content.verticalMargins - container.verticalMargins))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -143,15 +143,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -170,15 +170,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: content.width + content.horizontalMargins,
                 height: content.height + content.verticalMargins))
         XCTAssertEqual(
@@ -191,7 +191,7 @@ class BayaScrollTests: XCTestCase {
     func testVerticalSmallContentMatchParent() {
         content = TestLayoutable(
             sideLength: 100,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         content.m(1, 2, 3, 4)
         var layout = content.layoutScrollContent(container: container, orientation: .vertical)
         layout.startLayout(with: layoutRect)
@@ -199,15 +199,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins - content.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins - content.verticalMargins))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -231,15 +231,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -263,15 +263,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -295,15 +295,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(
@@ -327,15 +327,15 @@ class BayaScrollTests: XCTestCase {
         XCTAssertEqual(
             content.frame,
             CGRect(
-                x: container.bounds.minX + content.layoutMargins.left,
-                y: container.bounds.minY + content.layoutMargins.top,
+                x: container.bounds.minX + content.bayaMargins.left,
+                y: container.bounds.minY + content.bayaMargins.top,
                 width: content.width,
                 height: content.height))
         XCTAssertEqual(
             container.frame,
             CGRect(
-                x: layoutRect.minX + container.layoutMargins.left,
-                y: layoutRect.minY + container.layoutMargins.top,
+                x: layoutRect.minX + container.bayaMargins.left,
+                y: layoutRect.minY + container.bayaMargins.top,
                 width: layoutRect.width - container.horizontalMargins,
                 height: layoutRect.height - container.verticalMargins))
         XCTAssertEqual(

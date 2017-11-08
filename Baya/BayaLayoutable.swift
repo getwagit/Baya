@@ -11,9 +11,9 @@ import UIKit
     Can be a UIView or another Layout.
 */
 public protocol BayaLayoutable {
-    var layoutMargins: UIEdgeInsets {get}
+    var bayaMargins: UIEdgeInsets {get}
     var frame: CGRect {get}
-    var layoutModes: BayaLayoutOptions.Modes {get}
+    var bayaModes: BayaLayoutOptions.Modes {get}
     mutating func sizeThatFits(_ size: CGSize) -> CGSize
     mutating func layoutWith(frame: CGRect)
 }
@@ -22,7 +22,7 @@ public protocol BayaLayoutable {
     Public helper.
 */
 public extension BayaLayoutable {
-    var layoutModes: BayaLayoutOptions.Modes {
+    var bayaModes: BayaLayoutOptions.Modes {
         return BayaLayoutOptions.Modes.default
     }
 }
@@ -32,11 +32,11 @@ public extension BayaLayoutable {
 */
 internal extension BayaLayoutable {
     var verticalMargins: CGFloat {
-        return layoutMargins.top + layoutMargins.bottom
+        return bayaMargins.top + bayaMargins.bottom
     }
 
     var horizontalMargins: CGFloat {
-        return layoutMargins.left + layoutMargins.right
+        return bayaMargins.left + bayaMargins.right
     }
 
     var heightWithMargins: CGFloat {
@@ -140,8 +140,8 @@ internal extension CGRect {
     func subtractMargins(ofElement element: BayaLayoutable) -> CGRect {
         return CGRect(
             origin: CGPoint(
-                x: minX + element.layoutMargins.left,
-                y: minY + element.layoutMargins.top),
+                x: minX + element.bayaMargins.left,
+                y: minY + element.bayaMargins.top),
             size: size.subtractMargins(ofElement: element))
     }
 }
