@@ -26,8 +26,8 @@ public struct BayaProportionalSizeLayout: BayaLayout {
 
     init(
         element: BayaLayoutable,
-        widthFactor: CGFloat? = nil,
-        heightFactor: CGFloat? = nil) {
+        widthFactor: CGFloat?,
+        heightFactor: CGFloat?) {
         self.element = element
         self.widthFactor = widthFactor.defaultToOneIfLarger()
         self.heightFactor = heightFactor.defaultToOneIfLarger()

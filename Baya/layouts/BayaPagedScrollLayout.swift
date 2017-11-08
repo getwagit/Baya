@@ -25,9 +25,9 @@ public struct BayaPagedScrollLayout: BayaLayout {
         content: BayaLayoutable,
         container: BayaScrollLayoutContainer,
         pages: Int,
-        spacing: CGFloat = 0,
-        orientation: BayaLayoutOptions.Orientation = .horizontal,
-        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        spacing: CGFloat,
+        orientation: BayaLayoutOptions.Orientation,
+        bayaMargins: UIEdgeInsets) {
         self.content = content
         self.container = container
         self.pages = pages

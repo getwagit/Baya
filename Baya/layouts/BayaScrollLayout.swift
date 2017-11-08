@@ -22,8 +22,8 @@ public struct BayaScrollLayout: BayaLayout {
     init(
         content: BayaLayoutable,
         container: BayaScrollLayoutContainer,
-        orientation: BayaLayoutOptions.Orientation = .vertical,
-        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        orientation: BayaLayoutOptions.Orientation,
+        bayaMargins: UIEdgeInsets) {
         self.content = content
         self.container = container
         self.orientation = orientation

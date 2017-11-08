@@ -23,8 +23,8 @@ public struct BayaFlexibleContentLayout: BayaLayout {
     init(
         elements: (before: BayaLayoutable?, content: BayaLayoutable, after: BayaLayoutable?),
         orientation: BayaLayoutOptions.Orientation,
-        spacing: CGFloat = 0,
-        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        spacing: CGFloat,
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
         self.orientation = orientation
         self.bayaMargins = bayaMargins

@@ -22,8 +22,8 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     init(
         elements: [BayaLayoutable],
         orientation: BayaLayoutOptions.Orientation,
-        spacing: CGFloat = 0,
-        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        spacing: CGFloat,
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
         self.orientation = orientation
         self.spacing = spacing

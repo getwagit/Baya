@@ -23,7 +23,7 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         elements: [BayaLayoutable],
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
         self.orientation = orientation
         self.bayaMargins = bayaMargins

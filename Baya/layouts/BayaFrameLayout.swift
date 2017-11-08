@@ -18,7 +18,7 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 
     init(
         elements: [BayaLayoutable],
-        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
         self.bayaMargins = bayaMargins
         self.frame = CGRect()
