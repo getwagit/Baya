@@ -94,6 +94,10 @@ internal extension Sequence where Iterator.Element: BayaLayoutable {
     Apply LayoutTarget to UIView.
 */
 extension UIView: BayaLayoutable {
+    public var bayaMargins: UIEdgeInsets {
+        return UIEdgeInsets.zero
+    }
+    
     public func layoutWith(frame: CGRect) {
         setFrameSafely(frame)
     }
