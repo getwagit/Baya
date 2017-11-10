@@ -64,7 +64,10 @@ public struct BayaProportionalSizeLayout: BayaLayout {
     }
     
     private mutating func calculateMeasure(_ size: CGSize) -> CGSize {
-        let fit = element.sizeThatFits(size)
+        let fitSize = CGSize(
+            width: widthFactor != nil ? size.width * widthFactor! : size.width,
+            height: heightFactor != nil ? size.height * heightFactor! : size.height)
+        let fit = element.sizeThatFits(fitSize)
         return CGSize(
             width: widthFactor != nil ? size.width * widthFactor! : fit.width,
             height: heightFactor != nil ? size.height * heightFactor! : fit.height)
