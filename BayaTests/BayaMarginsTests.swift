@@ -25,7 +25,7 @@ class BayaMarginsTests: XCTestCase {
     
     func testMeasure() {
         let margins = UIEdgeInsets(top: 6, left: 20, bottom: 18, right: 40)
-        var layout = l.layoutWithMargins(layoutMargins: margins)
+        var layout = l.layoutWithMargins(bayaMargins: margins)
         let fit = layout.sizeThatFits(layoutRect.size)
         
         XCTAssertEqual(
@@ -46,11 +46,11 @@ class BayaMarginsTests: XCTestCase {
     
     func testLayout() {
         let margins = UIEdgeInsets(top: 10, left: 20, bottom: 30, right: 40)
-        var layout = l.layoutWithMargins(layoutMargins: margins)
+        var layout = l.layoutWithMargins(bayaMargins: margins)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
-            layout.layoutMargins,
+            layout.bayaMargins,
             margins)
         
         XCTAssertEqual(
@@ -67,15 +67,15 @@ class BayaMarginsTests: XCTestCase {
         l = TestLayoutable(
             width: 80,
             height: 60,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
         l.m(1, 2, 3, 4)
-        var layout = l.layoutWithMargins(layoutMargins: margins)
+        var layout = l.layoutWithMargins(bayaMargins: margins)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
-            layout.layoutMargins,
+            layout.bayaMargins,
             margins)
         
         XCTAssertEqual(

@@ -22,8 +22,8 @@ public extension BayaLayout {
     */
     mutating public func startLayout(with frame: CGRect) {
         let origin = CGPoint(
-            x: frame.origin.x + self.layoutMargins.left,
-            y: frame.origin.y + self.layoutMargins.top)
+            x: frame.origin.x + self.bayaMargins.left,
+            y: frame.origin.y + self.bayaMargins.top)
         let combinedSize = Self.combineSizeForLayout(
             for: self,
             wrappingSize: self.sizeThatFitsWithMargins(frame.size),
@@ -44,14 +44,14 @@ public extension BayaLayout {
         sizeThatFits method, use this convenience helper.
     */
     mutating public func startMeasure(with size: CGSize) -> CGSize {
-        guard self.layoutModes.width == .wrapContent || self.layoutModes.height == .wrapContent else {
+        guard self.bayaModes.width == .wrapContent || self.bayaModes.height == .wrapContent else {
             return size
         }
         let measuredSize = self.sizeThatFitsWithMargins(size)
         let adjustedSize = measuredSize.addMargins(ofElement: self)
         return CGSize(
-            width: self.layoutModes.width == .wrapContent ? adjustedSize.width : size.width,
-            height: self.layoutModes.height == .wrapContent ? adjustedSize.height : size.height)
+            width: self.bayaModes.width == .wrapContent ? adjustedSize.width : size.width,
+            height: self.bayaModes.height == .wrapContent ? adjustedSize.height : size.height)
     }
 }
 
@@ -89,7 +89,7 @@ internal extension BayaLayout {
         wrappingSize: CGSize,
         matchingSize: CGSize) -> CGSize {
         return CGSize(
-            width: element.layoutModes.width == .matchParent ? matchingSize.width : wrappingSize.width,
-            height: element.layoutModes.height  == .matchParent ? matchingSize.height : wrappingSize.height)
+            width: element.bayaModes.width == .matchParent ? matchingSize.width : wrappingSize.width,
+            height: element.bayaModes.height  == .matchParent ? matchingSize.height : wrappingSize.height)
     }
 }

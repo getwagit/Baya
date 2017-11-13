@@ -11,7 +11,7 @@ import UIKit
     This Layout respects the margins of its children.
 */
 public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
-    public var layoutMargins: UIEdgeInsets
+    public var bayaMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
     var spacing: CGFloat
@@ -23,10 +23,10 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
         elements: [BayaLayoutable],
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
         self.orientation = orientation
-        self.layoutMargins = layoutMargins
+        self.bayaMargins = bayaMargins
         self.spacing = spacing
         self.frame = CGRect()
     }
@@ -49,14 +49,14 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: e1.frame.maxX
-                            + e1.layoutMargins.right
+                            + e1.bayaMargins.right
                             + spacing
-                            + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top)
+                            + e2.bayaMargins.left,
+                        y: frame.minY + e2.bayaMargins.top)
                 } else {
                     origin = CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top)
+                        x: frame.minX + e2.bayaMargins.left,
+                        y: frame.minY + e2.bayaMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -70,15 +70,15 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 let origin: CGPoint
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
+                        x: frame.minX + e2.bayaMargins.left,
                         y: e1.frame.maxY
-                            + e1.layoutMargins.bottom
+                            + e1.bayaMargins.bottom
                             + spacing
-                            + e2.layoutMargins.top)
+                            + e2.bayaMargins.top)
                 } else {
                     origin = CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top)
+                        x: frame.minX + e2.bayaMargins.left,
+                        y: frame.minY + e2.bayaMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -95,10 +95,10 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             for i in 0..<elements.count {
                 let fit = measures[i]
                 let element = elements[i]
-                resultSize.width += fit.width + element.layoutMargins.left + element.layoutMargins.right
+                resultSize.width += fit.width + element.bayaMargins.left + element.bayaMargins.right
                 resultSize.height = max(
                     resultSize.height,
-                    fit.height + element.layoutMargins.top + element.layoutMargins.bottom)
+                    fit.height + element.bayaMargins.top + element.bayaMargins.bottom)
             }
         case .vertical:
             let elementCount = elements.count
@@ -108,8 +108,8 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
                 let element = elements[i]
                 resultSize.width = max(
                     resultSize.width,
-                    fit.width + element.layoutMargins.left + element.layoutMargins.right)
-                resultSize.height += fit.height + element.layoutMargins.top + element.layoutMargins.bottom
+                    fit.width + element.bayaMargins.left + element.bayaMargins.right)
+                resultSize.height += fit.height + element.bayaMargins.top + element.bayaMargins.bottom
             }
         }
         return resultSize
@@ -123,14 +123,14 @@ public struct BayaLinearLayout: BayaLayout, BayaLayoutIterator {
             -> CGSize {
         switch orientation {
         case .horizontal:
-            guard element.layoutModes.height == .matchParent else {
+            guard element.bayaModes.height == .matchParent else {
                 return cachedSize
             }
             return CGSize(
                 width: cachedSize.width,
                 height: availableSize.height - element.verticalMargins)
         case .vertical:
-            guard element.layoutModes.width == .matchParent else {
+            guard element.bayaModes.width == .matchParent else {
                 return cachedSize
             }
             return CGSize(
@@ -144,18 +144,18 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
     /// Aligns all elements in a single direction.
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
     /// - parameter spacing: The gap between the elements.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaLinearLayout`.
     func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaLinearLayout {
         return BayaLinearLayout(
             elements: self.array(),
             orientation: orientation,
             spacing: spacing,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }
 
@@ -163,17 +163,17 @@ public extension Sequence where Iterator.Element == BayaLayoutable {
     /// Aligns all elements in a single direction.
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction.
     /// - parameter spacing: The gap between the elements.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaLinearLayout`.
     func layoutLinearly(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaLinearLayout {
         return BayaLinearLayout(
             elements: self.array(),
             orientation: orientation,
             spacing: spacing,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }

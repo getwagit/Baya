@@ -129,8 +129,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: l.width,
                 height: l.height),
             "frame not matching")
@@ -144,7 +144,7 @@ class BayaGravityTests: XCTestCase {
             l.frame,
             CGRect(
                 x: layoutRect.midX - l.width / 2,
-                y: layoutRect.minY + l.layoutMargins.top,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: l.width,
                 height: l.height),
             "frame not matching")
@@ -157,8 +157,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.maxX - l.width - l.layoutMargins.right,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.maxX - l.width - l.bayaMargins.right,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: l.width,
                 height: l.height),
             "frame not matching")
@@ -172,7 +172,7 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
+                x: layoutRect.minX + l.bayaMargins.left,
                 y: layoutRect.midY - l.height / 2,
                 width: l.width,
                 height: l.height),
@@ -200,7 +200,7 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.maxX - l.width - l.layoutMargins.right,
+                x: layoutRect.maxX - l.width - l.bayaMargins.right,
                 y: layoutRect.midY - l.height / 2,
                 width: l.width,
                 height: l.height),
@@ -214,8 +214,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.maxY - l.height - l.layoutMargins.bottom,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.maxY - l.height - l.bayaMargins.bottom,
                 width: l.width,
                 height: l.height),
             "frame not matching")
@@ -229,7 +229,7 @@ class BayaGravityTests: XCTestCase {
             l.frame,
             CGRect(
                 x: layoutRect.midX - l.width / 2,
-                y: layoutRect.maxY - l.height - l.layoutMargins.bottom,
+                y: layoutRect.maxY - l.height - l.bayaMargins.bottom,
                 width: l.width,
                 height: l.height),
             "frame not matching")
@@ -242,8 +242,8 @@ class BayaGravityTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.maxX - l.width - l.layoutMargins.right,
-                y: layoutRect.maxY - l.height - l.layoutMargins.bottom,
+                x: layoutRect.maxX - l.width - l.bayaMargins.right,
+                y: layoutRect.maxY - l.height - l.bayaMargins.bottom,
                 width: l.width,
                 height: l.height),
             "frame not matching")

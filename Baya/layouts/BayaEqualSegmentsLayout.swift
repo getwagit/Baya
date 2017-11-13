@@ -10,7 +10,7 @@ import UIKit
     A layout that distributes the available size evenly among the given elements.
 */
 public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
-    public var layoutMargins: UIEdgeInsets
+    public var bayaMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
     var spacing: CGFloat
@@ -22,12 +22,12 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
     init(
         elements: [BayaLayoutable],
         orientation: BayaLayoutOptions.Orientation,
-        spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        spacing: CGFloat,
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
         self.orientation = orientation
         self.spacing = spacing
-        self.layoutMargins = layoutMargins
+        self.bayaMargins = bayaMargins
         self.frame = CGRect()
     }
 
@@ -54,15 +54,15 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                 if let e1 = e1 {
                     origin = CGPoint(
                         x: e1.frame.minX
-                            - e1.layoutMargins.left
+                            - e1.bayaMargins.left
                             + segmentWidth
                             + spacing
-                            + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top)
+                            + e2.bayaMargins.left,
+                        y: frame.minY + e2.bayaMargins.top)
                 } else {
                     origin = CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top)
+                        x: frame.minX + e2.bayaMargins.left,
+                        y: frame.minY + e2.bayaMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -79,16 +79,16 @@ public struct BayaEqualSegmentsLayout: BayaLayout, BayaLayoutIterator {
                     matchingSize: segmentSize.subtractMargins(ofElement: e2))
                 if let e1 = e1 {
                     origin = CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
+                        x: frame.minX + e2.bayaMargins.left,
                         y: e1.frame.minY
-                            - e1.layoutMargins.top
+                            - e1.bayaMargins.top
                             + segmentHeight
                             + spacing
-                            + e2.layoutMargins.top)
+                            + e2.bayaMargins.top)
                 } else {
                     origin = CGPoint(
-                        x: frame.minX + e2.layoutMargins.left,
-                        y: frame.minY + e2.layoutMargins.top)
+                        x: frame.minX + e2.bayaMargins.left,
+                        y: frame.minY + e2.bayaMargins.top)
                 }
                 return CGRect(origin: origin, size: size)
             }
@@ -135,18 +135,18 @@ public extension Sequence where Iterator.Element: BayaLayoutable {
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction. Also
     ///   determines which side of the available size should be segmented and distributed among the elements.
     /// - parameter spacing: The gap between the elements.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaEqualSegmentsLayout`.
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
             elements: self.array(),
             orientation: orientation,
             spacing: spacing,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }
 
@@ -156,17 +156,17 @@ public extension Sequence where Iterator.Element == BayaLayoutable {
     /// - parameter orientation: Determines if the elements should be laid out in horizontal or vertical direction. Also
     ///   determines which side of the available size should be segmented and distributed among the elements.
     /// - parameter spacing: The gap between the elements.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaEqualSegmentsLayout`.
     func layoutAsEqualSegments(
         orientation: BayaLayoutOptions.Orientation,
         spacing: CGFloat = 0,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaEqualSegmentsLayout {
         return BayaEqualSegmentsLayout(
             elements: self.array(),
             orientation: orientation,
             spacing: spacing,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }

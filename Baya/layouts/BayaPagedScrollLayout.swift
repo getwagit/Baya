@@ -12,7 +12,7 @@ import UIKit
     This layout assumes that its child has the implicit layout mode .matchParent.
  */
 public struct BayaPagedScrollLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
+    public var bayaMargins: UIEdgeInsets
     public var frame: CGRect
     var orientation: BayaLayoutOptions.Orientation
     var pages: Int
@@ -25,15 +25,15 @@ public struct BayaPagedScrollLayout: BayaLayout {
         content: BayaLayoutable,
         container: BayaScrollLayoutContainer,
         pages: Int,
-        spacing: CGFloat = 0,
-        orientation: BayaLayoutOptions.Orientation = .horizontal,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        spacing: CGFloat,
+        orientation: BayaLayoutOptions.Orientation,
+        bayaMargins: UIEdgeInsets) {
         self.content = content
         self.container = container
         self.pages = pages
         self.spacing = spacing
         self.orientation = orientation
-        self.layoutMargins = layoutMargins
+        self.bayaMargins = bayaMargins
         self.frame = CGRect()
     }
 
@@ -75,14 +75,14 @@ public extension BayaLayoutable {
     /// - parameter pages: Determines the size of the element.
     /// - parameter spacing: The gap between the pages.
     /// - parameter orientation: Determines if the pages are laid out in horizontal or vertical direction.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaPagedScrollLayout`.
     func layoutPagedScrollContent(
         container: BayaScrollLayoutContainer,
         pages: Int,
         spacing: CGFloat = 0,
         orientation: BayaLayoutOptions.Orientation = .horizontal,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaPagedScrollLayout {
         return BayaPagedScrollLayout(
             content: self,
@@ -90,6 +90,6 @@ public extension BayaLayoutable {
             pages: pages,
             spacing: spacing,
             orientation: orientation,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }
