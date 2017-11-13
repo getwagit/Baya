@@ -212,4 +212,44 @@ class BayaProportionalSizeTests: XCTestCase {
                 width: layoutRect.width * widthFactor,
                 height: layoutRect.height * heightFactor))
     }
+    
+    func testProportionalMeasurementHorizontal() {
+        l = ProportionalMeasureSquareTestLayoutable(squaredBasedOn: .horizontal)
+        var layout = l.layoutWithPortion(ofWidth: 0.6)
+        let measure = layout.sizeThatFits(layoutRect.size)
+        
+        XCTAssertEqual(
+            measure.height,
+            layoutRect.width * 0.6,
+            "unexpected width")
+    }
+    
+    func testProportionalMeasurementVertical() {
+        l = ProportionalMeasureSquareTestLayoutable(squaredBasedOn: .vertical)
+        var layout = l.layoutWithPortion(ofHeight: 0.36)
+        let measure = layout.sizeThatFits(layoutRect.size)
+        
+        XCTAssertEqual(
+            measure.width,
+            layoutRect.height * 0.36,
+            "unexpected height")
+    }
+}
+
+class ProportionalMeasureSquareTestLayoutable: TestLayoutable {
+    private let baseSide: BayaLayoutOptions.Orientation
+    
+    init(squaredBasedOn: BayaLayoutOptions.Orientation) {
+        baseSide = squaredBasedOn
+    }
+    
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        switch baseSide {
+        case .horizontal:
+            return CGSize(width: size.width, height: size.width)
+        case .vertical:
+            return CGSize(width: size.height, height: size.height)
+        }
+        
+    }
 }
