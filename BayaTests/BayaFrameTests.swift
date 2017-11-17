@@ -140,6 +140,26 @@ class BayaFrameTests: XCTestCase {
                 height: maxHeight
                     - l3.verticalMargins))
     }
+    
+    func testMatchingParentWithMargins() {
+        let l = TestLayoutable(sideLength: 90, bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+        l.bayaMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        let layoutRect = CGRect(
+            x: 5,
+            y: 10,
+            width: 300,
+            height: 300)
+        var layout = [l].layoutAsFrame()
+        layout.layoutWith(frame: layoutRect) // Skips the first measure step
+        
+        XCTAssertEqual(
+            l.frame,
+            CGRect(
+                x: 5 + 16,
+                y: 10 + 16,
+                width: layoutRect.width - l.horizontalMargins,
+                height: layoutRect.height - l.verticalMargins))
+    }
 
     func testMeasures() {
         var layout = [l1, l2, l3]
