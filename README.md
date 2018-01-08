@@ -21,6 +21,12 @@ Add the following to your `Cartfile`
 github "getwagit/Baya" ~> 0.1.0
 ```
 
+#### CocoaPods
+
+Integrate Baya into your `Podfile`
+```
+pod 'Baya', '~> 0.1.0'
+```
 
 ## Basic Usage
 With *Baya* you first define your layout and then apply it. In most cases you want to define your layout once and apply it whenever the `frame` or content changes.
