@@ -35,8 +35,8 @@ class BayaFixedSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: l.width,
                 height: fixedHeight - l.verticalMargins),
             "frame not matching")
@@ -44,15 +44,15 @@ class BayaFixedSizeTests: XCTestCase {
     
     func testFixedHeightMatchingWidth() {
         let fixedHeight: CGFloat = 100
-        l = TestLayoutable(layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .wrapContent))
+        l = TestLayoutable(bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .wrapContent))
         var layout = l.layoutWithFixedSize(width: nil, height: fixedHeight)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: layoutRect.width - l.horizontalMargins,
                 height: fixedHeight - l.verticalMargins),
             "frame not matching")
@@ -66,8 +66,8 @@ class BayaFixedSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: fixedWidth - l.horizontalMargins,
                 height: l.height),
             "frame not matching")
@@ -75,15 +75,15 @@ class BayaFixedSizeTests: XCTestCase {
     
     func testFixedWidthMatchingHeight() {
         let fixedWidth: CGFloat = 100
-        l = TestLayoutable(layoutModes: BayaLayoutOptions.Modes(width: .wrapContent, height: .matchParent))
+        l = TestLayoutable(bayaModes: BayaLayoutOptions.Modes(width: .wrapContent, height: .matchParent))
         var layout = l.layoutWithFixedSize(width: fixedWidth, height: nil)
         layout.startLayout(with: layoutRect)
         
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: fixedWidth - l.horizontalMargins,
                 height: layoutRect.height - l.verticalMargins),
             "frame not matching")
@@ -97,8 +97,8 @@ class BayaFixedSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: fixedSize.width - l.horizontalMargins,
                 height: fixedSize.height - l.verticalMargins),
             "frame not matching")

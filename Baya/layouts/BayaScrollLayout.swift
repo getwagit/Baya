@@ -10,9 +10,9 @@ import UIKit
     A Layout for a ScrollContainer and its content.
 */
 public struct BayaScrollLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets
+    public var bayaMargins: UIEdgeInsets
     public var frame: CGRect
-    public let layoutModes: BayaLayoutOptions.Modes
+    public let bayaModes: BayaLayoutOptions.Modes
     var orientation: BayaLayoutOptions.Orientation
 
     private var container: BayaScrollLayoutContainer
@@ -22,17 +22,17 @@ public struct BayaScrollLayout: BayaLayout {
     init(
         content: BayaLayoutable,
         container: BayaScrollLayoutContainer,
-        orientation: BayaLayoutOptions.Orientation = .vertical,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        orientation: BayaLayoutOptions.Orientation,
+        bayaMargins: UIEdgeInsets) {
         self.content = content
         self.container = container
         self.orientation = orientation
-        self.layoutMargins = layoutMargins
+        self.bayaMargins = bayaMargins
         self.frame = CGRect()
-        self.layoutModes = BayaLayoutOptions.Modes(
-            width: content.layoutModes.width == .wrapContent && container.layoutModes.width == .wrapContent ?
+        self.bayaModes = BayaLayoutOptions.Modes(
+            width: content.bayaModes.width == .wrapContent && container.bayaModes.width == .wrapContent ?
                 .wrapContent : .matchParent,
-            height: content.layoutModes.height == .wrapContent && container.layoutModes.height == .wrapContent ?
+            height: content.bayaModes.height == .wrapContent && container.bayaModes.height == .wrapContent ?
                 .wrapContent : .matchParent)
     }
 
@@ -44,33 +44,35 @@ public struct BayaScrollLayout: BayaLayout {
         switch orientation {
         case .horizontal:
             adjustedContentSize = CGSize(
-                width: content.layoutModes.width == .wrapContent ?
+                width: content.bayaModes.width == .wrapContent ?
                     measuredContentSize.width : max(
                         measuredContentSize.width,
                         frame.size.width - container.horizontalMargins - content.horizontalMargins),
-                height: content.layoutModes.height == .wrapContent ?
+                height: content.bayaModes.height == .wrapContent ?
                     measuredContentSize.height : frame.height - content.verticalMargins - container.verticalMargins)
         case .vertical:
             adjustedContentSize = CGSize(
-                width: content.layoutModes.width == .wrapContent ?
+                width: content.bayaModes.width == .wrapContent ?
                     measuredContentSize.width : frame.width - content.horizontalMargins - container.horizontalMargins,
-                height: content.layoutModes.height == .wrapContent ?
+                height: content.bayaModes.height == .wrapContent ?
                     measuredContentSize.height : max(
                         measuredContentSize.height,
                         frame.size.height - container.verticalMargins - content.verticalMargins)
             )
         }
+        let bayaMargins = content.bayaMargins
         content.layoutWith(frame: CGRect(
             origin: CGPoint(
-                x: content.layoutMargins.left,
-                y: content.layoutMargins.top),
+                x: bayaMargins.left,
+                y: bayaMargins.top),
             size: adjustedContentSize))
         container.layoutWith(frame: frame.subtractMargins(ofElement: container))
         container.contentSize = adjustedContentSize.addMargins(ofElement: content)
     }
 
     mutating public func sizeThatFits(_ size: CGSize) -> CGSize {
-        contentMeasure = content.sizeThatFits(sizeForMeasurement(size))
+        let measureSize = sizeForMeasurement(size)
+        contentMeasure = content.sizeThatFits(measureSize)
         return CGSize(
             width: min(contentMeasure!.width + content.horizontalMargins + container.horizontalMargins, size.width),
             height: min(contentMeasure!.height + content.verticalMargins + container.verticalMargins, size.height))
@@ -97,17 +99,17 @@ public extension BayaLayoutable {
     ///   of the container.
     /// - parameter orientation: Determines the direction in which the element is allowed to extend past the
     ///   container. This is the direction that may be scrolled, if the element is large enough.
-    /// - parameter layoutMargins: The margins around the container.
+    /// - parameter bayaMargins: The margins around the container.
     /// - returns: A `BayaScrollLayout`.
     func layoutScrollContent(
         container: BayaScrollLayoutContainer,
         orientation: BayaLayoutOptions.Orientation = .vertical,
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero)
+        bayaMargins: UIEdgeInsets = UIEdgeInsets.zero)
             -> BayaScrollLayout {
         return BayaScrollLayout(
             content: self,
             container: container,
             orientation: orientation,
-            layoutMargins: layoutMargins)
+            bayaMargins: bayaMargins)
     }
 }

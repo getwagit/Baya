@@ -11,28 +11,32 @@ import UIKit
     It is suggested to use it with BayaGravityLayout as children.
 */
 public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
-    public var layoutMargins: UIEdgeInsets
+    public var bayaMargins: UIEdgeInsets
     public var frame: CGRect
     private var elements: [BayaLayoutable]
     private var measures = [CGSize]()
 
     init(
         elements: [BayaLayoutable],
-        layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) {
+        bayaMargins: UIEdgeInsets) {
         self.elements = elements
-        self.layoutMargins = layoutMargins
+        self.bayaMargins = bayaMargins
         self.frame = CGRect()
     }
 
     mutating public func layoutWith(frame: CGRect) {
         self.frame = frame
+        let measures = measureIfNecessary(&elements, cache: self.measures, size: frame.size)
         iterate(&elements, measures) {
             e1, e2, e2s in
-            let size = calculateSizeForLayout(forChild: &e2, cachedSize: e2s, ownSize: frame.size)
+            let size = BayaFrameLayout.combineSizeForLayout(
+                for: e2,
+                wrappingSize: e2s,
+                matchingSize: frame.size.subtractMargins(ofElement: e2))
             return CGRect(
                 origin: CGPoint(
-                    x: frame.minX + e2.layoutMargins.left,
-                    y: frame.minY + e2.layoutMargins.top),
+                    x: frame.minX + e2.bayaMargins.left,
+                    y: frame.minY + e2.bayaMargins.top),
                 size: size)
         }
     }
@@ -54,19 +58,19 @@ public struct BayaFrameLayout: BayaLayout, BayaLayoutIterator {
 public extension Sequence where Iterator.Element: BayaLayoutable {
     /// Places the elements in a frame. The `BayaFrameLayout` acts as a simple way to group elements and
     /// applies only minimal layout logic.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaFrameLayout`.
-    func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
-        return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
+    func layoutAsFrame(bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
+        return BayaFrameLayout(elements: self.array(), bayaMargins: bayaMargins)
     }
 }
 
 public extension Sequence where Iterator.Element == BayaLayoutable {
     /// Places the elements in a frame. The `BayaFrameLayout` acts as a simple way to group elements and
     /// applies only minimal layout logic.
-    /// - parameter layoutMargins: The layout's margins.
+    /// - parameter bayaMargins: The layout's margins.
     /// - returns: A `BayaFrameLayout`.
-    func layoutAsFrame(layoutMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
-        return BayaFrameLayout(elements: self.array(), layoutMargins: layoutMargins)
+    func layoutAsFrame(bayaMargins: UIEdgeInsets = UIEdgeInsets.zero) -> BayaFrameLayout {
+        return BayaFrameLayout(elements: self.array(), bayaMargins: bayaMargins)
     }
 }

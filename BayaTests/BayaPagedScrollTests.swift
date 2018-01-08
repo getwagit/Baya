@@ -74,7 +74,7 @@ class BayaPagedScrollTests: XCTestCase {
     func testHorizontalMatchingParent() {
         l = TestLayoutable(
             sideLength: 50,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
         layout.startLayout(with: layoutRect)
@@ -128,7 +128,7 @@ class BayaPagedScrollTests: XCTestCase {
     func testHorizontalBigEnforcedFrameMatchingParent() {
         l = TestLayoutable(
             sideLength: 50,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
 
         var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
@@ -183,7 +183,7 @@ class BayaPagedScrollTests: XCTestCase {
     func testHorizontalSmallEnforcedFrameMatchingParent() {
         l = TestLayoutable(
             sideLength: 50,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
         var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .horizontal)
@@ -238,7 +238,7 @@ class BayaPagedScrollTests: XCTestCase {
     func testVerticalMatchingParent() {
         l = TestLayoutable(
             sideLength: 50,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
         layout.startLayout(with: layoutRect)
@@ -292,7 +292,7 @@ class BayaPagedScrollTests: XCTestCase {
     func testVerticalBigEnforcedFrameMatchingParent() {
         l = TestLayoutable(
             sideLength: 50,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
         var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)
@@ -347,7 +347,7 @@ class BayaPagedScrollTests: XCTestCase {
     func testVerticalSmallEnforcedFrameMatchingParent() {
         l = TestLayoutable(
             sideLength: 50,
-            layoutModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
+            bayaModes: BayaLayoutOptions.Modes(width: .matchParent, height: .matchParent))
         l.m(1, 2, 3, 4)
         
         var layout = l.layoutPagedScrollContent(container: c, pages: pages, spacing: spacing, orientation: .vertical)

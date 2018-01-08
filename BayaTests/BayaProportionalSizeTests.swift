@@ -67,8 +67,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: (layoutRect.width - l.horizontalMargins) * widthFactor,
                 height: l.height))
     }
@@ -77,7 +77,7 @@ class BayaProportionalSizeTests: XCTestCase {
         l = TestLayoutable(
             width: 80,
             height: 90,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
         let widthFactor: CGFloat = 13/15
@@ -87,8 +87,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: (layoutRect.width - l.horizontalMargins) * widthFactor,
                 height: layoutRect.height - l.verticalMargins))
     }
@@ -101,8 +101,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: l.width,
                 height: (layoutRect.height - l.verticalMargins) * heightFactor))
     }
@@ -111,7 +111,7 @@ class BayaProportionalSizeTests: XCTestCase {
         l = TestLayoutable(
             width: 80,
             height: 90,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
         let heightFactor: CGFloat = 3/5
@@ -121,8 +121,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: layoutRect.width - l.horizontalMargins,
                 height: (layoutRect.height - l.verticalMargins) * heightFactor))
     }
@@ -136,8 +136,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: (layoutRect.width - l.horizontalMargins) * widthFactor,
                 height: (layoutRect.height - l.verticalMargins) * heightFactor))
     }
@@ -151,8 +151,8 @@ class BayaProportionalSizeTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: (layoutRect.width - l.horizontalMargins),
                 height: (layoutRect.height - l.verticalMargins)))
     }
@@ -198,7 +198,7 @@ class BayaProportionalSizeTests: XCTestCase {
         l = TestLayoutable(
             width: 100,
             height: 133,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
         let widthFactor: CGFloat = 1/3
@@ -211,5 +211,45 @@ class BayaProportionalSizeTests: XCTestCase {
             CGSize(
                 width: layoutRect.width * widthFactor,
                 height: layoutRect.height * heightFactor))
+    }
+    
+    func testProportionalMeasurementHorizontal() {
+        l = ProportionalMeasureSquareTestLayoutable(squaredBasedOn: .horizontal)
+        var layout = l.layoutWithPortion(ofWidth: 0.6)
+        let measure = layout.sizeThatFits(layoutRect.size)
+        
+        XCTAssertEqual(
+            measure.height,
+            layoutRect.width * 0.6,
+            "unexpected width")
+    }
+    
+    func testProportionalMeasurementVertical() {
+        l = ProportionalMeasureSquareTestLayoutable(squaredBasedOn: .vertical)
+        var layout = l.layoutWithPortion(ofHeight: 0.36)
+        let measure = layout.sizeThatFits(layoutRect.size)
+        
+        XCTAssertEqual(
+            measure.width,
+            layoutRect.height * 0.36,
+            "unexpected height")
+    }
+}
+
+class ProportionalMeasureSquareTestLayoutable: TestLayoutable {
+    private let baseSide: BayaLayoutOptions.Orientation
+    
+    init(squaredBasedOn: BayaLayoutOptions.Orientation) {
+        baseSide = squaredBasedOn
+    }
+    
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        switch baseSide {
+        case .horizontal:
+            return CGSize(width: size.width, height: size.width)
+        case .vertical:
+            return CGSize(width: size.height, height: size.height)
+        }
+        
     }
 }

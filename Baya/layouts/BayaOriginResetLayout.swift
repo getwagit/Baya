@@ -8,17 +8,17 @@ import UIKit
 
 /**
     Sets the origin of a given element to x: 0, y: 0. Handy when laying out views in deeper view hierarchies.
-    Mirrors frame, layoutMargins and layoutModes from its child.
+    Mirrors frame, bayaMargins and bayaModes from its child.
 */
 public struct BayaOriginResetLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets {
-        return element.layoutMargins
+    public var bayaMargins: UIEdgeInsets {
+        return element.bayaMargins
     }
     public var frame: CGRect {
         return element.frame
     }
-    public var layoutModes: BayaLayoutOptions.Modes {
-        return element.layoutModes
+    public var bayaModes: BayaLayoutOptions.Modes {
+        return element.bayaModes
     }
     private var element: BayaLayoutable
 

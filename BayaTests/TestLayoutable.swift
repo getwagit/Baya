@@ -9,23 +9,23 @@ import Baya
 class TestLayoutable: BayaLayoutable {
     let width: CGFloat
     let height: CGFloat
-    let layoutModes: BayaLayoutOptions.Modes
+    let bayaModes: BayaLayoutOptions.Modes
     var frame = CGRect()
-    var layoutMargins = UIEdgeInsets.zero
+    var bayaMargins = UIEdgeInsets.zero
     
     init(
         width: CGFloat = 50,
         height: CGFloat = 50,
-        layoutModes: BayaLayoutOptions.Modes? = nil) {
+        bayaModes: BayaLayoutOptions.Modes? = nil) {
         self.width = width
         self.height = height
-        self.layoutModes = layoutModes ?? BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent)
+        self.bayaModes = bayaModes ?? BayaLayoutOptions.Modes(width: .wrapContent, height: .wrapContent)
     }
     
     convenience init(
         sideLength: CGFloat,
-        layoutModes: BayaLayoutOptions.Modes? = nil) {
-        self.init(width: sideLength, height: sideLength, layoutModes: layoutModes)
+        bayaModes: BayaLayoutOptions.Modes? = nil) {
+        self.init(width: sideLength, height: sideLength, bayaModes: bayaModes)
     }
 
     func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -39,7 +39,7 @@ class TestLayoutable: BayaLayoutable {
     }
 
     func m(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
-        layoutMargins = UIEdgeInsets(
+        bayaMargins = UIEdgeInsets(
             top: top,
             left: left,
             bottom: bottom,

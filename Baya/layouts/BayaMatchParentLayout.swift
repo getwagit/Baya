@@ -11,21 +11,21 @@ import UIKit
     Mirrors layout modes and frame from its child.
  */
 public struct BayaMatchParentLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets {
-        return element.layoutMargins
+    public var bayaMargins: UIEdgeInsets {
+        return element.bayaMargins
     }
     public var frame: CGRect {
         return element.frame;
     }
-    public var layoutModes: BayaLayoutOptions.Modes = BayaLayoutOptions.Modes.default
+    public var bayaModes: BayaLayoutOptions.Modes = BayaLayoutOptions.Modes.default
 
     private var element: BayaLayoutable
 
     init(
         element: BayaLayoutable,
-        layoutModes: BayaLayoutOptions.Modes) {
+        bayaModes: BayaLayoutOptions.Modes) {
         self.element = element
-        self.layoutModes = layoutModes
+        self.bayaModes = bayaModes
     }
 
     mutating public func layoutWith(frame: CGRect) {
@@ -43,7 +43,7 @@ public extension BayaLayoutable {
     func layoutMatchingParentWidth() -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .wrapContent))
     }
@@ -53,7 +53,7 @@ public extension BayaLayoutable {
     func layoutMatchingParentHeight() -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .wrapContent,
                 height: .matchParent))
     }
@@ -64,7 +64,7 @@ public extension BayaLayoutable {
             -> BayaLayout {
         return BayaMatchParentLayout(
             element: self,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
     }

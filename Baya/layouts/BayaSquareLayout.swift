@@ -8,17 +8,17 @@ import UIKit
 
 /**
     Layout that uses only the reference side for measurement, or the bigger side if not specified.
-    Mirrors layoutMargins and frame of its child.
+    Mirrors bayaMargins and frame of its child.
     When setting the frame of its element, it uses the smaller side to ensure the square fits in the available space.
 */
 public struct BayaSquareLayout: BayaLayout {
-    public var layoutMargins: UIEdgeInsets {
-        return element.layoutMargins
+    public var bayaMargins: UIEdgeInsets {
+        return element.bayaMargins
     }
     public var frame: CGRect {
         return element.frame
     }
-    public var layoutModes: BayaLayoutOptions.Modes {
+    public var bayaModes: BayaLayoutOptions.Modes {
         // BayaSquareLayout wants its parent to used the measured sizes.
         return BayaLayoutOptions.Modes.default
     }
@@ -33,12 +33,13 @@ public struct BayaSquareLayout: BayaLayout {
     }
 
     mutating public func layoutWith(frame: CGRect) {
+        let size = squareSizeBasedOnReferenceSide(frame.size)
         element.layoutWith(
             // A safety measure to ensure that this layout squares its element,
             // even if the given frame is a regular rectangle.
             frame: CGRect(
                 origin: frame.origin,
-                size: squareSizeBasedOnReferenceSide(frame.size)))
+                size: size))
     }
 
     public mutating func sizeThatFits(_ size: CGSize) -> CGSize {

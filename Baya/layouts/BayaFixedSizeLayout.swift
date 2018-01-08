@@ -7,15 +7,13 @@ import Foundation
 import UIKit
 
 /**
-    Wraps a layoutable and overrides layout modes by applying fixed sizes.
-    Mirrors layout modes from its child.
+    Sets a fixed size for the element.
+    The `bayaModes` will be `.wrapContent` on sides with fixed size, or the element's `bayaModes`.
 */
 public struct BayaFixedSizeLayout: BayaLayout {
-    public var layoutMargins = UIEdgeInsets.zero
+    public var bayaMargins = UIEdgeInsets.zero
     public var frame: CGRect
-    public var layoutModes: BayaLayoutOptions.Modes {
-        return element.layoutModes
-    }
+    public var bayaModes: BayaLayoutOptions.Modes
     private var element: BayaLayoutable
     private var measure: CGSize?
     private var fixedWidth: CGFloat?
@@ -29,6 +27,9 @@ public struct BayaFixedSizeLayout: BayaLayout {
         self.fixedHeight = height
         self.element = element
         self.frame = CGRect()
+        self.bayaModes = BayaLayoutOptions.Modes(
+            width: width != nil ? .wrapContent : element.bayaModes.width,
+            height: height != nil ? .wrapContent : element.bayaModes.height)
     }
 
     mutating public func layoutWith(frame: CGRect) {
@@ -45,10 +46,11 @@ public struct BayaFixedSizeLayout: BayaLayout {
                 height: fixedHeight?.subtract(element.verticalMargins) ?? defaultSize.height)
         }
 
+        let bayaMargins = element.bayaMargins
         element.layoutWith(frame: CGRect(
             origin: CGPoint(
-                x: frame.origin.x + element.layoutMargins.left,
-                y: frame.origin.y + element.layoutMargins.top),
+                x: frame.origin.x + bayaMargins.left,
+                y: frame.origin.y + bayaMargins.top),
             size: size))
     }
 
@@ -63,9 +65,9 @@ public struct BayaFixedSizeLayout: BayaLayout {
 public extension BayaLayoutable {
     /// Sets a fixed size for the element.
     /// - parameter width: The desired width in points. If `nil` is passed as parameter the width is determined in
-    ///   accordance with the element's `layoutModes`.
+    ///   accordance with the element's `bayaModes`.
     /// - parameter height: The desired height in points. If `nil` is passed as parameter the height is determined
-    ///   in accordance with the element's `layoutModes`.
+    ///   in accordance with the element's `bayaModes`.
     /// - returns: A `BayaFixedSizeLayout`.
     func layoutWithFixedSize(
         width: CGFloat?,

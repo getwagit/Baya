@@ -65,8 +65,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: layoutRect.width - l.horizontalMargins,
                 height: layoutRect.width - l.horizontalMargins),
             "frame does not match")
@@ -82,8 +82,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: smallLayoutRect.minX + l.layoutMargins.left,
-                y: smallLayoutRect.minY + l.layoutMargins.top,
+                x: smallLayoutRect.minX + l.bayaMargins.left,
+                y: smallLayoutRect.minY + l.bayaMargins.top,
                 width: smallLayoutRect.width - l.horizontalMargins,
                 height: smallLayoutRect.width - l.horizontalMargins),
             "frame does not match")
@@ -95,8 +95,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: layoutRect.height - l.verticalMargins,
                 height: layoutRect.height - l.verticalMargins),
             "frame does not match")
@@ -112,8 +112,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: smallLayoutRect.minX + l.layoutMargins.left,
-                y: smallLayoutRect.minY + l.layoutMargins.top,
+                x: smallLayoutRect.minX + l.bayaMargins.left,
+                y: smallLayoutRect.minY + l.bayaMargins.top,
                 width: smallLayoutRect.height - l.verticalMargins,
                 height: smallLayoutRect.height - l.verticalMargins),
             "frame does not match")
@@ -127,8 +127,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: bigSide,
                 height: bigSide),
             "frame does not match")
@@ -138,7 +138,7 @@ class BayaSquareTests: XCTestCase {
         l = TestLayoutable(
             width: 60,
             height: 20,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
                 height: .matchParent))
         var layout = l.layoutAsSquare()
@@ -148,8 +148,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: bigSide,
                 height: bigSide),
             "frame does not match when using matchParent")
@@ -158,7 +158,7 @@ class BayaSquareTests: XCTestCase {
         let l2 = TestLayoutable(
             width: 70,
             height: 10,
-            layoutModes: BayaLayoutOptions.Modes(
+            bayaModes: BayaLayoutOptions.Modes(
                 width: .wrapContent,
                 height: .wrapContent))
         var layout2 = l2.layoutAsSquare()
@@ -168,8 +168,8 @@ class BayaSquareTests: XCTestCase {
         XCTAssertEqual(
             l2.frame,
             CGRect(
-                x: layoutRect.minX + l.layoutMargins.left,
-                y: layoutRect.minY + l.layoutMargins.top,
+                x: layoutRect.minX + l.bayaMargins.left,
+                y: layoutRect.minY + l.bayaMargins.top,
                 width: bigSide2,
                 height: bigSide2),
             "Frames using matchParent and wrapContent are different but should be the same")
