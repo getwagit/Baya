@@ -18,14 +18,14 @@ A simple layout framework written in Swift.
 
 Add the following to your `Cartfile`
 ```
-github "getwagit/Baya" ~> 0.1.0
+github "getwagit/Baya" ~> 0.2.0
 ```
 
 #### CocoaPods
 
 Integrate Baya into your `Podfile`
 ```
-pod 'Baya', '~> 0.1.0'
+pod 'Baya', '~> 0.2.0'
 ```
 
 ## Basic Usage
