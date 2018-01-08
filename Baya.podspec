@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Baya"
-  s.version      = "0.1.0"
+  s.version      = "0.2.0"
   s.summary      = "Baya"
 
   s.homepage     = "https://github.com/getwagit/Baya.git"
