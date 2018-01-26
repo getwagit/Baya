@@ -45,7 +45,7 @@ public extension BayaLayoutable {
             element: self,
             bayaModes: BayaLayoutOptions.Modes(
                 width: .matchParent,
-                height: .wrapContent))
+                height: self.bayaModes.height))
     }
 
     /// Specifies that the element should fill its parent's height instead of using the measured height.
@@ -54,7 +54,7 @@ public extension BayaLayoutable {
         return BayaMatchParentLayout(
             element: self,
             bayaModes: BayaLayoutOptions.Modes(
-                width: .wrapContent,
+                width: self.bayaModes.width,
                 height: .matchParent))
     }
 
