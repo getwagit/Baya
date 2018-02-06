@@ -74,4 +74,34 @@ class BayaMatchParentTests: XCTestCase {
             CGSize(width: l.width, height: l.height),
             "size not matching")
     }
+    
+    func testChildModeNotAffectedByUnrelatedMatchParent() {
+        let l1 = TestLayoutable(
+            bayaModes: BayaLayoutOptions.Modes(
+                width: .matchParent,
+                height: .wrapContent))
+        let l2 = TestLayoutable(
+            bayaModes: BayaLayoutOptions.Modes(
+                width: .wrapContent,
+                height: .matchParent))
+        var layout1 = l1.layoutMatchingParentHeight()
+        var layout2 = l2.layoutMatchingParentWidth()
+        layout1.startLayout(with: layoutRect)
+        layout2.startLayout(with: layoutRect)
+        
+        let expectedRect = CGRect(
+            x: layoutRect.minX + l1.bayaMargins.left,
+            y: layoutRect.minY + l1.bayaMargins.top,
+            width: layoutRect.width - l1.horizontalMargins,
+            height: layoutRect.height - l1.verticalMargins)
+        
+        XCTAssertEqual(
+            l1.frame,
+            expectedRect,
+            "frame not matching for height test")
+        XCTAssertEqual(
+            l2.frame,
+            expectedRect,
+            "frame not matching for width test")
+    }
 }
