@@ -34,7 +34,7 @@ A basic layout in a `ViewController` could look like this:
 
 ```swift
 ...
-var layout: BayaLayoutable?
+var layout: BayaLayout?
 
 override func loadView() {
   ...
